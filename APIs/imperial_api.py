@@ -9,6 +9,6 @@ r = requests.get('https://odegdcpnma.execute-api.eu-west-2.amazonaws.com/develop
 data_dict = r.json()
 data_df = pd.DataFrame(data_dict['data']['data'])
 
-arr = data_df[['Overall', 'Timestamp']].values
+data_array = data_df[['Overall', 'Timestamp']].values
 
-print(arr)
+print(data_array)
