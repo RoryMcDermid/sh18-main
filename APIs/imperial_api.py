@@ -12,3 +12,5 @@ data_df = pd.DataFrame(data_dict['data']['data'])
 data_array = data_df[['Overall', 'Timestamp']].values
 
 print(data_array)
+
+print('hello')
