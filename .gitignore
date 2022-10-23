@@ -166,3 +166,5 @@ cython_debug/
 # .env
 example.json
 helper.py
+# vite stuff
+node_modules
