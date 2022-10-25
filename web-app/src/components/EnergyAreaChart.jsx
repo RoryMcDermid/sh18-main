@@ -8,7 +8,9 @@ import {
   CartesianGrid,
 } from "recharts";
 import CustomTooltip from "./CustomTooltip";
-import allData from "../mock-data/energyData.json";
+// import allData from "../mock-data/energyData.json";
+import allData from "../mock-data/utilityAPIEnergyData.json";
+
 
 const data = allData.energyData;
 
