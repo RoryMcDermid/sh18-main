@@ -1,2 +1,5 @@
 requests
 pandas
+openpyxl
+numpy
+json
