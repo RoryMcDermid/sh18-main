@@ -1,0 +1,2 @@
+As a technician, I want to see when / where we are spending the most on energy, so that I can optimise our equipment energy usage to lower costs.
+
