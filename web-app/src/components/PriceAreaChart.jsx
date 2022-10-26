@@ -15,6 +15,8 @@ const data = allData.priceData;
 const PriceAreaChart = () => {
   return (
     <div className='mx-5'>
+            <h1 class="headers">24 hour Energy Price Data</h1>
+
       <ResponsiveContainer width='100%' height={500}>
         <AreaChart data={data}>
           <defs>

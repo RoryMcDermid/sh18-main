@@ -8,16 +8,21 @@ import {
   CartesianGrid,
 } from "recharts";
 import CustomTooltip from "./CustomTooltip";
-// import allData from "../mock-data/energyData.json";
-import allData from "../mock-data/utilityAPIEnergyData.json";
+ import allData from "../mock-data/energyData.json";
+ import "./headers.css";
+//import allData from "../mock-data/utilityAPIEnergyData.json";
 
 
 const data = allData.energyData;
 
 const EnergyAreaChart = () => {
   return (
+  
     <div className='mx-5'>
+      <h1 className="headers">24 hour Energy Usage Data</h1>
+        
       <ResponsiveContainer width='100%' height={500}>
+
         <AreaChart data={data}>
           <defs>
             <linearGradient id='color' x1='0' y1='0' x2='0' y2='1'>

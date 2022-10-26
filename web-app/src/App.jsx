@@ -6,7 +6,7 @@ function App() {
   const [currentChart, setCurrentChart] = useState(true);
   return (
     <>
-      <div className='mt-48'>
+      <div className='mt-5'>
         {currentChart && <EnergyAreaChart />}
         {!currentChart && <PriceAreaChart />}
       </div>
