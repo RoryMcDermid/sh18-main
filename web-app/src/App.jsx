@@ -16,7 +16,7 @@ function App() {
           text-lg font-semibold cursor-pointer`}
           onClick={() => setCurrentChart(!currentChart)}
         >
-          {currentChart ? "Energy" : "Price"}
+          {currentChart ? "Price" : "Energy"}
         </div>
       </div>
     </>
