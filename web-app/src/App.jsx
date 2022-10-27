@@ -1,24 +1,9 @@
-import PriceAreaChart from "./components/PriceAreaChart";
-import EnergyAreaChart from "./components/EnergyAreaChart";
-import { useState } from "react";
+import CompareScreen from "./components/CompareScreen/CompareScreen";
 
 function App() {
-  const [currentChart, setCurrentChart] = useState(true);
   return (
     <>
-      <div className='mt-5'>
-        {currentChart && <EnergyAreaChart />}
-        {!currentChart && <PriceAreaChart />}
-      </div>
-      <div className='mt-10 w-full flex justify-center gap-5'>
-        <div
-          className={`px-4 py-3 bg-gray-400 hover:bg-gray-300 rounded-xl
-          text-lg font-semibold cursor-pointer`}
-          onClick={() => setCurrentChart(!currentChart)}
-        >
-          {currentChart ? "Price" : "Energy"}
-        </div>
-      </div>
+      <CompareScreen />
     </>
   );
 }
