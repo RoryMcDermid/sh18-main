@@ -1,8 +1,13 @@
+import IndividualMeter from "./components/IndividualMeter/IndividualMeter";
+
 function App() {
   return (
     <>
-      <IndividualMeter />
+    <div>
+      {<IndividualMeter />}
+    </div>
     </>
+    
   );
 }
 
