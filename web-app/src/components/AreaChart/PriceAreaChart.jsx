@@ -8,7 +8,7 @@ import {
   CartesianGrid,
 } from "recharts";
 import CustomTooltip from "./CustomTooltip";
-import allData from "../data/priceData.json";
+import allData from "../../data/priceData.json";
 
 const data = allData.priceData;
 
