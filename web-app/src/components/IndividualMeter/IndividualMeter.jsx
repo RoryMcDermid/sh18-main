@@ -10,18 +10,19 @@ import {
 import CustomTooltip from "../AreaCharts/CustomTooltip";
 import allData from "../../data/energyDataAllAMR.json";
 import "../AreaCharts/headers.css";
+import { useState } from "react";
 
 
 
 
 
-let IndividualMeter = () => {
-  var currentSerialNo = 0;
-var individualData = allData["serialNo" + currentSerialNo.toString()];
+const IndividualMeter = () => {
 
-function addOne(x){
-  return (x+1)%22;
-}
+const [currentSerialNo, setAMR] = useState("0");
+var individualData = allData["serialNo" + currentSerialNo];
+
+
+
 
   return (
     <div className='mx-5'>
@@ -54,15 +55,11 @@ function addOne(x){
       <div
           className={`px-4 py-3 bg-gray-400 hover:bg-gray-300 rounded-xl
           text-lg font-semibold cursor-pointer`}
-          onClick={addOne(currentSerialNo)}
+          onClick={() => setAMR(((parseInt(currentSerialNo) + 1) % 22).toString())}
           >
           Next AMR
         </div>
-      </div>
-      
-
-    
-
+              </div>
 
   );
 };

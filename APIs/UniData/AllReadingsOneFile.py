@@ -14,25 +14,6 @@ as_nparray = energy_file.values
 #select the serial numbers of the AMRs
 serialNos = as_nparray[1::30, 0]
 
-serialNosList = serialNos.tolist()
-
-serial_dict = {}
-serial_list = []
-
-for i in range(len(serialNos)):
-    
-	serial_list.append({
-		"SerialNumber" +str(i) : serialNosList[i]
-		    
-	    })
-
-serial_dict["SerialNos"] = serial_list
-# writing the data into the file
-with open("../../web-app/src/data/energySerialNos.json", "w") as outfileNos:
-	json.dump(serial_dict, outfileNos, indent = 2)
- 
-
-
 
 #slice the np array to get the first of september 24 usage for each AMR
 first_sep_vals = as_nparray[::30, 3:]
