@@ -4,7 +4,9 @@ function App() {
   return (
     <>
       <CompareScreen />
+
     </>
+    
   );
 }
 

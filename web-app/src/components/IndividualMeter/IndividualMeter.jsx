@@ -7,19 +7,29 @@ import {
   Tooltip,
   CartesianGrid,
 } from "recharts";
-import CustomTooltip from "./CustomTooltip";
-import allData from "../../data/energyData.json";
-import "./headers.css";
+import CustomTooltip from "../AreaCharts/CustomTooltip";
+import allData from "../../data/energyDataAllAMR.json";
+import "../AreaCharts/headers.css";
+import { useState } from "react";
 
-const data = allData.energyData;
 
-const EnergyAreaChart = () => {
+
+
+
+const IndividualMeter = () => {
+
+const [currentSerialNo, setAMR] = useState("0");
+var individualData = allData["serialNo" + currentSerialNo];
+
+
+
+
   return (
     <div className='mx-5'>
-      <h1 className='headers'>24 hour Energy Usage Data</h1>
+      <h1 className='headers'>AMR {currentSerialNo}</h1>
 
       <ResponsiveContainer width='100%' height={500}>
-        <AreaChart data={data}>
+        <AreaChart data={individualData}>
           <defs>
             <linearGradient id='color' x1='0' y1='0' x2='0' y2='1'>
               <stop offset='0%' stopColor='#cc0000' stopOpacity={0.5} />
@@ -41,8 +51,17 @@ const EnergyAreaChart = () => {
           <CartesianGrid opacity={0.1} vertical={false} />
         </AreaChart>
       </ResponsiveContainer>
-    </div>
+
+      <div
+          className={`px-4 py-3 bg-gray-400 hover:bg-gray-300 rounded-xl
+          text-lg font-semibold cursor-pointer`}
+          onClick={() => setAMR(((parseInt(currentSerialNo) + 1) % 22).toString())}
+          >
+          Next AMR
+        </div>
+              </div>
+
   );
 };
 
-export default EnergyAreaChart;
+export default IndividualMeter;
