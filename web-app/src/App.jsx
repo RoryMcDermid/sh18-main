@@ -1,9 +1,9 @@
-import SwitchScreen from "./components/SwitchScreen/SwitchScreen";
+import CostBreakdownScreen from "./components/CostBreakdownScreen/CostBreakdownScreen";
 
 function App() {
   return (
     <>
-      <SwitchScreen />
+      <CostBreakdownScreen />
     </>
   );
 }
