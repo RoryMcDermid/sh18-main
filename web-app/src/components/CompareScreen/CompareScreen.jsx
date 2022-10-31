@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { ReactComponent as CloseIcon } from "../../assets/close.svg";
+import allData from "../../data/energyDataAllAMR.json";
+import EnergyAreaChart2 from "../AreaChart2_1/EnergyAreaChart2";
 
 const CompareScreen = () => {
   let mockData = [];
-  for (let j = 0; j < 22; j++) {
+  for (let j = 0; j <= 22; j++) {
     mockData.push({
       id: `machine ${j + 1}`,
-      data: "hello",
+      data: allData[`serialNo${j}`],
     });
   }
 
@@ -37,7 +39,11 @@ const CompareScreen = () => {
   return (
     <>
       <div className='w-full h-screen grid grid-cols-5'>
-        <div className='col-span-4 mt-52'></div>
+        <div className='col-span-4 mt-52'>
+          {selectedData.length != 0 && (
+            <EnergyAreaChart2 data={selectedData[0].data} />
+          )}
+        </div>
         <div className='overflow-auto'>
           <div className='col-span-1 bg-gray-800'>
             {selectedData.map((item) => (

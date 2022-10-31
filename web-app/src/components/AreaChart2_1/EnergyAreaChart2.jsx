@@ -8,11 +8,8 @@ import {
   CartesianGrid,
 } from "recharts";
 import CustomTooltip from "./CustomTooltip2";
-import allData from "../../data/energyData.json";
 
-const data = allData.energyData;
-
-const EnergyAreaChart = () => {
+const EnergyAreaChart2 = ({ data }) => {
   return (
     <div className='mx-5'>
       <h1 className='text-3xl text-center text-white font-bold mb-5'>
@@ -46,4 +43,4 @@ const EnergyAreaChart = () => {
   );
 };
 
-export default EnergyAreaChart;
+export default EnergyAreaChart2;
