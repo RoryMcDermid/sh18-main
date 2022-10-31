@@ -1,10 +1,10 @@
-import PriceAreaChart from "./components/AreaChart/PriceAreaChart";
+import PriceAreaChart2 from "./components/AreaChart2/PriceAreaChart2";
 
 function App() {
   return (
-    <>
-      <PriceAreaChart />
-    </>
+    <div>
+      <PriceAreaChart2 />
+    </div>
   );
 }
 
