@@ -1,10 +1,10 @@
 import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import CustomTooltip from "../AreaChart/CustomTooltip";
-import allData from "../../data/energyData.json";
+import allEnergyData from "../../data/energyData.json";
 import "../AreaChart/headers.css";
 
 
-const data = allData.energyData;
+const data = allEnergyData.energyData;
 
 const EnergyBarChart = () => {
   return (

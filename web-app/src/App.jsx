@@ -5,15 +5,15 @@ import EnergyAreaChart from "./components/AreaChart/EnergyAreaChart.jsx";
 import { useState } from "react";
 
 function App() {
-  const [currentChart1, setCurrentChart1] = useState(true);
-  const [currentChart2, setCurrentChart2] = useState(true);
+  const [currentChartData, setCurrentChartData] = useState(true);
+  const [currentChartType, setCurrentChartType] = useState(true);
   return (
     <>
       <div className='mt-5'>
-        {currentChart1 && <EnergyAreaChart />}
-          {currentChart2 && <EnergyBarChart />}
-        {!currentChart1 && <PriceAreaChart />}
-          {!currentChart2 && <PriceBarChart />}
+        {currentChartData && currentChartType && <EnergyAreaChart />}
+        {currentChartData && !currentChartType && <EnergyBarChart />}
+        {!currentChartData && currentChartType && <PriceAreaChart />}
+        {!currentChartData && !currentChartType && <PriceBarChart />}
 
       </div>
 
@@ -21,16 +21,16 @@ function App() {
         <div
           className={`px-4 py-3 bg-gray-400 hover:bg-gray-300 rounded-xl
           text-lg font-semibold cursor-pointer`}
-          onClick={() => {setCurrentChart1(!currentChart1);setCurrentChart2(!currentChart2)}}
+          onClick={() => {setCurrentChartData(!currentChartData)}}
         >
-          {currentChart1 ? "Price" : "Energy"}
+          {currentChartData ? "Price" : "Energy"}
 
         </div>
           <div className={`px-4 py-3 bg-gray-400 hover:bg-gray-300 rounded-xl
           text-lg font-semibold cursor-pointer`}
-              onClick={() => {setCurrentChart2(currentChart2) }}>
+              onClick={() => {setCurrentChartType(!currentChartType)}}>
 
-              {currentChart2 ? "BarChart" : "AreaChart"}
+              {currentChartType ? "BarChart" : "AreaChart"}
           </div>
       </div>
     </>
