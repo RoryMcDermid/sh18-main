@@ -1,8 +1,14 @@
-import PriceBarChart from "../BarChart/PriceBarChart.jsx";
-import PriceAreaChart from "../AreaChart/PriceAreaChart.jsx";
-import EnergyBarChart from "../BarChart/EnergyBarChart.jsx";
-import EnergyAreaChart from "../AreaChart/EnergyAreaChart.jsx";
 import { useState } from "react";
+import PriceBarChart from "../BarChart/PriceBarChart";
+import StandardBarChart from "../BarChart/StandardBarChart";
+import ContAreaChart from "../AreaChart/ContAreaChart";
+import DiscreteAreaChart from "../AreaChart/DiscreteAreaChart";
+
+import allPriceData from "../../data/priceData.json";
+import allEnergyData from "../../data/energyData.json";
+
+const priceData = allPriceData.priceData;
+const energyData = allEnergyData.energyData;
 
 const ToggleScreen = () => {
   const [currentChartData, setCurrentChartData] = useState(true);
@@ -10,10 +16,34 @@ const ToggleScreen = () => {
   return (
     <>
       <div className='mt-5'>
-        {currentChartData && currentChartType && <EnergyAreaChart />}
-        {currentChartData && !currentChartType && <EnergyBarChart />}
-        {!currentChartData && currentChartType && <PriceAreaChart />}
-        {!currentChartData && !currentChartType && <PriceBarChart />}
+        {currentChartData && currentChartType && (
+          <ContAreaChart
+            dataSource={energyData}
+            dataKey='EnergyUsage'
+            title='24 hour Energy Usage Data'
+          />
+        )}
+        {currentChartData && !currentChartType && (
+          <StandardBarChart
+            dataSource={energyData}
+            dataKey='EnergyUsage'
+            title='24 hour Energy Usage Data'
+          />
+        )}
+        {!currentChartData && currentChartType && (
+          <DiscreteAreaChart
+            dataSource={priceData}
+            dataKey='Price'
+            title='24 hour Energy Price Data'
+          />
+        )}
+        {!currentChartData && !currentChartType && (
+          <StandardBarChart
+            dataSource={priceData}
+            dataKey='Price'
+            title='24 hour Energy Price Data'
+          />
+        )}
       </div>
 
       <div className='mt-10 w-full flex justify-center gap-5'>
