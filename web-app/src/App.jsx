@@ -1,14 +1,31 @@
-import PriceAreaChart from "./components/PriceAreaChart";
-import EnergyAreaChart from "./components/EnergyAreaChart";
 import { useState } from "react";
+import DiscreteAreaChart from "./components/AreaChart/DiscreteAreaChart";
+import ContAreaChart from "./components/AreaChart/ContAreaChart";
+import allPriceData from "./data/priceData.json";
+import allEnergyData from "./data/energyData.json";
+
+const priceData = allPriceData.priceData;
+const energyData = allEnergyData.energyData;
 
 function App() {
   const [currentChart, setCurrentChart] = useState(true);
   return (
     <>
       <div className='mt-5'>
-        {currentChart && <EnergyAreaChart />}
-        {!currentChart && <PriceAreaChart />}
+        {currentChart && (
+          <ContAreaChart
+            dataSource={energyData}
+            dataKey='EnergyUsage'
+            title='24 hour Energy Usage Data'
+          />
+        )}
+        {!currentChart && (
+          <DiscreteAreaChart
+            dataSource={priceData}
+            dataKey='Price'
+            title='24 hour Energy Price Data'
+          />
+        )}
       </div>
       <div className='mt-10 w-full flex justify-center gap-5'>
         <div
