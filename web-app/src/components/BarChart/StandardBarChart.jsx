@@ -10,7 +10,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-import CustomTooltip from "../AreaChart/CustomTooltip";
+import CustomTooltip from "../Helpers/CustomTooltip";
 import "../AreaChart/headers.css";
 
 const StandardBarChart = (props) => {
