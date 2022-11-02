@@ -7,29 +7,36 @@ import {
   Tooltip,
   CartesianGrid,
 } from "recharts";
-import CustomTooltip from "../Helpers/CustomTooltip.jsx";
-import costData from "../../data/CostData.json";
+import CustomTooltip from "../Helpers/CustomTooltip";
+import "./headers.css";
 
-const data = costData.CostData;
+const DiscreteAreaChart = (props) => {
+  const { dataSource, dataKey, title } = props;
 
-const CostBreakdownScreen = () => {
   return (
     <div className='mx-5'>
-      <h1 className=''>24 hour Hourly Cost Data</h1>
+      <h1 className='headers'>{title}</h1>
 
       <ResponsiveContainer width='100%' height={500}>
-        <AreaChart data={data}>
+        <AreaChart data={dataSource}>
           <defs>
             <linearGradient id='color' x1='0' y1='0' x2='0' y2='1'>
               <stop offset='0%' stopColor='#ff6600' stopOpacity={0.5} />
               <stop offset='75%' stopColor='#ff6600' stopOpacity={0.07} />
             </linearGradient>
           </defs>
-          <Area dataKey='Cost' stroke='#ff6600' fill='url(#color)' />
+
+          <Area
+            type='stepAfter'
+            dataKey={dataKey}
+            stroke='#ff6600'
+            fill='url(#color)'
+          />
+
           <XAxis dataKey='Timestamp' />
 
           <YAxis
-            dataKey='Cost'
+            dataKey={dataKey}
             tickCount={10}
             tickFormatter={(price) => `£${price.toFixed(2)}`}
           />
@@ -42,5 +49,4 @@ const CostBreakdownScreen = () => {
     </div>
   );
 };
-
-export default CostBreakdownScreen;
+export default DiscreteAreaChart;
