@@ -14,8 +14,6 @@ import "../AreaChart/headers.css";
 const data = costData.CostData;
 
 const CostBreakdownScreen = () => {
-  // logic goes here
-
   return (
     <div className='mx-5'>
       <h1 class='headers'>24 hour Hourly Cost Data</h1>

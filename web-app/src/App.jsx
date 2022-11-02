@@ -1,4 +1,4 @@
-import CostBreakdownScreen from "./components/CostBreakdownScreen/CostBreakdownScreen";
+import CostBreakdownScreen from "./components/CostBreakdown/CostScreen";
 
 function App() {
   return (
