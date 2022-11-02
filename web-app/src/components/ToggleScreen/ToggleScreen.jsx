@@ -1,5 +1,4 @@
 import { useState } from "react";
-import PriceBarChart from "../BarChart/PriceBarChart";
 import StandardBarChart from "../BarChart/StandardBarChart";
 import ContAreaChart from "../AreaChart/ContAreaChart";
 import DiscreteAreaChart from "../AreaChart/DiscreteAreaChart";

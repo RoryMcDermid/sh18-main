@@ -11,7 +11,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import CustomTooltip from "../Helpers/CustomTooltip";
-import "../AreaChart/headers.css";
+import "../Helpers/headers.css";
 
 const StandardBarChart = (props) => {
   const { dataSource, dataKey, title } = props;

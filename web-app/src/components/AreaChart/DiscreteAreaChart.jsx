@@ -8,7 +8,7 @@ import {
   CartesianGrid,
 } from "recharts";
 import CustomTooltip from "../Helpers/CustomTooltip";
-import "./headers.css";
+import "../Helpers/headers.css";
 
 const DiscreteAreaChart = (props) => {
   const { dataSource, dataKey, title } = props;

@@ -1,9 +1,11 @@
-import CostBreakdownScreen from "./components/CostBreakdown/CostScreen";
+// import CostBreakdownScreen from "./components/CostBreakdownScreen/CostBreakdownScreen";
+import ToggleScreen from "./components/ToggleScreen/ToggleScreen";
 
 function App() {
   return (
     <>
-      <CostBreakdownScreen />
+      {/* <CostBreakdownScreen /> */}
+      <ToggleScreen />
     </>
   );
 }

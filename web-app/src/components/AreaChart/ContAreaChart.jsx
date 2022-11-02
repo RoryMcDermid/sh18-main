@@ -8,9 +8,9 @@ import {
   CartesianGrid,
 } from "recharts";
 import CustomTooltip from "../Helpers/CustomTooltip";
-import "./headers.css";
+import "../Helpers/headers.css";
 
-const StandardAreaChart = (props) => {
+const ContAreaChart = (props) => {
   const { dataSource, dataKey, title } = props;
 
   return (
@@ -44,4 +44,4 @@ const StandardAreaChart = (props) => {
   );
 };
 
-export default StandardAreaChart;
+export default ContAreaChart;
