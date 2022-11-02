@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ReactComponent as CloseIcon } from "../../assets/close.svg";
 import allData from "../../data/energyDataAllAMR.json";
-import EnergyAreaChart2 from "../AreaChart2_1/EnergyAreaChart2";
+import ContAreaChart from "../AreaChart/ContAreaChart";
 
 const CompareScreen = () => {
   let mockData = [];
@@ -41,7 +41,11 @@ const CompareScreen = () => {
       <div className='w-full h-screen grid grid-cols-5'>
         <div className='col-span-4 mt-52'>
           {selectedData.length != 0 && (
-            <EnergyAreaChart2 data={selectedData[0].data} />
+            <ContAreaChart
+              dataSource={selectedData[0].data}
+              dataKey='EnergyUsage'
+              title='Energy Usage'
+            />
           )}
         </div>
         <div className='overflow-auto'>

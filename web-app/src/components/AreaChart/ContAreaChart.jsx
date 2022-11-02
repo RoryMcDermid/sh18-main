@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import {
   ResponsiveContainer,
   AreaChart,
@@ -12,6 +13,21 @@ import "../Helpers/headers.css";
 
 const ContAreaChart = (props) => {
   const { dataSource, dataKey, title } = props;
+  const [strokeColor, setStrokeColor] = useState("#000");
+
+  const handleColor = (dataKey) => {
+    if (dataKey == "Price") {
+      setStrokeColor("#ff6600");
+    } else if (dataKey == "EnergyUsage") {
+      setStrokeColor("#cc0000");
+    } else if (dataKey == "Cost") {
+      setStrokeColor("#006600");
+    }
+  };
+
+  useEffect(() => {
+    handleColor(dataKey);
+  });
 
   return (
     <div className='mx-5'>
@@ -21,11 +37,11 @@ const ContAreaChart = (props) => {
         <AreaChart data={dataSource}>
           <defs>
             <linearGradient id='color' x1='0' y1='0' x2='0' y2='1'>
-              <stop offset='0%' stopColor='#cc0000' stopOpacity={0.5} />
-              <stop offset='75%' stopColor='#cc0000' stopOpacity={0.07} />
+              <stop offset='0%' stopColor={strokeColor} stopOpacity={0.5} />
+              <stop offset='75%' stopColor={strokeColor} stopOpacity={0.07} />
             </linearGradient>
           </defs>
-          <Area dataKey={dataKey} stroke='#cc0000' fill='url(#color)' />
+          <Area dataKey={dataKey} stroke={strokeColor} fill='url(#color)' />
 
           <XAxis dataKey='Timestamp' />
 

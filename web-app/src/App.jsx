@@ -1,11 +1,13 @@
-// import CostBreakdownScreen from "./components/CostBreakdownScreen/CostBreakdownScreen";
-import ToggleScreen from "./components/ToggleScreen/ToggleScreen";
+import CostBreakdownScreen from "./components/CostBreakdownScreen/CostBreakdownScreen";
+// import CompareScreen from "./components/CompareScreen/CompareScreen";
+// import ToggleScreen from "./components/ToggleScreen/ToggleScreen";
 
 function App() {
   return (
     <>
-      {/* <CostBreakdownScreen /> */}
-      <ToggleScreen />
+      <CostBreakdownScreen />
+      {/* <CompareScreen /> */}
+      {/* <ToggleScreen /> */}
     </>
   );
 }

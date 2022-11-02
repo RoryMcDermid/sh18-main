@@ -21,8 +21,10 @@ const StandardBarChart = (props) => {
   const handleColor = (dataKey) => {
     if (dataKey == "Price") {
       setStrokeColor("#ff6600");
-    } else {
+    } else if (dataKey == "EnergyUsage") {
       setStrokeColor("#cc0000");
+    } else if (dataKey == "Cost") {
+      setStrokeColor("#006600");
     }
   };
 
