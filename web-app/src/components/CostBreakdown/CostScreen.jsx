@@ -7,16 +7,15 @@ import {
   Tooltip,
   CartesianGrid,
 } from "recharts";
-import CustomTooltip from "../AreaChart/CustomTooltip";
+import CustomTooltip from "../Helpers/CustomTooltip.jsx";
 import costData from "../../data/CostData.json";
-import "../AreaChart/headers.css";
 
 const data = costData.CostData;
 
 const CostBreakdownScreen = () => {
   return (
     <div className='mx-5'>
-      <h1 class='headers'>24 hour Hourly Cost Data</h1>
+      <h1 className=''>24 hour Hourly Cost Data</h1>
 
       <ResponsiveContainer width='100%' height={500}>
         <AreaChart data={data}>
