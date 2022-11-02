@@ -1,0 +1,4464 @@
+{
+  "serialNo0": [
+    {
+      "EnergyUsage": 18.4,
+      "Timestamp": "00:00"
+    },
+    {
+      "EnergyUsage": 21.4,
+      "Timestamp": "00:30"
+    },
+    {
+      "EnergyUsage": 22.7,
+      "Timestamp": "01:00"
+    },
+    {
+      "EnergyUsage": 22.8,
+      "Timestamp": "01:30"
+    },
+    {
+      "EnergyUsage": 19.1,
+      "Timestamp": "02:00"
+    },
+    {
+      "EnergyUsage": 16.9,
+      "Timestamp": "02:30"
+    },
+    {
+      "EnergyUsage": 17.2,
+      "Timestamp": "03:00"
+    },
+    {
+      "EnergyUsage": 17.5,
+      "Timestamp": "03:30"
+    },
+    {
+      "EnergyUsage": 16.8,
+      "Timestamp": "04:00"
+    },
+    {
+      "EnergyUsage": 17.7,
+      "Timestamp": "04:30"
+    },
+    {
+      "EnergyUsage": 18.9,
+      "Timestamp": "05:00"
+    },
+    {
+      "EnergyUsage": 16.9,
+      "Timestamp": "05:30"
+    },
+    {
+      "EnergyUsage": 20.4,
+      "Timestamp": "06:00"
+    },
+    {
+      "EnergyUsage": 17.3,
+      "Timestamp": "06:30"
+    },
+    {
+      "EnergyUsage": 17.0,
+      "Timestamp": "07:00"
+    },
+    {
+      "EnergyUsage": 20.3,
+      "Timestamp": "07:30"
+    },
+    {
+      "EnergyUsage": 21.9,
+      "Timestamp": "08:00"
+    },
+    {
+      "EnergyUsage": 22.7,
+      "Timestamp": "08:30"
+    },
+    {
+      "EnergyUsage": 21.0,
+      "Timestamp": "09:00"
+    },
+    {
+      "EnergyUsage": 16.7,
+      "Timestamp": "09:30"
+    },
+    {
+      "EnergyUsage": 17.1,
+      "Timestamp": "10:00"
+    },
+    {
+      "EnergyUsage": 16.6,
+      "Timestamp": "10:30"
+    },
+    {
+      "EnergyUsage": 17.1,
+      "Timestamp": "11:00"
+    },
+    {
+      "EnergyUsage": 17.4,
+      "Timestamp": "11:30"
+    },
+    {
+      "EnergyUsage": 13.6,
+      "Timestamp": "12:00"
+    },
+    {
+      "EnergyUsage": 13.2,
+      "Timestamp": "12:30"
+    },
+    {
+      "EnergyUsage": 13.6,
+      "Timestamp": "13:00"
+    },
+    {
+      "EnergyUsage": 14.1,
+      "Timestamp": "13:30"
+    },
+    {
+      "EnergyUsage": 13.9,
+      "Timestamp": "14:00"
+    },
+    {
+      "EnergyUsage": 15.0,
+      "Timestamp": "14:30"
+    },
+    {
+      "EnergyUsage": 18.4,
+      "Timestamp": "15:00"
+    },
+    {
+      "EnergyUsage": 18.1,
+      "Timestamp": "15:30"
+    },
+    {
+      "EnergyUsage": 13.4,
+      "Timestamp": "16:00"
+    },
+    {
+      "EnergyUsage": 16.7,
+      "Timestamp": "16:30"
+    },
+    {
+      "EnergyUsage": 17.0,
+      "Timestamp": "17:00"
+    },
+    {
+      "EnergyUsage": 17.0,
+      "Timestamp": "17:30"
+    },
+    {
+      "EnergyUsage": 17.6,
+      "Timestamp": "18:00"
+    },
+    {
+      "EnergyUsage": 15.1,
+      "Timestamp": "18:30"
+    },
+    {
+      "EnergyUsage": 16.8,
+      "Timestamp": "19:00"
+    },
+    {
+      "EnergyUsage": 16.9,
+      "Timestamp": "19:30"
+    },
+    {
+      "EnergyUsage": 17.2,
+      "Timestamp": "20:00"
+    },
+    {
+      "EnergyUsage": 16.8,
+      "Timestamp": "20:30"
+    },
+    {
+      "EnergyUsage": 20.0,
+      "Timestamp": "21:00"
+    },
+    {
+      "EnergyUsage": 23.0,
+      "Timestamp": "21:30"
+    },
+    {
+      "EnergyUsage": 21.9,
+      "Timestamp": "22:00"
+    },
+    {
+      "EnergyUsage": 17.5,
+      "Timestamp": "22:30"
+    },
+    {
+      "EnergyUsage": 16.2,
+      "Timestamp": "23:00"
+    },
+    {
+      "EnergyUsage": 16.4,
+      "Timestamp": "23:30"
+    }
+  ],
+  "serialNo1": [
+    {
+      "EnergyUsage": 3.4,
+      "Timestamp": "00:00"
+    },
+    {
+      "EnergyUsage": 3.6,
+      "Timestamp": "00:30"
+    },
+    {
+      "EnergyUsage": 3.5,
+      "Timestamp": "01:00"
+    },
+    {
+      "EnergyUsage": 3.8,
+      "Timestamp": "01:30"
+    },
+    {
+      "EnergyUsage": 3.5,
+      "Timestamp": "02:00"
+    },
+    {
+      "EnergyUsage": 3.6,
+      "Timestamp": "02:30"
+    },
+    {
+      "EnergyUsage": 3.6,
+      "Timestamp": "03:00"
+    },
+    {
+      "EnergyUsage": 3.6,
+      "Timestamp": "03:30"
+    },
+    {
+      "EnergyUsage": 3.6,
+      "Timestamp": "04:00"
+    },
+    {
+      "EnergyUsage": 3.5,
+      "Timestamp": "04:30"
+    },
+    {
+      "EnergyUsage": 4.7,
+      "Timestamp": "05:00"
+    },
+    {
+      "EnergyUsage": 4.3,
+      "Timestamp": "05:30"
+    },
+    {
+      "EnergyUsage": 3.9,
+      "Timestamp": "06:00"
+    },
+    {
+      "EnergyUsage": 5.6,
+      "Timestamp": "06:30"
+    },
+    {
+      "EnergyUsage": 6.6,
+      "Timestamp": "07:00"
+    },
+    {
+      "EnergyUsage": 8.7,
+      "Timestamp": "07:30"
+    },
+    {
+      "EnergyUsage": 15.1,
+      "Timestamp": "08:00"
+    },
+    {
+      "EnergyUsage": 13.6,
+      "Timestamp": "08:30"
+    },
+    {
+      "EnergyUsage": 13.9,
+      "Timestamp": "09:00"
+    },
+    {
+      "EnergyUsage": 14.7,
+      "Timestamp": "09:30"
+    },
+    {
+      "EnergyUsage": 15.4,
+      "Timestamp": "10:00"
+    },
+    {
+      "EnergyUsage": 17.7,
+      "Timestamp": "10:30"
+    },
+    {
+      "EnergyUsage": 15.8,
+      "Timestamp": "11:00"
+    },
+    {
+      "EnergyUsage": 13.9,
+      "Timestamp": "11:30"
+    },
+    {
+      "EnergyUsage": 12.9,
+      "Timestamp": "12:00"
+    },
+    {
+      "EnergyUsage": 12.7,
+      "Timestamp": "12:30"
+    },
+    {
+      "EnergyUsage": 12.6,
+      "Timestamp": "13:00"
+    },
+    {
+      "EnergyUsage": 12.6,
+      "Timestamp": "13:30"
+    },
+    {
+      "EnergyUsage": 13.2,
+      "Timestamp": "14:00"
+    },
+    {
+      "EnergyUsage": 13.1,
+      "Timestamp": "14:30"
+    },
+    {
+      "EnergyUsage": 14.9,
+      "Timestamp": "15:00"
+    },
+    {
+      "EnergyUsage": 12.6,
+      "Timestamp": "15:30"
+    },
+    {
+      "EnergyUsage": 11.6,
+      "Timestamp": "16:00"
+    },
+    {
+      "EnergyUsage": 8.3,
+      "Timestamp": "16:30"
+    },
+    {
+      "EnergyUsage": 5.6,
+      "Timestamp": "17:00"
+    },
+    {
+      "EnergyUsage": 4.5,
+      "Timestamp": "17:30"
+    },
+    {
+      "EnergyUsage": 4.5,
+      "Timestamp": "18:00"
+    },
+    {
+      "EnergyUsage": 4.1,
+      "Timestamp": "18:30"
+    },
+    {
+      "EnergyUsage": 3.9,
+      "Timestamp": "19:00"
+    },
+    {
+      "EnergyUsage": 4.0,
+      "Timestamp": "19:30"
+    },
+    {
+      "EnergyUsage": 4.1,
+      "Timestamp": "20:00"
+    },
+    {
+      "EnergyUsage": 4.3,
+      "Timestamp": "20:30"
+    },
+    {
+      "EnergyUsage": 3.9,
+      "Timestamp": "21:00"
+    },
+    {
+      "EnergyUsage": 4.2,
+      "Timestamp": "21:30"
+    },
+    {
+      "EnergyUsage": 3.3,
+      "Timestamp": "22:00"
+    },
+    {
+      "EnergyUsage": 3.2,
+      "Timestamp": "22:30"
+    },
+    {
+      "EnergyUsage": 3.8,
+      "Timestamp": "23:00"
+    },
+    {
+      "EnergyUsage": 3.1,
+      "Timestamp": "23:30"
+    }
+  ],
+  "serialNo2": [
+    {
+      "EnergyUsage": 2.9,
+      "Timestamp": "00:00"
+    },
+    {
+      "EnergyUsage": 2.9,
+      "Timestamp": "00:30"
+    },
+    {
+      "EnergyUsage": 3.1,
+      "Timestamp": "01:00"
+    },
+    {
+      "EnergyUsage": 3.2,
+      "Timestamp": "01:30"
+    },
+    {
+      "EnergyUsage": 3.2,
+      "Timestamp": "02:00"
+    },
+    {
+      "EnergyUsage": 3.0,
+      "Timestamp": "02:30"
+    },
+    {
+      "EnergyUsage": 3.2,
+      "Timestamp": "03:00"
+    },
+    {
+      "EnergyUsage": 2.9,
+      "Timestamp": "03:30"
+    },
+    {
+      "EnergyUsage": 2.8,
+      "Timestamp": "04:00"
+    },
+    {
+      "EnergyUsage": 3.2,
+      "Timestamp": "04:30"
+    },
+    {
+      "EnergyUsage": 3.0,
+      "Timestamp": "05:00"
+    },
+    {
+      "EnergyUsage": 5.0,
+      "Timestamp": "05:30"
+    },
+    {
+      "EnergyUsage": 5.4,
+      "Timestamp": "06:00"
+    },
+    {
+      "EnergyUsage": 5.4,
+      "Timestamp": "06:30"
+    },
+    {
+      "EnergyUsage": 5.8,
+      "Timestamp": "07:00"
+    },
+    {
+      "EnergyUsage": 5.7,
+      "Timestamp": "07:30"
+    },
+    {
+      "EnergyUsage": 6.5,
+      "Timestamp": "08:00"
+    },
+    {
+      "EnergyUsage": 6.7,
+      "Timestamp": "08:30"
+    },
+    {
+      "EnergyUsage": 6.3,
+      "Timestamp": "09:00"
+    },
+    {
+      "EnergyUsage": 6.1,
+      "Timestamp": "09:30"
+    },
+    {
+      "EnergyUsage": 6.4,
+      "Timestamp": "10:00"
+    },
+    {
+      "EnergyUsage": 6.3,
+      "Timestamp": "10:30"
+    },
+    {
+      "EnergyUsage": 6.4,
+      "Timestamp": "11:00"
+    },
+    {
+      "EnergyUsage": 6.1,
+      "Timestamp": "11:30"
+    },
+    {
+      "EnergyUsage": 5.9,
+      "Timestamp": "12:00"
+    },
+    {
+      "EnergyUsage": 6.1,
+      "Timestamp": "12:30"
+    },
+    {
+      "EnergyUsage": 6.1,
+      "Timestamp": "13:00"
+    },
+    {
+      "EnergyUsage": 5.8,
+      "Timestamp": "13:30"
+    },
+    {
+      "EnergyUsage": 6.1,
+      "Timestamp": "14:00"
+    },
+    {
+      "EnergyUsage": 5.8,
+      "Timestamp": "14:30"
+    },
+    {
+      "EnergyUsage": 4.3,
+      "Timestamp": "15:00"
+    },
+    {
+      "EnergyUsage": 3.4,
+      "Timestamp": "15:30"
+    },
+    {
+      "EnergyUsage": 3.4,
+      "Timestamp": "16:00"
+    },
+    {
+      "EnergyUsage": 3.7,
+      "Timestamp": "16:30"
+    },
+    {
+      "EnergyUsage": 3.4,
+      "Timestamp": "17:00"
+    },
+    {
+      "EnergyUsage": 3.6,
+      "Timestamp": "17:30"
+    },
+    {
+      "EnergyUsage": 3.3,
+      "Timestamp": "18:00"
+    },
+    {
+      "EnergyUsage": 3.3,
+      "Timestamp": "18:30"
+    },
+    {
+      "EnergyUsage": 3.3,
+      "Timestamp": "19:00"
+    },
+    {
+      "EnergyUsage": 3.3,
+      "Timestamp": "19:30"
+    },
+    {
+      "EnergyUsage": 3.3,
+      "Timestamp": "20:00"
+    },
+    {
+      "EnergyUsage": 3.4,
+      "Timestamp": "20:30"
+    },
+    {
+      "EnergyUsage": 3.1,
+      "Timestamp": "21:00"
+    },
+    {
+      "EnergyUsage": 3.1,
+      "Timestamp": "21:30"
+    },
+    {
+      "EnergyUsage": 3.5,
+      "Timestamp": "22:00"
+    },
+    {
+      "EnergyUsage": 3.4,
+      "Timestamp": "22:30"
+    },
+    {
+      "EnergyUsage": 3.0,
+      "Timestamp": "23:00"
+    },
+    {
+      "EnergyUsage": 3.2,
+      "Timestamp": "23:30"
+    }
+  ],
+  "serialNo3": [
+    {
+      "EnergyUsage": 21.4,
+      "Timestamp": "00:00"
+    },
+    {
+      "EnergyUsage": 22.0,
+      "Timestamp": "00:30"
+    },
+    {
+      "EnergyUsage": 21.9,
+      "Timestamp": "01:00"
+    },
+    {
+      "EnergyUsage": 21.9,
+      "Timestamp": "01:30"
+    },
+    {
+      "EnergyUsage": 21.4,
+      "Timestamp": "02:00"
+    },
+    {
+      "EnergyUsage": 21.5,
+      "Timestamp": "02:30"
+    },
+    {
+      "EnergyUsage": 21.7,
+      "Timestamp": "03:00"
+    },
+    {
+      "EnergyUsage": 21.6,
+      "Timestamp": "03:30"
+    },
+    {
+      "EnergyUsage": 24.7,
+      "Timestamp": "04:00"
+    },
+    {
+      "EnergyUsage": 26.3,
+      "Timestamp": "04:30"
+    },
+    {
+      "EnergyUsage": 27.0,
+      "Timestamp": "05:00"
+    },
+    {
+      "EnergyUsage": 26.7,
+      "Timestamp": "05:30"
+    },
+    {
+      "EnergyUsage": 26.9,
+      "Timestamp": "06:00"
+    },
+    {
+      "EnergyUsage": 27.3,
+      "Timestamp": "06:30"
+    },
+    {
+      "EnergyUsage": 26.7,
+      "Timestamp": "07:00"
+    },
+    {
+      "EnergyUsage": 28.3,
+      "Timestamp": "07:30"
+    },
+    {
+      "EnergyUsage": 28.3,
+      "Timestamp": "08:00"
+    },
+    {
+      "EnergyUsage": 33.0,
+      "Timestamp": "08:30"
+    },
+    {
+      "EnergyUsage": 29.5,
+      "Timestamp": "09:00"
+    },
+    {
+      "EnergyUsage": 29.5,
+      "Timestamp": "09:30"
+    },
+    {
+      "EnergyUsage": 29.4,
+      "Timestamp": "10:00"
+    },
+    {
+      "EnergyUsage": 31.4,
+      "Timestamp": "10:30"
+    },
+    {
+      "EnergyUsage": 31.8,
+      "Timestamp": "11:00"
+    },
+    {
+      "EnergyUsage": 31.9,
+      "Timestamp": "11:30"
+    },
+    {
+      "EnergyUsage": 39.2,
+      "Timestamp": "12:00"
+    },
+    {
+      "EnergyUsage": 41.5,
+      "Timestamp": "12:30"
+    },
+    {
+      "EnergyUsage": 33.5,
+      "Timestamp": "13:00"
+    },
+    {
+      "EnergyUsage": 32.1,
+      "Timestamp": "13:30"
+    },
+    {
+      "EnergyUsage": 32.1,
+      "Timestamp": "14:00"
+    },
+    {
+      "EnergyUsage": 31.5,
+      "Timestamp": "14:30"
+    },
+    {
+      "EnergyUsage": 29.2,
+      "Timestamp": "15:00"
+    },
+    {
+      "EnergyUsage": 30.9,
+      "Timestamp": "15:30"
+    },
+    {
+      "EnergyUsage": 27.6,
+      "Timestamp": "16:00"
+    },
+    {
+      "EnergyUsage": 25.1,
+      "Timestamp": "16:30"
+    },
+    {
+      "EnergyUsage": 24.5,
+      "Timestamp": "17:00"
+    },
+    {
+      "EnergyUsage": 23.4,
+      "Timestamp": "17:30"
+    },
+    {
+      "EnergyUsage": 24.1,
+      "Timestamp": "18:00"
+    },
+    {
+      "EnergyUsage": 23.6,
+      "Timestamp": "18:30"
+    },
+    {
+      "EnergyUsage": 21.5,
+      "Timestamp": "19:00"
+    },
+    {
+      "EnergyUsage": 21.0,
+      "Timestamp": "19:30"
+    },
+    {
+      "EnergyUsage": 21.0,
+      "Timestamp": "20:00"
+    },
+    {
+      "EnergyUsage": 21.1,
+      "Timestamp": "20:30"
+    },
+    {
+      "EnergyUsage": 20.7,
+      "Timestamp": "21:00"
+    },
+    {
+      "EnergyUsage": 20.9,
+      "Timestamp": "21:30"
+    },
+    {
+      "EnergyUsage": 20.8,
+      "Timestamp": "22:00"
+    },
+    {
+      "EnergyUsage": 20.8,
+      "Timestamp": "22:30"
+    },
+    {
+      "EnergyUsage": 19.6,
+      "Timestamp": "23:00"
+    },
+    {
+      "EnergyUsage": 20.7,
+      "Timestamp": "23:30"
+    }
+  ],
+  "serialNo4": [
+    {
+      "EnergyUsage": 0.3,
+      "Timestamp": "00:00"
+    },
+    {
+      "EnergyUsage": 0.3,
+      "Timestamp": "00:30"
+    },
+    {
+      "EnergyUsage": 0.3,
+      "Timestamp": "01:00"
+    },
+    {
+      "EnergyUsage": 1.2,
+      "Timestamp": "01:30"
+    },
+    {
+      "EnergyUsage": 0.3,
+      "Timestamp": "02:00"
+    },
+    {
+      "EnergyUsage": 0.5,
+      "Timestamp": "02:30"
+    },
+    {
+      "EnergyUsage": 0.5,
+      "Timestamp": "03:00"
+    },
+    {
+      "EnergyUsage": 0.5,
+      "Timestamp": "03:30"
+    },
+    {
+      "EnergyUsage": 0.9,
+      "Timestamp": "04:00"
+    },
+    {
+      "EnergyUsage": 1.5,
+      "Timestamp": "04:30"
+    },
+    {
+      "EnergyUsage": 0.7,
+      "Timestamp": "05:00"
+    },
+    {
+      "EnergyUsage": 0.5,
+      "Timestamp": "05:30"
+    },
+    {
+      "EnergyUsage": 0.5,
+      "Timestamp": "06:00"
+    },
+    {
+      "EnergyUsage": 0.5,
+      "Timestamp": "06:30"
+    },
+    {
+      "EnergyUsage": 1.4,
+      "Timestamp": "07:00"
+    },
+    {
+      "EnergyUsage": 0.3,
+      "Timestamp": "07:30"
+    },
+    {
+      "EnergyUsage": 4.7,
+      "Timestamp": "08:00"
+    },
+    {
+      "EnergyUsage": 7.2,
+      "Timestamp": "08:30"
+    },
+    {
+      "EnergyUsage": 8.7,
+      "Timestamp": "09:00"
+    },
+    {
+      "EnergyUsage": 10.5,
+      "Timestamp": "09:30"
+    },
+    {
+      "EnergyUsage": 11.6,
+      "Timestamp": "10:00"
+    },
+    {
+      "EnergyUsage": 10.5,
+      "Timestamp": "10:30"
+    },
+    {
+      "EnergyUsage": 10.8,
+      "Timestamp": "11:00"
+    },
+    {
+      "EnergyUsage": 11.0,
+      "Timestamp": "11:30"
+    },
+    {
+      "EnergyUsage": 11.9,
+      "Timestamp": "12:00"
+    },
+    {
+      "EnergyUsage": 10.6,
+      "Timestamp": "12:30"
+    },
+    {
+      "EnergyUsage": 10.4,
+      "Timestamp": "13:00"
+    },
+    {
+      "EnergyUsage": 10.7,
+      "Timestamp": "13:30"
+    },
+    {
+      "EnergyUsage": 10.6,
+      "Timestamp": "14:00"
+    },
+    {
+      "EnergyUsage": 11.1,
+      "Timestamp": "14:30"
+    },
+    {
+      "EnergyUsage": 10.4,
+      "Timestamp": "15:00"
+    },
+    {
+      "EnergyUsage": 5.1,
+      "Timestamp": "15:30"
+    },
+    {
+      "EnergyUsage": 0.9,
+      "Timestamp": "16:00"
+    },
+    {
+      "EnergyUsage": 0.9,
+      "Timestamp": "16:30"
+    },
+    {
+      "EnergyUsage": 1.9,
+      "Timestamp": "17:00"
+    },
+    {
+      "EnergyUsage": 1.4,
+      "Timestamp": "17:30"
+    },
+    {
+      "EnergyUsage": 1.3,
+      "Timestamp": "18:00"
+    },
+    {
+      "EnergyUsage": 1.3,
+      "Timestamp": "18:30"
+    },
+    {
+      "EnergyUsage": 0.9,
+      "Timestamp": "19:00"
+    },
+    {
+      "EnergyUsage": 1.3,
+      "Timestamp": "19:30"
+    },
+    {
+      "EnergyUsage": 1.5,
+      "Timestamp": "20:00"
+    },
+    {
+      "EnergyUsage": 1.0,
+      "Timestamp": "20:30"
+    },
+    {
+      "EnergyUsage": 1.0,
+      "Timestamp": "21:00"
+    },
+    {
+      "EnergyUsage": 1.0,
+      "Timestamp": "21:30"
+    },
+    {
+      "EnergyUsage": 1.1,
+      "Timestamp": "22:00"
+    },
+    {
+      "EnergyUsage": 1.8,
+      "Timestamp": "22:30"
+    },
+    {
+      "EnergyUsage": 1.0,
+      "Timestamp": "23:00"
+    },
+    {
+      "EnergyUsage": 1.0,
+      "Timestamp": "23:30"
+    }
+  ],
+  "serialNo5": [
+    {
+      "EnergyUsage": 5.2,
+      "Timestamp": "00:00"
+    },
+    {
+      "EnergyUsage": 6.0,
+      "Timestamp": "00:30"
+    },
+    {
+      "EnergyUsage": 5.2,
+      "Timestamp": "01:00"
+    },
+    {
+      "EnergyUsage": 5.0,
+      "Timestamp": "01:30"
+    },
+    {
+      "EnergyUsage": 5.6,
+      "Timestamp": "02:00"
+    },
+    {
+      "EnergyUsage": 5.2,
+      "Timestamp": "02:30"
+    },
+    {
+      "EnergyUsage": 5.5,
+      "Timestamp": "03:00"
+    },
+    {
+      "EnergyUsage": 5.5,
+      "Timestamp": "03:30"
+    },
+    {
+      "EnergyUsage": 5.2,
+      "Timestamp": "04:00"
+    },
+    {
+      "EnergyUsage": 5.7,
+      "Timestamp": "04:30"
+    },
+    {
+      "EnergyUsage": 6.0,
+      "Timestamp": "05:00"
+    },
+    {
+      "EnergyUsage": 6.5,
+      "Timestamp": "05:30"
+    },
+    {
+      "EnergyUsage": 6.4,
+      "Timestamp": "06:00"
+    },
+    {
+      "EnergyUsage": 6.4,
+      "Timestamp": "06:30"
+    },
+    {
+      "EnergyUsage": 6.1,
+      "Timestamp": "07:00"
+    },
+    {
+      "EnergyUsage": 3.8,
+      "Timestamp": "07:30"
+    },
+    {
+      "EnergyUsage": 3.9,
+      "Timestamp": "08:00"
+    },
+    {
+      "EnergyUsage": 3.4,
+      "Timestamp": "08:30"
+    },
+    {
+      "EnergyUsage": 4.7,
+      "Timestamp": "09:00"
+    },
+    {
+      "EnergyUsage": 4.2,
+      "Timestamp": "09:30"
+    },
+    {
+      "EnergyUsage": 3.5,
+      "Timestamp": "10:00"
+    },
+    {
+      "EnergyUsage": 3.3,
+      "Timestamp": "10:30"
+    },
+    {
+      "EnergyUsage": 2.9,
+      "Timestamp": "11:00"
+    },
+    {
+      "EnergyUsage": 3.2,
+      "Timestamp": "11:30"
+    },
+    {
+      "EnergyUsage": 3.2,
+      "Timestamp": "12:00"
+    },
+    {
+      "EnergyUsage": 3.1,
+      "Timestamp": "12:30"
+    },
+    {
+      "EnergyUsage": 3.1,
+      "Timestamp": "13:00"
+    },
+    {
+      "EnergyUsage": 3.4,
+      "Timestamp": "13:30"
+    },
+    {
+      "EnergyUsage": 3.0,
+      "Timestamp": "14:00"
+    },
+    {
+      "EnergyUsage": 3.0,
+      "Timestamp": "14:30"
+    },
+    {
+      "EnergyUsage": 3.3,
+      "Timestamp": "15:00"
+    },
+    {
+      "EnergyUsage": 2.7,
+      "Timestamp": "15:30"
+    },
+    {
+      "EnergyUsage": 2.9,
+      "Timestamp": "16:00"
+    },
+    {
+      "EnergyUsage": 3.3,
+      "Timestamp": "16:30"
+    },
+    {
+      "EnergyUsage": 4.0,
+      "Timestamp": "17:00"
+    },
+    {
+      "EnergyUsage": 6.3,
+      "Timestamp": "17:30"
+    },
+    {
+      "EnergyUsage": 8.0,
+      "Timestamp": "18:00"
+    },
+    {
+      "EnergyUsage": 15.2,
+      "Timestamp": "18:30"
+    },
+    {
+      "EnergyUsage": 15.8,
+      "Timestamp": "19:00"
+    },
+    {
+      "EnergyUsage": 15.6,
+      "Timestamp": "19:30"
+    },
+    {
+      "EnergyUsage": 15.0,
+      "Timestamp": "20:00"
+    },
+    {
+      "EnergyUsage": 5.0,
+      "Timestamp": "20:30"
+    },
+    {
+      "EnergyUsage": 4.7,
+      "Timestamp": "21:00"
+    },
+    {
+      "EnergyUsage": 5.0,
+      "Timestamp": "21:30"
+    },
+    {
+      "EnergyUsage": 5.6,
+      "Timestamp": "22:00"
+    },
+    {
+      "EnergyUsage": 5.1,
+      "Timestamp": "22:30"
+    },
+    {
+      "EnergyUsage": 5.5,
+      "Timestamp": "23:00"
+    },
+    {
+      "EnergyUsage": 4.8,
+      "Timestamp": "23:30"
+    }
+  ],
+  "serialNo6": [
+    {
+      "EnergyUsage": 265.0,
+      "Timestamp": "00:00"
+    },
+    {
+      "EnergyUsage": 264.3,
+      "Timestamp": "00:30"
+    },
+    {
+      "EnergyUsage": 261.8,
+      "Timestamp": "01:00"
+    },
+    {
+      "EnergyUsage": 265.3,
+      "Timestamp": "01:30"
+    },
+    {
+      "EnergyUsage": 274.0,
+      "Timestamp": "02:00"
+    },
+    {
+      "EnergyUsage": 277.6,
+      "Timestamp": "02:30"
+    },
+    {
+      "EnergyUsage": 279.9,
+      "Timestamp": "03:00"
+    },
+    {
+      "EnergyUsage": 281.8,
+      "Timestamp": "03:30"
+    },
+    {
+      "EnergyUsage": 282.0,
+      "Timestamp": "04:00"
+    },
+    {
+      "EnergyUsage": 288.5,
+      "Timestamp": "04:30"
+    },
+    {
+      "EnergyUsage": 307.4,
+      "Timestamp": "05:00"
+    },
+    {
+      "EnergyUsage": 348.7,
+      "Timestamp": "05:30"
+    },
+    {
+      "EnergyUsage": 342.9,
+      "Timestamp": "06:00"
+    },
+    {
+      "EnergyUsage": 364.4,
+      "Timestamp": "06:30"
+    },
+    {
+      "EnergyUsage": 389.2,
+      "Timestamp": "07:00"
+    },
+    {
+      "EnergyUsage": 393.3,
+      "Timestamp": "07:30"
+    },
+    {
+      "EnergyUsage": 380.0,
+      "Timestamp": "08:00"
+    },
+    {
+      "EnergyUsage": 381.5,
+      "Timestamp": "08:30"
+    },
+    {
+      "EnergyUsage": 387.2,
+      "Timestamp": "09:00"
+    },
+    {
+      "EnergyUsage": 378.7,
+      "Timestamp": "09:30"
+    },
+    {
+      "EnergyUsage": 369.2,
+      "Timestamp": "10:00"
+    },
+    {
+      "EnergyUsage": 381.2,
+      "Timestamp": "10:30"
+    },
+    {
+      "EnergyUsage": 379.9,
+      "Timestamp": "11:00"
+    },
+    {
+      "EnergyUsage": 392.6,
+      "Timestamp": "11:30"
+    },
+    {
+      "EnergyUsage": 380.4,
+      "Timestamp": "12:00"
+    },
+    {
+      "EnergyUsage": 367.4,
+      "Timestamp": "12:30"
+    },
+    {
+      "EnergyUsage": 384.5,
+      "Timestamp": "13:00"
+    },
+    {
+      "EnergyUsage": 390.1,
+      "Timestamp": "13:30"
+    },
+    {
+      "EnergyUsage": 381.1,
+      "Timestamp": "14:00"
+    },
+    {
+      "EnergyUsage": 371.3,
+      "Timestamp": "14:30"
+    },
+    {
+      "EnergyUsage": 361.4,
+      "Timestamp": "15:00"
+    },
+    {
+      "EnergyUsage": 354.7,
+      "Timestamp": "15:30"
+    },
+    {
+      "EnergyUsage": 345.6,
+      "Timestamp": "16:00"
+    },
+    {
+      "EnergyUsage": 333.9,
+      "Timestamp": "16:30"
+    },
+    {
+      "EnergyUsage": 319.9,
+      "Timestamp": "17:00"
+    },
+    {
+      "EnergyUsage": 312.7,
+      "Timestamp": "17:30"
+    },
+    {
+      "EnergyUsage": 305.2,
+      "Timestamp": "18:00"
+    },
+    {
+      "EnergyUsage": 302.4,
+      "Timestamp": "18:30"
+    },
+    {
+      "EnergyUsage": 294.5,
+      "Timestamp": "19:00"
+    },
+    {
+      "EnergyUsage": 289.5,
+      "Timestamp": "19:30"
+    },
+    {
+      "EnergyUsage": 281.1,
+      "Timestamp": "20:00"
+    },
+    {
+      "EnergyUsage": 280.4,
+      "Timestamp": "20:30"
+    },
+    {
+      "EnergyUsage": 277.0,
+      "Timestamp": "21:00"
+    },
+    {
+      "EnergyUsage": 274.8,
+      "Timestamp": "21:30"
+    },
+    {
+      "EnergyUsage": 272.3,
+      "Timestamp": "22:00"
+    },
+    {
+      "EnergyUsage": 270.4,
+      "Timestamp": "22:30"
+    },
+    {
+      "EnergyUsage": 272.1,
+      "Timestamp": "23:00"
+    },
+    {
+      "EnergyUsage": 269.2,
+      "Timestamp": "23:30"
+    }
+  ],
+  "serialNo7": [
+    {
+      "EnergyUsage": 25.5,
+      "Timestamp": "00:00"
+    },
+    {
+      "EnergyUsage": 25.3,
+      "Timestamp": "00:30"
+    },
+    {
+      "EnergyUsage": 27.0,
+      "Timestamp": "01:00"
+    },
+    {
+      "EnergyUsage": 26.2,
+      "Timestamp": "01:30"
+    },
+    {
+      "EnergyUsage": 25.1,
+      "Timestamp": "02:00"
+    },
+    {
+      "EnergyUsage": 28.2,
+      "Timestamp": "02:30"
+    },
+    {
+      "EnergyUsage": 25.8,
+      "Timestamp": "03:00"
+    },
+    {
+      "EnergyUsage": 27.1,
+      "Timestamp": "03:30"
+    },
+    {
+      "EnergyUsage": 26.9,
+      "Timestamp": "04:00"
+    },
+    {
+      "EnergyUsage": 26.2,
+      "Timestamp": "04:30"
+    },
+    {
+      "EnergyUsage": 29.5,
+      "Timestamp": "05:00"
+    },
+    {
+      "EnergyUsage": 69.8,
+      "Timestamp": "05:30"
+    },
+    {
+      "EnergyUsage": 64.2,
+      "Timestamp": "06:00"
+    },
+    {
+      "EnergyUsage": 65.4,
+      "Timestamp": "06:30"
+    },
+    {
+      "EnergyUsage": 68.1,
+      "Timestamp": "07:00"
+    },
+    {
+      "EnergyUsage": 42.8,
+      "Timestamp": "07:30"
+    },
+    {
+      "EnergyUsage": 43.6,
+      "Timestamp": "08:00"
+    },
+    {
+      "EnergyUsage": 61.5,
+      "Timestamp": "08:30"
+    },
+    {
+      "EnergyUsage": 51.9,
+      "Timestamp": "09:00"
+    },
+    {
+      "EnergyUsage": 42.2,
+      "Timestamp": "09:30"
+    },
+    {
+      "EnergyUsage": 75.5,
+      "Timestamp": "10:00"
+    },
+    {
+      "EnergyUsage": 56.7,
+      "Timestamp": "10:30"
+    },
+    {
+      "EnergyUsage": 68.7,
+      "Timestamp": "11:00"
+    },
+    {
+      "EnergyUsage": 67.3,
+      "Timestamp": "11:30"
+    },
+    {
+      "EnergyUsage": 57.8,
+      "Timestamp": "12:00"
+    },
+    {
+      "EnergyUsage": 44.1,
+      "Timestamp": "12:30"
+    },
+    {
+      "EnergyUsage": 41.0,
+      "Timestamp": "13:00"
+    },
+    {
+      "EnergyUsage": 39.9,
+      "Timestamp": "13:30"
+    },
+    {
+      "EnergyUsage": 43.5,
+      "Timestamp": "14:00"
+    },
+    {
+      "EnergyUsage": 42.1,
+      "Timestamp": "14:30"
+    },
+    {
+      "EnergyUsage": 40.5,
+      "Timestamp": "15:00"
+    },
+    {
+      "EnergyUsage": 39.7,
+      "Timestamp": "15:30"
+    },
+    {
+      "EnergyUsage": 38.2,
+      "Timestamp": "16:00"
+    },
+    {
+      "EnergyUsage": 38.0,
+      "Timestamp": "16:30"
+    },
+    {
+      "EnergyUsage": 36.7,
+      "Timestamp": "17:00"
+    },
+    {
+      "EnergyUsage": 34.5,
+      "Timestamp": "17:30"
+    },
+    {
+      "EnergyUsage": 27.2,
+      "Timestamp": "18:00"
+    },
+    {
+      "EnergyUsage": 27.8,
+      "Timestamp": "18:30"
+    },
+    {
+      "EnergyUsage": 27.1,
+      "Timestamp": "19:00"
+    },
+    {
+      "EnergyUsage": 26.9,
+      "Timestamp": "19:30"
+    },
+    {
+      "EnergyUsage": 27.1,
+      "Timestamp": "20:00"
+    },
+    {
+      "EnergyUsage": 26.9,
+      "Timestamp": "20:30"
+    },
+    {
+      "EnergyUsage": 27.1,
+      "Timestamp": "21:00"
+    },
+    {
+      "EnergyUsage": 26.7,
+      "Timestamp": "21:30"
+    },
+    {
+      "EnergyUsage": 27.0,
+      "Timestamp": "22:00"
+    },
+    {
+      "EnergyUsage": 26.3,
+      "Timestamp": "22:30"
+    },
+    {
+      "EnergyUsage": 26.9,
+      "Timestamp": "23:00"
+    },
+    {
+      "EnergyUsage": 26.3,
+      "Timestamp": "23:30"
+    }
+  ],
+  "serialNo8": [
+    {
+      "EnergyUsage": 17.9,
+      "Timestamp": "00:00"
+    },
+    {
+      "EnergyUsage": 18.1,
+      "Timestamp": "00:30"
+    },
+    {
+      "EnergyUsage": 17.9,
+      "Timestamp": "01:00"
+    },
+    {
+      "EnergyUsage": 18.2,
+      "Timestamp": "01:30"
+    },
+    {
+      "EnergyUsage": 18.0,
+      "Timestamp": "02:00"
+    },
+    {
+      "EnergyUsage": 18.1,
+      "Timestamp": "02:30"
+    },
+    {
+      "EnergyUsage": 18.9,
+      "Timestamp": "03:00"
+    },
+    {
+      "EnergyUsage": 18.6,
+      "Timestamp": "03:30"
+    },
+    {
+      "EnergyUsage": 18.5,
+      "Timestamp": "04:00"
+    },
+    {
+      "EnergyUsage": 24.0,
+      "Timestamp": "04:30"
+    },
+    {
+      "EnergyUsage": 24.1,
+      "Timestamp": "05:00"
+    },
+    {
+      "EnergyUsage": 26.2,
+      "Timestamp": "05:30"
+    },
+    {
+      "EnergyUsage": 27.3,
+      "Timestamp": "06:00"
+    },
+    {
+      "EnergyUsage": 28.8,
+      "Timestamp": "06:30"
+    },
+    {
+      "EnergyUsage": 34.0,
+      "Timestamp": "07:00"
+    },
+    {
+      "EnergyUsage": 36.1,
+      "Timestamp": "07:30"
+    },
+    {
+      "EnergyUsage": 40.0,
+      "Timestamp": "08:00"
+    },
+    {
+      "EnergyUsage": 40.8,
+      "Timestamp": "08:30"
+    },
+    {
+      "EnergyUsage": 43.7,
+      "Timestamp": "09:00"
+    },
+    {
+      "EnergyUsage": 43.5,
+      "Timestamp": "09:30"
+    },
+    {
+      "EnergyUsage": 46.6,
+      "Timestamp": "10:00"
+    },
+    {
+      "EnergyUsage": 47.0,
+      "Timestamp": "10:30"
+    },
+    {
+      "EnergyUsage": 47.1,
+      "Timestamp": "11:00"
+    },
+    {
+      "EnergyUsage": 46.0,
+      "Timestamp": "11:30"
+    },
+    {
+      "EnergyUsage": 44.1,
+      "Timestamp": "12:00"
+    },
+    {
+      "EnergyUsage": 44.7,
+      "Timestamp": "12:30"
+    },
+    {
+      "EnergyUsage": 44.1,
+      "Timestamp": "13:00"
+    },
+    {
+      "EnergyUsage": 44.0,
+      "Timestamp": "13:30"
+    },
+    {
+      "EnergyUsage": 43.5,
+      "Timestamp": "14:00"
+    },
+    {
+      "EnergyUsage": 42.5,
+      "Timestamp": "14:30"
+    },
+    {
+      "EnergyUsage": 42.6,
+      "Timestamp": "15:00"
+    },
+    {
+      "EnergyUsage": 41.9,
+      "Timestamp": "15:30"
+    },
+    {
+      "EnergyUsage": 37.2,
+      "Timestamp": "16:00"
+    },
+    {
+      "EnergyUsage": 34.8,
+      "Timestamp": "16:30"
+    },
+    {
+      "EnergyUsage": 33.5,
+      "Timestamp": "17:00"
+    },
+    {
+      "EnergyUsage": 30.8,
+      "Timestamp": "17:30"
+    },
+    {
+      "EnergyUsage": 30.6,
+      "Timestamp": "18:00"
+    },
+    {
+      "EnergyUsage": 30.5,
+      "Timestamp": "18:30"
+    },
+    {
+      "EnergyUsage": 30.2,
+      "Timestamp": "19:00"
+    },
+    {
+      "EnergyUsage": 29.4,
+      "Timestamp": "19:30"
+    },
+    {
+      "EnergyUsage": 27.5,
+      "Timestamp": "20:00"
+    },
+    {
+      "EnergyUsage": 25.0,
+      "Timestamp": "20:30"
+    },
+    {
+      "EnergyUsage": 25.2,
+      "Timestamp": "21:00"
+    },
+    {
+      "EnergyUsage": 25.3,
+      "Timestamp": "21:30"
+    },
+    {
+      "EnergyUsage": 24.8,
+      "Timestamp": "22:00"
+    },
+    {
+      "EnergyUsage": 24.6,
+      "Timestamp": "22:30"
+    },
+    {
+      "EnergyUsage": 24.5,
+      "Timestamp": "23:00"
+    },
+    {
+      "EnergyUsage": 24.2,
+      "Timestamp": "23:30"
+    }
+  ],
+  "serialNo9": [
+    {
+      "EnergyUsage": 1019.6,
+      "Timestamp": "00:00"
+    },
+    {
+      "EnergyUsage": 1016.3,
+      "Timestamp": "00:30"
+    },
+    {
+      "EnergyUsage": 1016.5,
+      "Timestamp": "01:00"
+    },
+    {
+      "EnergyUsage": 1015.0,
+      "Timestamp": "01:30"
+    },
+    {
+      "EnergyUsage": 1010.7,
+      "Timestamp": "02:00"
+    },
+    {
+      "EnergyUsage": 1033.2,
+      "Timestamp": "02:30"
+    },
+    {
+      "EnergyUsage": 1001.9,
+      "Timestamp": "03:00"
+    },
+    {
+      "EnergyUsage": 1002.2,
+      "Timestamp": "03:30"
+    },
+    {
+      "EnergyUsage": 1028.4,
+      "Timestamp": "04:00"
+    },
+    {
+      "EnergyUsage": 1022.6,
+      "Timestamp": "04:30"
+    },
+    {
+      "EnergyUsage": 1063.7,
+      "Timestamp": "05:00"
+    },
+    {
+      "EnergyUsage": 1131.1,
+      "Timestamp": "05:30"
+    },
+    {
+      "EnergyUsage": 1150.8,
+      "Timestamp": "06:00"
+    },
+    {
+      "EnergyUsage": 1155.9,
+      "Timestamp": "06:30"
+    },
+    {
+      "EnergyUsage": 1201.1,
+      "Timestamp": "07:00"
+    },
+    {
+      "EnergyUsage": 1227.6,
+      "Timestamp": "07:30"
+    },
+    {
+      "EnergyUsage": 1297.8,
+      "Timestamp": "08:00"
+    },
+    {
+      "EnergyUsage": 1343.5,
+      "Timestamp": "08:30"
+    },
+    {
+      "EnergyUsage": 1386.3,
+      "Timestamp": "09:00"
+    },
+    {
+      "EnergyUsage": 1371.2,
+      "Timestamp": "09:30"
+    },
+    {
+      "EnergyUsage": 1389.5,
+      "Timestamp": "10:00"
+    },
+    {
+      "EnergyUsage": 1403.0,
+      "Timestamp": "10:30"
+    },
+    {
+      "EnergyUsage": 1414.7,
+      "Timestamp": "11:00"
+    },
+    {
+      "EnergyUsage": 1431.3,
+      "Timestamp": "11:30"
+    },
+    {
+      "EnergyUsage": 1408.5,
+      "Timestamp": "12:00"
+    },
+    {
+      "EnergyUsage": 1381.9,
+      "Timestamp": "12:30"
+    },
+    {
+      "EnergyUsage": 1406.1,
+      "Timestamp": "13:00"
+    },
+    {
+      "EnergyUsage": 1397.0,
+      "Timestamp": "13:30"
+    },
+    {
+      "EnergyUsage": 1380.3,
+      "Timestamp": "14:00"
+    },
+    {
+      "EnergyUsage": 1362.3,
+      "Timestamp": "14:30"
+    },
+    {
+      "EnergyUsage": 1335.8,
+      "Timestamp": "15:00"
+    },
+    {
+      "EnergyUsage": 1316.8,
+      "Timestamp": "15:30"
+    },
+    {
+      "EnergyUsage": 1238.1,
+      "Timestamp": "16:00"
+    },
+    {
+      "EnergyUsage": 1199.7,
+      "Timestamp": "16:30"
+    },
+    {
+      "EnergyUsage": 1151.8,
+      "Timestamp": "17:00"
+    },
+    {
+      "EnergyUsage": 1144.6,
+      "Timestamp": "17:30"
+    },
+    {
+      "EnergyUsage": 1131.4,
+      "Timestamp": "18:00"
+    },
+    {
+      "EnergyUsage": 1115.2,
+      "Timestamp": "18:30"
+    },
+    {
+      "EnergyUsage": 1096.9,
+      "Timestamp": "19:00"
+    },
+    {
+      "EnergyUsage": 1090.2,
+      "Timestamp": "19:30"
+    },
+    {
+      "EnergyUsage": 1080.9,
+      "Timestamp": "20:00"
+    },
+    {
+      "EnergyUsage": 1073.8,
+      "Timestamp": "20:30"
+    },
+    {
+      "EnergyUsage": 1069.7,
+      "Timestamp": "21:00"
+    },
+    {
+      "EnergyUsage": 1071.7,
+      "Timestamp": "21:30"
+    },
+    {
+      "EnergyUsage": 1052.8,
+      "Timestamp": "22:00"
+    },
+    {
+      "EnergyUsage": 1053.1,
+      "Timestamp": "22:30"
+    },
+    {
+      "EnergyUsage": 1050.1,
+      "Timestamp": "23:00"
+    },
+    {
+      "EnergyUsage": 1055.7,
+      "Timestamp": "23:30"
+    }
+  ],
+  "serialNo10": [
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "00:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "00:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "01:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "01:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "02:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "02:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "03:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "03:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "04:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "04:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "05:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "05:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "06:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "06:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "07:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "07:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "08:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "08:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "09:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "09:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "10:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "10:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "11:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "11:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "12:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "12:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "13:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "13:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "14:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "14:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "15:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "15:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "16:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "16:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "17:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "17:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "18:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "18:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "19:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "19:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "20:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "20:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "21:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "21:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "22:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "22:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "23:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "23:30"
+    }
+  ],
+  "serialNo11": [
+    {
+      "EnergyUsage": 15.7,
+      "Timestamp": "00:00"
+    },
+    {
+      "EnergyUsage": 15.5,
+      "Timestamp": "00:30"
+    },
+    {
+      "EnergyUsage": 15.5,
+      "Timestamp": "01:00"
+    },
+    {
+      "EnergyUsage": 15.3,
+      "Timestamp": "01:30"
+    },
+    {
+      "EnergyUsage": 15.5,
+      "Timestamp": "02:00"
+    },
+    {
+      "EnergyUsage": 15.6,
+      "Timestamp": "02:30"
+    },
+    {
+      "EnergyUsage": 15.3,
+      "Timestamp": "03:00"
+    },
+    {
+      "EnergyUsage": 15.4,
+      "Timestamp": "03:30"
+    },
+    {
+      "EnergyUsage": 15.3,
+      "Timestamp": "04:00"
+    },
+    {
+      "EnergyUsage": 15.3,
+      "Timestamp": "04:30"
+    },
+    {
+      "EnergyUsage": 28.6,
+      "Timestamp": "05:00"
+    },
+    {
+      "EnergyUsage": 24.1,
+      "Timestamp": "05:30"
+    },
+    {
+      "EnergyUsage": 23.5,
+      "Timestamp": "06:00"
+    },
+    {
+      "EnergyUsage": 25.6,
+      "Timestamp": "06:30"
+    },
+    {
+      "EnergyUsage": 23.0,
+      "Timestamp": "07:00"
+    },
+    {
+      "EnergyUsage": 23.6,
+      "Timestamp": "07:30"
+    },
+    {
+      "EnergyUsage": 23.2,
+      "Timestamp": "08:00"
+    },
+    {
+      "EnergyUsage": 20.8,
+      "Timestamp": "08:30"
+    },
+    {
+      "EnergyUsage": 21.1,
+      "Timestamp": "09:00"
+    },
+    {
+      "EnergyUsage": 20.5,
+      "Timestamp": "09:30"
+    },
+    {
+      "EnergyUsage": 18.4,
+      "Timestamp": "10:00"
+    },
+    {
+      "EnergyUsage": 20.3,
+      "Timestamp": "10:30"
+    },
+    {
+      "EnergyUsage": 20.8,
+      "Timestamp": "11:00"
+    },
+    {
+      "EnergyUsage": 20.7,
+      "Timestamp": "11:30"
+    },
+    {
+      "EnergyUsage": 21.1,
+      "Timestamp": "12:00"
+    },
+    {
+      "EnergyUsage": 20.5,
+      "Timestamp": "12:30"
+    },
+    {
+      "EnergyUsage": 20.8,
+      "Timestamp": "13:00"
+    },
+    {
+      "EnergyUsage": 22.3,
+      "Timestamp": "13:30"
+    },
+    {
+      "EnergyUsage": 19.0,
+      "Timestamp": "14:00"
+    },
+    {
+      "EnergyUsage": 21.6,
+      "Timestamp": "14:30"
+    },
+    {
+      "EnergyUsage": 19.4,
+      "Timestamp": "15:00"
+    },
+    {
+      "EnergyUsage": 18.5,
+      "Timestamp": "15:30"
+    },
+    {
+      "EnergyUsage": 18.6,
+      "Timestamp": "16:00"
+    },
+    {
+      "EnergyUsage": 18.7,
+      "Timestamp": "16:30"
+    },
+    {
+      "EnergyUsage": 17.4,
+      "Timestamp": "17:00"
+    },
+    {
+      "EnergyUsage": 17.4,
+      "Timestamp": "17:30"
+    },
+    {
+      "EnergyUsage": 17.7,
+      "Timestamp": "18:00"
+    },
+    {
+      "EnergyUsage": 17.2,
+      "Timestamp": "18:30"
+    },
+    {
+      "EnergyUsage": 18.1,
+      "Timestamp": "19:00"
+    },
+    {
+      "EnergyUsage": 19.0,
+      "Timestamp": "19:30"
+    },
+    {
+      "EnergyUsage": 18.7,
+      "Timestamp": "20:00"
+    },
+    {
+      "EnergyUsage": 20.3,
+      "Timestamp": "20:30"
+    },
+    {
+      "EnergyUsage": 20.2,
+      "Timestamp": "21:00"
+    },
+    {
+      "EnergyUsage": 19.2,
+      "Timestamp": "21:30"
+    },
+    {
+      "EnergyUsage": 19.2,
+      "Timestamp": "22:00"
+    },
+    {
+      "EnergyUsage": 19.0,
+      "Timestamp": "22:30"
+    },
+    {
+      "EnergyUsage": 19.0,
+      "Timestamp": "23:00"
+    },
+    {
+      "EnergyUsage": 19.0,
+      "Timestamp": "23:30"
+    }
+  ],
+  "serialNo12": [
+    {
+      "EnergyUsage": 4.0,
+      "Timestamp": "00:00"
+    },
+    {
+      "EnergyUsage": 4.0,
+      "Timestamp": "00:30"
+    },
+    {
+      "EnergyUsage": 4.1,
+      "Timestamp": "01:00"
+    },
+    {
+      "EnergyUsage": 3.9,
+      "Timestamp": "01:30"
+    },
+    {
+      "EnergyUsage": 4.1,
+      "Timestamp": "02:00"
+    },
+    {
+      "EnergyUsage": 4.0,
+      "Timestamp": "02:30"
+    },
+    {
+      "EnergyUsage": 4.0,
+      "Timestamp": "03:00"
+    },
+    {
+      "EnergyUsage": 4.0,
+      "Timestamp": "03:30"
+    },
+    {
+      "EnergyUsage": 4.2,
+      "Timestamp": "04:00"
+    },
+    {
+      "EnergyUsage": 4.2,
+      "Timestamp": "04:30"
+    },
+    {
+      "EnergyUsage": 5.6,
+      "Timestamp": "05:00"
+    },
+    {
+      "EnergyUsage": 4.5,
+      "Timestamp": "05:30"
+    },
+    {
+      "EnergyUsage": 4.2,
+      "Timestamp": "06:00"
+    },
+    {
+      "EnergyUsage": 4.3,
+      "Timestamp": "06:30"
+    },
+    {
+      "EnergyUsage": 8.5,
+      "Timestamp": "07:00"
+    },
+    {
+      "EnergyUsage": 8.3,
+      "Timestamp": "07:30"
+    },
+    {
+      "EnergyUsage": 10.0,
+      "Timestamp": "08:00"
+    },
+    {
+      "EnergyUsage": 12.7,
+      "Timestamp": "08:30"
+    },
+    {
+      "EnergyUsage": 12.9,
+      "Timestamp": "09:00"
+    },
+    {
+      "EnergyUsage": 13.4,
+      "Timestamp": "09:30"
+    },
+    {
+      "EnergyUsage": 13.1,
+      "Timestamp": "10:00"
+    },
+    {
+      "EnergyUsage": 13.9,
+      "Timestamp": "10:30"
+    },
+    {
+      "EnergyUsage": 13.4,
+      "Timestamp": "11:00"
+    },
+    {
+      "EnergyUsage": 12.3,
+      "Timestamp": "11:30"
+    },
+    {
+      "EnergyUsage": 12.6,
+      "Timestamp": "12:00"
+    },
+    {
+      "EnergyUsage": 12.3,
+      "Timestamp": "12:30"
+    },
+    {
+      "EnergyUsage": 12.9,
+      "Timestamp": "13:00"
+    },
+    {
+      "EnergyUsage": 12.6,
+      "Timestamp": "13:30"
+    },
+    {
+      "EnergyUsage": 12.7,
+      "Timestamp": "14:00"
+    },
+    {
+      "EnergyUsage": 12.7,
+      "Timestamp": "14:30"
+    },
+    {
+      "EnergyUsage": 11.5,
+      "Timestamp": "15:00"
+    },
+    {
+      "EnergyUsage": 11.5,
+      "Timestamp": "15:30"
+    },
+    {
+      "EnergyUsage": 13.5,
+      "Timestamp": "16:00"
+    },
+    {
+      "EnergyUsage": 15.9,
+      "Timestamp": "16:30"
+    },
+    {
+      "EnergyUsage": 14.9,
+      "Timestamp": "17:00"
+    },
+    {
+      "EnergyUsage": 15.6,
+      "Timestamp": "17:30"
+    },
+    {
+      "EnergyUsage": 15.5,
+      "Timestamp": "18:00"
+    },
+    {
+      "EnergyUsage": 15.5,
+      "Timestamp": "18:30"
+    },
+    {
+      "EnergyUsage": 15.7,
+      "Timestamp": "19:00"
+    },
+    {
+      "EnergyUsage": 15.6,
+      "Timestamp": "19:30"
+    },
+    {
+      "EnergyUsage": 15.3,
+      "Timestamp": "20:00"
+    },
+    {
+      "EnergyUsage": 12.7,
+      "Timestamp": "20:30"
+    },
+    {
+      "EnergyUsage": 6.3,
+      "Timestamp": "21:00"
+    },
+    {
+      "EnergyUsage": 5.3,
+      "Timestamp": "21:30"
+    },
+    {
+      "EnergyUsage": 4.7,
+      "Timestamp": "22:00"
+    },
+    {
+      "EnergyUsage": 4.1,
+      "Timestamp": "22:30"
+    },
+    {
+      "EnergyUsage": 4.2,
+      "Timestamp": "23:00"
+    },
+    {
+      "EnergyUsage": 4.2,
+      "Timestamp": "23:30"
+    }
+  ],
+  "serialNo13": [
+    {
+      "EnergyUsage": 28.4,
+      "Timestamp": "00:00"
+    },
+    {
+      "EnergyUsage": 31.1,
+      "Timestamp": "00:30"
+    },
+    {
+      "EnergyUsage": 27.5,
+      "Timestamp": "01:00"
+    },
+    {
+      "EnergyUsage": 24.9,
+      "Timestamp": "01:30"
+    },
+    {
+      "EnergyUsage": 25.7,
+      "Timestamp": "02:00"
+    },
+    {
+      "EnergyUsage": 23.4,
+      "Timestamp": "02:30"
+    },
+    {
+      "EnergyUsage": 24.2,
+      "Timestamp": "03:00"
+    },
+    {
+      "EnergyUsage": 21.2,
+      "Timestamp": "03:30"
+    },
+    {
+      "EnergyUsage": 22.6,
+      "Timestamp": "04:00"
+    },
+    {
+      "EnergyUsage": 26.1,
+      "Timestamp": "04:30"
+    },
+    {
+      "EnergyUsage": 20.8,
+      "Timestamp": "05:00"
+    },
+    {
+      "EnergyUsage": 20.5,
+      "Timestamp": "05:30"
+    },
+    {
+      "EnergyUsage": 19.8,
+      "Timestamp": "06:00"
+    },
+    {
+      "EnergyUsage": 22.6,
+      "Timestamp": "06:30"
+    },
+    {
+      "EnergyUsage": 22.9,
+      "Timestamp": "07:00"
+    },
+    {
+      "EnergyUsage": 23.7,
+      "Timestamp": "07:30"
+    },
+    {
+      "EnergyUsage": 23.0,
+      "Timestamp": "08:00"
+    },
+    {
+      "EnergyUsage": 21.7,
+      "Timestamp": "08:30"
+    },
+    {
+      "EnergyUsage": 22.8,
+      "Timestamp": "09:00"
+    },
+    {
+      "EnergyUsage": 26.3,
+      "Timestamp": "09:30"
+    },
+    {
+      "EnergyUsage": 24.2,
+      "Timestamp": "10:00"
+    },
+    {
+      "EnergyUsage": 28.7,
+      "Timestamp": "10:30"
+    },
+    {
+      "EnergyUsage": 30.7,
+      "Timestamp": "11:00"
+    },
+    {
+      "EnergyUsage": 25.5,
+      "Timestamp": "11:30"
+    },
+    {
+      "EnergyUsage": 26.3,
+      "Timestamp": "12:00"
+    },
+    {
+      "EnergyUsage": 28.9,
+      "Timestamp": "12:30"
+    },
+    {
+      "EnergyUsage": 33.8,
+      "Timestamp": "13:00"
+    },
+    {
+      "EnergyUsage": 27.1,
+      "Timestamp": "13:30"
+    },
+    {
+      "EnergyUsage": 28.7,
+      "Timestamp": "14:00"
+    },
+    {
+      "EnergyUsage": 25.8,
+      "Timestamp": "14:30"
+    },
+    {
+      "EnergyUsage": 23.7,
+      "Timestamp": "15:00"
+    },
+    {
+      "EnergyUsage": 27.8,
+      "Timestamp": "15:30"
+    },
+    {
+      "EnergyUsage": 32.4,
+      "Timestamp": "16:00"
+    },
+    {
+      "EnergyUsage": 28.4,
+      "Timestamp": "16:30"
+    },
+    {
+      "EnergyUsage": 27.2,
+      "Timestamp": "17:00"
+    },
+    {
+      "EnergyUsage": 33.6,
+      "Timestamp": "17:30"
+    },
+    {
+      "EnergyUsage": 29.8,
+      "Timestamp": "18:00"
+    },
+    {
+      "EnergyUsage": 33.5,
+      "Timestamp": "18:30"
+    },
+    {
+      "EnergyUsage": 30.3,
+      "Timestamp": "19:00"
+    },
+    {
+      "EnergyUsage": 29.9,
+      "Timestamp": "19:30"
+    },
+    {
+      "EnergyUsage": 28.4,
+      "Timestamp": "20:00"
+    },
+    {
+      "EnergyUsage": 35.2,
+      "Timestamp": "20:30"
+    },
+    {
+      "EnergyUsage": 37.2,
+      "Timestamp": "21:00"
+    },
+    {
+      "EnergyUsage": 36.2,
+      "Timestamp": "21:30"
+    },
+    {
+      "EnergyUsage": 31.5,
+      "Timestamp": "22:00"
+    },
+    {
+      "EnergyUsage": 28.9,
+      "Timestamp": "22:30"
+    },
+    {
+      "EnergyUsage": 28.7,
+      "Timestamp": "23:00"
+    },
+    {
+      "EnergyUsage": 24.9,
+      "Timestamp": "23:30"
+    }
+  ],
+  "serialNo14": [
+    {
+      "EnergyUsage": 228.1,
+      "Timestamp": "00:00"
+    },
+    {
+      "EnergyUsage": 226.2,
+      "Timestamp": "00:30"
+    },
+    {
+      "EnergyUsage": 227.1,
+      "Timestamp": "01:00"
+    },
+    {
+      "EnergyUsage": 228.1,
+      "Timestamp": "01:30"
+    },
+    {
+      "EnergyUsage": 228.5,
+      "Timestamp": "02:00"
+    },
+    {
+      "EnergyUsage": 226.9,
+      "Timestamp": "02:30"
+    },
+    {
+      "EnergyUsage": 226.2,
+      "Timestamp": "03:00"
+    },
+    {
+      "EnergyUsage": 226.0,
+      "Timestamp": "03:30"
+    },
+    {
+      "EnergyUsage": 234.0,
+      "Timestamp": "04:00"
+    },
+    {
+      "EnergyUsage": 235.4,
+      "Timestamp": "04:30"
+    },
+    {
+      "EnergyUsage": 251.5,
+      "Timestamp": "05:00"
+    },
+    {
+      "EnergyUsage": 259.3,
+      "Timestamp": "05:30"
+    },
+    {
+      "EnergyUsage": 265.9,
+      "Timestamp": "06:00"
+    },
+    {
+      "EnergyUsage": 272.4,
+      "Timestamp": "06:30"
+    },
+    {
+      "EnergyUsage": 284.3,
+      "Timestamp": "07:00"
+    },
+    {
+      "EnergyUsage": 292.0,
+      "Timestamp": "07:30"
+    },
+    {
+      "EnergyUsage": 294.8,
+      "Timestamp": "08:00"
+    },
+    {
+      "EnergyUsage": 307.3,
+      "Timestamp": "08:30"
+    },
+    {
+      "EnergyUsage": 310.6,
+      "Timestamp": "09:00"
+    },
+    {
+      "EnergyUsage": 318.9,
+      "Timestamp": "09:30"
+    },
+    {
+      "EnergyUsage": 325.0,
+      "Timestamp": "10:00"
+    },
+    {
+      "EnergyUsage": 328.7,
+      "Timestamp": "10:30"
+    },
+    {
+      "EnergyUsage": 326.8,
+      "Timestamp": "11:00"
+    },
+    {
+      "EnergyUsage": 326.0,
+      "Timestamp": "11:30"
+    },
+    {
+      "EnergyUsage": 321.4,
+      "Timestamp": "12:00"
+    },
+    {
+      "EnergyUsage": 322.4,
+      "Timestamp": "12:30"
+    },
+    {
+      "EnergyUsage": 321.4,
+      "Timestamp": "13:00"
+    },
+    {
+      "EnergyUsage": 324.1,
+      "Timestamp": "13:30"
+    },
+    {
+      "EnergyUsage": 328.7,
+      "Timestamp": "14:00"
+    },
+    {
+      "EnergyUsage": 325.1,
+      "Timestamp": "14:30"
+    },
+    {
+      "EnergyUsage": 320.6,
+      "Timestamp": "15:00"
+    },
+    {
+      "EnergyUsage": 316.7,
+      "Timestamp": "15:30"
+    },
+    {
+      "EnergyUsage": 307.6,
+      "Timestamp": "16:00"
+    },
+    {
+      "EnergyUsage": 295.9,
+      "Timestamp": "16:30"
+    },
+    {
+      "EnergyUsage": 284.2,
+      "Timestamp": "17:00"
+    },
+    {
+      "EnergyUsage": 278.3,
+      "Timestamp": "17:30"
+    },
+    {
+      "EnergyUsage": 272.0,
+      "Timestamp": "18:00"
+    },
+    {
+      "EnergyUsage": 268.2,
+      "Timestamp": "18:30"
+    },
+    {
+      "EnergyUsage": 259.6,
+      "Timestamp": "19:00"
+    },
+    {
+      "EnergyUsage": 258.1,
+      "Timestamp": "19:30"
+    },
+    {
+      "EnergyUsage": 253.4,
+      "Timestamp": "20:00"
+    },
+    {
+      "EnergyUsage": 250.8,
+      "Timestamp": "20:30"
+    },
+    {
+      "EnergyUsage": 241.1,
+      "Timestamp": "21:00"
+    },
+    {
+      "EnergyUsage": 238.3,
+      "Timestamp": "21:30"
+    },
+    {
+      "EnergyUsage": 238.5,
+      "Timestamp": "22:00"
+    },
+    {
+      "EnergyUsage": 238.2,
+      "Timestamp": "22:30"
+    },
+    {
+      "EnergyUsage": 225.4,
+      "Timestamp": "23:00"
+    },
+    {
+      "EnergyUsage": 244.3,
+      "Timestamp": "23:30"
+    }
+  ],
+  "serialNo15": [
+    {
+      "EnergyUsage": 695.1,
+      "Timestamp": "00:00"
+    },
+    {
+      "EnergyUsage": 695.6,
+      "Timestamp": "00:30"
+    },
+    {
+      "EnergyUsage": 670.0,
+      "Timestamp": "01:00"
+    },
+    {
+      "EnergyUsage": 654.6,
+      "Timestamp": "01:30"
+    },
+    {
+      "EnergyUsage": 664.3,
+      "Timestamp": "02:00"
+    },
+    {
+      "EnergyUsage": 663.1,
+      "Timestamp": "02:30"
+    },
+    {
+      "EnergyUsage": 681.8,
+      "Timestamp": "03:00"
+    },
+    {
+      "EnergyUsage": 677.8,
+      "Timestamp": "03:30"
+    },
+    {
+      "EnergyUsage": 673.6,
+      "Timestamp": "04:00"
+    },
+    {
+      "EnergyUsage": 714.7,
+      "Timestamp": "04:30"
+    },
+    {
+      "EnergyUsage": 763.1,
+      "Timestamp": "05:00"
+    },
+    {
+      "EnergyUsage": 779.6,
+      "Timestamp": "05:30"
+    },
+    {
+      "EnergyUsage": 879.2,
+      "Timestamp": "06:00"
+    },
+    {
+      "EnergyUsage": 908.8,
+      "Timestamp": "06:30"
+    },
+    {
+      "EnergyUsage": 961.8,
+      "Timestamp": "07:00"
+    },
+    {
+      "EnergyUsage": 956.4,
+      "Timestamp": "07:30"
+    },
+    {
+      "EnergyUsage": 997.1,
+      "Timestamp": "08:00"
+    },
+    {
+      "EnergyUsage": 1006.4,
+      "Timestamp": "08:30"
+    },
+    {
+      "EnergyUsage": 1022.2,
+      "Timestamp": "09:00"
+    },
+    {
+      "EnergyUsage": 1060.5,
+      "Timestamp": "09:30"
+    },
+    {
+      "EnergyUsage": 1067.2,
+      "Timestamp": "10:00"
+    },
+    {
+      "EnergyUsage": 1070.4,
+      "Timestamp": "10:30"
+    },
+    {
+      "EnergyUsage": 1075.0,
+      "Timestamp": "11:00"
+    },
+    {
+      "EnergyUsage": 1076.4,
+      "Timestamp": "11:30"
+    },
+    {
+      "EnergyUsage": 1082.8,
+      "Timestamp": "12:00"
+    },
+    {
+      "EnergyUsage": 1079.5,
+      "Timestamp": "12:30"
+    },
+    {
+      "EnergyUsage": 1082.3,
+      "Timestamp": "13:00"
+    },
+    {
+      "EnergyUsage": 1086.0,
+      "Timestamp": "13:30"
+    },
+    {
+      "EnergyUsage": 1076.6,
+      "Timestamp": "14:00"
+    },
+    {
+      "EnergyUsage": 1059.7,
+      "Timestamp": "14:30"
+    },
+    {
+      "EnergyUsage": 1061.3,
+      "Timestamp": "15:00"
+    },
+    {
+      "EnergyUsage": 1043.2,
+      "Timestamp": "15:30"
+    },
+    {
+      "EnergyUsage": 985.9,
+      "Timestamp": "16:00"
+    },
+    {
+      "EnergyUsage": 967.8,
+      "Timestamp": "16:30"
+    },
+    {
+      "EnergyUsage": 944.5,
+      "Timestamp": "17:00"
+    },
+    {
+      "EnergyUsage": 930.3,
+      "Timestamp": "17:30"
+    },
+    {
+      "EnergyUsage": 913.1,
+      "Timestamp": "18:00"
+    },
+    {
+      "EnergyUsage": 908.4,
+      "Timestamp": "18:30"
+    },
+    {
+      "EnergyUsage": 880.0,
+      "Timestamp": "19:00"
+    },
+    {
+      "EnergyUsage": 867.0,
+      "Timestamp": "19:30"
+    },
+    {
+      "EnergyUsage": 855.5,
+      "Timestamp": "20:00"
+    },
+    {
+      "EnergyUsage": 859.7,
+      "Timestamp": "20:30"
+    },
+    {
+      "EnergyUsage": 784.8,
+      "Timestamp": "21:00"
+    },
+    {
+      "EnergyUsage": 762.4,
+      "Timestamp": "21:30"
+    },
+    {
+      "EnergyUsage": 741.0,
+      "Timestamp": "22:00"
+    },
+    {
+      "EnergyUsage": 741.6,
+      "Timestamp": "22:30"
+    },
+    {
+      "EnergyUsage": 725.7,
+      "Timestamp": "23:00"
+    },
+    {
+      "EnergyUsage": 726.1,
+      "Timestamp": "23:30"
+    }
+  ],
+  "serialNo16": [
+    {
+      "EnergyUsage": 211.0,
+      "Timestamp": "00:00"
+    },
+    {
+      "EnergyUsage": 221.1,
+      "Timestamp": "00:30"
+    },
+    {
+      "EnergyUsage": 220.1,
+      "Timestamp": "01:00"
+    },
+    {
+      "EnergyUsage": 214.5,
+      "Timestamp": "01:30"
+    },
+    {
+      "EnergyUsage": 210.5,
+      "Timestamp": "02:00"
+    },
+    {
+      "EnergyUsage": 216.0,
+      "Timestamp": "02:30"
+    },
+    {
+      "EnergyUsage": 217.2,
+      "Timestamp": "03:00"
+    },
+    {
+      "EnergyUsage": 214.7,
+      "Timestamp": "03:30"
+    },
+    {
+      "EnergyUsage": 212.0,
+      "Timestamp": "04:00"
+    },
+    {
+      "EnergyUsage": 225.5,
+      "Timestamp": "04:30"
+    },
+    {
+      "EnergyUsage": 240.2,
+      "Timestamp": "05:00"
+    },
+    {
+      "EnergyUsage": 240.2,
+      "Timestamp": "05:30"
+    },
+    {
+      "EnergyUsage": 244.7,
+      "Timestamp": "06:00"
+    },
+    {
+      "EnergyUsage": 251.2,
+      "Timestamp": "06:30"
+    },
+    {
+      "EnergyUsage": 262.5,
+      "Timestamp": "07:00"
+    },
+    {
+      "EnergyUsage": 282.4,
+      "Timestamp": "07:30"
+    },
+    {
+      "EnergyUsage": 281.8,
+      "Timestamp": "08:00"
+    },
+    {
+      "EnergyUsage": 273.5,
+      "Timestamp": "08:30"
+    },
+    {
+      "EnergyUsage": 286.6,
+      "Timestamp": "09:00"
+    },
+    {
+      "EnergyUsage": 292.4,
+      "Timestamp": "09:30"
+    },
+    {
+      "EnergyUsage": 305.0,
+      "Timestamp": "10:00"
+    },
+    {
+      "EnergyUsage": 307.1,
+      "Timestamp": "10:30"
+    },
+    {
+      "EnergyUsage": 315.9,
+      "Timestamp": "11:00"
+    },
+    {
+      "EnergyUsage": 315.4,
+      "Timestamp": "11:30"
+    },
+    {
+      "EnergyUsage": 309.9,
+      "Timestamp": "12:00"
+    },
+    {
+      "EnergyUsage": 310.2,
+      "Timestamp": "12:30"
+    },
+    {
+      "EnergyUsage": 320.0,
+      "Timestamp": "13:00"
+    },
+    {
+      "EnergyUsage": 320.4,
+      "Timestamp": "13:30"
+    },
+    {
+      "EnergyUsage": 323.2,
+      "Timestamp": "14:00"
+    },
+    {
+      "EnergyUsage": 315.3,
+      "Timestamp": "14:30"
+    },
+    {
+      "EnergyUsage": 309.5,
+      "Timestamp": "15:00"
+    },
+    {
+      "EnergyUsage": 302.6,
+      "Timestamp": "15:30"
+    },
+    {
+      "EnergyUsage": 295.3,
+      "Timestamp": "16:00"
+    },
+    {
+      "EnergyUsage": 292.8,
+      "Timestamp": "16:30"
+    },
+    {
+      "EnergyUsage": 286.5,
+      "Timestamp": "17:00"
+    },
+    {
+      "EnergyUsage": 275.9,
+      "Timestamp": "17:30"
+    },
+    {
+      "EnergyUsage": 271.5,
+      "Timestamp": "18:00"
+    },
+    {
+      "EnergyUsage": 268.4,
+      "Timestamp": "18:30"
+    },
+    {
+      "EnergyUsage": 255.3,
+      "Timestamp": "19:00"
+    },
+    {
+      "EnergyUsage": 251.7,
+      "Timestamp": "19:30"
+    },
+    {
+      "EnergyUsage": 250.8,
+      "Timestamp": "20:00"
+    },
+    {
+      "EnergyUsage": 253.3,
+      "Timestamp": "20:30"
+    },
+    {
+      "EnergyUsage": 244.8,
+      "Timestamp": "21:00"
+    },
+    {
+      "EnergyUsage": 244.3,
+      "Timestamp": "21:30"
+    },
+    {
+      "EnergyUsage": 235.4,
+      "Timestamp": "22:00"
+    },
+    {
+      "EnergyUsage": 234.6,
+      "Timestamp": "22:30"
+    },
+    {
+      "EnergyUsage": 232.3,
+      "Timestamp": "23:00"
+    },
+    {
+      "EnergyUsage": 229.6,
+      "Timestamp": "23:30"
+    }
+  ],
+  "serialNo17": [
+    {
+      "EnergyUsage": 71.9,
+      "Timestamp": "00:00"
+    },
+    {
+      "EnergyUsage": 71.8,
+      "Timestamp": "00:30"
+    },
+    {
+      "EnergyUsage": 75.7,
+      "Timestamp": "01:00"
+    },
+    {
+      "EnergyUsage": 76.7,
+      "Timestamp": "01:30"
+    },
+    {
+      "EnergyUsage": 71.3,
+      "Timestamp": "02:00"
+    },
+    {
+      "EnergyUsage": 69.4,
+      "Timestamp": "02:30"
+    },
+    {
+      "EnergyUsage": 63.4,
+      "Timestamp": "03:00"
+    },
+    {
+      "EnergyUsage": 64.9,
+      "Timestamp": "03:30"
+    },
+    {
+      "EnergyUsage": 65.3,
+      "Timestamp": "04:00"
+    },
+    {
+      "EnergyUsage": 66.0,
+      "Timestamp": "04:30"
+    },
+    {
+      "EnergyUsage": 66.8,
+      "Timestamp": "05:00"
+    },
+    {
+      "EnergyUsage": 68.9,
+      "Timestamp": "05:30"
+    },
+    {
+      "EnergyUsage": 73.0,
+      "Timestamp": "06:00"
+    },
+    {
+      "EnergyUsage": 70.8,
+      "Timestamp": "06:30"
+    },
+    {
+      "EnergyUsage": 77.1,
+      "Timestamp": "07:00"
+    },
+    {
+      "EnergyUsage": 89.9,
+      "Timestamp": "07:30"
+    },
+    {
+      "EnergyUsage": 80.6,
+      "Timestamp": "08:00"
+    },
+    {
+      "EnergyUsage": 84.1,
+      "Timestamp": "08:30"
+    },
+    {
+      "EnergyUsage": 83.2,
+      "Timestamp": "09:00"
+    },
+    {
+      "EnergyUsage": 83.0,
+      "Timestamp": "09:30"
+    },
+    {
+      "EnergyUsage": 93.9,
+      "Timestamp": "10:00"
+    },
+    {
+      "EnergyUsage": 91.0,
+      "Timestamp": "10:30"
+    },
+    {
+      "EnergyUsage": 95.2,
+      "Timestamp": "11:00"
+    },
+    {
+      "EnergyUsage": 89.2,
+      "Timestamp": "11:30"
+    },
+    {
+      "EnergyUsage": 89.4,
+      "Timestamp": "12:00"
+    },
+    {
+      "EnergyUsage": 91.2,
+      "Timestamp": "12:30"
+    },
+    {
+      "EnergyUsage": 95.2,
+      "Timestamp": "13:00"
+    },
+    {
+      "EnergyUsage": 100.4,
+      "Timestamp": "13:30"
+    },
+    {
+      "EnergyUsage": 94.1,
+      "Timestamp": "14:00"
+    },
+    {
+      "EnergyUsage": 90.6,
+      "Timestamp": "14:30"
+    },
+    {
+      "EnergyUsage": 92.9,
+      "Timestamp": "15:00"
+    },
+    {
+      "EnergyUsage": 88.3,
+      "Timestamp": "15:30"
+    },
+    {
+      "EnergyUsage": 83.1,
+      "Timestamp": "16:00"
+    },
+    {
+      "EnergyUsage": 83.9,
+      "Timestamp": "16:30"
+    },
+    {
+      "EnergyUsage": 83.6,
+      "Timestamp": "17:00"
+    },
+    {
+      "EnergyUsage": 84.8,
+      "Timestamp": "17:30"
+    },
+    {
+      "EnergyUsage": 80.1,
+      "Timestamp": "18:00"
+    },
+    {
+      "EnergyUsage": 78.8,
+      "Timestamp": "18:30"
+    },
+    {
+      "EnergyUsage": 79.1,
+      "Timestamp": "19:00"
+    },
+    {
+      "EnergyUsage": 80.5,
+      "Timestamp": "19:30"
+    },
+    {
+      "EnergyUsage": 79.2,
+      "Timestamp": "20:00"
+    },
+    {
+      "EnergyUsage": 79.0,
+      "Timestamp": "20:30"
+    },
+    {
+      "EnergyUsage": 75.0,
+      "Timestamp": "21:00"
+    },
+    {
+      "EnergyUsage": 75.7,
+      "Timestamp": "21:30"
+    },
+    {
+      "EnergyUsage": 76.4,
+      "Timestamp": "22:00"
+    },
+    {
+      "EnergyUsage": 75.3,
+      "Timestamp": "22:30"
+    },
+    {
+      "EnergyUsage": 76.5,
+      "Timestamp": "23:00"
+    },
+    {
+      "EnergyUsage": 75.2,
+      "Timestamp": "23:30"
+    }
+  ],
+  "serialNo18": [
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "00:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "00:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "01:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "01:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "02:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "02:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "03:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "03:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "04:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "04:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "05:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "05:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "06:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "06:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "07:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "07:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "08:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "08:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "09:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "09:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "10:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "10:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "11:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "11:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "12:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "12:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "13:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "13:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "14:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "14:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "15:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "15:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "16:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "16:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "17:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "17:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "18:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "18:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "19:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "19:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "20:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "20:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "21:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "21:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "22:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "22:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "23:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "23:30"
+    }
+  ],
+  "serialNo19": [
+    {
+      "EnergyUsage": 1.7,
+      "Timestamp": "00:00"
+    },
+    {
+      "EnergyUsage": 1.7,
+      "Timestamp": "00:30"
+    },
+    {
+      "EnergyUsage": 1.7,
+      "Timestamp": "01:00"
+    },
+    {
+      "EnergyUsage": 1.8,
+      "Timestamp": "01:30"
+    },
+    {
+      "EnergyUsage": 1.7,
+      "Timestamp": "02:00"
+    },
+    {
+      "EnergyUsage": 1.7,
+      "Timestamp": "02:30"
+    },
+    {
+      "EnergyUsage": 1.8,
+      "Timestamp": "03:00"
+    },
+    {
+      "EnergyUsage": 1.7,
+      "Timestamp": "03:30"
+    },
+    {
+      "EnergyUsage": 1.6,
+      "Timestamp": "04:00"
+    },
+    {
+      "EnergyUsage": 1.7,
+      "Timestamp": "04:30"
+    },
+    {
+      "EnergyUsage": 1.6,
+      "Timestamp": "05:00"
+    },
+    {
+      "EnergyUsage": 1.7,
+      "Timestamp": "05:30"
+    },
+    {
+      "EnergyUsage": 4.2,
+      "Timestamp": "06:00"
+    },
+    {
+      "EnergyUsage": 4.1,
+      "Timestamp": "06:30"
+    },
+    {
+      "EnergyUsage": 4.0,
+      "Timestamp": "07:00"
+    },
+    {
+      "EnergyUsage": 4.1,
+      "Timestamp": "07:30"
+    },
+    {
+      "EnergyUsage": 4.4,
+      "Timestamp": "08:00"
+    },
+    {
+      "EnergyUsage": 5.1,
+      "Timestamp": "08:30"
+    },
+    {
+      "EnergyUsage": 3.9,
+      "Timestamp": "09:00"
+    },
+    {
+      "EnergyUsage": 3.4,
+      "Timestamp": "09:30"
+    },
+    {
+      "EnergyUsage": 3.7,
+      "Timestamp": "10:00"
+    },
+    {
+      "EnergyUsage": 3.7,
+      "Timestamp": "10:30"
+    },
+    {
+      "EnergyUsage": 3.7,
+      "Timestamp": "11:00"
+    },
+    {
+      "EnergyUsage": 3.9,
+      "Timestamp": "11:30"
+    },
+    {
+      "EnergyUsage": 3.7,
+      "Timestamp": "12:00"
+    },
+    {
+      "EnergyUsage": 3.6,
+      "Timestamp": "12:30"
+    },
+    {
+      "EnergyUsage": 3.7,
+      "Timestamp": "13:00"
+    },
+    {
+      "EnergyUsage": 3.6,
+      "Timestamp": "13:30"
+    },
+    {
+      "EnergyUsage": 3.6,
+      "Timestamp": "14:00"
+    },
+    {
+      "EnergyUsage": 3.4,
+      "Timestamp": "14:30"
+    },
+    {
+      "EnergyUsage": 3.3,
+      "Timestamp": "15:00"
+    },
+    {
+      "EnergyUsage": 2.8,
+      "Timestamp": "15:30"
+    },
+    {
+      "EnergyUsage": 2.7,
+      "Timestamp": "16:00"
+    },
+    {
+      "EnergyUsage": 1.7,
+      "Timestamp": "16:30"
+    },
+    {
+      "EnergyUsage": 1.6,
+      "Timestamp": "17:00"
+    },
+    {
+      "EnergyUsage": 1.6,
+      "Timestamp": "17:30"
+    },
+    {
+      "EnergyUsage": 1.5,
+      "Timestamp": "18:00"
+    },
+    {
+      "EnergyUsage": 1.6,
+      "Timestamp": "18:30"
+    },
+    {
+      "EnergyUsage": 1.5,
+      "Timestamp": "19:00"
+    },
+    {
+      "EnergyUsage": 1.5,
+      "Timestamp": "19:30"
+    },
+    {
+      "EnergyUsage": 1.5,
+      "Timestamp": "20:00"
+    },
+    {
+      "EnergyUsage": 1.5,
+      "Timestamp": "20:30"
+    },
+    {
+      "EnergyUsage": 1.5,
+      "Timestamp": "21:00"
+    },
+    {
+      "EnergyUsage": 1.5,
+      "Timestamp": "21:30"
+    },
+    {
+      "EnergyUsage": 1.5,
+      "Timestamp": "22:00"
+    },
+    {
+      "EnergyUsage": 1.5,
+      "Timestamp": "22:30"
+    },
+    {
+      "EnergyUsage": 1.5,
+      "Timestamp": "23:00"
+    },
+    {
+      "EnergyUsage": 1.5,
+      "Timestamp": "23:30"
+    }
+  ],
+  "serialNo20": [
+    {
+      "EnergyUsage": 8.1,
+      "Timestamp": "00:00"
+    },
+    {
+      "EnergyUsage": 8.6,
+      "Timestamp": "00:30"
+    },
+    {
+      "EnergyUsage": 8.4,
+      "Timestamp": "01:00"
+    },
+    {
+      "EnergyUsage": 9.3,
+      "Timestamp": "01:30"
+    },
+    {
+      "EnergyUsage": 9.3,
+      "Timestamp": "02:00"
+    },
+    {
+      "EnergyUsage": 10.3,
+      "Timestamp": "02:30"
+    },
+    {
+      "EnergyUsage": 10.5,
+      "Timestamp": "03:00"
+    },
+    {
+      "EnergyUsage": 10.7,
+      "Timestamp": "03:30"
+    },
+    {
+      "EnergyUsage": 9.9,
+      "Timestamp": "04:00"
+    },
+    {
+      "EnergyUsage": 8.4,
+      "Timestamp": "04:30"
+    },
+    {
+      "EnergyUsage": 9.9,
+      "Timestamp": "05:00"
+    },
+    {
+      "EnergyUsage": 10.6,
+      "Timestamp": "05:30"
+    },
+    {
+      "EnergyUsage": 11.1,
+      "Timestamp": "06:00"
+    },
+    {
+      "EnergyUsage": 12.4,
+      "Timestamp": "06:30"
+    },
+    {
+      "EnergyUsage": 19.9,
+      "Timestamp": "07:00"
+    },
+    {
+      "EnergyUsage": 20.4,
+      "Timestamp": "07:30"
+    },
+    {
+      "EnergyUsage": 21.0,
+      "Timestamp": "08:00"
+    },
+    {
+      "EnergyUsage": 18.9,
+      "Timestamp": "08:30"
+    },
+    {
+      "EnergyUsage": 20.1,
+      "Timestamp": "09:00"
+    },
+    {
+      "EnergyUsage": 21.3,
+      "Timestamp": "09:30"
+    },
+    {
+      "EnergyUsage": 20.0,
+      "Timestamp": "10:00"
+    },
+    {
+      "EnergyUsage": 21.1,
+      "Timestamp": "10:30"
+    },
+    {
+      "EnergyUsage": 21.3,
+      "Timestamp": "11:00"
+    },
+    {
+      "EnergyUsage": 22.6,
+      "Timestamp": "11:30"
+    },
+    {
+      "EnergyUsage": 23.4,
+      "Timestamp": "12:00"
+    },
+    {
+      "EnergyUsage": 22.1,
+      "Timestamp": "12:30"
+    },
+    {
+      "EnergyUsage": 23.7,
+      "Timestamp": "13:00"
+    },
+    {
+      "EnergyUsage": 22.9,
+      "Timestamp": "13:30"
+    },
+    {
+      "EnergyUsage": 19.8,
+      "Timestamp": "14:00"
+    },
+    {
+      "EnergyUsage": 20.3,
+      "Timestamp": "14:30"
+    },
+    {
+      "EnergyUsage": 18.7,
+      "Timestamp": "15:00"
+    },
+    {
+      "EnergyUsage": 18.6,
+      "Timestamp": "15:30"
+    },
+    {
+      "EnergyUsage": 13.2,
+      "Timestamp": "16:00"
+    },
+    {
+      "EnergyUsage": 11.0,
+      "Timestamp": "16:30"
+    },
+    {
+      "EnergyUsage": 9.6,
+      "Timestamp": "17:00"
+    },
+    {
+      "EnergyUsage": 9.0,
+      "Timestamp": "17:30"
+    },
+    {
+      "EnergyUsage": 8.7,
+      "Timestamp": "18:00"
+    },
+    {
+      "EnergyUsage": 8.9,
+      "Timestamp": "18:30"
+    },
+    {
+      "EnergyUsage": 8.9,
+      "Timestamp": "19:00"
+    },
+    {
+      "EnergyUsage": 8.5,
+      "Timestamp": "19:30"
+    },
+    {
+      "EnergyUsage": 8.9,
+      "Timestamp": "20:00"
+    },
+    {
+      "EnergyUsage": 8.6,
+      "Timestamp": "20:30"
+    },
+    {
+      "EnergyUsage": 8.2,
+      "Timestamp": "21:00"
+    },
+    {
+      "EnergyUsage": 8.2,
+      "Timestamp": "21:30"
+    },
+    {
+      "EnergyUsage": 8.7,
+      "Timestamp": "22:00"
+    },
+    {
+      "EnergyUsage": 8.2,
+      "Timestamp": "22:30"
+    },
+    {
+      "EnergyUsage": 8.5,
+      "Timestamp": "23:00"
+    },
+    {
+      "EnergyUsage": 8.2,
+      "Timestamp": "23:30"
+    }
+  ],
+  "serialNo21": [
+    {
+      "EnergyUsage": 213.6,
+      "Timestamp": "00:00"
+    },
+    {
+      "EnergyUsage": 215.6,
+      "Timestamp": "00:30"
+    },
+    {
+      "EnergyUsage": 212.6,
+      "Timestamp": "01:00"
+    },
+    {
+      "EnergyUsage": 218.6,
+      "Timestamp": "01:30"
+    },
+    {
+      "EnergyUsage": 217.4,
+      "Timestamp": "02:00"
+    },
+    {
+      "EnergyUsage": 224.3,
+      "Timestamp": "02:30"
+    },
+    {
+      "EnergyUsage": 216.1,
+      "Timestamp": "03:00"
+    },
+    {
+      "EnergyUsage": 213.6,
+      "Timestamp": "03:30"
+    },
+    {
+      "EnergyUsage": 217.4,
+      "Timestamp": "04:00"
+    },
+    {
+      "EnergyUsage": 217.3,
+      "Timestamp": "04:30"
+    },
+    {
+      "EnergyUsage": 222.0,
+      "Timestamp": "05:00"
+    },
+    {
+      "EnergyUsage": 225.5,
+      "Timestamp": "05:30"
+    },
+    {
+      "EnergyUsage": 232.3,
+      "Timestamp": "06:00"
+    },
+    {
+      "EnergyUsage": 239.4,
+      "Timestamp": "06:30"
+    },
+    {
+      "EnergyUsage": 263.5,
+      "Timestamp": "07:00"
+    },
+    {
+      "EnergyUsage": 267.0,
+      "Timestamp": "07:30"
+    },
+    {
+      "EnergyUsage": 264.0,
+      "Timestamp": "08:00"
+    },
+    {
+      "EnergyUsage": 277.9,
+      "Timestamp": "08:30"
+    },
+    {
+      "EnergyUsage": 284.5,
+      "Timestamp": "09:00"
+    },
+    {
+      "EnergyUsage": 279.7,
+      "Timestamp": "09:30"
+    },
+    {
+      "EnergyUsage": 281.9,
+      "Timestamp": "10:00"
+    },
+    {
+      "EnergyUsage": 289.8,
+      "Timestamp": "10:30"
+    },
+    {
+      "EnergyUsage": 306.1,
+      "Timestamp": "11:00"
+    },
+    {
+      "EnergyUsage": 295.1,
+      "Timestamp": "11:30"
+    },
+    {
+      "EnergyUsage": 306.2,
+      "Timestamp": "12:00"
+    },
+    {
+      "EnergyUsage": 311.6,
+      "Timestamp": "12:30"
+    },
+    {
+      "EnergyUsage": 307.9,
+      "Timestamp": "13:00"
+    },
+    {
+      "EnergyUsage": 316.2,
+      "Timestamp": "13:30"
+    },
+    {
+      "EnergyUsage": 315.2,
+      "Timestamp": "14:00"
+    },
+    {
+      "EnergyUsage": 312.4,
+      "Timestamp": "14:30"
+    },
+    {
+      "EnergyUsage": 310.7,
+      "Timestamp": "15:00"
+    },
+    {
+      "EnergyUsage": 309.1,
+      "Timestamp": "15:30"
+    },
+    {
+      "EnergyUsage": 295.8,
+      "Timestamp": "16:00"
+    },
+    {
+      "EnergyUsage": 289.9,
+      "Timestamp": "16:30"
+    },
+    {
+      "EnergyUsage": 288.4,
+      "Timestamp": "17:00"
+    },
+    {
+      "EnergyUsage": 281.4,
+      "Timestamp": "17:30"
+    },
+    {
+      "EnergyUsage": 276.2,
+      "Timestamp": "18:00"
+    },
+    {
+      "EnergyUsage": 273.8,
+      "Timestamp": "18:30"
+    },
+    {
+      "EnergyUsage": 267.6,
+      "Timestamp": "19:00"
+    },
+    {
+      "EnergyUsage": 261.8,
+      "Timestamp": "19:30"
+    },
+    {
+      "EnergyUsage": 256.0,
+      "Timestamp": "20:00"
+    },
+    {
+      "EnergyUsage": 256.6,
+      "Timestamp": "20:30"
+    },
+    {
+      "EnergyUsage": 260.0,
+      "Timestamp": "21:00"
+    },
+    {
+      "EnergyUsage": 252.2,
+      "Timestamp": "21:30"
+    },
+    {
+      "EnergyUsage": 252.7,
+      "Timestamp": "22:00"
+    },
+    {
+      "EnergyUsage": 253.3,
+      "Timestamp": "22:30"
+    },
+    {
+      "EnergyUsage": 241.6,
+      "Timestamp": "23:00"
+    },
+    {
+      "EnergyUsage": 238.7,
+      "Timestamp": "23:30"
+    }
+  ],
+  "serialNo22": [
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "00:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "00:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "01:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "01:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "02:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "02:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "03:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "03:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "04:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "04:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "05:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "05:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "06:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "06:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "07:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "07:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "08:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "08:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "09:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "09:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "10:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "10:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "11:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "11:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "12:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "12:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "13:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "13:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "14:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "14:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "15:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "15:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "16:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "16:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "17:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "17:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "18:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "18:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "19:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "19:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "20:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "20:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "21:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "21:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "22:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "22:30"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "23:00"
+    },
+    {
+      "EnergyUsage": 0.0,
+      "Timestamp": "23:30"
+    }
+  ]
+}
