@@ -8,7 +8,8 @@ import {
   Tooltip,
   CartesianGrid,
 } from "recharts";
-import DoubleTooltip from "../Helpers/DoubleTooltip";
+import TripleTooltip from "../Helpers/TripleTooltip";
+import Checkbox from "../Helpers/Checkbox";
 import "../Helpers/headers.css";
 
 const TripleAreaChart = (props) => {
@@ -23,7 +24,7 @@ const TripleAreaChart = (props) => {
 
   const strokeColor1 = "#ff0066";
   const strokeColor2 = "#0066ff";
-  const strokeColor3 = "#00ff00";
+  const strokeColor3 = "#06ff06";
 
   const [isChecked, setIsChecked] = useState(false);
 
@@ -34,7 +35,6 @@ const TripleAreaChart = (props) => {
   return (
     <div className='mx-5'>
       <h1 className='headers'>{title}</h1>
-
       <ResponsiveContainer width='99%' height={500}>
         <AreaChart>
           <defs>
@@ -61,14 +61,6 @@ const TripleAreaChart = (props) => {
             fill='url(#color1)'
           />
 
-          <YAxis
-            yAxisId='left'
-            orientation='left'
-            dataKey={dataKey1}
-            tickCount={10}
-            tickFormatter={(energy) => `${energy.toFixed(2)}`}
-          />
-
           <Area
             data={dataSource2}
             yAxisId='left'
@@ -77,7 +69,6 @@ const TripleAreaChart = (props) => {
             fill='url(#color2)'
           />
 
-          {/* price ------------------------- */}
           {isChecked && (
             <>
               <Area
@@ -87,36 +78,34 @@ const TripleAreaChart = (props) => {
                 stroke={strokeColor3}
                 fill='url(#color3)'
               />
-
-              <YAxis
-                yAxisId='right'
-                orientation='right'
-                dataKey='Price'
-                tickCount={14}
-                tickFormatter={(price) => `${price.toFixed(2)}`}
-              />
             </>
           )}
-          {/* price ------------------------- */}
-          <Tooltip content={<DoubleTooltip symbol='kWh' />} />
+
+          <YAxis
+            yAxisId='left'
+            orientation='left'
+            dataKey={dataKey1}
+            tickCount={10}
+            tickFormatter={(energy) => `${energy.toFixed(2)}`}
+          />
+
+          <YAxis
+            yAxisId='right'
+            orientation='right'
+            dataKey='Price'
+            tickCount={14}
+            tickFormatter={(price) => `${price.toFixed(2)}`}
+          />
+          <Tooltip content={<TripleTooltip isChecked={isChecked} />} />
 
           <CartesianGrid opacity={0.1} vertical={false} />
         </AreaChart>
       </ResponsiveContainer>
-      <div className='flex justify-center'>
-        <label
-          for='default-toggle'
-          class='inline-flex relative items-center cursor-pointer'
-        >
-          <input
-            type='checkbox'
-            value=''
-            id='default-toggle'
-            className='sr-only peer'
-            onChange={(e) => handleChange(e)}
-          />
-          <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-        </label>
+
+      <div className='flex justify-end mt-5 mr-20 gap-2'>
+        <div className='text-gray-400 font-bold'>Show Price Data</div>
+
+        <Checkbox onChange={(e) => handleChange(e)} />
       </div>
     </div>
   );
