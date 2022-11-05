@@ -1,0 +1,109 @@
+import { useEffect, useState } from "react";
+import { ReactComponent as CloseIcon } from "../../assets/close.svg";
+import allData from "../../data/energyDataAllAMR.json";
+import DoubleAreaChart from "../../components/AreaChart/DoubleAreaChart";
+import emptyData from "../../data/emptyData.json";
+import TripleAreaChart from "../../components/AreaChart/TripleAreaChart";
+
+import allPriceData from "../../data/priceData.json";
+
+const CompareScreen = () => {
+  // load AMR data
+  let AMRdata = [];
+  for (let j = 0; j <= 22; j++) {
+    AMRdata.push({
+      id: `building ${j + 1}`,
+      data: allData[`serialNo${j}`],
+    });
+  }
+
+  const [selectedData, setSelectedData] = useState([]);
+
+  const [dataSource1, setDataSource1] = useState(emptyData);
+  const [dataSource2, setDataSource2] = useState(emptyData);
+
+  const handleColor = (item) => {
+    if (item.id == dataSource1.id) return "text-[#ff0066] font-bold";
+    if (item.id == dataSource2.id) return "text-[#0066ff] font-bold";
+    else return "text-white";
+  };
+
+  const containsObject = (list, obj) => {
+    for (let i = 0; i < list.length; i++) {
+      if (list[i].id === obj.id) {
+        return true;
+      }
+    }
+    return false;
+  };
+
+  const handleSelect = (newItem) => {
+    if (dataSource1 == emptyData) {
+      setDataSource1(newItem);
+    } else if (dataSource2 == emptyData) {
+      setDataSource2(newItem);
+    }
+    if (containsObject(selectedData, newItem)) return;
+    setSelectedData((oldData) => [...oldData, newItem]);
+  };
+
+  const handleClose = (item) => {
+    if (item.id == dataSource1.id) {
+      setDataSource1(emptyData);
+    } else if (item.id == dataSource2.id) {
+      setDataSource2(emptyData);
+    }
+    setSelectedData((oldData) => {
+      return oldData.filter((oldItem) => {
+        return item.id !== oldItem.id;
+      });
+    });
+  };
+
+  const handleClick = (item) => {
+    if ([dataSource1.id, dataSource2.id].includes(item.id)) {
+      console.log("item is already selected");
+      handleClose(item);
+    } else {
+      handleSelect(item);
+    }
+  };
+
+  return (
+    <>
+      <div className='w-full h-screen grid grid-cols-5'>
+        <div className='col-span-4 mt-40'>
+          <TripleAreaChart
+            priceDataSource={allPriceData.priceData}
+            dataSource1={dataSource1.data}
+            dataKey1='EnergyUsage'
+            dataSource2={dataSource2.data}
+            dataKey2='EnergyUsage'
+            title='Energy Usage'
+          />
+        </div>
+        <div className='overflow-auto'>
+          <div className='col-span-1 bg-gray-800'>
+            {AMRdata.map((item) => (
+              <div
+                key={item.id}
+                className={`m-2 p-3 flex justify-between items-center rounded-lg
+                ${handleColor(
+                  item
+                )} cursor-pointer hover:bg-gray-200/60 hover:font-semibold`}
+                onClick={() => handleClick(item)}
+              >
+                {item.id}
+                {[dataSource1.id, dataSource2.id].includes(item.id) && (
+                  <CloseIcon />
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default CompareScreen;
