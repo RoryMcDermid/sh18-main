@@ -61,8 +61,8 @@ const CompareScreen = () => {
           title='Energy Usage'
         />
       </div>
-      <div className='overflow-auto'>
-        <div className='col-span-1 bg-gray-800'>
+      <div className='overflow-auto bg-gray-800'>
+        <div className='col-span-1 '>
           {AMRdata.map((item) => (
             <div
               key={item.id}

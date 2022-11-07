@@ -48,7 +48,7 @@ const TripleAreaChart = (props) => {
             </linearGradient>
             <linearGradient id='color3' x1='0' y1='0' x2='0' y2='1'>
               <stop offset='0%' stopColor={strokeColor3} stopOpacity={0.5} />
-              <stop offset='75%' stopColor={strokeColor3} stopOpacity={0.07} />
+              <stop offset='75%' stopColor={strokeColor3} stopOpacity={0.02} />
             </linearGradient>
           </defs>
           <XAxis dataKey='Timestamp' allowDuplicatedCategory={false} />
@@ -60,7 +60,6 @@ const TripleAreaChart = (props) => {
             stroke={strokeColor1}
             fill='url(#color1)'
           />
-
           <Area
             data={dataSource2}
             yAxisId='left'
@@ -68,17 +67,14 @@ const TripleAreaChart = (props) => {
             stroke={strokeColor2}
             fill='url(#color2)'
           />
-
           {isChecked && (
-            <>
-              <Area
-                data={priceDataSource}
-                yAxisId='right'
-                dataKey='Price'
-                stroke={strokeColor3}
-                fill='url(#color3)'
-              />
-            </>
+            <Area
+              data={priceDataSource}
+              yAxisId='right'
+              dataKey='Price'
+              stroke={strokeColor3}
+              fill='url(#color3)'
+            />
           )}
 
           <YAxis
@@ -96,15 +92,14 @@ const TripleAreaChart = (props) => {
             tickCount={14}
             tickFormatter={(price) => `${price.toFixed(2)}`}
           />
-          <Tooltip content={<TripleTooltip isChecked={isChecked} />} />
 
+          <Tooltip content={<TripleTooltip isChecked={isChecked} />} />
           <CartesianGrid opacity={0.1} vertical={false} />
         </AreaChart>
       </ResponsiveContainer>
 
       <div className='flex justify-end mt-5 mr-20 gap-2'>
-        <div className='text-gray-400 font-bold'>Show Price Data</div>
-
+        <div className='text-gray-200/60 font-bold'>Show Price Data</div>
         <Checkbox onChange={(e) => handleChange(e)} />
       </div>
     </div>
