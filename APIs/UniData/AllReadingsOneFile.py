@@ -20,13 +20,13 @@ first_sep_vals = as_nparray[::30, 3:]
 
 data_dict = {}
 for i in range(len(serialNos)):
-    data_list = []
-    for time, energy in zip(time_intervals, first_sep_vals[i]):
-	    data_list.append({
-		    "EnergyUsage" : energy,
-		    "Timestamp" : time.strftime("%H:%M")
-	    })
-    data_dict["serialNo" + str(i)] = data_list
+	data_list = []
+	for time, energy in zip(time_intervals, first_sep_vals[i]):
+		data_list.append({
+			"EnergyUsage" : energy,
+			"Timestamp" : time.strftime("%H:%M")
+		})
+	data_dict["serialNo" + str(i)] = data_list
 
 # writing the data into the file
 with open("../../web-app/src/data/energyDataAllAMR.json", "w") as outfile:

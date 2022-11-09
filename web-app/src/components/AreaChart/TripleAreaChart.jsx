@@ -69,6 +69,7 @@ const TripleAreaChart = (props) => {
           />
           {isChecked && (
             <Area
+              type='stepAfter'
               data={priceDataSource}
               yAxisId='right'
               dataKey='Price'
