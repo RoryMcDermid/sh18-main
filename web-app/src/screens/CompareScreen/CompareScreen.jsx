@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { ReactComponent as CloseIcon } from "../../assets/close.svg";
-import allData from "../../data/energyDataAllAMR.json";
-import emptyData from "../../data/emptyData.json";
 import TripleAreaChart from "../../components/AreaChart/TripleAreaChart";
 
+import allData from "../../data/energyDataAllAMR.json";
+import emptyData from "../../data/emptyData.json";
+import allStatusData from "../../data/building_ExpStatus.json";
 import allPriceData from "../../data/priceData.json";
 
 const CompareScreen = () => {
@@ -13,6 +14,7 @@ const CompareScreen = () => {
     AMRdata.push({
       id: `building ${j + 1}`,
       data: allData[`serialNo${j}`],
+      status: allStatusData[`serialNo${j}`],
     });
   }
 
@@ -59,6 +61,8 @@ const CompareScreen = () => {
           dataSource2={dataSource2.data}
           dataKey2='EnergyUsage'
           title='Energy Usage'
+          status1={dataSource1.status}
+          status2={dataSource2.status}
         />
       </div>
       <div className='overflow-auto bg-gray-800'>

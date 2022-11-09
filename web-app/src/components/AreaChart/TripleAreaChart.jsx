@@ -20,6 +20,8 @@ const TripleAreaChart = (props) => {
     dataKey2,
     priceDataSource,
     title,
+    status1,
+    status2,
   } = props;
 
   const strokeColor1 = "#ff0066";
@@ -30,6 +32,12 @@ const TripleAreaChart = (props) => {
 
   const handleChange = (e) => {
     setIsChecked(e.target.checked);
+  };
+
+  const handleColor = (item) => {
+    if (item.id == dataSource1.id) return "text-[#ff0066] font-bold";
+    if (item.id == dataSource2.id) return "text-[#0066ff] font-bold";
+    else return "text-white";
   };
 
   return (
@@ -69,6 +77,7 @@ const TripleAreaChart = (props) => {
           />
           {isChecked && (
             <Area
+              type='stepAfter'
               data={priceDataSource}
               yAxisId='right'
               dataKey='Price'
@@ -99,6 +108,10 @@ const TripleAreaChart = (props) => {
       </ResponsiveContainer>
 
       <div className='flex justify-end mt-5 mr-20 gap-2'>
+        <div className='mr-5 flex justify-center gap-5'>
+          <div className='text-white'>{status1}</div>
+          <div className='text-white'>{status2}</div>
+        </div>
         <div className='text-gray-200/60 font-bold'>Show Price Data</div>
         <Checkbox onChange={(e) => handleChange(e)} />
       </div>
