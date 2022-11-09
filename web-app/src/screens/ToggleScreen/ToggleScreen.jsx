@@ -1,7 +1,7 @@
 import { useState } from "react";
-import StandardBarChart from "../BarChart/StandardBarChart";
-import ContAreaChart from "../AreaChart/ContAreaChart";
-import DiscreteAreaChart from "../AreaChart/DiscreteAreaChart";
+import StandardBarChart from "../../components/BarChart/StandardBarChart";
+import ContAreaChart from "../../components/AreaChart/ContAreaChart";
+import DiscreteAreaChart from "../../components/AreaChart/DiscreteAreaChart";
 
 import allPriceData from "../../data/priceData.json";
 import allEnergyData from "../../data/energyData.json";

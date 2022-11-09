@@ -1,12 +1,14 @@
-import CostBreakdownScreen from "./components/CostBreakdownScreen/CostBreakdownScreen";
-// import CompareScreen from "./components/CompareScreen/CompareScreen";
-// import ToggleScreen from "./components/ToggleScreen/ToggleScreen";
+// import CostBreakdownScreen from "./screens/CostBreakdownScreen/CostBreakdownScreen";
+import CompareScreen from "./screens/CompareScreen/CompareScreen";
+// import SwitchScreen from "./screens/SwitchScreen/SwitchScreen";
+// import ToggleScreen from "./screens/ToggleScreen/ToggleScreen";
 
 function App() {
   return (
     <>
-      <CostBreakdownScreen />
-      {/* <CompareScreen /> */}
+      {/* <CostBreakdownScreen /> */}
+      <CompareScreen />
+      {/* <SwitchScreen /> */}
       {/* <ToggleScreen /> */}
     </>
   );
