@@ -126,6 +126,11 @@ sql =f'''CREATE TABLE 24HR_{sensor_id}_{formatted_date}(
 
 cursor.execute(sql)
 
+sql = f'''ALTER TABLE 24HR_{sensor_id}_{formatted_date} 
+        ADD FOREIGN KEY (SENSOR_ID) REFERENCES SENSORS_FOR_{system_id}(SENSOR_ID);
+'''
+cursor.execute(sql)
+
 
 data24hr = get24hrData(sensor_id, system_id)
 

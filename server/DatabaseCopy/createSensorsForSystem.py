@@ -23,6 +23,11 @@ sql =f'''CREATE TABLE SENSORS_FOR_{system_id}(
 )'''
 cursor.execute(sql)
 
+sql = f'''ALTER TABLE SENSORS_FOR_{system_id} 
+        ADD FOREIGN KEY (SYSTEM_ID) REFERENCES SYSTEMS(SYSTEM_ID);
+'''
+cursor.execute(sql)
+
 sensors = getSensors(system_id)
 
 sensor_ids = sensors.keys()
