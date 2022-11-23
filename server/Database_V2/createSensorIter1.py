@@ -14,7 +14,7 @@ cursor = mydb.cursor()
 sensor_id ="6311171"#input("Which sensor would you like yesterday's 24hr data for?")
 system_id = "2542"#input("What system does this belong to?")
 
-cursor.execute(f"DROP TABLE IF EXISTS ITER1_{sensor_id}")
+cursor.execute(f"DROP TABLE IF EXISTS ITER_1_{sensor_id}")
 
 sql =f'''CREATE TABLE ITER_1_{sensor_id}(
    DATE_OF_RECORD DATETIME NOT NULL PRIMARY KEY,
