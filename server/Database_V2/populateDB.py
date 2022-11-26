@@ -1,7 +1,7 @@
 import mysql.connector
-from Get24hrData import *
 from datetime import datetime
 from getDataFromDates import *
+from pushDownIteration import *
 
 mydb = mysql.connector.connect(
   host = "localhost",
@@ -27,11 +27,19 @@ cursor.execute(sql)
 for result in readings_from_dates:
     
     date, reading = result["date"], result["reading"]
-    
     sql = f"INSERT INTO ITER_1_6311171 (DATE_OF_RECORD,VALUE) VALUES(%s, %s)"
     vals = (date, reading)
     cursor.execute(sql, vals)
 mydb.commit()
+
+iter_list = ["ITER_2", "ITER_3", "ITER_4"]
+# Loop through each possible iteration, passing what one you are working on into a separate function.
+for iter_val in iter_list:
+    pushDownIteration(iter_val)
+
+
+
+
 
 
 
