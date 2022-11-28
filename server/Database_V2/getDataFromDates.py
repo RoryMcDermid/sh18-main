@@ -10,7 +10,7 @@ import datetime as dt
 #The dates are from midnight of the current time, so 01/01/1999 to 02/01/1999
 # will return all data values recorded on 01/01/1999.
 
-def getData(start, end):
+def getData(start_date, end_date):
     url = "https://www.realtime-online.com/api/v3/json/"
     token = "b30a7d8f6f92"
     secretKey = "ATGUAP!Data2211"
@@ -20,8 +20,8 @@ def getData(start, end):
     #if multiple sensors are requested, loop through each to create appropriate input
     sensorList = []
 
-    start_date = dt.datetime.strptime(start, "%d/%m/%Y").isoformat()
-    end_date = dt.datetime.strptime(end, "%d/%m/%Y").isoformat()
+    start_date = start_date.isoformat()
+    end_date = end_date.isoformat()
 
     sensorList.append(
         {
@@ -71,10 +71,5 @@ def getData(start, end):
         val_date = dt.datetime.strptime(vals["record_date"][0:19], "%Y-%m-%dT%H:%M:%S")
         val_reading = vals["values"]["pulse_count"]
         dates_and_vals.append({"date": val_date, "reading": val_reading})
-
-
-
-    
-
 
     return dates_and_vals
