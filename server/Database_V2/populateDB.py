@@ -1,5 +1,6 @@
 import mysql.connector
 from datetime import datetime
+import datetime as dt
 from getDataFromDates import *
 from pushDownIteration import *
 
@@ -12,8 +13,8 @@ mydb = mysql.connector.connect(
 
 cursor = mydb.cursor()
 
-setup_start_date = "11/11/2022"
-setup_end_date = "25/11/2022"
+setup_end_date = datetime.now()
+setup_start_date = setup_end_date - dt.timedelta(weeks=2)
 readings_from_dates = getData(setup_start_date, setup_end_date)
 
 cursor.execute(f"DROP TABLE IF EXISTS ITER_1_6311171")
