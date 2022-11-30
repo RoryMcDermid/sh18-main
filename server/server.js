@@ -17,7 +17,7 @@ db.connect((error) => {
 });
 
 // Get all systems data
-app.get("/getsystems", (req, res) => {
+app.get("/systems", (req, res) => {
     let sql = 'SELECT * FROM systems';
     let query = db.query(sql, (error, results) => {
         if (error) throw error;
@@ -25,14 +25,60 @@ app.get("/getsystems", (req, res) => {
     })
 });
 
-// Get single system data
-app.get("/getsystems/:id", (req, res) => {
+// Get data for single system
+app.get("/systems/:id", (req, res) => {
     let sql = `SELECT * FROM systems WHERE SYSTEM_ID = ${req.params.id}`;
     let query = db.query(sql, (error, result) => {
         if (error) throw error;
         res.send(result);
     })
 });
+
+// Get sensors for single system
+app.get("/systems/:systemid/sensors", (req, res) => {
+    let sql = `SELECT * FROM sensors_for_${req.params.systemid}`;
+    let query = db.query(sql, (error, result) => {
+        if (error) throw error;
+        res.send(result);
+    })
+});
+
+// Get 15 min interval sensor data
+app.get("/systems/:systemid/sensors/:sensorid/iter1", (req, res) => {
+    let sql = `SELECT * FROM iter_1_${req.params.sensorid}`;
+    let query = db.query(sql, (error, result) => {
+        if (error) throw error;
+        res.send(result);
+    })
+});
+
+// Get 1 hour interval sensor data
+app.get("/systems/:systemid/sensors/:sensorid/iter2", (req, res) => {
+    let sql = `SELECT * FROM iter_2_${req.params.sensorid}`;
+    let query = db.query(sql, (error, result) => {
+        if (error) throw error;
+        res.send(result);
+    })
+});
+
+// Get 4 hours interval sensor data
+app.get("/systems/:systemid/sensors/:sensorid/iter3", (req, res) => {
+    let sql = `SELECT * FROM iter_3_${req.params.sensorid}`;
+    let query = db.query(sql, (error, result) => {
+        if (error) throw error;
+        res.send(result);
+    })
+});
+
+// Get 1 day interval sensor data
+app.get("/systems/:systemid/sensors/:sensorid/iter4", (req, res) => {
+    let sql = `SELECT * FROM iter_4_${req.params.sensorid}`;
+    let query = db.query(sql, (error, result) => {
+        if (error) throw error;
+        res.send(result);
+    })
+});
+
 
 
 app.listen(5000, () => {console.log("Server started on port 5000...")})
