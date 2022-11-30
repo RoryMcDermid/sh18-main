@@ -2,6 +2,8 @@ import requests
 import json
 import hashlib
 import datetime as dt
+import mysql.connector
+
 
 #This function takes in two dates, as a string in the form of dd/mm/yyyy, then
 #gets the values recordef by sensor 6311171 from system 2542, and parses the
@@ -10,7 +12,7 @@ import datetime as dt
 #The dates are from midnight of the current time, so 01/01/1999 to 02/01/1999
 # will return all data values recorded on 01/01/1999.
 
-def getDatafromDates(start_date, end_date):
+def getDatafromDates(start_date, end_date, system_id, sensor_id):
     url = "https://www.realtime-online.com/api/v3/json/"
     token = "b30a7d8f6f92"
     secretKey = "ATGUAP!Data2211"
@@ -25,7 +27,7 @@ def getDatafromDates(start_date, end_date):
 
     sensorList.append(
         {
-    "sensor_id": "6311171",
+    "sensor_id": sensor_id,
     "start_date": start_date,
     "end_date": end_date
     }
@@ -39,7 +41,7 @@ def getDatafromDates(start_date, end_date):
     "systems": [
     {
         #system id is stored as an int, whereas sensor id is a string... Of course...
-    "system_id": 2542,
+    "system_id": int(system_id),
     "sensors": sensorList
     }
     ]
@@ -58,6 +60,10 @@ def getDatafromDates(start_date, end_date):
     resp = requests.post(url, data=json.dumps(request_body), headers=headers)
     jsonResp = json.loads(resp.text)
 
+    if jsonResp["status"] == 429:
+        raise Exception("Timeout error, you have to wait 10 mins")
+
+
     #looping over the data for each sensor listed, work your way down the json response until
     #required data is found, then store it in an appropriately named json file.
 
@@ -66,9 +72,15 @@ def getDatafromDates(start_date, end_date):
     readings = jsonResp["systems"][0]["sensors"][0]["data"]
     dates_and_vals = []
 
+    if jsonResp["status"] == 429:
+        raise Exception("Timeout error, you have to wait 10 mins")
+
+    
+
+
     for vals in readings:
         val_date = dt.datetime.strptime(vals["record_date"][0:19], "%Y-%m-%dT%H:%M:%S")
-        val_reading = vals["values"]["pulse_count"]
+        val_reading = vals["values"]["real_energy_kwh"]
         dates_and_vals.append({"date": val_date, "reading": val_reading})
 
     return dates_and_vals

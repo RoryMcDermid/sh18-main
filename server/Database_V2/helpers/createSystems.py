@@ -1,5 +1,5 @@
 import mysql.connector
-from GetListOfSystems import *
+from helpers.getSystemsList import *
 
 
 def create_systems():

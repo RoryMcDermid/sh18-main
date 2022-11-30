@@ -1,11 +1,10 @@
 import mysql.connector
-# from datetime import datetime
 import datetime as dt
-from getDataFromDates import *
-from pushDownIteration import *
-from createSensorsForSystem import *
-from createDB import *
-from createSystems import *
+from helpers.getDataFromDates import *
+from helpers.pushDownIteration import *
+from helpers.createSensorsForSystem import *
+from helpers.createDB import *
+from helpers.createSystems import *
 
 create_db()
 create_systems()
@@ -19,14 +18,16 @@ mydb = mysql.connector.connect(
 
 cursor = mydb.cursor()
 
-sensor_list = get_systems_sensor_list(1757)
+# SELECT SYSTEM ID TO GET ITS SENSORS
+system_id = 2442
+sensor_list = get_systems_sensor_list(system_id)
 
 setup_end_date = dt.datetime.now() - dt.timedelta(days=1)
 setup_start_date = setup_end_date - dt.timedelta(weeks=2)
-readings_from_dates = getDatafromDates(setup_start_date, setup_end_date)
-
 
 for sensor in sensor_list:
+
+  readings_from_dates = getDatafromDates(setup_start_date, setup_end_date, system_id, sensor)
   cursor.execute(f"DROP TABLE IF EXISTS ITER_1_{sensor}")
 
   sql =f'''CREATE TABLE ITER_1_{sensor}(
@@ -34,6 +35,7 @@ for sensor in sensor_list:
     VALUE DECIMAL(9,6) NOT NULL
   )'''
   cursor.execute(sql)
+
 
   for result in readings_from_dates:
       
@@ -46,7 +48,12 @@ for sensor in sensor_list:
   iter_list = ["ITER_2", "ITER_3", "ITER_4"]
   # Loop through each possible iteration, passing what one you are working on into a separate function.
   for iter_val in iter_list:
-      pushDownIteration(iter_val)
+      sql =f'''CREATE TABLE {iter_val + '_' + sensor}(
+        DATE_OF_RECORD DATETIME NOT NULL PRIMARY KEY,
+        VALUE DECIMAL(9,6) NOT NULL
+        )'''
+      cursor.execute(sql)
+      pushDownIteration(iter_val, sensor)
 
 
 

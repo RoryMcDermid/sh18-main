@@ -1,5 +1,5 @@
 import mysql.connector
-from GetSensors import *
+from helpers.getSensorList import *
 
 
 def get_systems_sensor_list(system_id):

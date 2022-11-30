@@ -1,8 +1,8 @@
 import mysql.connector
 from datetime import datetime
 import datetime as dt
-from getDataFromDates import *
-from pushDownIteration import *
+from helpers.getDataFromDates import *
+from helpers.pushDownIteration import *
 from deleteFromIter import *
 
 #This file brings it all together. It finds the date of the most recently stored value in the 
@@ -10,7 +10,9 @@ from deleteFromIter import *
 #It then performs the push down function, adding all appropriate values to tables that are
 #needed. Then remove the unwanted values from tables that are no longer needed to be stored.
 
-def updateAllIter():
+sensor_id = 1234
+
+def update_db(sensor_id):
     mydb = mysql.connector.connect(
     host = "localhost",
     user = "root",
@@ -19,7 +21,7 @@ def updateAllIter():
     )
 
     cursor = mydb.cursor()
-    cursor.execute("SELECT * FROM ITER_1_6311171 ORDER BY DATE_OF_RECORD")
+    cursor.execute(f"SELECT * FROM ITER_1_{sensor_id} ORDER BY DATE_OF_RECORD")
 
     already_stored = cursor.fetchall()
     most_recent_record_date = already_stored[-1][0]
@@ -30,7 +32,7 @@ def updateAllIter():
     for result in readings_from_dates:
     
         date, reading = result["date"], result["reading"]
-        sql = f"INSERT INTO ITER_1_6311171 (DATE_OF_RECORD,VALUE) VALUES(%s, %s)"
+        sql = f"INSERT INTO ITER_1_{sensor_id} (DATE_OF_RECORD,VALUE) VALUES(%s, %s)"
         vals = (date, reading)
         cursor.execute(sql, vals)
     mydb.commit()
@@ -43,4 +45,4 @@ def updateAllIter():
         deleteFromIter(iter_val)
     deleteFromIter("ITER_1")
 
-updateAllIter()
+update_db(sensor_id)
