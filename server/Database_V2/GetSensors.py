@@ -36,6 +36,8 @@ def getSensors(systemIdToFind):
 
     listOfSensors = {}
 
+    print(jsonResp)
+
     for sensor in jsonResp["sensors"]:
         listOfSensors[sensor["sensor_id"]] = sensor
 

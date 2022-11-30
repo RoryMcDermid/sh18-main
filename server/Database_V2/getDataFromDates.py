@@ -10,7 +10,7 @@ import datetime as dt
 #The dates are from midnight of the current time, so 01/01/1999 to 02/01/1999
 # will return all data values recorded on 01/01/1999.
 
-def getData(start_date, end_date):
+def getDatafromDates(start_date, end_date):
     url = "https://www.realtime-online.com/api/v3/json/"
     token = "b30a7d8f6f92"
     secretKey = "ATGUAP!Data2211"
@@ -29,8 +29,7 @@ def getData(start_date, end_date):
     "start_date": start_date,
     "end_date": end_date
     }
-
-        )
+    )
 
 
     # Form the request, in this example, getting all the sensors associated with a chosen system.

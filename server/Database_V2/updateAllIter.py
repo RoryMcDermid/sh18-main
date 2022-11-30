@@ -25,7 +25,7 @@ def updateAllIter():
     most_recent_record_date = already_stored[-1][0]
     current_date = datetime.now()
 
-    readings_from_dates = getData(most_recent_record_date, current_date)
+    readings_from_dates = getDatafromDates(most_recent_record_date, current_date)
 
     for result in readings_from_dates:
     

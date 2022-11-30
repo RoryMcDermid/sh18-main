@@ -1,11 +1,12 @@
 import mysql.connector
 
-mydb = mysql.connector.connect(
-  host="localhost",
-  user="root",
-  password="password"
-)
+def create_db():
+  mydb = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="password"
+  )
 
-mycursor = mydb.cursor()
+  mycursor = mydb.cursor()
 
-mycursor.execute("CREATE DATABASE moxie_energy")
+  mycursor.execute("CREATE DATABASE moxie_energy")
