@@ -45,7 +45,12 @@ app.get("/systems/:systemid/sensors", (req, res) => {
 
 // Get 15 min interval sensor data
 app.get("/systems/:systemid/sensors/:sensorid", (req, res) => {
-    let sql = `SELECT * FROM iter_1_${req.params.sensorid}`;
+    let sql ="";
+    if (Object.keys(req.query).length === 0) {
+        sql = `SELECT * FROM iter_1_${req.params.sensorid}`;
+    } else {
+        sql = `SELECT * FROM iter_1_${req.params.sensorid} WHERE DATE_OF_RECORD>='${req.query.startDate}' AND DATE_OF_RECORD<'${req.query.endDate}'`;
+    }
     let query = db.query(sql, (error, result) => {
         if (error) throw error;
         res.send(result);
@@ -54,7 +59,11 @@ app.get("/systems/:systemid/sensors/:sensorid", (req, res) => {
 
 // Get 15 min interval sensor data
 app.get("/systems/:systemid/sensors/:sensorid/15min", (req, res) => {
-    let sql = `SELECT * FROM iter_1_${req.params.sensorid}`;
+    if (Object.keys(req.query).length === 0) {
+        sql = `SELECT * FROM iter_1_${req.params.sensorid}`;
+    } else {
+        sql = `SELECT * FROM iter_1_${req.params.sensorid} WHERE DATE_OF_RECORD>='${req.query.startDate}' AND DATE_OF_RECORD<'${req.query.endDate}'`;
+    }
     let query = db.query(sql, (error, result) => {
         if (error) throw error;
         res.send(result);
@@ -63,7 +72,11 @@ app.get("/systems/:systemid/sensors/:sensorid/15min", (req, res) => {
 
 // Get 1 hour interval sensor data
 app.get("/systems/:systemid/sensors/:sensorid/1hour", (req, res) => {
-    let sql = `SELECT * FROM iter_2_${req.params.sensorid}`;
+    if (Object.keys(req.query).length === 0) {
+        sql = `SELECT * FROM iter_2_${req.params.sensorid}`;
+    } else {
+        sql = `SELECT * FROM iter_2_${req.params.sensorid} WHERE DATE_OF_RECORD>='${req.query.startDate}' AND DATE_OF_RECORD<'${req.query.endDate}'`;
+    }
     let query = db.query(sql, (error, result) => {
         if (error) throw error;
         res.send(result);
@@ -72,7 +85,11 @@ app.get("/systems/:systemid/sensors/:sensorid/1hour", (req, res) => {
 
 // Get 4 hours interval sensor data
 app.get("/systems/:systemid/sensors/:sensorid/4hour", (req, res) => {
-    let sql = `SELECT * FROM iter_3_${req.params.sensorid}`;
+    if (Object.keys(req.query).length === 0) {
+        sql = `SELECT * FROM iter_3_${req.params.sensorid}`;
+    } else {
+        sql = `SELECT * FROM iter_3_${req.params.sensorid} WHERE DATE_OF_RECORD>='${req.query.startDate}' AND DATE_OF_RECORD<'${req.query.endDate}'`;
+    }
     let query = db.query(sql, (error, result) => {
         if (error) throw error;
         res.send(result);
@@ -81,7 +98,11 @@ app.get("/systems/:systemid/sensors/:sensorid/4hour", (req, res) => {
 
 // Get 1 day interval sensor data
 app.get("/systems/:systemid/sensors/:sensorid/1day", (req, res) => {
-    let sql = `SELECT * FROM iter_4_${req.params.sensorid}`;
+    if (Object.keys(req.query).length === 0) {
+        sql = `SELECT * FROM iter_4_${req.params.sensorid}`;
+    } else {
+        sql = `SELECT * FROM iter_4_${req.params.sensorid} WHERE DATE_OF_RECORD>='${req.query.startDate}' AND DATE_OF_RECORD<'${req.query.endDate}'`;
+    }
     let query = db.query(sql, (error, result) => {
         if (error) throw error;
         res.send(result);
