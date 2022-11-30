@@ -10,7 +10,7 @@ mydb = mysql.connector.connect(
 
 cursor = mydb.cursor()
 
-system_id = input("Which System would you like the sensors for?")
+system_id = 2542
 
 cursor.execute(f"DROP TABLE IF EXISTS SENSORS_FOR_{system_id}")
 

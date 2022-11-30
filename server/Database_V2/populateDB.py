@@ -13,7 +13,7 @@ mydb = mysql.connector.connect(
 
 cursor = mydb.cursor()
 
-setup_end_date = datetime.now()
+setup_end_date = datetime.now() - dt.timedelta(days=1)
 setup_start_date = setup_end_date - dt.timedelta(weeks=2)
 readings_from_dates = getData(setup_start_date, setup_end_date)
 
