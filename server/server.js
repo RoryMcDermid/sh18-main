@@ -44,7 +44,16 @@ app.get("/systems/:systemid/sensors", (req, res) => {
 });
 
 // Get 15 min interval sensor data
-app.get("/systems/:systemid/sensors/:sensorid/iter1", (req, res) => {
+app.get("/systems/:systemid/sensors/:sensorid", (req, res) => {
+    let sql = `SELECT * FROM iter_1_${req.params.sensorid}`;
+    let query = db.query(sql, (error, result) => {
+        if (error) throw error;
+        res.send(result);
+    })
+});
+
+// Get 15 min interval sensor data
+app.get("/systems/:systemid/sensors/:sensorid/15min", (req, res) => {
     let sql = `SELECT * FROM iter_1_${req.params.sensorid}`;
     let query = db.query(sql, (error, result) => {
         if (error) throw error;
@@ -53,7 +62,7 @@ app.get("/systems/:systemid/sensors/:sensorid/iter1", (req, res) => {
 });
 
 // Get 1 hour interval sensor data
-app.get("/systems/:systemid/sensors/:sensorid/iter2", (req, res) => {
+app.get("/systems/:systemid/sensors/:sensorid/1hour", (req, res) => {
     let sql = `SELECT * FROM iter_2_${req.params.sensorid}`;
     let query = db.query(sql, (error, result) => {
         if (error) throw error;
@@ -62,7 +71,7 @@ app.get("/systems/:systemid/sensors/:sensorid/iter2", (req, res) => {
 });
 
 // Get 4 hours interval sensor data
-app.get("/systems/:systemid/sensors/:sensorid/iter3", (req, res) => {
+app.get("/systems/:systemid/sensors/:sensorid/4hour", (req, res) => {
     let sql = `SELECT * FROM iter_3_${req.params.sensorid}`;
     let query = db.query(sql, (error, result) => {
         if (error) throw error;
@@ -71,7 +80,7 @@ app.get("/systems/:systemid/sensors/:sensorid/iter3", (req, res) => {
 });
 
 // Get 1 day interval sensor data
-app.get("/systems/:systemid/sensors/:sensorid/iter4", (req, res) => {
+app.get("/systems/:systemid/sensors/:sensorid/1day", (req, res) => {
     let sql = `SELECT * FROM iter_4_${req.params.sensorid}`;
     let query = db.query(sql, (error, result) => {
         if (error) throw error;
