@@ -19,28 +19,27 @@ mydb = mysql.connector.connect(
 cursor = mydb.cursor()
 
 # SELECT SYSTEM ID TO GET ITS SENSORS
-system_id = 2442
+system_id = 2542
 sensor_list = get_systems_sensor_list(system_id)
 
 setup_end_date = dt.datetime.now() - dt.timedelta(days=1)
-setup_start_date = setup_end_date - dt.timedelta(weeks=2)
+setup_start_date = setup_end_date - dt.timedelta(days=1)
+readings_from_dates = getDatafromDates(setup_start_date, setup_end_date, system_id, sensor_list)
 
-for sensor in sensor_list:
+for i in range(len(sensor_list)):
 
-  readings_from_dates = getDatafromDates(setup_start_date, setup_end_date, system_id, sensor)
-  cursor.execute(f"DROP TABLE IF EXISTS ITER_1_{sensor}")
+  cursor.execute(f"DROP TABLE IF EXISTS ITER_1_{sensor_list[i]}")
 
-  sql =f'''CREATE TABLE ITER_1_{sensor}(
+  sql =f'''CREATE TABLE ITER_1_{sensor_list[i]}(
     DATE_OF_RECORD DATETIME NOT NULL PRIMARY KEY,
-    VALUE DECIMAL(9,6) NOT NULL
+    VALUE DECIMAL(11,6) NOT NULL
   )'''
   cursor.execute(sql)
 
-
-  for result in readings_from_dates:
+  for result in readings_from_dates[i]:
       
       date, reading = result["date"], result["reading"]
-      sql = f"INSERT INTO ITER_1_{sensor} (DATE_OF_RECORD,VALUE) VALUES(%s, %s)"
+      sql = f"INSERT INTO ITER_1_{sensor_list[i]} (DATE_OF_RECORD,VALUE) VALUES(%s, %s)"
       vals = (date, reading)
       cursor.execute(sql, vals)
   mydb.commit()
@@ -48,12 +47,12 @@ for sensor in sensor_list:
   iter_list = ["ITER_2", "ITER_3", "ITER_4"]
   # Loop through each possible iteration, passing what one you are working on into a separate function.
   for iter_val in iter_list:
-      sql =f'''CREATE TABLE {iter_val + '_' + sensor}(
+      sql =f'''CREATE TABLE {iter_val + '_' + sensor_list[i]}(
         DATE_OF_RECORD DATETIME NOT NULL PRIMARY KEY,
-        VALUE DECIMAL(9,6) NOT NULL
+        VALUE DECIMAL(11,6) NOT NULL
         )'''
       cursor.execute(sql)
-      pushDownIteration(iter_val, sensor)
+      pushDownIteration(iter_val, sensor_list[i])
 
 
 

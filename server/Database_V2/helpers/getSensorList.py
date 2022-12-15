@@ -42,3 +42,5 @@ def getSensors(systemIdToFind):
         listOfSensors[sensor["sensor_id"]] = sensor
 
     return listOfSensors
+
+getSensors(2542)

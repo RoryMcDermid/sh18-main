@@ -10,7 +10,8 @@ from deleteFromIter import *
 #It then performs the push down function, adding all appropriate values to tables that are
 #needed. Then remove the unwanted values from tables that are no longer needed to be stored.
 
-sensor_id = 1234
+sensor_id = 6311176
+system_id = 2542
 
 def update_db(sensor_id):
     mydb = mysql.connector.connect(

@@ -8,5 +8,4 @@ def create_db():
   )
 
   mycursor = mydb.cursor()
-
   mycursor.execute("CREATE DATABASE moxie_energy")
