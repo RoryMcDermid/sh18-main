@@ -92,7 +92,10 @@ def getDatafromDates(start_date, end_date, system_id, sensor_id_list):
 
         for vals in readings:
             val_date = dt.datetime.strptime(vals["record_date"][0:19], "%Y-%m-%dT%H:%M:%S")
-            val_reading = vals["values"][sensor_measurement]
+            try:
+                val_reading = vals["values"][sensor_measurement]
+            except: 
+                val_reading = 0.00
             dates_and_vals.append({"date": val_date, "reading": val_reading})
         sensors_dates_and_vals.append(dates_and_vals)
 

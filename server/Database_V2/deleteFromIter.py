@@ -3,7 +3,7 @@ from datetime import datetime
 import datetime as dt
 
 
-def deleteFromIter(iter_val):
+def deleteFromIter(iter_val, sensor_id):
     mydb = mysql.connector.connect(
     host = "localhost",
     user = "root",
@@ -25,7 +25,7 @@ def deleteFromIter(iter_val):
     else:
         return 0
 
-    to_edit = (iter_val + "_6311171").lower()
+    to_edit = (iter_val + "_" + sensor_id).lower()
 
     sql = f'''
         DELETE FROM {to_edit}
@@ -35,7 +35,6 @@ def deleteFromIter(iter_val):
     mydb.commit()
 
     
-deleteFromIter("ITER_1")
 
     
     

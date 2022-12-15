@@ -41,7 +41,7 @@ def pushDownIteration(iter_val, sensor_id):
             backlog += float(val[1])
         else:
             backlog += float(val[1])
-            sql = f"INSERT INTO {to_edit} (DATE_OF_RECORD,VALUE) VALUES(%s, %s)"
+            sql = f"INSERT IGNORE INTO {to_edit} (DATE_OF_RECORD,VALUE) VALUES(%s, %s)"
             vals = (val[0], backlog)
             cursor.execute(sql, vals)
             backlog = 0.0

@@ -23,7 +23,7 @@ system_id = 2542
 sensor_list = get_systems_sensor_list(system_id)
 
 setup_end_date = dt.datetime.now() - dt.timedelta(days=1)
-setup_start_date = setup_end_date - dt.timedelta(days=1)
+setup_start_date = setup_end_date - dt.timedelta(weeks=2)
 readings_from_dates = getDatafromDates(setup_start_date, setup_end_date, system_id, sensor_list)
 
 for i in range(len(sensor_list)):
