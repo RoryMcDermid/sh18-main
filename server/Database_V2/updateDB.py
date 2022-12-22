@@ -5,10 +5,11 @@ from helpers.getDataFromDates import *
 from helpers.pushDownIteration import *
 from deleteFromIter import *
 
-#This file brings it all together. It finds the date of the most recently stored value in the 
+#This function finds the date of the most recently stored value in the 
 #iter_1 table, then gets all the dates from the api using the previously defined function.
 #It then performs the push down function, adding all appropriate values to tables that are
-#needed. Then remove the unwanted values from tables that are no longer needed to be stored.
+#needed. Then remove the unwanted values from tables that are no longer needed to be stored in
+#the specified time ranges for each iteration.
 
 system_id = 2542
 
@@ -48,7 +49,8 @@ def update_db(system_id):
     mydb.commit()
 
     iter_list = ["ITER_2", "ITER_3", "ITER_4"]
-    # Loop through each possible iteration, passing what one you are working on into a separate function.
+    # Loop through each possible iteration, passing what one you are working on into a separate function,
+    # then deleting values no longer desired from that iteration.
     for sensor_id_val in sensor_id_list:
         for iter_val in iter_list:
             pushDownIteration(iter_val, sensor_id_val)
