@@ -3,7 +3,7 @@ from datetime import datetime
 import datetime as dt
 from helpers.getDataFromDates import *
 from helpers.pushDownIteration import *
-from deleteFromIter import *
+from helpers.deleteFromIter import *
 
 #This function finds the date of the most recently stored value in the 
 #iter_1 table, then gets all the dates from the api using the previously defined function.
