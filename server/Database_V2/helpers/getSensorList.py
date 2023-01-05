@@ -32,6 +32,8 @@ def getSensors(systemIdToFind):
     jsonResp = json.loads(resp.text)
 
     #store the reutrned response with all data (at the moment), that comes back.
+    if jsonResp["status"] == 429:
+        raise Exception("Timeout error, you have to wait 10 mins")
 
 
     listOfSensors = {}
@@ -40,3 +42,5 @@ def getSensors(systemIdToFind):
         listOfSensors[sensor["sensor_id"]] = sensor
 
     return listOfSensors
+
+getSensors(2542)

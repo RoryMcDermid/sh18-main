@@ -1,8 +1,10 @@
-const express = require('express')
-const app = express()
+const express = require("express");
+const app = express();
 
-app.get("/api", (req, res) => {
-    res.json({"test": "my test data"})
-})
+// import routes
+const systemRoutes = require("./routes/systems");
+app.use(systemRoutes);
 
-app.listen(5000, () => {console.log("Server started on port 5000...")})
+app.listen(5000, () => {
+  console.log("Server started on port 5000...");
+});
