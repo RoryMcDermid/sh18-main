@@ -219,3 +219,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+
+/client_old

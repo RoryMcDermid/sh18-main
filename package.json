@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@types/recharts": "^1.8.24",
     "react-router-dom": "^6.4.2"
   }
 }
