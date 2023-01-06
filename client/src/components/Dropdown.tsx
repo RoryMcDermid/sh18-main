@@ -4,12 +4,12 @@ import Up from "./chevron-up";
 
 interface props {
   label: string;
-  sensors: string[];
+  items: string[];
   state: string;
   setState: (newValue: string) => void;
 }
 
-const Dropdown: FC<props> = ({ label, sensors, state, setState }) => {
+const Dropdown: FC<props> = ({ label, items, state, setState }) => {
   const [expanded, setExpanded] = useState(false);
 
   const handleOption = (option: string) => {
@@ -31,15 +31,15 @@ const Dropdown: FC<props> = ({ label, sensors, state, setState }) => {
         </div>
         {expanded && (
           <div className='p-2 w-80 grid grid-cols-1 rounded-lg bg-slate-700 absolute translate-y-[80px] z-10'>
-            {sensors.map((sensor) => (
+            {items.map((item) => (
               <div
-                key={sensor}
+                key={item}
                 className='p-4 rounded-lg hover:bg-gray-200/60 text-white hover:text-black hover:font-semibold cursor-pointer'
                 onClick={() => {
-                  handleOption(sensor);
+                  handleOption(item);
                 }}
               >
-                {sensor}
+                {item}
               </div>
             ))}
           </div>

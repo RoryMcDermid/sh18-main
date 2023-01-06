@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import { FC } from "react";
 import {
   ResponsiveContainer,
   AreaChart,
@@ -12,7 +12,7 @@ import {
 interface props {
   dataSource: energyReadingArray;
   dataKey: string;
-  title: string;
+  title?: string;
 }
 
 const MultiAreaChart: FC<props> = ({ dataSource, dataKey, title }) => {
@@ -21,7 +21,7 @@ const MultiAreaChart: FC<props> = ({ dataSource, dataKey, title }) => {
 
   return (
     <div className='mx-5'>
-      <h1 className='ml-20 p-3 text-4xl text-white font-semibold'>{title}</h1>
+      <div className='ml-20 p-3 text-4xl text-white font-semibold'>{title}</div>
       <ResponsiveContainer width='99%' height={500}>
         <AreaChart>
           <defs>
@@ -36,7 +36,6 @@ const MultiAreaChart: FC<props> = ({ dataSource, dataKey, title }) => {
               <stop offset='75%' stopColor={strokeColor2} stopOpacity={0.07} />
             </linearGradient>
           </defs>
-          <XAxis dataKey='DATE_OF_RECORD' allowDuplicatedCategory={false} />
 
           <Area
             // @ts-ignore
@@ -46,6 +45,8 @@ const MultiAreaChart: FC<props> = ({ dataSource, dataKey, title }) => {
             stroke={strokeColor1}
             fill='url(#color1)'
           />
+
+          <XAxis dataKey='DATE_OF_RECORD' allowDuplicatedCategory={false} />
           {/* <Area
             data={dataSource2}
             yAxisId='left'
