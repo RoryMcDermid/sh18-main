@@ -1,8 +1,0 @@
-{
-  "dependencies": {
-    "@types/recharts": "^1.8.24",
-    "react-google-charts": "^4.0.0",
-    "react-google-charts-ts": "^0.1.1",
-    "react-router-dom": "^6.4.2"
-  }
-}
