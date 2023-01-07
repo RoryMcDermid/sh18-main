@@ -1,0 +1,1 @@
+type formattedData = (string | number)[][];

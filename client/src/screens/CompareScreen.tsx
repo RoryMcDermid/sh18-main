@@ -1,37 +1,9 @@
 import { FC, useState } from "react";
-import testData from "../data/testData.json";
-import Dropdown from "../components/Dropdown";
-import Header from "../components/Header";
-import MultiLineChart from "../components/Charts/MultiAreaChart";
-
+import { Header, Dropdown } from "../components";
+import { MultiLineChart } from "../components/Charts";
 import allTheData from "../data/myData";
 
-let allTheDataForRealsies = [
-  allTheData.t1,
-  allTheData.t2,
-  allTheData.t3,
-  allTheData.t4,
-];
-
-const generateHeaderRow: (sensors: energyReadingArray[]) => string[] = (
-  sensors
-) => {
-  return Array(sensors.length + 1).fill(" ");
-};
-
-const newData: (number | string)[][] = [
-  generateHeaderRow(allTheDataForRealsies),
-];
-for (let i = 0; i < allTheDataForRealsies[0].length; i++) {
-  let x_axis = allTheDataForRealsies[0][i].DATE_OF_RECORD;
-  newData.push([
-    x_axis,
-    allTheDataForRealsies[0][i].VALUE,
-    allTheDataForRealsies[1][i].VALUE,
-    allTheDataForRealsies[2][i].VALUE,
-    allTheDataForRealsies[3][i].VALUE,
-  ]);
-}
+let sensorData = [allTheData.t1, allTheData.t2, allTheData.t3, allTheData.t4];
 
 const CompareScreen: FC = () => {
   const [a, setA] = useState("");
@@ -43,7 +15,7 @@ const CompareScreen: FC = () => {
       <Header />
       <div className='h-[85vh] flex flex-row'>
         <div className='basis-9/12'>
-          <MultiLineChart dataSource={newData} />
+          <MultiLineChart data={sensorData} />
           <div className='flex justify-end px-10 py-5'>
             <button className='px-5 py-3 text-xl text-white font-semibold bg-slate-800 rounded-lg'>
               Bar Chart
