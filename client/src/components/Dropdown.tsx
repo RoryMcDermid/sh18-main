@@ -1,6 +1,5 @@
 import { FC, useState } from "react";
-import Down from "./chevron-down";
-import Up from "./chevron-up";
+import { ChevronUp, ChevronDown } from ".";
 
 interface props {
   label: string;
@@ -27,7 +26,7 @@ const Dropdown: FC<props> = ({ label, items, state, setState }) => {
           onClick={() => setExpanded(!expanded)}
         >
           <p className='text-white font-medium'>{state}</p>
-          {expanded ? <Up /> : <Down />}
+          {expanded ? <ChevronUp /> : <ChevronDown />}
         </div>
         {expanded && (
           <div className='p-2 w-80 grid grid-cols-1 rounded-lg bg-slate-700 absolute translate-y-[80px] z-10'>

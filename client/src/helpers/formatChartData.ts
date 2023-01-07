@@ -1,13 +1,13 @@
-const generateHeaderRow: (sensors: energyReadingArray[]) => string[] = (
-  sensors
-) => {
-  return Array(sensors.length + 1).fill(" ");
-};
+interface props {
+  headerRow: string[];
+  sensorData: energyReadingArray[];
+}
 
-const formatChartData: (sensorData: energyReadingArray[]) => formattedData = (
-  sensorData
-) => {
-  const newData: formattedData = [generateHeaderRow(sensorData)];
+const formatChartData: (a: props) => formattedData = ({
+  headerRow,
+  sensorData,
+}) => {
+  const newData: formattedData = [headerRow];
   for (let i = 0; i < sensorData[0].length; i++) {
     newData.push([
       sensorData[0][i].DATE_OF_RECORD,

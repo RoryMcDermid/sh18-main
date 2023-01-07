@@ -15,7 +15,10 @@ const CompareScreen: FC = () => {
       <Header />
       <div className='h-[85vh] flex flex-row'>
         <div className='basis-9/12'>
-          <MultiLineChart data={sensorData} />
+          <MultiLineChart
+            headerRow={[" ", " ", " ", " ", " "]}
+            data={sensorData}
+          />
           <div className='flex justify-end px-10 py-5'>
             <button className='px-5 py-3 text-xl text-white font-semibold bg-slate-800 rounded-lg'>
               Bar Chart
