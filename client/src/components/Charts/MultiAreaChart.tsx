@@ -1,74 +1,28 @@
 import { FC } from "react";
-import {
-  ResponsiveContainer,
-  AreaChart,
-  XAxis,
-  YAxis,
-  Area,
-  Tooltip,
-  CartesianGrid,
-} from "recharts";
+import Chart from "react-google-charts";
 
 interface props {
-  dataSource: energyReadingArray;
-  dataKey: string;
-  title?: string;
+  dataSource?: any;
+  dataKey?: string;
 }
 
-const MultiAreaChart: FC<props> = ({ dataSource, dataKey, title }) => {
-  const strokeColor1 = "#ff0066";
-  const strokeColor2 = "#0066ff";
-
+const MultiLineChart: FC<props> = ({ dataSource, dataKey }) => {
+  const options = {
+    legend: { position: "none" },
+    vAxis: { minValue: 0 },
+    chartArea: { width: "80%", height: "80%" },
+  };
   return (
-    <div className='mx-5'>
-      <div className='ml-20 p-3 text-4xl text-white font-semibold'>{title}</div>
-      <ResponsiveContainer width='99%' height={500}>
-        <AreaChart>
-          <defs>
-            <linearGradient id='color1' x1='0' y1='0' x2='0' y2='1'>
-              <stop offset='0%' stopColor={strokeColor1} stopOpacity={0.5} />
-              <stop offset='75%' stopColor={strokeColor1} stopOpacity={0.07} />
-            </linearGradient>
-          </defs>
-          <defs>
-            <linearGradient id='color2' x1='0' y1='0' x2='0' y2='1'>
-              <stop offset='0%' stopColor={strokeColor2} stopOpacity={0.5} />
-              <stop offset='75%' stopColor={strokeColor2} stopOpacity={0.07} />
-            </linearGradient>
-          </defs>
-
-          <Area
-            // @ts-ignore
-            data={dataSource}
-            yAxisId='left'
-            dataKey={dataKey}
-            stroke={strokeColor1}
-            fill='url(#color1)'
-          />
-
-          <XAxis dataKey='DATE_OF_RECORD' allowDuplicatedCategory={false} />
-          {/* <Area
-            data={dataSource2}
-            yAxisId='left'
-            dataKey={dataKey2}
-            stroke={strokeColor2}
-            fill='url(#color2)'
-          /> */}
-
-          <YAxis
-            yAxisId='left'
-            orientation='left'
-            dataKey={dataKey}
-            tickCount={10}
-            tickFormatter={(energy) => `${energy.toFixed(2)}`}
-          />
-
-          <Tooltip />
-          <CartesianGrid opacity={0.1} vertical={false} />
-        </AreaChart>
-      </ResponsiveContainer>
-    </div>
+    <>
+      <Chart
+        chartType='AreaChart'
+        width='100%'
+        height='500px'
+        data={dataSource}
+        options={options}
+      />
+    </>
   );
 };
 
-export default MultiAreaChart;
+export default MultiLineChart;
