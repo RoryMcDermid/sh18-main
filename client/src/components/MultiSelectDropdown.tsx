@@ -6,16 +6,22 @@ interface props {
   label: string;
   items: string[];
   state: string[];
-  setState: (newValue: string[]) => void;
+  setState: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
 const Dropdown: FC<props> = ({ label, items, state, setState }) => {
   const [expanded, setExpanded] = useState(false);
 
   const handleOption = (option: string) => {
-    const newState = state;
-    newState.push(option);
-    setState(newState);
+    if (!state.includes(option)) {
+      setState((prev) => [...prev, option]);
+    } else {
+      let newState = state.filter((item) => {
+        return item != option;
+      });
+      setState(newState);
+      console.log(newState);
+    }
   };
 
   return (
