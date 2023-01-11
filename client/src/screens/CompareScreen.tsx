@@ -1,6 +1,7 @@
 import { FC, useState, useEffect } from "react";
 import { Header, Dropdown, MultiSelectDropdown } from "../components";
 import { MultiLineChart } from "../components/Charts";
+import { BarChart } from "../components/Charts";
 import allTheData from "../data/myData";
 import loadSensorReadingData from "../hooks/loadSensorReadings";
 import { loadSensors } from "../hooks/loadSensors";
@@ -10,7 +11,7 @@ const CompareScreen: FC = () => {
 
   const [sensors, setSensor] = useState<string[]>([]);
   const [date, setDate] = useState<string[]>([]);
-
+  const [currentChartType, setCurrentChartType] = useState(true);
   const [sensorReading, updateSensorReading] = loadSensorReadingData(
     sensors.join(",")
   );
@@ -21,10 +22,18 @@ const CompareScreen: FC = () => {
       <Header />
       <div className="h-[85vh] flex flex-row">
         <div className="basis-9/12">
+          {currentChartType && (
           <MultiLineChart data={sensorReading} />
-          <div className="flex justify-end px-10 py-5">
-            <button className="px-5 py-3 text-xl text-white font-semibold bg-slate-800 rounded-lg">
-              Bar Chart
+        )}
+          {!currentChartType && (
+          <BarChart data={sensorReading} />
+        )}
+           <div className={'flex justify-end px-10 py-5'}
+          onClick={() => {
+            setCurrentChartType(!currentChartType);
+          }}>
+            <button className='px-5 py-3 text-xl text-white font-semibold bg-slate-800 rounded-lg'>
+              {currentChartType ? "BarChart" : "AreaChart"}
             </button>
           </div>
         </div>
