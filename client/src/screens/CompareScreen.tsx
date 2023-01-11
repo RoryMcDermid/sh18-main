@@ -21,18 +21,18 @@ const CompareScreen: FC = () => {
   return (
     <>
       <Header />
-      <div className='h-[85vh] flex flex-row'>
-        <div className='basis-9/12'>
-          <MultiLineChart headerRow={sensors} data={sensorReading} />
-          <div className='flex justify-end px-10 py-5'>
-            <Button handleClick={() => {}} text='Bar Chart' />
+      <div className="h-[85vh] flex flex-row">
+        <div className="basis-9/12">
+          <MultiLineChart headerRow={[" ", ...sensors]} data={sensorReading} />
+          <div className="flex justify-end px-10 py-5">
+            <Button handleClick={() => {}} text="Bar Chart" />
           </div>
         </div>
-        <div className='pt-10 basis-3/12 flex flex-col gap-10 items-center'>
-          <div className='px-5 w-full flex start'>
+        <div className="pt-10 basis-3/12 flex flex-col gap-10 items-center">
+          <div className="px-5 w-full flex start">
             <Button
               isDisabled={disable}
-              text='Select'
+              text="Select"
               handleClick={() => updateSensorReading()}
             />
           </div>
