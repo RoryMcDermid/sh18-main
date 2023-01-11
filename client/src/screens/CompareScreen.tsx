@@ -3,7 +3,6 @@ import { Header, Dropdown, MultiSelectDropdown } from "../components";
 import Button from "../components/Button";
 import { MultiLineChart } from "../components/Charts";
 import { BarChart } from "../components/Charts";
-import allTheData from "../data/myData";
 import loadSensorReadingData from "../hooks/loadSensorReadings";
 import { loadSensors } from "../hooks/loadSensors";
 
@@ -11,7 +10,7 @@ const CompareScreen: FC = () => {
   const sensorArray = loadSensors();
 
   const [sensors, setSensor] = useState<string[]>([]);
-  const [date, setDate] = useState<string[]>([]);
+  const [date, setDate] = useState<string>("");
   const [currentChartType, setCurrentChartType] = useState(true);
   const [sensorReading, updateSensorReading] = loadSensorReadingData(
     sensors.join(",")
@@ -23,28 +22,30 @@ const CompareScreen: FC = () => {
   return (
     <>
       <Header />
-      <div className="h-[85vh] flex flex-row">
-        <div className="basis-9/12">
+      <div className='h-[85vh] flex flex-row'>
+        <div className='basis-9/12'>
           {currentChartType && (
-          <MultiLineChart data={sensorReading} />
-        )}
+            <MultiLineChart headerRow={["", ...sensors]} data={sensorReading} />
+          )}
           {!currentChartType && (
-          <BarChart data={sensorReading} />
-        )}
-           <div className={'flex justify-end px-10 py-5'}
-          onClick={() => {
-            setCurrentChartType(!currentChartType);
-          }}>
+            <BarChart headerRow={["", ...sensors]} data={sensorReading} />
+          )}
+          <div
+            className={"flex justify-end px-10 py-5"}
+            onClick={() => {
+              setCurrentChartType(!currentChartType);
+            }}
+          >
             <button className='px-5 py-3 text-xl text-white font-semibold bg-slate-800 rounded-lg'>
               {currentChartType ? "BarChart" : "AreaChart"}
             </button>
           </div>
         </div>
-        <div className="pt-10 basis-3/12 flex flex-col gap-10 items-center">
-          <div className="px-5 w-full flex start">
+        <div className='pt-10 basis-3/12 flex flex-col gap-10 items-center'>
+          <div className='px-5 w-full flex start'>
             <Button
               isDisabled={disable}
-              text="Select"
+              text='Select'
               handleClick={() => updateSensorReading()}
             />
           </div>
