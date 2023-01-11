@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 const loadSystems = () => {
-  const [systems, setSystems] = useState([]);
+  const [systems, setSystems] = useState<systemArray>([]);
 
   useEffect(() => {
     const loadSystemData = () => {
@@ -15,7 +15,7 @@ const loadSystems = () => {
           const systemArray = response.data;
           setSystems(
             systemArray.map(function (system) {
-              return system["SYSTEM_ID"], system["SYSTEM_NAME"];
+              return system;
             })
           );
         })
