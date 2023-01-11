@@ -3,10 +3,11 @@ import Chart from "react-google-charts";
 import { formatChartData } from "../../helpers";
 
 interface props {
+  headerRow: string[];
   data: energyReadingArray[];
 }
 
-const MultiLineChart: FC<props> = ({ data }) => {
+const MultiLineChart: FC<props> = ({ headerRow, data }) => {
   const options = {
     legend: { position: "none" },
     vAxis: { minValue: 0 },
@@ -18,7 +19,7 @@ const MultiLineChart: FC<props> = ({ data }) => {
         chartType='AreaChart'
         width='100%'
         height='500px'
-        data={formatChartData(data)}
+        data={formatChartData(headerRow, data)}
         options={options}
       />
     </>
