@@ -1,6 +1,5 @@
 import { FC, useState } from "react";
-import Down from "./chevron-down";
-import Up from "./chevron-up";
+import { ChevronUp, ChevronDown } from ".";
 
 interface props {
   label: string;

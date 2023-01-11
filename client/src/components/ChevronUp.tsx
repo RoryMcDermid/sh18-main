@@ -1,4 +1,4 @@
-let Down = () => {
+let ChevronUp = () => {
   return (
     <div className='text-white'>
       <svg
@@ -12,10 +12,10 @@ let Down = () => {
         strokeLinecap='round'
         strokeLinejoin='round'
       >
-        <polyline points='6 9 12 15 18 9'></polyline>
+        <polyline points='18 15 12 9 6 15'></polyline>
       </svg>
     </div>
   );
 };
 
-export default Down;
+export default ChevronUp;

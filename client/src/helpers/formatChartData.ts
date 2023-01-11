@@ -1,8 +1,7 @@
-const generateHeaderRow: (sensors: energyReadingArray[]) => string[] = (
-  sensors
-) => {
-  return Array(sensors.length + 1).fill(" ");
-};
+interface props {
+  headerRow: string[];
+  sensorData: energyReadingArray[];
+}
 
 const formatChartData: (
   sensorData: energyReadingArray[]
