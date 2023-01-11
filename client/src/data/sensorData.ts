@@ -1,5 +1,5 @@
-let allSensorData = {
-  t1: [
+const allSensorData = [
+  [
     {
       DATE_OF_RECORD: "2022-12-30T12:45:00.000Z",
       VALUE: 7.699999,
@@ -29,7 +29,7 @@ let allSensorData = {
       VALUE: 10.183138,
     },
   ],
-  t2: [
+  [
     {
       DATE_OF_RECORD: "2022-12-30T12:45:00.000Z",
       VALUE: 4.832112,
@@ -59,7 +59,7 @@ let allSensorData = {
       VALUE: 5.212372,
     },
   ],
-  t3: [
+  [
     {
       DATE_OF_RECORD: "2022-12-30T12:45:00.000Z",
       VALUE: 12.887301,
@@ -89,7 +89,7 @@ let allSensorData = {
       VALUE: 17.054983,
     },
   ],
-  t4: [
+  [
     {
       DATE_OF_RECORD: "2022-12-30T12:45:00.000Z",
       VALUE: 2.988439,
@@ -119,6 +119,6 @@ let allSensorData = {
       VALUE: 3.624816,
     },
   ],
-};
+];
 
 export default allSensorData;
