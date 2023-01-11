@@ -16,7 +16,7 @@ router.get("/systems", getAllSystems);
 router.get("/systems/:id", getSystem);
 router.get("/systems/:systemid/sensors", getAllSensorsInSystem);
 router.get(
-  "/systems/:systemid/sensors/:sensorid",
+  "/systems/:systemid/sensors/:sensorids",
   getFifteenMinDataFromSensors
 );
 router.get(

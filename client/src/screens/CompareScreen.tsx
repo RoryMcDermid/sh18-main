@@ -1,15 +1,21 @@
-import { FC, useState } from "react";
-import { Header, Dropdown } from "../components";
+import { FC, useState, useEffect } from "react";
+import { Header, Dropdown, MultiSelectDropdown } from "../components";
 import { MultiLineChart } from "../components/Charts";
 import allTheData from "../data/myData";
-
-let sensorData = [allTheData.t1, allTheData.t2, allTheData.t3, allTheData.t4];
+import loadSensorReadingData from "../hooks/loadSensorReadings";
+import { loadSensors } from "../hooks/loadSensors";
 
 const CompareScreen: FC = () => {
-  const [a, setA] = useState("");
-  const [b, setB] = useState("");
+  const sensorArray = loadSensors();
+
+  const [sensors, setSensor] = useState<string[]>([]);
+  const [date, setDate] = useState<string[]>([]);
+
+  const [sensorReading, updateSensorReading] = loadSensorReadingData(
+    sensors.join(",")
+  );
+
   const dates = ["m1", "m2", "m3", "m4", "m5"];
-  const sensors = ["2233", "2232", "2231", "2230", "2229"];
   return (
     <>
       <Header />
@@ -17,7 +23,7 @@ const CompareScreen: FC = () => {
         <div className='basis-9/12'>
           <MultiLineChart
             headerRow={[" ", " ", " ", " ", " "]}
-            data={sensorData}
+            data={sensorReading}
           />
           <div className='flex justify-end px-10 py-5'>
             <button className='px-5 py-3 text-xl text-white font-semibold bg-slate-800 rounded-lg'>
@@ -25,19 +31,22 @@ const CompareScreen: FC = () => {
             </button>
           </div>
         </div>
-        <div className='pt-10 basis-3/12 flex flex-col gap-10 items-center'>
+        <div className="pt-10 basis-3/12 flex flex-col gap-10 items-center">
           <Dropdown
             label={"Select a time period: "}
-            state={a}
-            setState={setA}
+            state={date}
+            setState={setDate}
             items={dates}
           />
-          <Dropdown
+          <MultiSelectDropdown
             label={"Select a sensor:"}
-            state={b}
-            setState={setB}
-            items={sensors}
+            state={sensors}
+            setState={setSensor}
+            items={sensorArray}
           />
+          <button className="bg-red-100" onClick={() => updateSensorReading()}>
+            Tired
+          </button>
         </div>
       </div>
     </>

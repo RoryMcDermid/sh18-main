@@ -25,17 +25,46 @@ exports.getAllSensorsInSystem = (req, res) => {
   });
 };
 
-exports.getFifteenMinDataFromSensors = (req, res) => {
+exports.getFifteenMinDataFromSensors = async (req, res) => {
   let sql = "";
   if (Object.keys(req.query).length === 0) {
-    sql = `SELECT * FROM iter_1_${req.params.sensorid}`;
+    const responsesArray = [];
+    if (req.params.sensorids.indexOf(",") > -1) {
+      const queries = req.params.sensorids.split(",").map(async (sensorId) => {
+        sql = `SELECT * FROM iter_1_${sensorId}`;
+        return new Promise((resolve, reject) => {
+          db.query(sql, (error, result) => {
+            if (error) reject(error);
+            if (result.length != 0) {
+              resolve(result);
+            }
+          });
+        });
+      });
+      const responses = await Promise.all(queries);
+      res.send(responses);
+    } else {
+      sql = `SELECT * FROM iter_1_${req.params.sensorids}`;
+      let query = await new Promise((resolve, reject) => {
+        db.query(sql, (error, result) => {
+          if (error) reject(error);
+          if (result.length != 0) {
+            resolve([result]);
+          }
+        });
+      });
+      res.send(query);
+    }
   } else {
     sql = `SELECT * FROM iter_1_${req.params.sensorid} WHERE DATE_OF_RECORD>='${req.query.startDate}' AND DATE_OF_RECORD<'${req.query.endDate}'`;
+    let query = await new Promise((resolve, reject) => {
+      db.query(sql, (error, result) => {
+        if (error) reject(error);
+        resolve(result);
+      });
+    });
+    res.send(query);
   }
-  let query = db.query(sql, (error, result) => {
-    if (error) throw error;
-    res.send(result);
-  });
 };
 
 exports.getOneHourDataFromSensors = (req, res) => {
