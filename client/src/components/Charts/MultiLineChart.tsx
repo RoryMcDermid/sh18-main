@@ -19,7 +19,7 @@ const MultiLineChart: FC<props> = ({ headerRow, data }) => {
         chartType='AreaChart'
         width='100%'
         height='500px'
-        data={formatChartData({ headerRow: headerRow, sensorData: data })}
+        data={formatChartData(headerRow, data)}
         options={options}
       />
     </>

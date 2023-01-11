@@ -1,5 +1,6 @@
 import { FC, useState, useEffect } from "react";
 import { Header, Dropdown, MultiSelectDropdown } from "../components";
+import Button from "../components/Button";
 import { MultiLineChart } from "../components/Charts";
 import allTheData from "../data/myData";
 import loadSensorReadingData from "../hooks/loadSensorReadings";
@@ -10,7 +11,6 @@ const CompareScreen: FC = () => {
 
   const [sensors, setSensor] = useState<string[]>([]);
   const [date, setDate] = useState<string[]>([]);
-
   const [sensorReading, updateSensorReading] = loadSensorReadingData(
     sensors.join(",")
   );
@@ -21,17 +21,12 @@ const CompareScreen: FC = () => {
       <Header />
       <div className='h-[85vh] flex flex-row'>
         <div className='basis-9/12'>
-          <MultiLineChart
-            headerRow={[" ", " ", " ", " ", " "]}
-            data={sensorReading}
-          />
+          <MultiLineChart headerRow={sensors} data={sensorReading} />
           <div className='flex justify-end px-10 py-5'>
-            <button className='px-5 py-3 text-xl text-white font-semibold bg-slate-800 rounded-lg'>
-              Bar Chart
-            </button>
+            <Button handleClick={() => {}} text='Bar Chart' />
           </div>
         </div>
-        <div className="pt-10 basis-3/12 flex flex-col gap-10 items-center">
+        <div className='pt-10 basis-3/12 flex flex-col gap-10 items-center'>
           <Dropdown
             label={"Select a time period: "}
             state={date}
@@ -44,9 +39,7 @@ const CompareScreen: FC = () => {
             setState={setSensor}
             items={sensorArray}
           />
-          <button className="bg-red-100" onClick={() => updateSensorReading()}>
-            Tired
-          </button>
+          <Button text='Select' handleClick={() => updateSensorReading()} />
         </div>
       </div>
     </>
