@@ -2,7 +2,8 @@ import { FC, useState, useEffect } from "react";
 import { Header, Dropdown, MultiSelectDropdown } from "../components";
 import Button from "../components/Button";
 import { MultiLineChart } from "../components/Charts";
-import { allSensorData } from "../data";
+import { BarChart } from "../components/Charts";
+import allTheData from "../data/myData";
 import loadSensorReadingData from "../hooks/loadSensorReadings";
 import { loadSensors } from "../hooks/loadSensors";
 
@@ -10,7 +11,8 @@ const CompareScreen: FC = () => {
   const sensorArray = loadSensors();
 
   const [sensors, setSensor] = useState<string[]>([]);
-  const [date, setDate] = useState<string>("");
+  const [date, setDate] = useState<string[]>([]);
+  const [currentChartType, setCurrentChartType] = useState(true);
   const [sensorReading, updateSensorReading] = loadSensorReadingData(
     sensors.join(",")
   );
@@ -23,9 +25,19 @@ const CompareScreen: FC = () => {
       <Header />
       <div className="h-[85vh] flex flex-row">
         <div className="basis-9/12">
-          <MultiLineChart headerRow={[" ", ...sensors]} data={sensorReading} />
-          <div className="flex justify-end px-10 py-5">
-            <Button handleClick={() => {}} text="Bar Chart" />
+          {currentChartType && (
+          <MultiLineChart data={sensorReading} />
+        )}
+          {!currentChartType && (
+          <BarChart data={sensorReading} />
+        )}
+           <div className={'flex justify-end px-10 py-5'}
+          onClick={() => {
+            setCurrentChartType(!currentChartType);
+          }}>
+            <button className='px-5 py-3 text-xl text-white font-semibold bg-slate-800 rounded-lg'>
+              {currentChartType ? "BarChart" : "AreaChart"}
+            </button>
           </div>
         </div>
         <div className="pt-10 basis-3/12 flex flex-col gap-10 items-center">
