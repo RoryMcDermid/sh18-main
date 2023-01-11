@@ -1,4 +1,4 @@
-let allTheData = {
+let allSensorData = {
   t1: [
     {
       DATE_OF_RECORD: "2022-12-30T12:45:00.000Z",
@@ -121,4 +121,4 @@ let allTheData = {
   ],
 };
 
-export default allTheData;
+export default allSensorData;
