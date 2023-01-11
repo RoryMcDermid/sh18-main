@@ -31,7 +31,7 @@ const Dropdown: FC<props> = ({ label, items, state, setState }) => {
           {expanded ? <Up /> : <Down />}
         </div>
         {expanded && (
-          <div className="p-2 w-80 grid grid-cols-1 rounded-lg bg-slate-700 absolute translate-y-[80px] z-10">
+          <div className="p-2 w-80 overflow-auto h-60 grid grid-cols-1 rounded-lg bg-slate-700 absolute translate-y-[80px] z-10">
             {items.map((item) => (
               <div
                 key={item}

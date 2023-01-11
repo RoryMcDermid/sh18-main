@@ -2,30 +2,18 @@ import { FC, useState, useEffect } from "react";
 import { Header, Dropdown, MultiSelectDropdown } from "../components";
 import { MultiLineChart } from "../components/Charts";
 import allTheData from "../data/myData";
+import loadSensorReadingData from "../hooks/loadSensorReadings";
 import { loadSensors } from "../hooks/loadSensors";
-import useLoadSensorReadingData from "../hooks/loadSensorReadings";
 
 const CompareScreen: FC = () => {
   const sensorArray = loadSensors();
 
-  const [sensorReadingsArray, setSensorReadingsArray] = useState<any>([]);
-
   const [sensors, setSensor] = useState<string[]>([]);
   const [date, setDate] = useState<string[]>([]);
 
-  const loadData = async () => {
-    const sensorData = await Promise.all(
-      sensors.map(async (sensor) => {
-        const data = await useLoadSensorReadingData(sensor);
-        return data;
-      })
-    );
-    setSensorReadingsArray(sensorData);
-  };
-
-  useEffect(() => {
-    loadData();
-  }, [sensors]);
+  const [sensorReading, updateSensorReading] = loadSensorReadingData(
+    sensors.join(",")
+  );
 
   const dates = ["m1", "m2", "m3", "m4", "m5"];
   return (
@@ -33,7 +21,7 @@ const CompareScreen: FC = () => {
       <Header />
       <div className="h-[85vh] flex flex-row">
         <div className="basis-9/12">
-          <MultiLineChart data={sensorReadingsArray} />
+          <MultiLineChart data={sensorReading} />
           <div className="flex justify-end px-10 py-5">
             <button className="px-5 py-3 text-xl text-white font-semibold bg-slate-800 rounded-lg">
               Bar Chart
@@ -53,6 +41,9 @@ const CompareScreen: FC = () => {
             setState={setSensor}
             items={sensorArray}
           />
+          <button className="bg-red-100" onClick={() => updateSensorReading()}>
+            Tired
+          </button>
         </div>
       </div>
     </>

@@ -1,27 +1,24 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
-const useLoadSensorReadingData = (sensorId: string) => {
-  const [sensorReading, setSensorReading] = useState([]);
+const loadSensorReadingData = (sensorIds: string): [any[][], () => void] => {
+  const [sensorReading, setSensorReading] = useState<any[][]>([]);
 
-  useEffect(() => {
-    const loadSensorReading = () => {
-      axios({
-        method: "GET",
-        url: `${import.meta.env.VITE_API}/systems/2542/sensors/${sensorId}`,
+  const loadSensorReading = useCallback(() => {
+    axios({
+      method: "GET",
+      url: `${import.meta.env.VITE_API}/systems/2542/sensors/${sensorIds}`,
+    })
+      .then((response: { data: [] }) => {
+        console.log("GET SENSOR READING SUCCESS", response);
+        setSensorReading(response.data);
       })
-        .then((response: { data: [] }) => {
-          console.log("GET SENSOR READING SUCCESS", response);
-          setSensorReading(response.data);
-        })
-        .catch((error: { response: { data: { error: any } } }) => {
-          console.log("GET SENSORS ERROR", error.response.data.error);
-        });
-    };
-    loadSensorReading();
-  }, []);
+      .catch((error: { response: { data: { error: any } } }) => {
+        console.log("GET SENSORS ERROR", error.response.data.error);
+      });
+  }, [sensorIds]);
 
-  return sensorReading;
+  return [sensorReading, loadSensorReading];
 };
 
-export default useLoadSensorReadingData;
+export default loadSensorReadingData;

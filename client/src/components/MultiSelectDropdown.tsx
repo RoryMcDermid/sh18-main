@@ -37,11 +37,15 @@ const Dropdown: FC<props> = ({ label, items, state, setState }) => {
           {expanded ? <Up /> : <Down />}
         </div>
         {expanded && (
-          <div className="p-2 w-80 grid grid-cols-1 rounded-lg bg-slate-700 absolute translate-y-[80px] z-10">
+          <div className="p-2 w-80 grid grid-cols-1 rounded-lg bg-slate-700 overflow-auto h-60 absolute translate-y-[80px] z-10">
             {items.map((item) => (
               <div
                 key={item}
-                className="p-4 rounded-lg hover:bg-gray-200/60 text-white hover:text-black hover:font-semibold cursor-pointer"
+                className={
+                  state.includes(item)
+                    ? "p-4 text-amber-600 rounded-lg hover:bg-gray-200/60 hover:text-black font-semibold cursor-pointer"
+                    : "p-4 rounded-lg hover:bg-gray-200/60 text-white hover:text-black hover:font-semibold cursor-pointer"
+                }
                 onClick={() => {
                   handleOption(item);
                 }}
