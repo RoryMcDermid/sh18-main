@@ -6,8 +6,10 @@ from helpers.createSensorsForSystem import *
 from helpers.createDB import *
 from helpers.createSystems import *
 
+TIME_PERIOD = 2
+
 create_db()
-create_systems()
+system_ids = create_systems()
 
 mydb = mysql.connector.connect(
   host = "localhost",
@@ -18,59 +20,92 @@ mydb = mysql.connector.connect(
 
 cursor = mydb.cursor()
 
-# SELECT SYSTEM ID TO GET ITS SENSORS
-# Current system id actually covers all sensors available in Uni, 
-# so we can get all data in one go.
-#Once populateDB.py has been called once, we will no longer have to call it and only use updateDB.py.
-system_id = 2542
-sensor_list = get_systems_sensor_list(system_id)
+#return a dictionary where the keys are the system ids, and
+#the values are the sensors associated with that system
+systems_with_sensors_dict = get_systems_sensor_list(system_ids)
+
+for system, sensors in systems_with_sensors_dict.items():
+  if len(sensors) == 0:
+    cursor.execute(f"DELETE FROM SYSTEMS WHERE SYSTEM_ID = {system} ")
+    mydb.commit()
 
 
 #Setup the dates that we are looking to record from.
-#This takes yesterday as the most recent date and goes 1 week back from there
+#This takes yesterday as the most recent date and goes 2 days back from there
 #to get the data from.
 #The reasom for ending at yesterday is to allow for the updateDB.py file to be called to
 #Show that it is working.
 
 setup_end_date = dt.datetime.now() - dt.timedelta(days=1)
-setup_start_date = setup_end_date - dt.timedelta(weeks=1)
-readings_from_dates = getDatafromDates(setup_start_date, setup_end_date, system_id, sensor_list)
+setup_start_date = setup_end_date - dt.timedelta(days=TIME_PERIOD)
+
+#a dictionary is returned which has the sensor ids as the key, and the associated
+#data values from specified time period as the values in a list of dictionaries with
+#each dict having a date and reading key, with appropriate values.
+sensors_dates_and_vals = getDatafromDates(setup_start_date, setup_end_date, systems_with_sensors_dict)
 
 #from all the data received, place it into the appropriate first iteration table in the database.
 #We will only ever add to the first iteration table directly from calls from the database and then
 # 'push down' the appropriate summed values to the next iterations.
-for i in range(len(sensor_list)):
 
-  cursor.execute(f"DROP TABLE IF EXISTS ITER_1_{sensor_list[i]}")
+iter_list = ["ITER_2", "ITER_3", "ITER_4"]
 
-  sql =f'''CREATE TABLE ITER_1_{sensor_list[i]}(
+#looking at each system
+for i in range(len(systems_with_sensors_dict)):
+  systems = list(systems_with_sensors_dict.keys())
+  system = systems[i]
+
+  #looking at each sensor in that system
+  for j in range(len(systems_with_sensors_dict[system])):
+      
+    sensor_id = systems_with_sensors_dict[system][j]
+
+    cursor.execute(f"DROP TABLE IF EXISTS ITER_1_{system}_{sensor_id}")
+
+    sql =f'''CREATE TABLE ITER_1_{system}_{sensor_id}(
     DATE_OF_RECORD DATETIME NOT NULL PRIMARY KEY,
-    VALUE DECIMAL(11,6) NOT NULL
+    VALUE DECIMAL(15,6) NOT NULL
   )'''
-  cursor.execute(sql)
+    cursor.execute(sql)
+    mydb.commit()
 
-  for result in readings_from_dates[i]:
+    #add all sensor id values from dictionary
+    for result in sensors_dates_and_vals[sensor_id]:
       
       date, reading = result["date"], result["reading"]
-      sql = f"INSERT INTO ITER_1_{sensor_list[i]} (DATE_OF_RECORD,VALUE) VALUES(%s, %s)"
+      sql = f"INSERT INTO ITER_1_{system}_{sensor_id} (DATE_OF_RECORD,VALUE) VALUES(%s, %s)"
       vals = (date, reading)
       cursor.execute(sql, vals)
-  mydb.commit()
+      mydb.commit()
 
-  iter_list = ["ITER_2", "ITER_3", "ITER_4"]
-  # Loop through each possible iteration, passing what one you are working on into a separate function.
-  # This is where the push down of data occurs.
-  for iter_val in iter_list:
-      sql =f'''CREATE TABLE {iter_val + '_' + sensor_list[i]}(
+    #return all values from newly created table
+    cursor.execute(f"SELECT * FROM ITER_1_{system}_{sensor_id}")
+    vals = cursor.fetchall()
+    sum_of_vals = sum(list(map(lambda x: x[1], vals)))
+    #if the table is empty, delete table for sensor and 
+    #delete sensor from associated system table
+    if len(vals) == 0 or sum_of_vals == 0:
+      cursor.execute(f"DROP TABLE ITER_1_{system}_{sensor_id}")
+      mydb.commit()
+      cursor.execute(f"DELETE FROM SENSORS_FOR_{system} WHERE SENSOR_ID = {sensor_id}")
+      mydb.commit()
+    else:
+        
+      for iter_val in iter_list:
+        sql =f'''CREATE TABLE {iter_val}_{system}_{sensor_id}(
         DATE_OF_RECORD DATETIME NOT NULL PRIMARY KEY,
-        VALUE DECIMAL(11,6) NOT NULL
+        VALUE DECIMAL(15,6) NOT NULL
         )'''
-      cursor.execute(sql)
-      pushDownIteration(iter_val, sensor_list[i])
+        cursor.execute(sql)
+        mydb.commit()
+        pushDownIteration(iter_val, sensor_id, system)
 
+cursor.execute(f"SHOW TABLES")
+tables = cursor.fetchall()
 
-
-
-
-
-
+for table in tables:
+  sql = f'''SELECT COUNT(*) 
+            FROM {table[0]}'''
+  cursor.execute(sql)
+  if cursor.fetchall()[0][0] == 0:
+    cursor.execute(f"DROP TABLE {table[0]}")

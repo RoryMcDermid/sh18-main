@@ -28,7 +28,7 @@ def create_systems():
   system_sensor_count = []
 
   for system in systems_list:
-      system_ids.append(system)
+      system_ids.append(int(system))
       system_names.append(systems_list[system]["name"])
       system_sensor_count.append(systems_list[system]["noOfSensors"])
 
@@ -37,3 +37,5 @@ def create_systems():
       vals = (system_id, name, sensor_count)
       cursor.execute(sql, vals)
       mydb.commit()
+
+  return system_ids

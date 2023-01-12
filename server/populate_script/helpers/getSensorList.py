@@ -3,7 +3,7 @@ import json
 import hashlib
 import datetime
 
-def getSensors(systemIdToFind):
+def getSensors(system_ids):
     url = "https://www.realtime-online.com/api/v3/json/"
     token = "b30a7d8f6f92"
     secretKey = "ATGUAP!Data2211"
@@ -14,7 +14,7 @@ def getSensors(systemIdToFind):
     request_body = {
     "action": "getSensors",
     "request_date": datetime.datetime.now().isoformat(),
-    "systems" : [int(systemIdToFind)]
+    "systems" : system_ids
     }
 
     # This bit here I just copied from their example python request.
@@ -42,5 +42,3 @@ def getSensors(systemIdToFind):
         listOfSensors[sensor["sensor_id"]] = sensor
 
     return listOfSensors
-
-getSensors(2542)
