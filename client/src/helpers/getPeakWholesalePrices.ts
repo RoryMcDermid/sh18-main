@@ -39,3 +39,7 @@ export const getPeakWholesalePrices = (wholesaleprice: any[]) => {
   }
   return expensiveTimes;
 };
+
+export const convertTimeFormatForSensors = (wholesalePriceTime: string) => {
+  // need to turn "19:00 11-01-2023" into "2023-01-11T19:00:00.000Z";
+};
