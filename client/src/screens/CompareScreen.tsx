@@ -22,8 +22,8 @@ const CompareScreen: FC = () => {
   return (
     <>
       <Header />
-      <div className='h-[85vh] flex flex-row'>
-        <div className='basis-9/12'>
+      <div className="h-[85vh] flex flex-row">
+        <div className="basis-9/12">
           {currentChartType && (
             <MultiLineChart headerRow={["", ...sensors]} data={sensorReading} />
           )}
@@ -36,16 +36,16 @@ const CompareScreen: FC = () => {
               setCurrentChartType(!currentChartType);
             }}
           >
-            <button className='px-5 py-3 text-xl text-white font-semibold bg-slate-800 rounded-lg'>
+            <button className="px-5 py-3 text-xl text-white font-semibold bg-slate-800 rounded-lg">
               {currentChartType ? "BarChart" : "AreaChart"}
             </button>
           </div>
         </div>
-        <div className='pt-10 basis-3/12 flex flex-col gap-10 items-center'>
-          <div className='px-5 w-full flex start'>
+        <div className="pt-10 basis-3/12 flex flex-col gap-10 items-center">
+          <div className="px-5 w-full flex start">
             <Button
               isDisabled={disable}
-              text='Select'
+              text="Select"
               handleClick={() => updateSensorReading()}
             />
           </div>
