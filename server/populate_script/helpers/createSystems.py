@@ -2,15 +2,7 @@ import mysql.connector
 from helpers.getSystemsList import *
 
 
-def create_systems():
-  mydb = mysql.connector.connect(
-    host = "localhost",
-    user = "root",
-    password = "password",
-    database = "moxie_energy"
-  )
-
-  cursor = mydb.cursor()
+def create_systems(mydb, cursor):
 
   cursor.execute("DROP TABLE IF EXISTS SYSTEMS")
 
