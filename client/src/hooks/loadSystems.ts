@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 const loadSystems = () => {
-  const [systems, setSystems] = useState<systemArray>([]);
+  const [systems, setSystems] = useState<system[]>([]);
 
   useEffect(() => {
     const loadSystemData = () => {
@@ -27,7 +27,7 @@ const loadSystems = () => {
     loadSystemData();
   }, []);
 
-  return systems;
+  return { systems };
 };
 
 export default loadSystems;

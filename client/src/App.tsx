@@ -1,13 +1,16 @@
 import { Route, Routes } from "react-router-dom";
-import CompareScreen from "./screens/CompareScreen";
-import SystemSelectScreen from "./screens/SystemSelectScreen";
+import { Header } from "./components";
+import { SystemSelectScreen, CompareScreen } from "./screens";
 
 function App() {
   return (
-    <Routes>
-      <Route path='/' element={<SystemSelectScreen />} />
-      <Route path='/compare' element={<CompareScreen />} />
-    </Routes>
+    <>
+      <Header />
+      <Routes>
+        <Route path='/' element={<SystemSelectScreen />} />
+        <Route path='/compare' element={<CompareScreen />} />
+      </Routes>
+    </>
   );
 }
 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-export const loadSensors = () => {
+const loadSensors = () => {
   const [sensors, setSensors] = useState([]);
 
   useEffect(() => {
@@ -29,3 +29,5 @@ export const loadSensors = () => {
 
   return sensors;
 };
+
+export default loadSensors;

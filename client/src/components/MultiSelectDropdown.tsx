@@ -1,15 +1,23 @@
-import { FC, useState } from "react";
-import { ChevronUp, ChevronDown } from ".";
+import { FC, useEffect, useState } from "react";
+import { ChevronUp, ChevronDown, Button } from ".";
 
 interface props {
   label: string;
   items: string[];
   state: string[];
   setState: React.Dispatch<React.SetStateAction<string[]>>;
+  classes?: string;
 }
 
-const Dropdown: FC<props> = ({ label, items, state, setState }) => {
+const MultiSelectDropdown: FC<props> = ({
+  label,
+  items,
+  state,
+  setState,
+  classes,
+}) => {
   const [expanded, setExpanded] = useState(false);
+  const [allSelected, setAllSelected] = useState(false);
 
   const handleOption = (option: string) => {
     if (!state.includes(option)) {
@@ -19,16 +27,31 @@ const Dropdown: FC<props> = ({ label, items, state, setState }) => {
         return item != option;
       });
       setState(newState);
-      console.log(newState);
     }
   };
 
+  const selectAll = () => {
+    if (!allSelected) {
+      setAllSelected(true);
+      setState(items);
+    } else {
+      setAllSelected(false);
+      setState([]);
+    }
+  };
+
+  useEffect(() => {
+    if (state.length != items.length) {
+      setAllSelected(false);
+    }
+  }, [state]);
+
   return (
-    <div>
-      <div className='pb-3 pl-1 text-xl text-white'>{label}</div>
+    <div className={`${classes ?? "w-80"}`}>
+      <div className='pb-3 pl-1 text-xl text-gray-300'>{label}</div>
       <div className='grid gap-2 relative'>
         <div
-          className={`p-6 w-80 h-max flex justify-between 
+          className={`p-6 w-full h-max flex justify-between 
         rounded-lg bg-slate-800 hover:bg-slate-600 cursor-pointer`}
           onClick={() => setExpanded(!expanded)}
         >
@@ -36,15 +59,27 @@ const Dropdown: FC<props> = ({ label, items, state, setState }) => {
           {expanded ? <ChevronUp /> : <ChevronDown />}
         </div>
         {expanded && (
-          <div className='p-2 w-80 grid grid-cols-1 rounded-lg bg-slate-700 overflow-auto h-60 absolute translate-y-[80px] z-10'>
-            {items.map((item) => (
+          <div className='p-2 w-full grid grid-cols-1 rounded-lg bg-slate-700 overflow-auto h-72 absolute translate-y-[76px] z-10'>
+            {items && (
+              <div className='p-2 flex items-center'>
+                <div
+                  className='px-4 py-2 text-white bg-orange-500 hover:bg-orange-600 rounded-md cursor-pointer'
+                  onClick={() => selectAll()}
+                >
+                  {!allSelected ? "Select all" : "Deselect all"}
+                </div>
+              </div>
+            )}
+
+            {items.map((item, i) => (
               <div
-                key={item}
-                className={
-                  state.includes(item)
-                    ? "p-4 text-amber-600 rounded-lg hover:bg-gray-200/60 hover:text-black font-semibold cursor-pointer"
-                    : "p-4 rounded-lg hover:bg-gray-200/60 text-white hover:text-black hover:font-semibold cursor-pointer"
-                }
+                key={i}
+                className={`p-4 rounded-lg cursor-pointer hover:bg-gray-200/60
+                  ${
+                    state.includes(item)
+                      ? "text-amber-600 hover:text-orange-700 font-semibold"
+                      : "text-white hover:text-black hover:font-semibold"
+                  }`}
                 onClick={() => {
                   handleOption(item);
                 }}
@@ -59,4 +94,4 @@ const Dropdown: FC<props> = ({ label, items, state, setState }) => {
   );
 };
 
-export default Dropdown;
+export default MultiSelectDropdown;
