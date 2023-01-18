@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { formatDateForHook } from "../helpers";
 
-export const loadWholesalePrice = (startDate: string, endDate: string) => {
+const loadWholesalePrice = (startDateString: string, endDateString: string) => {
+  const startDate = formatDateForHook(startDateString);
+  const endDate = formatDateForHook(endDateString);
+
   const [wholesaleprice, setWholesaleprice] = useState([]);
 
   const loadWholesalePriceAPI = () => {
@@ -15,13 +19,15 @@ export const loadWholesalePrice = (startDate: string, endDate: string) => {
         setWholesaleprice(wholesalericeData);
       })
       .catch((error) => {
-        console.log("LOAD WHOLEPRICE ERROR", error.response.data.error);
+        console.log("LOAD WHOLEPRICE ERROR", error);
       });
   };
 
   useEffect(() => {
     loadWholesalePriceAPI();
-  }, []);
+  }, [startDate, endDate]);
 
   return wholesaleprice;
 };
+
+export default loadWholesalePrice;

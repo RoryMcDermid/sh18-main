@@ -1,6 +1,6 @@
 import { time } from "console";
 
-export const findAveragePrice = (wholesaleprice: any[]) => {
+const findAveragePrice = (wholesaleprice: any[]) => {
   let totalPrice = 0;
   function addToTotal(pricePoint: any) {
     totalPrice += pricePoint["Overall"];
@@ -12,7 +12,7 @@ export const findAveragePrice = (wholesaleprice: any[]) => {
   return Math.ceil(totalPrice / totalPricePoints);
 };
 
-export const getPeakWholesalePrices = (wholesaleprice: any[]) => {
+const getPeakWholesalePrices = (wholesaleprice: any[]) => {
   let averagePrice = findAveragePrice(wholesaleprice);
   let filterwholesaleprice = wholesaleprice.map((item) => {
     if (item.Overall > averagePrice) {
@@ -40,6 +40,8 @@ export const getPeakWholesalePrices = (wholesaleprice: any[]) => {
   return expensiveTimes;
 };
 
-export const convertTimeFormatForSensors = (wholesalePriceTime: string) => {
+const convertTimeFormatForSensors = (wholesalePriceTime: string) => {
   // need to turn "19:00 11-01-2023" into "2023-01-11T19:00:00.000Z";
 };
+
+export default getPeakWholesalePrices;
