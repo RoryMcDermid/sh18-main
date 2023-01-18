@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from "react";
-import { BarChart, Button, MultiLineChart } from "../components";
 import { useParams } from "react-router-dom";
+import { BarChart, Button, MultiLineChart } from "../components";
 import loadSensorReadingDatav3 from "../hooks/loadSensorReadingsv3";
 
 const CompareScreen: FC = () => {
@@ -38,27 +38,6 @@ const CompareScreen: FC = () => {
             />
           </div>
         </div>
-        {/* <div className='pt-10 px-10 basis-3/12 flex flex-col gap-10 items-start'>
-          <div className='w-full flex start'>
-            <Button
-              isDisabled={disable}
-              text='Select'
-              handleClick={() => updateSensorReading()}
-            />
-          </div>
-          <Dropdown
-            label={"Select a time period: "}
-            state={date}
-            setState={setDate}
-            options={dates}
-          />
-          <MultiSelectDropdown
-            label={"Select a sensor:"}
-            state={sensors}
-            setState={setSensor}
-            items={sensorArray}
-          />
-        </div> */}
       </div>
     </>
   );
