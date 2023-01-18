@@ -5,6 +5,7 @@ const loadSensorReadingData2 = ({
   sensorIds,
   startDate,
   endDate,
+  interval,
 }: sensorQuery): [any[][], () => void] => {
   const [sensorReading, setSensorReading] = useState<any[][]>([]);
 
@@ -13,7 +14,7 @@ const loadSensorReadingData2 = ({
       method: "GET",
       url: `${
         import.meta.env.VITE_API
-      }/systems/2542/sensors/${sensorIds}?startDate=${startDate}&endDate=${endDate}`,
+      }/systems/2542/sensors/${sensorIds}?startDate=${startDate}&endDate=${endDate}&interval=${interval}`,
     })
       .then((response: { data: [] }) => {
         console.log("GET SENSOR READING SUCCESS", response);
