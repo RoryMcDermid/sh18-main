@@ -3,5 +3,3 @@ interface system {
   SYSTEM_NAME: string;
   SENSOR_COUNT: number;
 }
-
-type systemArray = system[];

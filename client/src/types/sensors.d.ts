@@ -5,5 +5,3 @@ interface sensor {
   SENSOR_MEASUREMENT: string;
   SENSOR_UNIT: string;
 }
-
-type sensorArray = sensor[];

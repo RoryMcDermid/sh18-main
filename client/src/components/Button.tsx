@@ -4,19 +4,22 @@ interface props {
   isDisabled?: boolean;
   text: string;
   handleClick: () => void;
+  classes?: string;
 }
 
-const Button: FC<props> = ({ text, handleClick, isDisabled }) => {
+const Button: FC<props> = ({ text, handleClick, isDisabled, classes }) => {
   return (
     <>
       <button
-        className={`px-5 py-3 w-max text-xl font-semibold ${
+        className={`px-5 py-3 w-full text-xl font-semibold rounded-lg
+        ${classes ?? "w-32"}
+        ${
           isDisabled
             ? "text-gray-600 bg-gray-400"
             : "text-white bg-orange-500 hover:bg-orange-600"
-        } rounded-lg`}
-        onClick={handleClick}
+        }`}
         disabled={isDisabled}
+        onClick={handleClick}
       >
         {text}
       </button>

@@ -20,7 +20,6 @@ const CompareScreen: FC = () => {
 
   return (
     <>
-      <Header />
       <div className='h-[85vh] flex flex-row'>
         <div className='basis-9/12'>
           {currentChartType && (
@@ -36,8 +35,8 @@ const CompareScreen: FC = () => {
             />
           </div>
         </div>
-        <div className='pt-10 basis-3/12 flex flex-col gap-10 items-center'>
-          <div className='px-5 w-full flex start'>
+        <div className='pt-10 px-10 basis-3/12 flex flex-col gap-10 items-start'>
+          <div className='w-full flex start'>
             <Button
               isDisabled={disable}
               text='Select'
@@ -48,7 +47,7 @@ const CompareScreen: FC = () => {
             label={"Select a time period: "}
             state={date}
             setState={setDate}
-            items={dates}
+            options={dates}
           />
           <MultiSelectDropdown
             label={"Select a sensor:"}

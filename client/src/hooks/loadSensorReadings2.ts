@@ -1,7 +1,7 @@
 import axios from "axios";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useCallback } from "react";
 
-const loadSensorReadingData = ({
+const loadSensorReadingData2 = ({
   sensorIds,
   startDate,
   endDate,
@@ -27,4 +27,4 @@ const loadSensorReadingData = ({
   return [sensorReading, loadSensorReading];
 };
 
-export default loadSensorReadingData;
+export default loadSensorReadingData2;
