@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 const useSensors = (system: system | null) => {
-  console.log(system);
-
   const [sensors, setSensors] = useState<string[]>([]);
 
   const loadSensorsData = async (system: string) => {
@@ -28,8 +26,8 @@ const useSensors = (system: system | null) => {
 
   useEffect(() => {
     if (system) {
-      console.log(system);
       loadSensorsData(system.SYSTEM_ID.toString());
+      console.log(sensors);
     }
   }, [system]);
 

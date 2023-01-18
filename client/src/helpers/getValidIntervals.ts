@@ -6,7 +6,6 @@ const getValidIntervals: (
   let endDate = new Date(endDateString);
   const diff = endDate.valueOf() - startDate.valueOf();
   const diffInDays = diff / (1000 * 60 * 60 * 24);
-  console.log(`diff: ${diff}`);
 
   let disableItems = [];
   if (diffInDays >= 28) disableItems = [4];
@@ -14,7 +13,6 @@ const getValidIntervals: (
   else if (diffInDays >= 2) disableItems = [2, 3, 4];
   else disableItems = [1, 2, 3, 4];
 
-  console.log(disableItems);
   return disableItems;
 };
 
