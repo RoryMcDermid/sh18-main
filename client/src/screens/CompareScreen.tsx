@@ -1,27 +1,30 @@
-import { FC, useState } from "react";
-import { Header, Dropdown, MultiSelectDropdown, Button } from "../components";
-import { BarChart, MultiLineChart } from "../components/Charts";
-import { loadSensorReadingData, loadSensors } from "../hooks";
+import { FC, useEffect, useState } from "react";
+import { BarChart, Button, MultiLineChart } from "../components";
+import { useParams } from "react-router-dom";
+import loadSensorReadingDatav3 from "../hooks/loadSensorReadingsv3";
 
 const CompareScreen: FC = () => {
-  const sensorArray = loadSensors();
+  let { sensorIDs, startDate, endDate, interval } = useParams();
 
   const [sensors, setSensor] = useState<string[]>([]);
-  const [sensorReading, updateSensorReading] = loadSensorReadingData(
-    sensors.join(",")
-  );
+  const sensorReading = loadSensorReadingDatav3({
+    sensorIds: sensorIDs!.replaceAll("-", ","),
+    startDate: startDate!,
+    endDate: endDate!,
+    interval: interval!,
+  });
 
-  const dates = ["m1", "m2", "m3", "m4", "m5"];
-  const [date, setDate] = useState<string>("");
+  console.log();
+  useEffect(() => {
+    setSensor(sensorIDs!.split("-"));
+  }, [sensorReading]);
 
   const [currentChartType, setCurrentChartType] = useState(true);
 
-  const disable = !(sensors.length != 0);
-
   return (
     <>
-      <div className="h-[85vh] flex flex-row">
-        <div className="basis-9/12">
+      <div className='h-[85vh] flex flex-row'>
+        <div className='basis-9/12'>
           {currentChartType && (
             <MultiLineChart headerRow={["", ...sensors]} data={sensorReading} />
           )}
@@ -35,11 +38,11 @@ const CompareScreen: FC = () => {
             />
           </div>
         </div>
-        <div className="pt-10 px-10 basis-3/12 flex flex-col gap-10 items-start">
-          <div className="w-full flex start">
+        {/* <div className='pt-10 px-10 basis-3/12 flex flex-col gap-10 items-start'>
+          <div className='w-full flex start'>
             <Button
               isDisabled={disable}
-              text="Select"
+              text='Select'
               handleClick={() => updateSensorReading()}
             />
           </div>
@@ -55,7 +58,7 @@ const CompareScreen: FC = () => {
             setState={setSensor}
             items={sensorArray}
           />
-        </div>
+        </div> */}
       </div>
     </>
   );

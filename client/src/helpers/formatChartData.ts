@@ -1,6 +1,6 @@
 const formatChartData: (
   headerRow: string[],
-  sensorData: energyReadingArray[]
+  sensorData: energyReading[][]
 ) => formattedData | undefined = (headerRow, sensorData) => {
   const newData: formattedData = [];
   newData.push(headerRow);

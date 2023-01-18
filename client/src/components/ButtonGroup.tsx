@@ -4,13 +4,13 @@ interface props {
   label: string;
   items: string[];
   disableItems: number[];
-  handleEvent: any;
+  handleSelection: any;
 }
 
 const ButtonGroup: FC<props> = ({
   label,
   items,
-  handleEvent,
+  handleSelection,
   disableItems,
 }) => {
   const [clickedId, setClickedId] = useState(-1);
@@ -20,7 +20,7 @@ const ButtonGroup: FC<props> = ({
     i: number
   ) => {
     setClickedId(i);
-    handleEvent(event);
+    handleSelection(i + 1);
   };
 
   return (

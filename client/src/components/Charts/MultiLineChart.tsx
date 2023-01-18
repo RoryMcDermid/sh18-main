@@ -4,7 +4,7 @@ import { formatChartData } from "../../helpers";
 
 interface props {
   headerRow: string[];
-  data: energyReadingArray[];
+  data: energyReading[][];
 }
 
 const MultiLineChart: FC<props> = ({ headerRow, data }) => {

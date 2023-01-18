@@ -1,5 +1,7 @@
 import { FC, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import {
+  Button,
   ButtonGroup,
   DatePicker,
   Dropdown,
@@ -25,8 +27,26 @@ const SystemSelectScreen: FC = () => {
     console.log({ peakPriceTimes });
   }, [wholesalePrice]);
 
+  const [readingInterval, setReadingInterval] = useState(-1);
+
+  const [disableButton, setDisableButton] = useState(true);
+
+  useEffect(() => {
+    if (
+      selectedSensors.length > 0 &&
+      startDate != "" &&
+      endDate != "" &&
+      1 <= readingInterval &&
+      readingInterval <= 4
+    ) {
+      setDisableButton(false);
+    } else {
+      setDisableButton(true);
+    }
+  }, [selectedSensors, startDate, endDate, readingInterval]);
+
   return (
-    <>
+    <div className='flex '>
       <div className='mx-20 flex flex-col gap-10 w-[40rem] '>
         <Dropdown
           label='Select a system:'
@@ -58,11 +78,24 @@ const SystemSelectScreen: FC = () => {
         <ButtonGroup
           label='Select sensor reading interval:'
           items={["15m", "1h", "4h", "1d"]}
-          handleEvent={() => {}}
+          handleSelection={setReadingInterval}
           disableItems={getValidIntervals(startDate, endDate)}
         />
       </div>
-    </>
+      <div className='mt-10'>
+        <Link
+          to={`/compare/${selectedSensors.join(
+            "-"
+          )}/${startDate}/${endDate}/${readingInterval.toString()}`}
+        >
+          <Button
+            text='Enter'
+            handleClick={() => {}}
+            isDisabled={disableButton}
+          />
+        </Link>
+      </div>
+    </div>
   );
 };
 

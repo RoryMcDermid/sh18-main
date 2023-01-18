@@ -8,7 +8,10 @@ function App() {
       <Header />
       <Routes>
         <Route path='/' element={<SystemSelectScreen />} />
-        <Route path='/compare' element={<CompareScreen />} />
+        <Route
+          path='/compare/:sensorIDs/:startDate/:endDate/:interval'
+          element={<CompareScreen />}
+        />
       </Routes>
     </>
   );
