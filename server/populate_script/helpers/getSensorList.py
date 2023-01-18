@@ -8,7 +8,7 @@ def getSensors(system_ids):
     token = "b30a7d8f6f92"
     secretKey = "ATGUAP!Data2211"
 
-    #above variables are the token and secret key we were given for the API.
+    # above variables are the token and secret key we were given for the API.
 
     # Form the request, in this example, getting all the sensors associated with a chosen system.
     request_body = {
@@ -27,18 +27,21 @@ def getSensors(system_ids):
     "X-RT2-API-Hash": contentHash
     }
 
-    #post the above request to the API, then store the response in the jsonResp file.
+    # post the above request to the API, then store the response in the jsonResp file.
     resp = requests.post(url, data=json.dumps(request_body), headers=headers)
     jsonResp = json.loads(resp.text)
 
-    #store the reutrned response with all data (at the moment), that comes back.
+    # store the reutrned response with all data (at the moment), that comes back.
     if jsonResp["status"] == 429:
         raise Exception("Timeout error, you have to wait 10 mins")
 
 
-    listOfSensors = {}
+    sensorsBySystem = {}
 
     for sensor in jsonResp["sensors"]:
-        listOfSensors[sensor["sensor_id"]] = sensor
+        if sensor["system_id"] not in sensorsBySystem.keys():
+            sensorsBySystem[sensor['system_id']] = []
+        sensorsBySystem[sensor['system_id']].append(sensor)
 
-    return listOfSensors
+
+    return sensorsBySystem

@@ -9,10 +9,10 @@ from helpers.createSystems import *
 TIME_PERIOD = 2
 
 mydb = mysql.connector.connect(
-  host = "aws-eu-west-2.connect.psdb.cloud",
-  user = "6l7qfm1r0rvho1arc21e",
-  password = "pscale_pw_3QmXuV4sTqnRIQmnIjll63RH4qQ8rpPtK2Y7Uda67zW",
-  database = "moxie_live"
+  host = "us-east.connect.psdb.cloud",
+  user = "1dq43m1k3cumbcauts87",
+  password = "pscale_pw_3wMy14IDYxWEDFMiNm42fQIZ9p0RooayTZpiKtf6yND",
+  database = "test-db"
 )
 
 
