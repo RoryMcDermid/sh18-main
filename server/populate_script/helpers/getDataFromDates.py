@@ -26,9 +26,9 @@ def getDatafromDates(start_date, end_date, systems_with_sensors_dict, mydb, curs
     start_date = start_date.isoformat()
     end_date = end_date.isoformat()
 
-    for system in systems_with_sensors_dict.keys():
+    for system, sensors in systems_with_sensors_dict.items():
         sensor_list = []
-        for sensor_id in systems_with_sensors_dict[system]:
+        for sensor_id in sensors:
             sensor_list.append(
             {
         "sensor_id": sensor_id,
@@ -65,17 +65,17 @@ def getDatafromDates(start_date, end_date, systems_with_sensors_dict, mydb, curs
 
     if jsonResp["status"] == 429:
         raise Exception("Timeout error, you have to wait 10 mins")
-
-
     #looping over the data for each sensor listed, work your way down the json response until
     #required data is found, then store it in an appropriately named json file.
 
     sensors_dates_and_vals = {}
     
+    
     for i in range(len(jsonResp["systems"])):
 
         system_id = jsonResp["systems"][i]["system_id"]
         for j in range(len(jsonResp["systems"][i]["sensors"])):
+
             readings = jsonResp["systems"][i]["sensors"][j]["data"]
             sensor_id = jsonResp["systems"][i]["sensors"][j]["sensor_id"]
             dates_and_vals = []
@@ -86,6 +86,7 @@ def getDatafromDates(start_date, end_date, systems_with_sensors_dict, mydb, curs
             for vals in readings:
                 val_date = dt.datetime.strptime(vals["record_date"][0:19], "%Y-%m-%dT%H:%M:%S")
                 try:
+
                     val_reading = vals["values"][sensor_measurement]
                 except: 
                     val_reading = 0.00

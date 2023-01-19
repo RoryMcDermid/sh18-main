@@ -45,5 +45,4 @@ def getSystemsList():
             "noOfSensors" : system["sensors_count"]
         }
 
-
     return systemIds

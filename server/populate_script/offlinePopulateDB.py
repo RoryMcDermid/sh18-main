@@ -5,6 +5,7 @@ from helpers.pushDownIteration import *
 from helpers.createSensorsForSystem import *
 from helpers.createDB import *
 from helpers.createSystems import *
+import json
 
 TIME_PERIOD = 2
 create_db()
@@ -18,12 +19,14 @@ mydb = mysql.connector.connect(
 
 cursor = mydb.cursor()
 
+system_call_mock = dict(json.load(open("mocks/system_ids.json")))
+sensors_mock = dict(json.load(open("mocks/getSensors.json")))
 
 
-system_ids = create_systems(mydb, cursor)
+system_ids = create_systems(mydb, cursor, mock=system_call_mock)
 #return a dictionary where the keys are the system ids, and
 #the values are the sensors associated with that system
-systems_with_sensors_dict = get_systems_sensor_list(system_ids, mydb, cursor)
+systems_with_list_of_sensors = get_systems_sensor_list(system_ids, mydb, cursor, sensors_mock)
 
 #Setup the dates that we are looking to record from.
 #This takes yesterday as the most recent date and goes 2 days back from there
@@ -37,33 +40,36 @@ setup_start_date = setup_end_date - dt.timedelta(days=TIME_PERIOD)
 #a dictionary is returned which has the sensor ids as the key, and the associated
 #data values from specified time period as the values in a list of dictionaries with
 #each dict having a date and reading key, with appropriate values.
-sensors_dates_and_vals = getDatafromDates(setup_start_date, setup_end_date, systems_with_sensors_dict, mydb, cursor)
 
+sensors_dates_and_vals = getDatafromDates(setup_start_date, setup_end_date, systems_with_list_of_sensors, mydb, cursor)
 #from all the data received, place it into the appropriate first iteration table in the database.
 #We will only ever add to the first iteration table directly from calls from the database and then
 # 'push down' the appropriate summed values to the next iterations.
 
-#iter_list = ["ITER_2", "ITER_3", "ITER_4"]
+
+iter_list = ["ITER_2", "ITER_3", "ITER_4"]
 
 #looking at each system
-# for i in range(len(systems_with_sensors_dict)):
-#   systems = list(systems_with_sensors_dict.keys())
-#   system = systems[i]
 
-  #looking at each sensor in that system
-  # for j in range(len(systems_with_sensors_dict[system])):
-      
-  #   sensor_id = systems_with_sensors_dict[system][j]
+for system, sensors in systems_with_list_of_sensors.items():
+  print("level 1")
+  for sensor_id in sensors:
+    print("level 2")
+    readings = sensors_dates_and_vals[sensor_id]
+    if(len(readings) > 0):
+      print("if 1 passed")
+      sum = 0.0
+      for val in readings:
+        sum = sum + val["reading"]
+      if sum > 0.0:
+        print("if 2 passed")
 
-  #   cursor.execute(f"DROP TABLE IF EXISTS ITER_1_{system}_{sensor_id}")
-  #   mydb.commit()
-
-  #   sql =f'''CREATE TABLE ITER_1_{system}_{sensor_id}(
-  #   DATE_OF_RECORD DATETIME NOT NULL PRIMARY KEY,
-  #   VALUE DECIMAL(15,6) NOT NULL
-  # )'''
-  #   cursor.execute(sql)
-  #   mydb.commit()
+        sql =f'''CREATE TABLE ITER_1_{system}_{sensor_id}(
+              DATE_OF_RECORD DATETIME NOT NULL PRIMARY KEY,
+              VALUE DECIMAL(15,6) NOT NULL
+              )'''
+        cursor.execute(sql)
+        mydb.commit()
 
     #add all sensor id values from dictionary
     # for result in sensors_dates_and_vals[sensor_id]:
