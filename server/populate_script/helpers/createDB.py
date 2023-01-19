@@ -7,5 +7,7 @@ def create_db():
     password="password"
   )
 
+  
+
   mycursor = mydb.cursor()
   mycursor.execute("CREATE DATABASE moxie_energy")

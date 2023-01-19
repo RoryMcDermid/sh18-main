@@ -16,19 +16,15 @@ mydb = mysql.connector.connect(
 
 
 cursor = mydb.cursor()
-
-cursor.execute('''CREATE TABLE test (field_1);''')
-
-mydb.commit()
+system_ids = create_systems(mydb, cursor)
 
 
-# system_ids = create_systems(mydb, cursor)
 
 # return a dictionary where the keys are the system ids, and
 # the values are the sensors associated with that system
 
-# systems_with_sensors_dict = get_systems_sensor_list_online(system_ids, mydb, cursor)
-# systems_with_sensors_dict.pop(2542)
+systems_with_sensors_dict = get_systems_sensor_list_online(system_ids, mydb, cursor)
+systems_with_sensors_dict.pop(2542)
 
 
 
