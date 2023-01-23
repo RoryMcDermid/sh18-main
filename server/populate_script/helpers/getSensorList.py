@@ -42,6 +42,6 @@ def getSensors(system_ids):
         if sensor["system_id"] not in sensorsBySystem.keys():
             sensorsBySystem[sensor['system_id']] = []
         sensorsBySystem[sensor['system_id']].append(sensor)
-
+    
 
     return sensorsBySystem

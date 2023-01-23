@@ -1,5 +1,7 @@
-nums = {1:[1,2,3], 2:[2,3,4], 3:[3,4,5]}
+x = {"a","b","c"}
+y = {"c"}
 
-for key, vals in nums.items():
-    for val in vals:
-        print(val)
+x.difference_update(y)
+print(x)
+y.add(1)
+print(y)

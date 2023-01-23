@@ -6,18 +6,18 @@ import mysql.connector
 #to eventually add and remove values from its table depending on how long we wish to store te data.
 #An easy change, but of course nice to get the first population script with static vals set up.
 
-def pushDownIteration(iter_val, sensor_id, system, mydb, cursor):
+def pushDownIteration(iter_val, sensor_id, mydb, cursor):
 
 #Depending on the iter_val, select from previous table.
     if(iter_val == "ITER_2"):
-        cursor.execute(f"SELECT * FROM ITER_1_{system}_{sensor_id}")
+        cursor.execute(f"SELECT * FROM ITER_1_{sensor_id}")
     elif(iter_val == "ITER_3"):
-        cursor.execute(f"SELECT * FROM ITER_2_{system}_{sensor_id}")
+        cursor.execute(f"SELECT * FROM ITER_2_{sensor_id}")
     else:
-        cursor.execute(f"SELECT * FROM ITER_3_{system}_{sensor_id}")
+        cursor.execute(f"SELECT * FROM ITER_3_{sensor_id}")
 
     previous_iter_vals = cursor.fetchall()
-    to_edit = (iter_val + '_' + str(system) + '_' + sensor_id).lower()
+    to_edit = (iter_val + '_' + sensor_id).upper()
 
     #If we want hourly or 4-hourly vals, do modulo 4, if its going from 4-hour to day, modulo 6.
     if(iter_val == "ITER_2" or iter_val == "ITER_3"):
@@ -27,6 +27,7 @@ def pushDownIteration(iter_val, sensor_id, system, mydb, cursor):
     count = 0
     backlog = 0.0
         
+    vals = []
     for val in previous_iter_vals:
         #count begins at 1 to allow modulo to work, no zero-indexing here!
         count += 1
@@ -34,12 +35,12 @@ def pushDownIteration(iter_val, sensor_id, system, mydb, cursor):
             backlog += float(val[1])
         else:
             backlog += float(val[1])
-            sql = f"INSERT IGNORE INTO {to_edit} (DATE_OF_RECORD,VALUE) VALUES(%s, %s)"
-            vals = (val[0], backlog)
-            cursor.execute(sql, vals)
+            vals.append((val[0], backlog))   
             backlog = 0.0
-            mydb.commit()
-    
+    sql = f"INSERT IGNORE INTO {to_edit} (DATE_OF_RECORD,VALUE) VALUES(%s, %s)"
+    cursor.executemany(sql, vals)
+    mydb.commit()
+
     return True
 
 def pushDownIterationOnline(iter_val, sensor_id, system, mydb, cursor):
