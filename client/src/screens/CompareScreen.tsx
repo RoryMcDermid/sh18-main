@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { BarChart, Button, MultiLineChart } from "../components";
-import loadSensorReadingDatav3 from "../hooks/loadSensorReadingsv3";
+import { loadSensorReadingData } from "../hooks";
 
 interface props {
   peakPriceTimes: string[][];
@@ -11,7 +11,7 @@ const CompareScreen: FC<props> = ({ peakPriceTimes }) => {
   let { sensorIDs, startDate, endDate, interval } = useParams();
 
   const [sensors, setSensors] = useState<string[]>([]);
-  const sensorReading = loadSensorReadingDatav3({
+  const sensorReading = loadSensorReadingData({
     sensorIds: sensorIDs!.replaceAll("-", ","),
     startDate: startDate!,
     endDate: endDate!,
