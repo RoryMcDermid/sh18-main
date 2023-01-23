@@ -37,5 +37,6 @@ for system_id in system_ids:
     systems_with_list_of_sensors[system_id] = [sensor_id[0] for sensor_id in cursor.fetchall()]
 
 updateFromDates(most_recent_record_date, current_date,  systems_with_list_of_sensors, mydb, cursor)
+iter_vals = ["ITER_1", "ITER_2", "ITER_3", "ITER_4"]
 
 

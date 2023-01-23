@@ -4,6 +4,7 @@ import hashlib
 import datetime as dt
 import mysql.connector
 from helpers.addToIter import *
+from helpers.deleteFromIter import *
 
 
 
@@ -61,9 +62,9 @@ def updateFromDates(start_date, end_date, systems_with_sensors_dict, mydb, curso
     if jsonResp["status"] == 429:
         raise Exception("Timeout error, you have to wait 10 mins")
     
+    iter_vals = ["ITER_1", "ITER_2", "ITER_3", "iTER_4"]
 
     for i in range(len(jsonResp["systems"])):
-
         system_id = jsonResp["systems"][i]["system_id"]
         for j in range(len(jsonResp["systems"][i]["sensors"])):
 
@@ -103,8 +104,10 @@ def updateFromDates(start_date, end_date, systems_with_sensors_dict, mydb, curso
                         d_v_1_day.append((val_date, day_sum))
                         day_sum = 0.0
 
-                iter_vals = ["ITER_1", "ITER_2", "ITER_3", "iTER_4"]
                 formatted_dates_vals_list = [d_v_15_min, d_v_1_hr, d_v_4_hr, d_v_1_day]
 
                 for iter_val, formatted_dates_vals in zip(iter_vals, formatted_dates_vals_list):
                     addToIter(sensor_id, iter_val, formatted_dates_vals, mydb, cursor)
+
+            for iter_val in iter_vals:
+                deleteFromIter(sensor_id, iter_val, mydb, cursor)

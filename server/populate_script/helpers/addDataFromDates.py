@@ -129,10 +129,13 @@ def addDatafromDates(start_date, end_date, systems_with_sensors_dict, mydb, curs
                     cursor.execute(f"SELECT * FROM SENSORS_FOR_{system_id}")
                     remaining_sensors = cursor.fetchall()
                     if len(remaining_sensors) == 0:
-                        print("Here?")
                         cursor.execute(f"DROP TABLE SENSORS_FOR_{system_id}")
                         cursor.execute(f"DELETE FROM SYSTEMS WHERE SYSTEM_ID = {system_id}")
                         mydb.commit()
+
+            else:
+                cursor.execute(f"DELETE FROM SENSORS_FOR_{system_id} WHERE SENSOR_ID = {sensor_id}")
+                mydb.commit()
 
                 
 def getDatafromDatesOnline(start_date, end_date, systems_with_sensors_dict, mydb, cursor):

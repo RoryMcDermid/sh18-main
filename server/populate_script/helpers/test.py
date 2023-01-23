@@ -1,7 +1,3 @@
-x = {"a","b","c"}
-y = {"c"}
+import time
 
-x.difference_update(y)
-print(x)
-y.add(1)
-print(y)
+print(time.strftime('%Y-%m-%d'))
