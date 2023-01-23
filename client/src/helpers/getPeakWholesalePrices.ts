@@ -1,10 +1,8 @@
-import { time } from "console";
-
 const findAveragePrice = (wholesaleprice: any[]) => {
   let totalPrice = 0;
-  function addToTotal(pricePoint: any) {
+  const addToTotal = (pricePoint: any) => {
     totalPrice += pricePoint["Overall"];
-  }
+  };
   wholesaleprice.forEach(addToTotal);
 
   let totalPricePoints = wholesaleprice.length;
@@ -38,10 +36,6 @@ const getPeakWholesalePrices = (wholesaleprice: any[]) => {
     }
   }
   return expensiveTimes;
-};
-
-const convertTimeFormatForSensors = (wholesalePriceTime: string) => {
-  // need to turn "19:00 11-01-2023" into "2023-01-11T19:00:00.000Z";
 };
 
 export default getPeakWholesalePrices;

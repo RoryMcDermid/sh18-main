@@ -3,10 +3,14 @@ import { useParams } from "react-router-dom";
 import { BarChart, Button, MultiLineChart } from "../components";
 import loadSensorReadingDatav3 from "../hooks/loadSensorReadingsv3";
 
-const CompareScreen: FC = () => {
+interface props {
+  peakPriceTimes: string[][];
+}
+
+const CompareScreen: FC<props> = ({ peakPriceTimes }) => {
   let { sensorIDs, startDate, endDate, interval } = useParams();
 
-  const [sensors, setSensor] = useState<string[]>([]);
+  const [sensors, setSensors] = useState<string[]>([]);
   const sensorReading = loadSensorReadingDatav3({
     sensorIds: sensorIDs!.replaceAll("-", ","),
     startDate: startDate!,
@@ -14,9 +18,9 @@ const CompareScreen: FC = () => {
     interval: interval!,
   });
 
-  console.log();
   useEffect(() => {
-    setSensor(sensorIDs!.split("-"));
+    setSensors(sensorIDs!.split("-"));
+    console.table({ sensorReading, peakPriceTimes });
   }, [sensorReading]);
 
   const [currentChartType, setCurrentChartType] = useState(true);
