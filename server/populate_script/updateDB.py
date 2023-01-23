@@ -1,10 +1,11 @@
 import mysql.connector
 from datetime import datetime
 import datetime as dt
-from helpers.addDataFromDates import *
+from helpers.updateFromDates import *
 from helpers.getSensorList import *
 from helpers.getSystemsList import *
 from helpers.createSensorsForSystem import *
+import json
 
 #This function finds the date of the most recently stored value in the 
 #iter_1 table, then gets all the dates from the api using the previously defined function.
@@ -21,12 +22,11 @@ mydb = mysql.connector.connect(
 cursor = mydb.cursor(buffered=True)
 
 cursor.execute("SELECT SYSTEM_ID FROM SYSTEMS")
-system_ids = list(set([system[0] for system in cursor.fetchall()]))
-
-sensors_mock = sensors_mock = dict(json.load(open("mocks/getSensors.json")))
-
+system_ids = [system[0] for system in cursor.fetchall()]
+cursor.execute(f"SELECT SENSOR_ID FROM SENSORS_FOR_{system_ids[0]}")
+sensor_id = cursor.fetchone()[0]
 # This hardcoded variable is only here so I can access a value from the above returned dictionary.
-cursor.execute(f"SELECT * FROM ITER_1_6311171 ORDER BY(DATE_OF_RECORD) DESC")
+cursor.execute(f"SELECT * FROM ITER_1_{sensor_id} ORDER BY(DATE_OF_RECORD) DESC")
 
 most_recent_record_date = cursor.fetchone()[0]
 current_date = dt.datetime.now()
@@ -36,6 +36,7 @@ for system_id in system_ids:
     cursor.execute(f"SELECT SENSOR_ID FROM SENSORS_FOR_{system_id}")
     systems_with_list_of_sensors[system_id] = [sensor_id[0] for sensor_id in cursor.fetchall()]
 
-addDatafromDates(current_date, most_recent_record_date, systems_with_list_of_sensors, mydb, cursor, True)
+updateFromDates(most_recent_record_date, current_date,  systems_with_list_of_sensors, mydb, cursor)
+iter_vals = ["ITER_1", "ITER_2", "ITER_3", "ITER_4"]
 
 
