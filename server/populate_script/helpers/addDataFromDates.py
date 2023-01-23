@@ -15,7 +15,7 @@ from helpers.dropIterTables import *
 #The dates are from midnight of the current time, so 01/01/1999 to 02/01/1999
 # will return all data values recorded on 01/01/1999.
 
-def addDatafromDates(start_date, end_date, systems_with_sensors_dict, mydb, cursor, update=False):
+def addDatafromDates(start_date, end_date, systems_with_sensors_dict, mydb, cursor):
     url = "https://www.realtime-online.com/api/v3/json/"
     token = "b30a7d8f6f92"
     secretKey = "ATGUAP!Data2211"
@@ -84,8 +84,7 @@ def addDatafromDates(start_date, end_date, systems_with_sensors_dict, mydb, curs
             sensor_measurement = cursor.fetchall()[0][0]
         
             if len(readings) > 0:
-                if update == False:
-                    createIterTables(sensor_id, mydb, cursor)
+                createIterTables(sensor_id, mydb, cursor)
                         
                 d_v_15_min, d_v_1_hr, d_v_4_hr, d_v_1_day  = [], [], [], []
                 hr_counter, four_hr_counter,day_counter = 0, 0, 0
