@@ -1,9 +1,10 @@
 import mysql.connector
 from datetime import datetime
 import datetime as dt
-from helpers.getDataFromDates import *
-from helpers.pushDownIteration import *
-from helpers.deleteFromIter import *
+from helpers.addDataFromDates import *
+from helpers.getSensorList import *
+from helpers.getSystemsList import *
+from helpers.createSensorsForSystem import *
 
 #This function finds the date of the most recently stored value in the 
 #iter_1 table, then gets all the dates from the api using the previously defined function.
@@ -11,51 +12,30 @@ from helpers.deleteFromIter import *
 #needed. Then remove the unwanted values from tables that are no longer needed to be stored in
 #the specified time ranges for each iteration.
 
-system_id = 2542
-
-def update_db(system_id):
-    mydb = mysql.connector.connect(
+mydb = mysql.connector.connect(
     host = "localhost",
     user = "root",
     password = "password",
     database = "moxie_energy"
-    )
+)
+cursor = mydb.cursor(buffered=True)
 
-    cursor = mydb.cursor()
+cursor.execute("SELECT SYSTEM_ID FROM SYSTEMS")
+system_ids = list(set([system[0] for system in cursor.fetchall()]))
+
+sensors_mock = sensors_mock = dict(json.load(open("mocks/getSensors.json")))
+
+# This hardcoded variable is only here so I can access a value from the above returned dictionary.
+cursor.execute(f"SELECT * FROM ITER_1_6311171 ORDER BY(DATE_OF_RECORD) DESC")
+
+most_recent_record_date = cursor.fetchone()[0]
+current_date = dt.datetime.now()
+
+systems_with_list_of_sensors = {}
+for system_id in system_ids:
     cursor.execute(f"SELECT SENSOR_ID FROM SENSORS_FOR_{system_id}")
-    sensor_id_list = list(map(lambda x: x[0], cursor.fetchall()))
-    
-    cursor.execute(f"SELECT * FROM ITER_1_{sensor_id_list[0]} ORDER BY DATE_OF_RECORD")
+    systems_with_list_of_sensors[system_id] = [sensor_id[0] for sensor_id in cursor.fetchall()]
 
-    already_stored = cursor.fetchall()
-    most_recent_record_date = already_stored[-1][0]
-    current_date = datetime.now() 
+addDatafromDates(current_date, most_recent_record_date, systems_with_list_of_sensors, mydb, cursor, True)
 
-    readings_from_dates = getDatafromDates(most_recent_record_date, current_date, system_id, sensor_id_list)[0]
 
-    current_sensor = 0
-    old_date = readings_from_dates[0]["date"]
-    for result in readings_from_dates:
-        
-        date, reading = result["date"], result["reading"]
-        if date < old_date:
-            current_sensor += 1
-            print("change")
-        old_date = date
-        sensor_id = sensor_id_list[current_sensor]
-        sql = f"INSERT INTO ITER_1_{sensor_id} (DATE_OF_RECORD,VALUE) VALUES(%s, %s)"
-        vals = (date, reading)
-        cursor.execute(sql, vals)
-    mydb.commit()
-
-    iter_list = ["ITER_2", "ITER_3", "ITER_4"]
-    # Loop through each possible iteration, passing what one you are working on into a separate function,
-    # then deleting values no longer desired from that iteration.
-    for sensor_id_val in sensor_id_list:
-        for iter_val in iter_list:
-            pushDownIteration(iter_val, sensor_id_val)
-        for iter_val in iter_list:
-            deleteFromIter(iter_val, sensor_id_val)
-        deleteFromIter("ITER_1", sensor_id)
-
-update_db(system_id)

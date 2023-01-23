@@ -3,15 +3,7 @@ from datetime import datetime
 import datetime as dt
 
 
-def deleteFromIter(iter_val, sensor_id):
-    mydb = mysql.connector.connect(
-    host = "localhost",
-    user = "root",
-    password = "password",
-    database = "moxie_energy"
-    )
-
-    cursor = mydb.cursor()
+def deleteFromIter(iter_val, sensor_id, mydb, cursor):
 
     time_now = datetime.now()
 
