@@ -5,7 +5,6 @@ from helpers.updateFromDates import *
 from helpers.getSensorList import *
 from helpers.getSystemsList import *
 from helpers.createSensorsForSystem import *
-import json
 
 #This function finds the date of the most recently stored value in the 
 #iter_1 table, then gets all the dates from the api using the previously defined function.
@@ -14,11 +13,11 @@ import json
 #the specified time ranges for each iteration.
 
 mydb = mysql.connector.connect(
-    host = "localhost",
-    user = "root",
-    password = "password",
-    database = "moxie_energy"
-)
+        username = "wod2dh1e3jfuxs210ykt",
+        host = "aws-eu-west-2.connect.psdb.cloud",
+        password = "pscale_pw_zAx3LdXNX0R0YVevbMphKOEjXcSVMc1BKe5PfaCDDB2",
+        database = "moxie_live"
+        )
 cursor = mydb.cursor(buffered=True)
 
 cursor.execute("SELECT SYSTEM_ID FROM SYSTEMS")
@@ -36,7 +35,4 @@ for system_id in system_ids:
     cursor.execute(f"SELECT SENSOR_ID FROM SENSORS_FOR_{system_id}")
     systems_with_list_of_sensors[system_id] = [sensor_id[0] for sensor_id in cursor.fetchall()]
 
-updateFromDates(most_recent_record_date, current_date,  systems_with_list_of_sensors, mydb, cursor)
-iter_vals = ["ITER_1", "ITER_2", "ITER_3", "ITER_4"]
-
-
+updateFromDates(most_recent_record_date, current_date,  systems_with_list_of_sensors, mydb, cursor, True)

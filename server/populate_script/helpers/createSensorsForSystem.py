@@ -1,36 +1,15 @@
 from helpers.getSensorList import *
+import mysql.connector
 
-def get_systems_sensor_list_online(system_ids, mydb, cursor):
-
-  for system_id in system_ids:
-    cursor.execute(f"DROP TABLE IF EXISTS SENSORS_FOR_{system_id}")
-
-    sql =f'''CREATE TABLE SENSORS_FOR_{system_id}(
-    SENSOR_ID VARCHAR(15) NOT NULL PRIMARY KEY,
-    SYSTEM_ID INT NOT NULL
-    )'''
-    cursor.execute(sql)
-
-  
-  sensorsBySystem = getSensors(system_ids)
-
-
-  for (system, sensors) in sensorsBySystem.items():
-
-    vals = []
-    for idx, sensor_object in enumerate(sensors):
-      sensor_id = sensor_object['sensor_id']
-      system_id = sensor_object['system_id']
-      vals.append((sensor_id, system_id))
-    
-    sql = f"INSERT INTO SENSORS_FOR_{system} (SENSOR_ID, SYSTEM_ID) VALUES {vals}"
-    cursor.execute(sql, vals)
-    mydb.commit()
-    
-  return sensorsBySystem 
-
-def get_systems_sensor_list(system_ids, mydb, cursor, mock=0):
-
+def get_systems_sensor_list(system_ids, mydb, cursor, mock=0, online=False):
+  if online:
+    mydb = mysql.connector.connect(
+        host = "aws-eu-west-2.connect.psdb.cloud",
+        user = "6l7qfm1r0rvho1arc21e",
+        password = "pscale_pw_3QmXuV4sTqnRIQmnIjll63RH4qQ8rpPtK2Y7Uda67zW",
+        database = "moxie_live"
+        )
+    cursor = mydb.cursor(buffered=True)
   if mock == 0:
     sensorsBySystem = getSensors(system_ids)
   else:
@@ -82,29 +61,4 @@ def get_systems_sensor_list(system_ids, mydb, cursor, mock=0):
     else:
       cursor.execute(f"DELETE FROM SYSTEMS WHERE SYSTEM_ID = {system}")
       mydb.commit()
-  return systems_with_list_of_sensors
-
-def get_systems_sensor_list_no_creation(system_ids, mydb, cursor, mock=0):
-
-  if mock == 0:
-    sensorsBySystem = getSensors(system_ids)
-  else:
-    sensorsBySystem = mock
-
-    systems_with_list_of_sensors = {}
-
-  for system, sensors in sensorsBySystem.items():
-    system_ids.remove(int(system))
-    systems_with_list_of_sensors[int(system)] = []
-    
-    if len(sensors) > 0:
-      vals = []
-      for idx, sensor_object in enumerate(sensors):
-
-        sensor_id = sensor_object['sensor_id']
-        system_id = system
-        measurement_type = list(sensor_object["units"].keys())[0]
-        vals.append((sensor_id, system_id, measurement_type))
-        systems_with_list_of_sensors[int(system)].append(sensor_id)
-
   return systems_with_list_of_sensors
