@@ -16,12 +16,12 @@ const loadWholesalePrice = (startDateString: string, endDateString: string) => {
       url: `https://odegdcpnma.execute-api.eu-west-2.amazonaws.com/development/prices?dno=18&voltage=HV&start=${startDate}&end=${endDate}`,
     })
       .then(async (response) => {
-        console.log("LOAD WHOLEPRICE SUCCESS", response.data);
+        console.log("LOAD WHOLESALE PRICE SUCCESS", response.data);
         const wholesalericeData = response.data.data.data;
         setWholesaleprice(wholesalericeData);
       })
       .catch((error) => {
-        console.log("LOAD WHOLEPRICE ERROR", error);
+        console.log("LOAD WHOLESALE PRICE ERROR", error);
       });
   };
 

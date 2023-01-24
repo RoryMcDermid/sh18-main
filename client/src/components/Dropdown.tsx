@@ -1,19 +1,18 @@
 import { useState } from "react";
 import { ChevronUp, ChevronDown } from ".";
 
-type Option<T> = T;
-interface props<T> {
+interface props {
   label: string;
-  options: Option<T>[];
+  options: system[];
   classes?: string;
-  getLabel: (option: Option<T>) => string;
-  onChange: (option: Option<T>) => T;
+  getLabel: (option: system) => string;
+  onChange: (option: system) => void;
 }
 
-const Dropdown = (props: props<any>) => {
+const Dropdown = (props: props) => {
   const { label, options, classes, getLabel, onChange } = props;
   const [expanded, setExpanded] = useState(false);
-  const [state, setState] = useState<system | sensor>();
+  const [state, setState] = useState<system>();
 
   return (
     <div className={`${classes ? classes : "w-80"}`}>

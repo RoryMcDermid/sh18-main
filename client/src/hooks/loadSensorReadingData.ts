@@ -1,20 +1,20 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-const loadSensorReadingDatav3 = ({
-  sensorIds,
+const loadSensorReadingData = ({
+  selectedSensors,
   startDate,
   endDate,
   interval,
-}: sensorQuery): any[][] => {
-  const [sensorReading, setSensorReading] = useState<any[][]>([]);
-
+}: selection) => {
+  const [sensorReading, setSensorReading] = useState<energyReading[][]>([]);
+  let sensorIDs = selectedSensors.join(",");
   const loadSensorReading = () => {
     axios({
       method: "GET",
       url: `${
         import.meta.env.VITE_API
-      }/systems/2542/sensors/${sensorIds}?startDate=${startDate}&endDate=${endDate}&interval=${interval}`,
+      }/systems/2542/sensors/${sensorIDs}?startDate=${startDate}&endDate=${endDate}&interval=${interval}`,
     })
       .then((response: { data: [] }) => {
         console.log("GET SENSOR READING SUCCESS", response);
@@ -32,4 +32,4 @@ const loadSensorReadingDatav3 = ({
   return sensorReading;
 };
 
-export default loadSensorReadingDatav3;
+export default loadSensorReadingData;

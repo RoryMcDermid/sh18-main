@@ -27,7 +27,6 @@ const useSensors = (system: system | null) => {
   useEffect(() => {
     if (system) {
       loadSensorsData(system.SYSTEM_ID.toString());
-      console.log(sensors);
     }
   }, [system]);
 

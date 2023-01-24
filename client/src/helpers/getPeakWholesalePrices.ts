@@ -1,38 +1,37 @@
+import { formatDate } from ".";
+
 const getAveragePrice = (wholesalePrice: wholesalePriceResponse[]) => {
   let totalPrice = 0;
 
-  wholesalePrice.forEach((pricePoint: wholesalePriceResponse) => {
+  wholesalePrice.forEach((pricePoint) => {
     totalPrice += pricePoint["Overall"];
   });
 
-  const totalPricePoints = wholesalePrice.length;
-
-  return Math.ceil(totalPrice / totalPricePoints);
+  return Math.ceil(totalPrice / wholesalePrice.length);
 };
 
 const getPeakWholesalePrices = (wholesalePrice: wholesalePriceResponse[]) => {
   const averagePrice = getAveragePrice(wholesalePrice);
-  let filterwholesaleprice = wholesalePrice.map((item) => {
-    if (item.Overall > averagePrice) {
-      return item.Timestamp;
+  const filterWholesalePrice = wholesalePrice.map((item) => {
+    if (item["Overall"] > averagePrice) {
+      return item["Timestamp"];
     }
   });
-  let expensiveTimes: any[] = [];
-  let timeslot = Array(2);
-  for (let i = 0; i < filterwholesaleprice.length; i++) {
-    if (
-      filterwholesaleprice[i] != undefined &&
-      filterwholesaleprice[i - 1] === undefined
-    ) {
-      timeslot[0] = filterwholesaleprice[i];
+
+  let expensiveTimes = [] as string[][];
+  let timeslot = [] as string[];
+
+  for (let i = 0; i < filterWholesalePrice.length; i++) {
+    if (!filterWholesalePrice[i]) continue;
+
+    if (!filterWholesalePrice[i - 1]) {
+      timeslot.push(formatDate(filterWholesalePrice[i] as string));
     }
-    if (
-      filterwholesaleprice[i] != undefined &&
-      filterwholesaleprice[i + 1] === undefined
-    ) {
-      timeslot[1] = filterwholesaleprice[i];
+    if (!filterWholesalePrice[i + 1]) {
+      timeslot.push(formatDate(filterWholesalePrice[i] as string));
+
       expensiveTimes.push(timeslot);
-      timeslot = Array(2);
+      timeslot = [];
     }
   }
   return expensiveTimes;

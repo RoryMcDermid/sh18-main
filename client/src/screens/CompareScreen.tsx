@@ -11,10 +11,10 @@ const CompareScreen: FC<props> = ({ selection, peakPriceTimes }) => {
   const { selectedSensors, startDate, endDate, interval } = selection;
 
   const sensorReading = loadSensorReadingData({
-    sensorIds: selectedSensors.join(","),
+    selectedSensors: selectedSensors,
     startDate: startDate,
     endDate: endDate,
-    interval: interval.toString(),
+    interval: interval,
   });
 
   const [currentChartType, setCurrentChartType] = useState(true);
