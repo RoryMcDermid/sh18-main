@@ -71,15 +71,17 @@ def updateFromDates(start_date, end_date, systems_with_sensors_dict, mydb, curso
         system_id = jsonResp["systems"][i]["system_id"]
         for j in range(len(jsonResp["systems"][i]["sensors"])):
 
-            if (dt.datetime.now() - reference_time).total_seconds() > 13:
-                mydb = mysql.connector.connect(
-                    username = "wod2dh1e3jfuxs210ykt",
-                    host = "aws-eu-west-2.connect.psdb.cloud",
-                    password = "pscale_pw_zAx3LdXNX0R0YVevbMphKOEjXcSVMc1BKe5PfaCDDB2",
-                    database = "moxie_live"
-                    )
-                cursor = mydb.cursor(buffered=True)
-                reference_time = dt.datetime.now()
+            if online:
+
+                if (dt.datetime.now() - reference_time).total_seconds() > 13:
+                    mydb = mysql.connector.connect(
+                        username = "wod2dh1e3jfuxs210ykt",
+                        host = "aws-eu-west-2.connect.psdb.cloud",
+                        password = "pscale_pw_zAx3LdXNX0R0YVevbMphKOEjXcSVMc1BKe5PfaCDDB2",
+                        database = "moxie_live"
+                        )
+                    cursor = mydb.cursor(buffered=True)
+                    reference_time = dt.datetime.now()
 
             readings = jsonResp["systems"][i]["sensors"][j]["data"]
             sensor_id = jsonResp["systems"][i]["sensors"][j]["sensor_id"]
