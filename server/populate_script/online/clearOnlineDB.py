@@ -1,10 +1,10 @@
 import mysql.connector
 
 mydb = mysql.connector.connect(
+  database = "moxie_live",
+ username = "wod2dh1e3jfuxs210ykt",
   host = "aws-eu-west-2.connect.psdb.cloud",
-  user = "6l7qfm1r0rvho1arc21e",
-  password = "pscale_pw_3QmXuV4sTqnRIQmnIjll63RH4qQ8rpPtK2Y7Uda67zW",
-  database = "moxie_live"
+  password = "pscale_pw_zAx3LdXNX0R0YVevbMphKOEjXcSVMc1BKe5PfaCDDB2"
 )
 
 
