@@ -9,6 +9,7 @@ const formatChartData: (
       newData.push([
         sensorData[0][i].DATE_OF_RECORD,
         ...sensorData.map((readingArray) => {
+          // console.log("log", readingArray, i);
           return readingArray[i].VALUE;
         }),
       ]);

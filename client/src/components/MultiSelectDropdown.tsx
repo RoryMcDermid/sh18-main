@@ -5,7 +5,7 @@ interface props {
   label: string;
   items: string[];
   state: string[];
-  setState: React.Dispatch<React.SetStateAction<string[]>>;
+  setState: (n: string[]) => void;
   classes?: string;
 }
 
@@ -13,7 +13,7 @@ const MultiSelectDropdown: FC<props> = ({
   label,
   items,
   state,
-  setState,
+  setState: addToState,
   classes,
 }) => {
   const [expanded, setExpanded] = useState(false);
@@ -21,22 +21,22 @@ const MultiSelectDropdown: FC<props> = ({
 
   const handleOption = (option: string) => {
     if (!state.includes(option)) {
-      setState((prev) => [...prev, option]);
+      addToState([...state, option]);
     } else {
       let newState = state.filter((item) => {
         return item != option;
       });
-      setState(newState);
+      addToState(newState);
     }
   };
 
   const selectAll = () => {
     if (!allSelected) {
       setAllSelected(true);
-      setState(items);
+      addToState(items);
     } else {
       setAllSelected(false);
-      setState([]);
+      addToState([]);
     }
   };
 

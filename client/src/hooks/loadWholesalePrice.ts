@@ -6,7 +6,9 @@ const loadWholesalePrice = (startDateString: string, endDateString: string) => {
   const startDate = formatDateForHook(startDateString);
   const endDate = formatDateForHook(endDateString);
 
-  const [wholesaleprice, setWholesaleprice] = useState([]);
+  const [wholesaleprice, setWholesaleprice] = useState<
+    wholesalePriceResponse[]
+  >([]);
 
   const loadWholesalePriceAPI = () => {
     axios({

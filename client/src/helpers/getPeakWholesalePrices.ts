@@ -1,18 +1,18 @@
-const findAveragePrice = (wholesaleprice: any[]) => {
+const getAveragePrice = (wholesalePrice: wholesalePriceResponse[]) => {
   let totalPrice = 0;
-  const addToTotal = (pricePoint: any) => {
-    totalPrice += pricePoint["Overall"];
-  };
-  wholesaleprice.forEach(addToTotal);
 
-  let totalPricePoints = wholesaleprice.length;
+  wholesalePrice.forEach((pricePoint: wholesalePriceResponse) => {
+    totalPrice += pricePoint["Overall"];
+  });
+
+  const totalPricePoints = wholesalePrice.length;
 
   return Math.ceil(totalPrice / totalPricePoints);
 };
 
-const getPeakWholesalePrices = (wholesaleprice: any[]) => {
-  let averagePrice = findAveragePrice(wholesaleprice);
-  let filterwholesaleprice = wholesaleprice.map((item) => {
+const getPeakWholesalePrices = (wholesalePrice: wholesalePriceResponse[]) => {
+  const averagePrice = getAveragePrice(wholesalePrice);
+  let filterwholesaleprice = wholesalePrice.map((item) => {
     if (item.Overall > averagePrice) {
       return item.Timestamp;
     }

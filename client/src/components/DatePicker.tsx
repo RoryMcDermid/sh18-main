@@ -2,12 +2,12 @@ import { FC } from "react";
 
 interface props {
   label: string;
-  datetime: string;
-  setDatetime: React.Dispatch<React.SetStateAction<string>>;
+  state: string;
+  setState: (e: React.ChangeEvent<HTMLInputElement>) => void;
   classes?: string;
 }
 
-const DatePicker: FC<props> = ({ label, classes, datetime, setDatetime }) => {
+const DatePicker: FC<props> = ({ label, classes, state, setState }) => {
   return (
     <>
       <div className={`${classes ?? "w-80"}`}>
@@ -15,9 +15,8 @@ const DatePicker: FC<props> = ({ label, classes, datetime, setDatetime }) => {
         <input
           className='p-6 w-full text-white rounded-lg bg-slate-800 hover:bg-slate-600 cursor-pointer'
           type='date'
-          id='start'
-          defaultValue={datetime}
-          onChange={(e) => setDatetime(e.target.value)}
+          defaultValue={state}
+          onChange={(e) => setState(e)}
         />
       </div>
     </>

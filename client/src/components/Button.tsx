@@ -3,7 +3,7 @@ import { FC } from "react";
 interface props {
   isDisabled?: boolean;
   text: string;
-  handleClick: () => void;
+  handleClick?: () => void;
   classes?: string;
 }
 

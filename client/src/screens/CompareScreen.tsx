@@ -1,39 +1,41 @@
-import { FC, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { FC, useState } from "react";
 import { BarChart, Button, MultiLineChart } from "../components";
 import { loadSensorReadingData } from "../hooks";
 
 interface props {
+  selection: selection;
   peakPriceTimes: string[][];
 }
 
-const CompareScreen: FC<props> = ({ peakPriceTimes }) => {
-  let { sensorIDs, startDate, endDate, interval } = useParams();
+const CompareScreen: FC<props> = ({ selection, peakPriceTimes }) => {
+  const { selectedSensors, startDate, endDate, interval } = selection;
 
-  const [sensors, setSensors] = useState<string[]>([]);
   const sensorReading = loadSensorReadingData({
-    sensorIds: sensorIDs!.replaceAll("-", ","),
-    startDate: startDate!,
-    endDate: endDate!,
-    interval: interval!,
+    sensorIds: selectedSensors.join(","),
+    startDate: startDate,
+    endDate: endDate,
+    interval: interval.toString(),
   });
 
-  useEffect(() => {
-    setSensors(sensorIDs!.split("-"));
-    console.table({ sensorReading, peakPriceTimes });
-  }, [sensorReading]);
-
   const [currentChartType, setCurrentChartType] = useState(true);
+
+  console.table({ selection, peakPriceTimes, selectedSensors });
 
   return (
     <>
       <div className='h-[85vh] flex flex-row'>
         <div className='basis-9/12'>
           {currentChartType && (
-            <MultiLineChart headerRow={["", ...sensors]} data={sensorReading} />
+            <MultiLineChart
+              headerRow={["", ...selectedSensors]}
+              data={sensorReading}
+            />
           )}
           {!currentChartType && (
-            <BarChart headerRow={["", ...sensors]} data={sensorReading} />
+            <BarChart
+              headerRow={["", ...selectedSensors]}
+              data={sensorReading}
+            />
           )}
           <div className={"flex justify-end px-10 py-5"}>
             <Button

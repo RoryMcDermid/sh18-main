@@ -4,7 +4,7 @@ interface props {
   label: string;
   items: string[];
   disableItems: number[];
-  handleSelection: any;
+  handleSelection: (n: number) => void;
 }
 
 const ButtonGroup: FC<props> = ({
@@ -16,7 +16,7 @@ const ButtonGroup: FC<props> = ({
   const [clickedId, setClickedId] = useState(-1);
 
   const handleClick = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    _: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     i: number
   ) => {
     setClickedId(i);
