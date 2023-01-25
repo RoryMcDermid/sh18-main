@@ -10,36 +10,32 @@ interface props {
 
 const BarChart: FC<props> = ({ headerRow, data, peakPriceTimes }) => {
   const annotations = peakPriceTimes.map(([start, end]) => ({
-    type: 'range',
+    type: "range",
     x: start,
     x2: end,
-    fillColor: '#3F51B5',
-    color: '#3F51B5',
-    opacity: 0.2
-}));
+    fillColor: "#3F51B5",
+    color: "#3F51B5",
+    opacity: 0.2,
+  }));
   const options = {
-
-    backgroundColor: '#242424',
+    backgroundColor: "#242424",
     legend: { position: "none" },
-    hAxis:{
-      textStyle:
-          {color:'#ffffff'},
+    hAxis: {
+      textStyle: { color: "#ffffff" },
     },
-    vAxis: { minValue: 0,
-      textStyle:
-          {color:'#ffffff'} },
+    vAxis: { minValue: 0, textStyle: { color: "#ffffff" } },
     chartArea: { width: "80%", height: "80%" },
     animation: {
       startup: true,
       easing: "linear",
-      duration: 1500,
+      duration: 700,
     },
-    annotations: {annotations}
+    annotations: { annotations },
   };
   return (
     <>
       <Chart
-        chartType='Bar'
+        chartType='ColumnChart'
         width='100%'
         height='500px'
         data={formatChartData(headerRow, data)}

@@ -15,6 +15,8 @@ function App() {
 
   const [peakPriceTimes, setPeakPriceTimes] = useState<string[][]>([]);
 
+  console.log({ peakPriceTimes });
+
   // once the start and end dates are set,
   // an API call is made to get the wholesale energy price data
   const wholesalePrice = loadWholesalePrice(
