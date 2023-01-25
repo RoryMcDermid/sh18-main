@@ -5,10 +5,20 @@ import { formatChartData } from "../../helpers";
 interface props {
   headerRow: string[];
   data: energyReading[][];
+  peakPriceTimes: string[][];
 }
 
-const BarChart: FC<props> = ({ headerRow, data }) => {
+const BarChart: FC<props> = ({ headerRow, data, peakPriceTimes }) => {
+  const annotations = peakPriceTimes.map(([start, end]) => ({
+    type: 'range',
+    x: start,
+    x2: end,
+    fillColor: '#3F51B5',
+    color: '#3F51B5',
+    opacity: 0.2
+}));
   const options = {
+
     backgroundColor: '#242424',
     legend: { position: "none" },
     hAxis:{
@@ -24,6 +34,7 @@ const BarChart: FC<props> = ({ headerRow, data }) => {
       easing: "linear",
       duration: 1500,
     },
+    annotations: {annotations}
   };
   return (
     <>

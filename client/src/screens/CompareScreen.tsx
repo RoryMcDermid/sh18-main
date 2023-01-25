@@ -36,12 +36,14 @@ const CompareScreen: FC<props> = ({ selection, peakPriceTimes }) => {
             <MultiLineChart
               headerRow={["", ...selectedSensors]}
               data={sensorReading}
+              peakPriceTimes={peakPriceTimes}
             />
           )}
           {!currentChartType && (
             <BarChart
               headerRow={["", ...selectedSensors]}
               data={sensorReading}
+              peakPriceTimes={peakPriceTimes}
             />
           )}
           <div style= {centerStyle} className={"flex justify-end px-10 py-5"}>
