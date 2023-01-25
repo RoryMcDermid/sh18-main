@@ -40,12 +40,28 @@ Moxie Energy - Energy Forecast & Recommendations
 
 ## Description
 
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
- This project is designed to read a group of energy meters and display them alongside the cost of power at that time, and using this data advise the user as to when electricity is costing them the most money
+Moxie Energy - Energy Forecast & Recommendations is a web application that imports the energy usage (in kwh) of an organisation, currently working with data from the University of Glasgow, compares the energy usage with wholesale energy prices and uses machine learning models to predict future energy consumption and wholesale prices. It then uses these predictions and a combination of data analysis methods to recommend different ways to manipulate data usage to save money on energy.
+
+### Current Features:
+- Import energy usage data from all sensors in the Univeristy of Glasgow
+- Refine data by dates and time intervals
+- Display energy usage data from multiple sensors on the same graph
+- Visualize energy usage data using a Bar Chart and an Area Chart
+- Retreive energy wholesale prices and the date-time they are peaking
+
 
 ## Visuals
 
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+![image-1.png](./image-1.png)
+
+![image-4.png](./image-4.png)
+
+![image-5.png](./image-5.png)
+
+![image-6.png](./image-6.png)
+
+![image-7.png](./image-7.png)
+
 
 ## Usage
 
