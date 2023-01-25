@@ -2,7 +2,16 @@ import mysql.connector
 from helpers.getSystemsList import *
 
 
-def create_systems(mydb, cursor, mock=0):
+def create_systems(mydb, cursor, mock=0, online = False):
+
+  if online:
+    mydb = mysql.connector.connect(
+      username = "wod2dh1e3jfuxs210ykt",
+      host = "aws-eu-west-2.connect.psdb.cloud",
+      password = "pscale_pw_zAx3LdXNX0R0YVevbMphKOEjXcSVMc1BKe5PfaCDDB2",
+      database = "moxie_live"
+        )
+    cursor = mydb.cursor(buffered=True)
 
 
   cursor.execute("DROP TABLE IF EXISTS SYSTEMS")

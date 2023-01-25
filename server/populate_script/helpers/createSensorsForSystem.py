@@ -1,15 +1,17 @@
 from helpers.getSensorList import *
 import mysql.connector
+import datetime as dt
 
 def get_systems_sensor_list(system_ids, mydb, cursor, mock=0, online=False):
   if online:
     mydb = mysql.connector.connect(
+        username = "wod2dh1e3jfuxs210ykt",
         host = "aws-eu-west-2.connect.psdb.cloud",
-        user = "6l7qfm1r0rvho1arc21e",
-        password = "pscale_pw_3QmXuV4sTqnRIQmnIjll63RH4qQ8rpPtK2Y7Uda67zW",
+        password = "pscale_pw_zAx3LdXNX0R0YVevbMphKOEjXcSVMc1BKe5PfaCDDB2",
         database = "moxie_live"
         )
     cursor = mydb.cursor(buffered=True)
+
   if mock == 0:
     sensorsBySystem = getSensors(system_ids)
   else:
@@ -28,8 +30,21 @@ def get_systems_sensor_list(system_ids, mydb, cursor, mock=0, online=False):
   
   systems_with_list_of_sensors = {}
   added_sensors = set()
+  
+  if online:
+    reference_time = dt.datetime.now()
 
   for system, sensors in sensorsBySystem.items():
+    if online:
+      if (dt.datetime.now() - reference_time).total_seconds() > 13:
+        mydb = mysql.connector.connect(
+                        username = "wod2dh1e3jfuxs210ykt",
+                        host = "aws-eu-west-2.connect.psdb.cloud",
+                        password = "pscale_pw_zAx3LdXNX0R0YVevbMphKOEjXcSVMc1BKe5PfaCDDB2",
+                        database = "moxie_live"
+                        )
+        cursor = mydb.cursor(buffered=True)
+        reference_time = dt.datetime.now()
 
     set_of_sensors = set(x["sensor_id"] for x  in sensors)
     set_of_sensors.difference_update(added_sensors)
@@ -38,6 +53,7 @@ def get_systems_sensor_list(system_ids, mydb, cursor, mock=0, online=False):
       systems_with_list_of_sensors[int(system)] = []
       vals = []
       for idx, sensor_object in enumerate(sensors):
+
         sensor_id = sensor_object['sensor_id']
         if sensor_id not in added_sensors:
           added_sensors.add(sensor_id)

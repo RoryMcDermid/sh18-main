@@ -21,7 +21,7 @@ sensors_mock = dict(json.load(open("mocks/getSensors.json")))
 
 # creates the SYSTEMS table in the db that stores the system_id and
 # the name of that system. Returns a list of the system ids as integers.
-system_ids = create_systems(mydb, cursor, mock=system_call_mock)
+system_ids = create_systems(mydb, cursor, mock=system_call_mock, online=True)
 
 # Creates the SENSORS_FOR_{system id} tables that store the 
 # sensor_id, system_id and sensor_measurement. The sensor measurement
@@ -31,7 +31,7 @@ system_ids = create_systems(mydb, cursor, mock=system_call_mock)
 # no associated unique sensors it is removed from the SYSTEMS table. 
 # Returned is a dictionary that has the system ids as the keys, and unique
 # sensor_ids as the values stored in a list
-systems_with_list_of_sensors = get_systems_sensor_list(system_ids, mydb, cursor)
+systems_with_list_of_sensors = get_systems_sensor_list(system_ids, mydb, cursor, online=True)
 
 # Setup the dates that we are looking to record from.
 # This takes yesterday as the most recent date and goes 2 days back from there
