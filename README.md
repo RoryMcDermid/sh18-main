@@ -21,13 +21,15 @@ in the folder you would like to store the project.
 
 ### 3. Run The Server
 1. Open a terminal located in server/
-2. Run "npm run dev" to start the server
+2. Run "npm i" to install all packages and dependencies 
+3. Run "npm run dev" to start the server
 
 ![image.png](./image.png)
 
 ### 4. Run The Application
 1. Open a terminal located in client/
-2. Run "npm run dev" to start the server
+2. Run "npm i" to install all packages and dependencies 
+3. Run "npm run dev" to start the server
 
 ![image-2.png](./image-2.png)
 
