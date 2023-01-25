@@ -9,11 +9,10 @@ in the folder you would like to store the project.
 
 ### 2. Populate Local Database
 1. Install MySQL: https://dev.mysql.com/downloads/installer/
-2. Make sure the database uses these credentials:
+2. Make sure the database client uses these credentials:
     host: "localhost",
     user: "root",
     password: "password",
-    database: "moxie_energy",
 3. Run the populateDB.py located in "server/populate_script/"
 4. You should now have populated tables in your MySQL Workbench
 
