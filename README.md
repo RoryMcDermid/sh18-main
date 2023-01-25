@@ -1,11 +1,37 @@
 # SH18 Main
 
-## How To Interact With Prototype
+## How To Interact With Project
 
-1. Clone the git repository "git clone https://stgit.dcs.gla.ac.uk/team-project-h/2022/sh18/sh18-main.git".
-2. In your terminal, cd into the repository, then into the "web-app" directory.
-3. Run the command "npm run dev".
-4. Access the web app by typing in your local address and the port shown in the terminal once the command is run.
+### 1. Get The Files
+Clone the git repository by running 
+"git clone https://stgit.dcs.gla.ac.uk/team-project-h/2022/sh18/sh18-main.git" 
+in the folder you would like to store the project.
+
+### 2. Populate Local Database
+1. Install MySQL: https://dev.mysql.com/downloads/installer/
+2. Make sure the database uses these credentials:
+    host: "localhost",
+    user: "root",
+    password: "password",
+    database: "moxie_energy",
+3. Run the populateDB.py located in "server/populate_script/"
+4. You should now have populated tables in your MySQL Workbench
+
+![image-3.png](./image-3.png)
+
+### 3. Run The Server
+1. Open a terminal located in server/
+2. Run "npm run dev" to start the server
+
+![image.png](./image.png)
+
+### 4. Run The Application
+1. Open a terminal located in client/
+2. Run "npm run dev" to start the server
+
+![image-2.png](./image-2.png)
+
+3. The application should now be running on the address specified in the console
 
 ## Name
 
