@@ -4,13 +4,20 @@ import { formatChartData } from "../../helpers";
 
 interface props {
   headerRow: string[];
-  data: energyReadingArray[];
+  data: energyReading[][];
 }
 
 const BarChart: FC<props> = ({ headerRow, data }) => {
   const options = {
+    backgroundColor: '#242424',
     legend: { position: "none" },
-    vAxis: { minValue: 0 },
+    hAxis:{
+      textStyle:
+          {color:'#ffffff'},
+    },
+    vAxis: { minValue: 0,
+      textStyle:
+          {color:'#ffffff'} },
     chartArea: { width: "80%", height: "80%" },
     animation: {
       startup: true,

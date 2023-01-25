@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import React, { FC, useState } from "react";
 import { BarChart, Button, MultiLineChart } from "../components";
 import { loadSensorReadingData } from "../hooks";
 
@@ -16,6 +16,13 @@ const CompareScreen: FC<props> = ({ selection, peakPriceTimes }) => {
     endDate: endDate,
     interval: interval,
   });
+  const centerStyle:
+      React.CSSProperties = {
+    display: 'flex',
+    alignItems:'center',
+    justifyContent:
+    'center'
+  };
 
   const [currentChartType, setCurrentChartType] = useState(true);
 
@@ -23,7 +30,7 @@ const CompareScreen: FC<props> = ({ selection, peakPriceTimes }) => {
 
   return (
     <>
-      <div className='h-[85vh] flex flex-row'>
+      <div style= {centerStyle} className='h-[85vh] flex flex-row'>
         <div className='basis-9/12'>
           {currentChartType && (
             <MultiLineChart
@@ -37,7 +44,7 @@ const CompareScreen: FC<props> = ({ selection, peakPriceTimes }) => {
               data={sensorReading}
             />
           )}
-          <div className={"flex justify-end px-10 py-5"}>
+          <div style= {centerStyle} className={"flex justify-end px-10 py-5"}>
             <Button
               text={currentChartType ? "BarChart" : "AreaChart"}
               handleClick={() => setCurrentChartType(!currentChartType)}
