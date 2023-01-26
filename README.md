@@ -8,15 +8,23 @@ Clone the git repository by running
 in the folder you would like to store the project.
 
 ### 2. Populate Local Database
-1. Install MySQL: https://dev.mysql.com/downloads/installer/
-2. Make sure the database client uses these credentials:
-    host: "localhost",
-    user: "root",
-    password: "password",
-3. Run the populateDB.py located in "server/populate_script/"
-4. You should now have populated tables in your MySQL Workbench
+The project has been set up to store all information received from
+our energy API in a local database.
+1. Install MySQL Workbench: https://dev.mysql.com/downloads/workbench/
+2. Check to see you have the appropriate python packages installed
+(mysqlclient and mysql-connector-python) in a command terminal by running
+"pip freeze". If not, run "pip install {name of package}" 
+3. Open MySQL Workbench and hit the plus icon. This will create a pop-up where you 
+will enter a database name of your choice but the username must be "root", the hostname
+must be "127.0.0.1" (localhost), and you must add a password by selecting "store
+in vault" and type in "password". This allows the python scripts to communicate with 
+the database.
+4. Once the local database is live, navigate to "server/populate_script/" and run the file "offlinePopulateDB.py". Execution time of this should be no longer than 90 seconds.
+5. When finished, check the script has ran successfully by checking the information of the schema, which should
+have 307 tables storing 48 hours of data starting from 72 hours ago.
+6. Next run "offlineUpdateDB.py" to add the most recent 24 hours of data to all iterations. From now on, this will be the only script you have to run in order to get new data.
 
-![image-3.png](./visuals/image-3.png)
+![Database after population](./visuals/moxie_db_after_pop.png)
 
 ### 3. Run The Server
 1. Open a terminal located in server/
