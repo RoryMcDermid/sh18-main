@@ -27,6 +27,7 @@ const SystemSelectScreen: FC<props> = ({ formSelection, setFormSelection }) => {
   const { sensors } = useSensors(selectedSystem);
 
   useEffect(() => {
+    console.table(formSelection);
     setFormSelection({
       selectedSensors: [] as string[],
       endDate: "",

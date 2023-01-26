@@ -15,7 +15,7 @@ const DatePicker: FC<props> = ({ label, classes, state, setState }) => {
         <input
           className='p-6 w-full text-white rounded-lg bg-slate-800 hover:bg-slate-600 cursor-pointer'
           type='date'
-          defaultValue={state}
+          value={state}
           onChange={(e) => setState(e)}
         />
       </div>
