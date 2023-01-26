@@ -1,59 +1,80 @@
-import mysql.connector
 from helpers.getSensorList import *
+import mysql.connector
+import datetime as dt
 
+def get_systems_sensor_list(system_ids, mydb, cursor, mock=0, online=False):
+  if online:
+    mydb = mysql.connector.connect(
+        username = "wod2dh1e3jfuxs210ykt",
+        host = "aws-eu-west-2.connect.psdb.cloud",
+        password = "pscale_pw_zAx3LdXNX0R0YVevbMphKOEjXcSVMc1BKe5PfaCDDB2",
+        database = "moxie_live"
+        )
+    cursor = mydb.cursor(buffered=True)
 
-def get_systems_sensor_list(system_id):
-  mydb = mysql.connector.connect(
-    host = "localhost",
-    user = "root",
-    password = "password",
-    database = "moxie_energy"
-  )
+  if mock == 0:
+    sensorsBySystem = getSensors(system_ids)
+  else:
+    sensorsBySystem = mock
 
-  cursor = mydb.cursor()
+  cursor.execute("SELECT SYSTEM_ID FROM SYSTEMS")
+  stored_systems = set(x[0] for x in cursor.fetchall())
+  returned_systems = set(sensorsBySystem.keys())
+  stored_systems.difference_update(returned_systems)
 
-  cursor.execute(f"DROP TABLE IF EXISTS SENSORS_FOR_{system_id}")
+  for void_system in stored_systems:
+    cursor.execute(f"DELETE FROM SYSTEMS WHERE SYSTEM_ID = {void_system}")
+    mydb.commit()
+  cursor.execute("SELECT SYSTEM_ID FROM SYSTEMS")
 
-  sql =f'''CREATE TABLE SENSORS_FOR_{system_id}(
-    SENSOR_ID VARCHAR(15) NOT NULL PRIMARY KEY,
-    SYSTEM_ID INT NOT NULL,
-    SENSOR_TYPE INT NOT NULL,
-    SENSOR_MEASUREMENT VARCHAR(40) NOT NULL,
-    SENSOR_UNIT VARCHAR(5) NOT NULL
-  )'''
-  cursor.execute(sql)
-
-  sql = f'''ALTER TABLE SENSORS_FOR_{system_id} 
-          ADD FOREIGN KEY (SYSTEM_ID) REFERENCES SYSTEMS(SYSTEM_ID);
-  '''
-  cursor.execute(sql)
-
-  sensors = getSensors(system_id)
-
-  sensor_ids = sensors.keys()
-  sensor_types = []
-  system_ids = []
-  measurement_types = []
-  sensor_units = []
-
-
-  for sensor in sensors:
-
-    sensor_types.append(sensors[sensor]["type_id"])
-    system_ids.append(sensors[sensor]["system_id"])
-    measurement_types.append(list(sensors[sensor]["units"].keys())[0])
-    sensor_units.append(list(sensors[sensor]["units"].values())[0])
-
-  for sensor_id, system_id, sensor_type, measurement_type, sensor_unit in zip(sensor_ids, system_ids, sensor_types, measurement_types, sensor_units):
-      sql = f"INSERT INTO SENSORS_FOR_{system_id} (SENSOR_ID, SYSTEM_ID, SENSOR_TYPE, SENSOR_MEASUREMENT, SENSOR_UNIT) VALUES (%s, %s, %s, %s, %s)"
-      vals = (sensor_id, system_id, sensor_type, measurement_type, sensor_unit)
-      cursor.execute(sql, vals)
-      mydb.commit()
   
-  sql = f'''
-  SELECT SENSOR_ID 
-  FROM SENSORS_FOR_{system_id}  
-  '''
-  cursor.execute(sql)
-  sensor_id_list = cursor.fetchall()
-  return list(map(lambda x: x[0], sensor_id_list))
+  systems_with_list_of_sensors = {}
+  added_sensors = set()
+  
+  if online:
+    reference_time = dt.datetime.now()
+
+  for system, sensors in sensorsBySystem.items():
+    if online:
+      if (dt.datetime.now() - reference_time).total_seconds() > 13:
+        mydb = mysql.connector.connect(
+                        username = "wod2dh1e3jfuxs210ykt",
+                        host = "aws-eu-west-2.connect.psdb.cloud",
+                        password = "pscale_pw_zAx3LdXNX0R0YVevbMphKOEjXcSVMc1BKe5PfaCDDB2",
+                        database = "moxie_live"
+                        )
+        cursor = mydb.cursor(buffered=True)
+        reference_time = dt.datetime.now()
+
+    set_of_sensors = set(x["sensor_id"] for x  in sensors)
+    set_of_sensors.difference_update(added_sensors)
+    
+    if len(set_of_sensors) > 0:
+      systems_with_list_of_sensors[int(system)] = []
+      vals = []
+      for idx, sensor_object in enumerate(sensors):
+
+        sensor_id = sensor_object['sensor_id']
+        if sensor_id not in added_sensors:
+          added_sensors.add(sensor_id)
+          system_id = system
+          measurement_type = list(sensor_object["units"].keys())[0]
+          vals.append((sensor_id, system_id, measurement_type))
+          systems_with_list_of_sensors[int(system)].append(sensor_id)
+    
+
+      sql =f'''CREATE TABLE SENSORS_FOR_{system_id}(
+          SENSOR_ID VARCHAR(15) NOT NULL PRIMARY KEY,
+          SYSTEM_ID INT NOT NULL,
+          SENSOR_MEASUREMENT VARCHAR(40)
+            )'''
+      cursor.execute(sql)
+      mydb.commit()
+
+      sql = f"INSERT INTO SENSORS_FOR_{system} (SENSOR_ID, SYSTEM_ID, SENSOR_MEASUREMENT) VALUES (%s, %s, %s)"
+      cursor.executemany(sql, vals)
+      mydb.commit()
+    else:
+      cursor.execute(f"DELETE FROM SYSTEMS WHERE SYSTEM_ID = {system}")
+      mydb.commit()
+  return systems_with_list_of_sensors

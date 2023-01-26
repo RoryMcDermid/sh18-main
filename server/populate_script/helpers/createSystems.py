@@ -2,38 +2,37 @@ import mysql.connector
 from helpers.getSystemsList import *
 
 
-def create_systems():
-  mydb = mysql.connector.connect(
-    host = "localhost",
-    user = "root",
-    password = "password",
-    database = "moxie_energy"
-  )
+def create_systems(mydb, cursor, mock=0, online = False):
 
-  cursor = mydb.cursor()
+  if online:
+    mydb = mysql.connector.connect(
+      username = "wod2dh1e3jfuxs210ykt",
+      host = "aws-eu-west-2.connect.psdb.cloud",
+      password = "pscale_pw_zAx3LdXNX0R0YVevbMphKOEjXcSVMc1BKe5PfaCDDB2",
+      database = "moxie_live"
+        )
+    cursor = mydb.cursor(buffered=True)
+
 
   cursor.execute("DROP TABLE IF EXISTS SYSTEMS")
-
-  sql ='''CREATE TABLE SYSTEMS(
-    SYSTEM_ID INT NOT NULL PRIMARY KEY,
-    SYSTEM_NAME VARCHAR(150) NOT NULL,
-    SENSOR_COUNT INT NOT NULL
-  )'''
+  sql ='''CREATE TABLE SYSTEMS (SYSTEM_ID INT NOT NULL PRIMARY KEY, SYSTEM_NAME VARCHAR(150) NOT NULL)'''
   cursor.execute(sql)
 
-  systems_list = getSystemsList()
-
+  if mock == 0:
+    systems_dict = getSystemsList()
+  else:
+    systems_dict = mock
+     
   system_ids = []
-  system_names = []
-  system_sensor_count = []
+  vals = []
 
-  for system in systems_list:
-      system_ids.append(system)
-      system_names.append(systems_list[system]["name"])
-      system_sensor_count.append(systems_list[system]["noOfSensors"])
+  for (system_id, system_info) in systems_dict.items():
+    system_ids.append(int(system_id))
+    vals.append((system_id, system_info["name"]))
+  sql = "INSERT INTO SYSTEMS (SYSTEM_ID, SYSTEM_NAME) VALUES (%s, %s)"
+      
+  cursor.executemany(sql, vals)
+  mydb.commit()
 
-  for system_id, name, sensor_count in zip(system_ids, system_names, system_sensor_count):
-      sql = "INSERT INTO SYSTEMS (SYSTEM_ID, SYSTEM_NAME, SENSOR_COUNT) VALUES (%s, %s, %s)"
-      vals = (system_id, name, sensor_count)
-      cursor.execute(sql, vals)
-      mydb.commit()
+
+  return system_ids
