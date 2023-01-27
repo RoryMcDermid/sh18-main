@@ -31,14 +31,14 @@ have 307 tables storing 48 hours of data starting from 72 hours ago.
 2. Run "npm i" to install all packages and dependencies 
 3. Run "npm run dev" to start the server
 
-![image.png](./visuals/image.png)
+![image.png](./visuals/server-terminal.png)
 
 ### 4. Run The Application
 1. Open a terminal located in client/
 2. Run "npm i" to install all packages and dependencies 
 3. Run "npm run dev" to start the server
 
-![image-2.png](./visuals/image-2.png)
+![image-2.png](./visuals/client-terminal.png)
 
 3. The application should now be running on the address specified in the console
 
@@ -60,19 +60,18 @@ Moxie Energy - Energy Forecast & Recommendations is a web application that impor
 
 ## Visuals
 
-![image-1.png](./visuals/image-1.png)
+![image-1.png](./visuals/empty-selection-form.png)
 
-![image-4.png](./visuals/image-4.png)
+![image-5.png](./visuals/sensor-selection.png)
 
-![image-5.png](./visuals/image-5.png)
+![image-4.png](./visuals/completed-selection-form.png)
 
-![image-6.png](./visuals/image-6.png)
+![image-6.png](./visuals/area-chart.png)
 
-![image-7.png](./visuals/image-7.png)
+![image-7.png](./visuals/bar-chart.png)
 
 
 ## Support
-
 If support is needed while setting up or using the application please message any/all of the developers in the Teams channel.
 
 ## Authors and acknowledgment
