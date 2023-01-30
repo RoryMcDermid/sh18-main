@@ -3,6 +3,7 @@ import json
 import hashlib
 import datetime
 
+
 def getSensors(system_ids):
     url = "https://www.realtime-online.com/api/v3/json/"
     token = "b30a7d8f6f92"
@@ -12,9 +13,9 @@ def getSensors(system_ids):
 
     # Form the request, in this example, getting all the sensors associated with a chosen system.
     request_body = {
-    "action": "getSensors",
-    "request_date": datetime.datetime.now().isoformat(),
-    "systems" : system_ids
+        "action": "getSensors",
+        "request_date": datetime.datetime.now().isoformat(),
+        "systems": system_ids
     }
 
     # This bit here I just copied from their example python request.
@@ -23,8 +24,8 @@ def getSensors(system_ids):
     magicString = json.dumps(request_body) + secretKey
     contentHash = hashlib.sha256(magicString.encode()).hexdigest()
     headers = {
-    "X-RT2-API-Token": token,
-    "X-RT2-API-Hash": contentHash
+        "X-RT2-API-Token": token,
+        "X-RT2-API-Hash": contentHash
     }
 
     # post the above request to the API, then store the response in the jsonResp file.
@@ -35,13 +36,11 @@ def getSensors(system_ids):
     if jsonResp["status"] == 429:
         raise Exception("Timeout error, you have to wait 10 mins")
 
-
     sensorsBySystem = {}
 
     for sensor in jsonResp["sensors"]:
         if sensor["system_id"] not in sensorsBySystem.keys():
             sensorsBySystem[sensor['system_id']] = []
         sensorsBySystem[sensor['system_id']].append(sensor)
-    
 
     return sensorsBySystem
