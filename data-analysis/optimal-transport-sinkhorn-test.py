@@ -1,8 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-# In this implementation, a is the source array and b is the target array
-
 # The goal of the optimal transport algorithm is to find the mapping that
 # transforms the source distribution into the target distribution with the
 # minimum amount of cost
@@ -41,18 +39,19 @@ def sinkhorn(a, b, M, epsilon=0.1, max_iter=1000):
     return P
 
 
-a = np.array([1, 2, 3, 4, 8, 9, 0, 1, 4, 5, 6, 8])
-b = np.array([5, 6, 12, 8, 6, 8, 0, 0, 0, 5, 2, 1])
+source = np.array([1, 10, 6, 9, 2, 4, 4, 0, 0, 7, 8, 9, 3, 1, 2])
+target = np.array([1, 5, 0, 0, 0, 9, 10, 3, 5, 6, 2, 1, 6, 7, 1])
 
-a = normalize_to_probability_distribution(a)
-b = normalize_to_probability_distribution(b)
 
-M = create_cost_matrix(a, b)
+source = normalize_to_probability_distribution(source)
+target = normalize_to_probability_distribution(target)
 
-result = sinkhorn(a, b, M)
+M = create_cost_matrix(source, target)
+
+result = sinkhorn(source, target, M)
 
 plt.imshow(result, cmap='hot')
 plt.title('Heatmap of Transport Matrix')
-plt.xlabel('b indexes (target)')
-plt.ylabel('a indexes (source)')
+plt.xlabel('target indexes')
+plt.ylabel('source indexes')
 plt.show()
