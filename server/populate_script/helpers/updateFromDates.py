@@ -107,22 +107,23 @@ def updateFromDates(start_date, end_date, systems_with_sensors_dict, mydb, curso
                     hr_counter = hr_counter + 1
                     four_hr_counter = four_hr_counter + 1
                     day_counter = day_counter + 1
-
-                    d_v_15_min.append((val_date, val_reading))
-                    if hr_counter % 4 == 0:
-                        d_v_1_hr.append((val_date, hr_sum))
-                        hr_sum = 0.0
-                    if four_hr_counter % 16 == 0:
-                        d_v_4_hr.append((val_date, four_hr_sum))
-                        four_hr_sum = 0.0
-                    if day_counter % 96 == 0:
-                        d_v_1_day.append((val_date, day_sum))
-                        day_sum = 0.0
+                    appropriate_time_intervals = ["00:00", "15:00", "30:00", "45:00"]
+                    if val_date.strftime("%M:%S") in appropriate_time_intervals:
+                        d_v_15_min.append((val_date, val_reading))
+                        if hr_counter % 4 == 0:
+                            d_v_1_hr.append((val_date, hr_sum))
+                            hr_sum = 0.0
+                        if four_hr_counter % 16 == 0:
+                            d_v_4_hr.append((val_date, four_hr_sum))
+                            four_hr_sum = 0.0
+                        if day_counter % 96 == 0:
+                            d_v_1_day.append((val_date, day_sum))
+                            day_sum = 0.0
 
                 formatted_dates_vals_list = [d_v_15_min, d_v_1_hr, d_v_4_hr, d_v_1_day]
 
                 for iter_val, formatted_dates_vals in zip(iter_vals, formatted_dates_vals_list):
-                    addToIter(sensor_id, iter_val, formatted_dates_vals, mydb, cursor)
+                    addToIter(sensor_id, iter_val, formatted_dates_vals, mydb, cursor, online)
 
             for iter_val in iter_vals:
-                deleteFromIter(sensor_id, iter_val, mydb, cursor)
+                deleteFromIter(sensor_id, iter_val, mydb, cursor, online)

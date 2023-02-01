@@ -3,7 +3,16 @@ from datetime import datetime
 import datetime as dt
 
 
-def deleteFromIter(sensor_id, iter_val, mydb, cursor):
+def deleteFromIter(sensor_id, iter_val, mydb, cursor, online):
+
+    if online:
+        mydb = mysql.connector.connect(
+                        username = "wod2dh1e3jfuxs210ykt",
+                        host = "aws-eu-west-2.connect.psdb.cloud",
+                        password = "pscale_pw_zAx3LdXNX0R0YVevbMphKOEjXcSVMc1BKe5PfaCDDB2",
+                        database = "moxie_live"
+                        )
+        cursor = mydb.cursor(buffered=True)
 
     time_now = datetime.now()
 
