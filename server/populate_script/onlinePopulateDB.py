@@ -32,6 +32,7 @@ system_ids = create_systems(mydb, cursor, mock=system_call_mock, online=True)
 # Returned is a dictionary that has the system ids as the keys, and unique
 # sensor_ids as the values stored in a list
 systems_with_list_of_sensors = get_systems_sensor_list(system_ids, mydb, cursor, online=True)
+print(systems_with_list_of_sensors)
 
 # Setup the dates that we are looking to record from.
 # This takes yesterday as the most recent date and goes 2 days back from there

@@ -117,25 +117,27 @@ def addDatafromDates(start_date, end_date, systems_with_sensors_dict, mydb, curs
                     except: 
                         val_reading = 0.00
 
-                    rolling_sum = rolling_sum + val_reading
-                    hr_sum = hr_sum + val_reading
-                    four_hr_sum = four_hr_sum + val_reading
-                    day_sum = day_sum + val_reading
+                    appropriate_time_intervals = ["00:00", "15:00", "30:00", "45:00"]
+                    if val_date.strftime("%M:%S") in appropriate_time_intervals:
+                        rolling_sum = rolling_sum + val_reading
+                        hr_sum = hr_sum + val_reading
+                        four_hr_sum = four_hr_sum + val_reading
+                        day_sum = day_sum + val_reading
 
-                    hr_counter = hr_counter + 1
-                    four_hr_counter = four_hr_counter + 1
-                    day_counter = day_counter + 1
+                        hr_counter = hr_counter + 1
+                        four_hr_counter = four_hr_counter + 1
+                        day_counter = day_counter + 1
 
-                    d_v_15_min.append((val_date, val_reading))
-                    if hr_counter % 4 == 0:
-                        d_v_1_hr.append((val_date, hr_sum))
-                        hr_sum = 0.0
-                    if four_hr_counter % 16 == 0:
-                        d_v_4_hr.append((val_date, four_hr_sum))
-                        four_hr_sum = 0.0
-                    if day_counter % 96 == 0:
-                        d_v_1_day.append((val_date, day_sum))
-                        day_sum = 0.0
+                        d_v_15_min.append((val_date, val_reading))
+                        if hr_counter % 4 == 0:
+                            d_v_1_hr.append((val_date, hr_sum))
+                            hr_sum = 0.0
+                        if four_hr_counter % 16 == 0:
+                            d_v_4_hr.append((val_date, four_hr_sum))
+                            four_hr_sum = 0.0
+                        if day_counter % 96 == 0:
+                            d_v_1_day.append((val_date, day_sum))
+                            day_sum = 0.0
                 iter_vals = ["ITER_1", "ITER_2", "ITER_3", "iTER_4"]
                 formatted_dates_vals_list = [d_v_15_min, d_v_1_hr, d_v_4_hr, d_v_1_day]
 
