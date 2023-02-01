@@ -4,7 +4,7 @@ import hashlib
 import datetime
 
 
-def getSystemsList():
+def getSystems():
     url = "https://www.realtime-online.com/api/v3/json/"
     token = "b30a7d8f6f92"
     secretKey = "ATGUAP!Data2211"
