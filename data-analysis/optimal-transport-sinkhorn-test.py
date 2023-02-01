@@ -7,6 +7,8 @@ import matplotlib.pyplot as plt
 # transforms the source distribution into the target distribution with the
 # minimum amount of cost
 
+# problem: how do we determine the target distribution in our application ????
+
 
 def normalize_to_probability_distribution(array):
     return array / np.sum(array)
