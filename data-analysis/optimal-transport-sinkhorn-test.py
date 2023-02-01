@@ -41,8 +41,8 @@ def sinkhorn(a, b, M, epsilon=0.1, max_iter=1000):
     return P
 
 
-a = np.array([1, 2, 3, 4])
-b = np.array([5, 6, 0, 8])
+a = np.array([1, 2, 3, 4, 8, 9, 0, 1, 4, 5, 6, 8])
+b = np.array([5, 6, 12, 8, 6, 8, 0, 0, 0, 5, 2, 1])
 
 a = normalize_to_probability_distribution(a)
 b = normalize_to_probability_distribution(b)
@@ -52,4 +52,7 @@ M = create_cost_matrix(a, b)
 result = sinkhorn(a, b, M)
 
 plt.imshow(result, cmap='hot')
+plt.title('Heatmap of Transport Matrix')
+plt.xlabel('b indexes (target)')
+plt.ylabel('a indexes (source)')
 plt.show()
