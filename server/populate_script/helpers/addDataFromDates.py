@@ -8,22 +8,22 @@ from helpers.addToIter import *
 from helpers.dropIterTables import *
 
 
-#This function takes in two dates, as a string in the form of dd/mm/yyyy, then
-#gets the values recordef by sensor 6311171 from system 2542, and parses the
-#returned json by then returning a list of dicts that store a datetime value
-#and the recorded data at that time.
-#The dates are from midnight of the current time, so 01/01/1999 to 02/01/1999
-# will return all data values recorded on 01/01/1999.
+# This function makes an API call that takes in two dates, as a 
+# string in the form of dd/mm/yyyy, then gets the values recorded 
+# by all unique sensors from all systems, and parses the
+# returned json to then add each value and the exact time it was recorded
+# in the correct ITER_1_{sensor_id} table.
+# The values are then "pushed down" to each iteration table
 
 def addDatafromDates(start_date, end_date, systems_with_sensors_dict, mydb, cursor, online=False):
+
+#---------- CODE INSIDE THIS DASHED BLOCK IS A SPECIFIC REALTIME API CALL ------------#
     url = "https://www.realtime-online.com/api/v3/json/"
     token = "b30a7d8f6f92"
     secretKey = "ATGUAP!Data2211"
 
     #above variables are the token and secret key we were given for the API.
-
     #if multiple sensors are requested, loop through each to create appropriate input
-
     formatted_systems = []
 
     start_date = start_date.isoformat()
@@ -51,7 +51,6 @@ def addDatafromDates(start_date, end_date, systems_with_sensors_dict, mydb, curs
     "request_date": dt.datetime.now().isoformat(),
     "systems": formatted_systems
     }
-
     # This bit here I just copied from their example python request.
     # magic string really is a descriptive variable as I have no idea what this does.
     magicString = json.dumps(request_body) + secretKey
@@ -68,6 +67,9 @@ def addDatafromDates(start_date, end_date, systems_with_sensors_dict, mydb, curs
 
     if jsonResp["status"] == 429:
         raise Exception("Timeout error, you have to wait 10 mins")
+
+#--------------------------------------------------------------------------------------------#
+
     #looping over the data for each sensor listed, work your way down the json response until
     #required data is found, then store it in an appropriately named json file.
 
@@ -96,7 +98,14 @@ def addDatafromDates(start_date, end_date, systems_with_sensors_dict, mydb, curs
             sensor_measurement = cursor.fetchall()[0][0]
         
             if len(readings) > 0:
-                createIterTables(sensor_id, mydb, cursor)
+                # If readings were returned, make all iteration tables, then
+                # initialise lists that will store the appropriate values that
+                # will be used for the "push down" function. The counters
+                # are to keep track of when to add a value to a list, and the 
+                # rolling sums are to keep track of the value of energy that
+                # has been accumulated since the last time period that was 
+                # recorded. 
+                createIterTables(sensor_id, mydb, cursor, online)
                         
                 d_v_15_min, d_v_1_hr, d_v_4_hr, d_v_1_day  = [], [], [], []
                 hr_counter, four_hr_counter,day_counter = 0, 0, 0
@@ -130,10 +139,11 @@ def addDatafromDates(start_date, end_date, systems_with_sensors_dict, mydb, curs
                 iter_vals = ["ITER_1", "ITER_2", "ITER_3", "iTER_4"]
                 formatted_dates_vals_list = [d_v_15_min, d_v_1_hr, d_v_4_hr, d_v_1_day]
 
-
+                # Check to make sure the sensor doesn't only return
+                # 0 values.
                 if rolling_sum > 0:
                     for iter_val, formatted_dates_vals in zip(iter_vals, formatted_dates_vals_list):
-                        addToIter(sensor_id, iter_val, formatted_dates_vals, mydb, cursor)
+                        addToIter(sensor_id, iter_val, formatted_dates_vals, mydb, cursor, online)
                 else:
                     dropIterTables(sensor_id, mydb, cursor)
                     cursor.execute(f"DELETE FROM SENSORS_FOR_{system_id} WHERE SENSOR_ID = {sensor_id}")

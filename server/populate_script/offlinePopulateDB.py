@@ -23,8 +23,10 @@ cursor = mydb.cursor( buffered=True)
 system_call_mock = dict(json.load(open("mocks/system_ids.json")))
 sensors_mock = dict(json.load(open("mocks/getSensors.json")))
 
-# creates the SYSTEMS table in the db that stores the system_id and
+# Creates the SYSTEMS table in the db that stores the system_id and
 # the name of that system. Returns a list of the system ids as integers.
+# As part of our testing process, a mock was created to limit the calls
+# to the API to avoid timeouts.
 system_ids = create_systems(mydb, cursor, mock=system_call_mock)
 
 # Creates the SENSORS_FOR_{system id} tables that store the 
@@ -40,7 +42,7 @@ systems_with_list_of_sensors = get_systems_sensor_list(system_ids, mydb, cursor)
 # Setup the dates that we are looking to record from.
 # This takes yesterday as the most recent date and goes 2 days back from there
 # to get the data from.
-# The reasom for ending at yesterday is to allow for the updateDB.py file to be called to
+# The reason for ending at yesterday is to allow for the updateDB.py file to be called to
 # show that it is working.
 
 setup_end_date = dt.datetime.now() - dt.timedelta(days=1)

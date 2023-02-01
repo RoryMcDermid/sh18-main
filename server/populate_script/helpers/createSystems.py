@@ -30,6 +30,15 @@ def create_systems(mydb, cursor, mock=0, online = False):
     system_ids.append(int(system_id))
     vals.append((system_id, system_info["name"]))
   sql = "INSERT INTO SYSTEMS (SYSTEM_ID, SYSTEM_NAME) VALUES (%s, %s)"
+
+  if online:
+    mydb = mysql.connector.connect(
+      username = "wod2dh1e3jfuxs210ykt",
+      host = "aws-eu-west-2.connect.psdb.cloud",
+      password = "pscale_pw_zAx3LdXNX0R0YVevbMphKOEjXcSVMc1BKe5PfaCDDB2",
+      database = "moxie_live"
+        )
+    cursor = mydb.cursor(buffered=True)
       
   cursor.executemany(sql, vals)
   mydb.commit()

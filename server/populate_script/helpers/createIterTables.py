@@ -1,4 +1,13 @@
-def createIterTables(sensor_id, mydb, cursor):
+import mysql.connector
+def createIterTables(sensor_id, mydb, cursor, online):
+    if online:
+        mydb = mysql.connector.connect(
+                        username = "wod2dh1e3jfuxs210ykt",
+                        host = "aws-eu-west-2.connect.psdb.cloud",
+                        password = "pscale_pw_zAx3LdXNX0R0YVevbMphKOEjXcSVMc1BKe5PfaCDDB2",
+                        database = "moxie_live"
+                        )
+        cursor = mydb.cursor(buffered=True)
     iter_vals = ["ITER_1", "ITER_2", "ITER_3", "ITER_4"]
 
     for iter_val in iter_vals:
