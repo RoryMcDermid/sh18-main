@@ -1,4 +1,4 @@
-from getSingleSensor import getSingleSensor
+from get_single_sensor import get_single_sensor
 from getSensors import getSensors
 from getSystemsList import getSystems
 import json
@@ -20,10 +20,7 @@ def loader():
     with open("data/all_sensors.json", "w") as outfile:
         outfile.write(json_object)
 
-    single_sensor = getSingleSensor(system_id=3046, sensor_id='6316312')
+    single_sensor = get_single_sensor(system_id=3046, sensor_id='6316312')
     json_object = json.dumps(single_sensor, indent=4)
     with open("data/single_sensor.json", "w") as f:
         f.write(json_object)
-
-
-print('hello')

@@ -4,7 +4,7 @@ import hashlib
 import datetime
 
 
-def getSingleSensor(system_id: int, sensor_id: str, weeks=52) -> list:
+def get_single_sensor(system_id: int, sensor_id: str, weeks: int=52) -> list:
     url = "https://www.realtime-online.com/api/v3/json/"
     token = "b30a7d8f6f92"
     secretKey = "ATGUAP!Data2211"
@@ -12,13 +12,15 @@ def getSingleSensor(system_id: int, sensor_id: str, weeks=52) -> list:
     # above variables are the token and secret key we were given for the API.
 
     # Form the request, in this example, getting all the sensors associated with a chosen system.
+    today_midnight = datetime.datetime.combine(datetime.datetime.now().date(), datetime.datetime.min.time())-datetime.timedelta(minutes=15)
+
     request_body = {
         "action": "getSensorRecords",
         "request_date": datetime.datetime.now().isoformat(),
         "systems": [{'system_id': system_id, "sensors":[
             {"sensor_id": sensor_id, 
-            "start_date":(datetime.datetime.now()-datetime.timedelta(weeks=weeks)).isoformat(),
-            "end_date":datetime.datetime.now().isoformat()}
+            "start_date":(today_midnight-datetime.timedelta(weeks=weeks)).isoformat(),
+            "end_date":today_midnight.isoformat()}
         ]}]
     }
 
@@ -40,5 +42,4 @@ def getSingleSensor(system_id: int, sensor_id: str, weeks=52) -> list:
     if jsonResp["status"] == 429:
         raise Exception("Timeout error, you have to wait 10 mins")
 
-    
-    return jsonResp["systems"][0]["sensors"]['data']
+    return jsonResp["systems"][0]["sensors"][0]['data']
