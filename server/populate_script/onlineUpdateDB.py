@@ -31,7 +31,19 @@ most_recent_record_date = cursor.fetchone()[0]
 current_date = dt.datetime.now()
 
 systems_with_list_of_sensors = {}
+reference_time = dt.datetime.now()
 for system_id in system_ids:
+
+    if (dt.datetime.now() - reference_time).total_seconds() > 8:
+        mydb = mysql.connector.connect(
+            username = "wod2dh1e3jfuxs210ykt",
+            host = "aws-eu-west-2.connect.psdb.cloud",
+            password = "pscale_pw_zAx3LdXNX0R0YVevbMphKOEjXcSVMc1BKe5PfaCDDB2",
+            database = "moxie_live"
+            )
+        cursor = mydb.cursor(buffered=True)
+        reference_time = dt.datetime.now()
+
     cursor.execute(f"SELECT SENSOR_ID FROM SENSORS_FOR_{system_id}")
     systems_with_list_of_sensors[system_id] = [sensor_id[0] for sensor_id in cursor.fetchall()]
 

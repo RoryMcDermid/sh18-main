@@ -3,6 +3,8 @@ import json
 import hashlib
 import datetime
 
+# THIS FUNCTION IS SPECIFIC TO THE REALTIME API AND WILL NOT 
+# BE NEEDED IF SHARING THE APPLICATION WITH OTHER COMPANIES.
 
 def getSystemsList():
     url = "https://www.realtime-online.com/api/v3/json/"

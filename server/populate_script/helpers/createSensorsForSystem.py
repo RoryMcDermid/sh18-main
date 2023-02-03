@@ -3,6 +3,8 @@ import mysql.connector
 import datetime as dt
 
 def get_systems_sensor_list(system_ids, mydb, cursor, mock=0, online=False):
+
+  # Connect to online DB to avoid timeout.
   if online:
     mydb = mysql.connector.connect(
         username = "wod2dh1e3jfuxs210ykt",
@@ -12,11 +14,16 @@ def get_systems_sensor_list(system_ids, mydb, cursor, mock=0, online=False):
         )
     cursor = mydb.cursor(buffered=True)
 
+  # Use mock to avoid API call if mock is available,
+  # otherwise make API call using getSensors function.
   if mock == 0:
     sensorsBySystem = getSensors(system_ids)
   else:
     sensorsBySystem = mock
 
+  # Some systems have no associated sensors so they are not returned
+  # from the API call. For this reason we remove these systems from the
+  # SYSTEMS table in the database.
   cursor.execute("SELECT SYSTEM_ID FROM SYSTEMS")
   stored_systems = set(x[0] for x in cursor.fetchall())
   returned_systems = set(sensorsBySystem.keys())
@@ -35,6 +42,8 @@ def get_systems_sensor_list(system_ids, mydb, cursor, mock=0, online=False):
     reference_time = dt.datetime.now()
 
   for system, sensors in sensorsBySystem.items():
+
+    #Connect to online DB each time to avoid timeouts.
     if online:
       if (dt.datetime.now() - reference_time).total_seconds() > 13:
         mydb = mysql.connector.connect(
@@ -46,6 +55,8 @@ def get_systems_sensor_list(system_ids, mydb, cursor, mock=0, online=False):
         cursor = mydb.cursor(buffered=True)
         reference_time = dt.datetime.now()
 
+    # Check to see if this system has any unique sensors not already
+    # added to another system.
     set_of_sensors = set(x["sensor_id"] for x  in sensors)
     set_of_sensors.difference_update(added_sensors)
     
@@ -77,4 +88,5 @@ def get_systems_sensor_list(system_ids, mydb, cursor, mock=0, online=False):
     else:
       cursor.execute(f"DELETE FROM SYSTEMS WHERE SYSTEM_ID = {system}")
       mydb.commit()
+      
   return systems_with_list_of_sensors

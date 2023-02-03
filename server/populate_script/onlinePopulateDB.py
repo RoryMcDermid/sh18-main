@@ -32,15 +32,14 @@ system_ids = create_systems(mydb, cursor, mock=system_call_mock, online=True)
 # Returned is a dictionary that has the system ids as the keys, and unique
 # sensor_ids as the values stored in a list
 systems_with_list_of_sensors = get_systems_sensor_list(system_ids, mydb, cursor, online=True)
-
 # Setup the dates that we are looking to record from.
 # This takes yesterday as the most recent date and goes 2 days back from there
 # to get the data from.
-# The reasom for ending at yesterday is to allow for the updateDB.py file to be called to
+# The reason for ending at yesterday is to allow for the updateDB.py file to be called to
 # show that it is working.
 
-setup_end_date = dt.datetime.now() 
-setup_start_date = setup_end_date - dt.timedelta(hours=1)
+setup_end_date = dt.datetime.now() -dt.timedelta(hours=1)
+setup_start_date = setup_end_date - dt.timedelta(hours=12)
 
 addDatafromDates(setup_start_date, setup_end_date, systems_with_list_of_sensors, mydb, cursor, True)
 

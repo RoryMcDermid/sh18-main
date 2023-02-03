@@ -3,6 +3,9 @@ import json
 import hashlib
 import datetime
 
+# THIS FUNCTION IS SPECIFIC TO THE REALTIME API AND WILL NOT 
+# BE NEEDED IF SHARING THE APPLICATION WITH OTHER COMPANIES.
+
 def getSensors(system_ids):
     url = "https://www.realtime-online.com/api/v3/json/"
     token = "b30a7d8f6f92"
@@ -31,13 +34,16 @@ def getSensors(system_ids):
     resp = requests.post(url, data=json.dumps(request_body), headers=headers)
     jsonResp = json.loads(resp.text)
 
-    # store the reutrned response with all data (at the moment), that comes back.
+    # A check to identify if the API has reached a timeout cooldown period.
     if jsonResp["status"] == 429:
         raise Exception("Timeout error, you have to wait 10 mins")
 
 
     sensorsBySystem = {}
 
+
+    # Create a dictionary that has the system ids as keys,
+    # and each associated sensor id to that system stored in a list.
     for sensor in jsonResp["sensors"]:
         if sensor["system_id"] not in sensorsBySystem.keys():
             sensorsBySystem[sensor['system_id']] = []
