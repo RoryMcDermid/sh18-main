@@ -5,6 +5,7 @@ import datetime as dt
 import mysql.connector
 from helpers.addToIter import *
 from helpers.deleteFromIter import *
+from helpers.pushDownIteration import *
 
 
 
@@ -62,8 +63,6 @@ def updateFromDates(start_date, end_date, systems_with_sensors_dict, mydb, curso
     if jsonResp["status"] == 429:
         raise Exception("Timeout error, you have to wait 10 mins")
     
-    iter_vals = ["ITER_1", "ITER_2", "ITER_3", "iTER_4"]
-
     if online:
         reference_time = dt.datetime.now()
 
@@ -73,7 +72,7 @@ def updateFromDates(start_date, end_date, systems_with_sensors_dict, mydb, curso
 
             if online:
 
-                if (dt.datetime.now() - reference_time).total_seconds() > 13:
+                if (dt.datetime.now() - reference_time).total_seconds() > 8:
                     mydb = mysql.connector.connect(
                         username = "wod2dh1e3jfuxs210ykt",
                         host = "aws-eu-west-2.connect.psdb.cloud",
@@ -90,9 +89,8 @@ def updateFromDates(start_date, end_date, systems_with_sensors_dict, mydb, curso
             sensor_measurement = cursor.fetchall()[0][0]
         
             if len(readings) > 0:
-                d_v_15_min, d_v_1_hr, d_v_4_hr, d_v_1_day  = [], [], [], []
-                hr_counter, four_hr_counter,day_counter = 0, 0, 0
-                hr_sum, four_hr_sum, day_sum = 0.0, 0.0, 0.0
+                d_v_15_min = []
+
                 for vals in readings:
                     val_date = dt.datetime.strptime(vals["record_date"][0:19], "%Y-%m-%dT%H:%M:%S")
                     try:
@@ -100,30 +98,15 @@ def updateFromDates(start_date, end_date, systems_with_sensors_dict, mydb, curso
                     except: 
                         val_reading = 0.00
 
-                    hr_sum = hr_sum + val_reading
-                    four_hr_sum = four_hr_sum + val_reading
-                    day_sum = day_sum + val_reading
-
-                    hr_counter = hr_counter + 1
-                    four_hr_counter = four_hr_counter + 1
-                    day_counter = day_counter + 1
                     appropriate_time_intervals = ["00:00", "15:00", "30:00", "45:00"]
                     if val_date.strftime("%M:%S") in appropriate_time_intervals:
                         d_v_15_min.append((val_date, val_reading))
-                        if hr_counter % 4 == 0:
-                            d_v_1_hr.append((val_date, hr_sum))
-                            hr_sum = 0.0
-                        if four_hr_counter % 16 == 0:
-                            d_v_4_hr.append((val_date, four_hr_sum))
-                            four_hr_sum = 0.0
-                        if day_counter % 96 == 0:
-                            d_v_1_day.append((val_date, day_sum))
-                            day_sum = 0.0
+                        
+                addToIter(sensor_id, "ITER_1", d_v_15_min, mydb, cursor, online)
 
-                formatted_dates_vals_list = [d_v_15_min, d_v_1_hr, d_v_4_hr, d_v_1_day]
-
-                for iter_val, formatted_dates_vals in zip(iter_vals, formatted_dates_vals_list):
-                    addToIter(sensor_id, iter_val, formatted_dates_vals, mydb, cursor, online)
+            iter_vals = ["ITER_1","ITER_2", "ITER_3", "ITER_4"]
+            for iter_val in iter_vals[1:]:
+                pushDownIteration(iter_val, sensor_id, mydb, cursor, online)   
 
             for iter_val in iter_vals:
                 deleteFromIter(sensor_id, iter_val, mydb, cursor, online)

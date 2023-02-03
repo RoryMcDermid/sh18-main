@@ -8,7 +8,6 @@ def addToIter(sensor_id, iter_val, formatted_dates_vals, mydb, cursor, online):
                         database = "moxie_live"
                         )
         cursor = mydb.cursor(buffered=True)
-        
     sql = f"INSERT IGNORE INTO {iter_val}_{sensor_id} (DATE_OF_RECORD, VALUE) VALUES (%s, %s)"
     cursor.executemany(sql, formatted_dates_vals)
     mydb.commit()
