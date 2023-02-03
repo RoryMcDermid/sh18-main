@@ -1,6 +1,8 @@
-from baseline.correctMinimums import correct_minimums
-from baseline.loadData import load_from_file
-from baseline.createBoxplot import create_boxplot
+from loaders.loadSensor import *
+from correctMinimums import *
+from calculateBaseline import *
+from plotters.createBoxplot import *
+from plotters.createLineplot import *
 import pandas as pd
 import numpy as np
 
@@ -19,12 +21,11 @@ def main():
     # and each column represents a timepoint in a day
     year_data = np.reshape(df['values'].values, (364, 96))
 
-    corrected_dataset = correct_minimums(year_data)
+    year_data_baseline = calculate_baseline(year_data)
+    year_data_corrected = correct_minimums(year_data)
 
-    create_boxplot(corrected_dataset)
-
-
-
+    create_lineplot(year_data_baseline)
+    create_boxplot(year_data_corrected)
 
 
 if __name__ == '__main__':
