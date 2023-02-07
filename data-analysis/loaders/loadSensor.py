@@ -1,3 +1,4 @@
+from typing import Dict
 from helpers.getSingleSensor import get_single_sensor
 import json
 
