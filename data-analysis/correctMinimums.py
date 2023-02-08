@@ -6,13 +6,12 @@ def correct_minimums(dataset) -> np.array:
 
     # replace all zero values with NaN 
     # and find the minimum of all valid values (i.e non-NaN values) in each column
-    # we then broadcast the minimum values array to be the same shape as the original array
     year_data[year_data == 0] = np.nan
-    col_extreme_mins = np.nanmin(year_data, axis=0)
-    col_percentile = np.nanpercentile(year_data, 10, axis=0)
-    col_mins = np.maximum(col_extreme_mins, col_percentile) # <-- this is the baseline readings we need
-    col_mins_repeated = np.array([col_mins] * 364)
+    col_mins = np.nanpercentile(year_data, 5, axis=0)
 
+    # we then broadcast the minimum values array to be the same shape as the original array
+    col_mins_repeated = np.array([col_mins] * 364)
+    
     # -----------
 
     # create a mask of all the values which are 0 in the original array 

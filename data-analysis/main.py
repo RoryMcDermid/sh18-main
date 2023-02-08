@@ -1,4 +1,4 @@
-from getRowsWithMins import get_rows_with_mins
+from plotters.create_plot import create_multiplot
 from loaders.loadSensor import *
 from correctMinimums import *
 from calculateBaseline import *
@@ -22,12 +22,10 @@ def main():
     # and each column represents a timepoint in a day
     year_data = np.reshape(df['values'].values, (364, 96))
 
-    # year_data_baseline = calculate_baseline(year_data)
+    year_data_baseline = calculate_baseline(year_data)
     year_data_corrected = correct_minimums(year_data)
 
-    # create_lineplot(year_data_baseline)
-    create_boxplot(year_data_corrected)
-    # get_rows_with_mins(year_data)
+    create_multiplot(lineplot_data=year_data_baseline, boxplot_data=year_data_corrected)
 
 if __name__ == '__main__':
     main()
