@@ -7,11 +7,11 @@ import random
 # minimum amount of cost
 
 
-def kmeans(data, k, max_iterations=1000):
+def k_means(data, k, max_iterations=1000):
     # Initialize the centroids randomly
     centroids = [data[i] for i in random.sample(range(len(data)), k)]
 
-    for iteration in range(max_iterations):
+    for _ in range(max_iterations):
         # Initialize lists to store the elements assigned to each cluster
         clusters = [[] for i in range(k)]
 
@@ -62,7 +62,7 @@ def sinkhorn(a, b, M, epsilon=0.1, max_iter=1000):
 
 source = np.array([1, 10, 6, 9, 2, 4, 4, 1, 1, 7, 8, 9, 2, 3, 4, 5])
 
-centroids, clusters = kmeans(source, 2)
+centroids, clusters = k_means(source, 2)
 print(*clusters)
 
 target = [*clusters[np.argmax(centroids)], *clusters[np.argmin(centroids)]]
