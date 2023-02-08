@@ -1,7 +1,7 @@
 from typing import Dict
-from helpers.getSingleSensor import get_single_sensor
 import json
 import mysql.connector
+from helpers import get_single_sensor
 
 
 def load_from_file(sensor_id='6316312'):

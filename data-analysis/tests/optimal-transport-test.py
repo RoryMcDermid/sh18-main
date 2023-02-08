@@ -2,8 +2,8 @@ import numpy as np
 from functions.kMeans import k_means
 from functions.createCostMatrix import create_cost_matrix
 from functions.normalise import normalise_to_probability_distribution
-from functions.sinkhorn import sinkhorn
-from plotters.createHeatMap import create_heatmap
+from functions import sinkhorn
+from plotters import create_heatmap
 
 # The goal of the optimal transport algorithm is to find the mapping that
 # transforms the source distribution into the target distribution with the

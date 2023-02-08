@@ -1,9 +1,6 @@
-from plotters.create_plot import create_multiplot
-from loaders.loadSensor import *
-from correctMinimums import *
-from calculateBaseline import *
-from plotters.createBoxplot import *
-from plotters.createLineplot import *
+from loaders import load_from_file
+from functions import correct_minimums,calculate_baseline
+from plotters import create_multiplot
 import pandas as pd
 import numpy as np
 
