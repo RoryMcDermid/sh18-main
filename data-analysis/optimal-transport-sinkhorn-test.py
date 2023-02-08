@@ -1,11 +1,32 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import random
 
 # The goal of the optimal transport algorithm is to find the mapping that
 # transforms the source distribution into the target distribution with the
 # minimum amount of cost
 
-# problem: how do we determine the target distribution in our application ????
+
+def kmeans(data, k, max_iterations=1000):
+    # Initialize the centroids randomly
+    centroids = [data[i] for i in random.sample(range(len(data)), k)]
+
+    for iteration in range(max_iterations):
+        # Initialize lists to store the elements assigned to each cluster
+        clusters = [[] for i in range(k)]
+
+        # Assign each element to the closest centroid
+        for element in data:
+            distances = [np.linalg.norm(element - centroid)
+                         for centroid in centroids]
+            cluster_index = np.argmin(distances)
+            clusters[cluster_index].append(element)
+
+        # Recalculate the centroids as the mean of the elements in each cluster
+        for i in range(k):
+            centroids[i] = np.mean(clusters[i], axis=0)
+
+    return centroids, clusters
 
 
 def normalize_to_probability_distribution(array):
@@ -39,9 +60,13 @@ def sinkhorn(a, b, M, epsilon=0.1, max_iter=1000):
     return P
 
 
-source = np.array([1, 10, 6, 9, 2, 4, 4, 0, 0, 7, 8, 9, 3, 1, 2])
-target = np.array([1, 5, 0, 0, 0, 9, 10, 3, 5, 6, 2, 1, 6, 7, 1])
+source = np.array([1, 10, 6, 9, 2, 4, 4, 1, 1, 7, 8, 9, 2, 3, 4, 5])
 
+centroids, clusters = kmeans(source, 2)
+print(*clusters)
+
+target = [*clusters[np.argmax(centroids)], *clusters[np.argmin(centroids)]]
+print(target)
 
 source = normalize_to_probability_distribution(source)
 target = normalize_to_probability_distribution(target)
