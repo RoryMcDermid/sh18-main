@@ -3,27 +3,30 @@ import json
 import hashlib
 import datetime as dt
 import mysql.connector
-from helpers.addToIter import *
-from helpers.deleteFromIter import *
-from helpers.pushDownIteration import *
+from helpers.addReadings import *
 
+# This function makes an API call that takes in two dates, as a 
+# string in the form of dd/mm/yyyy, then gets the values recorded 
+# by all unique sensors from all systems, and parses the
+# returned json to then add each value and the exact time it was recorded
+# in the correct ITER_1_{sensor_id} table.
+# The values are then "pushed down" to each iteration table
 
+def addDatafromDates(start_date, end_date, systems_with_list_of_sensors, mydb, cursor, online=False):
 
-def updateFromDates(start_date, end_date, systems_with_sensors_dict, mydb, cursor, online=False):
+#---------- CODE INSIDE THIS DASHED BLOCK IS A SPECIFIC REALTIME API CALL ------------#
     url = "https://www.realtime-online.com/api/v3/json/"
     token = "b30a7d8f6f92"
     secretKey = "ATGUAP!Data2211"
 
     #above variables are the token and secret key we were given for the API.
-
     #if multiple sensors are requested, loop through each to create appropriate input
-
     formatted_systems = []
 
     start_date = start_date.isoformat()
     end_date = end_date.isoformat()
 
-    for system, sensors in systems_with_sensors_dict.items():
+    for system, sensors in systems_with_list_of_sensors.items():
         sensor_list = []
         for sensor_id in sensors:
             sensor_list.append(
@@ -45,7 +48,6 @@ def updateFromDates(start_date, end_date, systems_with_sensors_dict, mydb, curso
     "request_date": dt.datetime.now().isoformat(),
     "systems": formatted_systems
     }
-
     # This bit here I just copied from their example python request.
     # magic string really is a descriptive variable as I have no idea what this does.
     magicString = json.dumps(request_body) + secretKey
@@ -62,17 +64,21 @@ def updateFromDates(start_date, end_date, systems_with_sensors_dict, mydb, curso
 
     if jsonResp["status"] == 429:
         raise Exception("Timeout error, you have to wait 10 mins")
-    
+
+#--------------------------------------------------------------------------------------------#
+
+    #looping over the data for each sensor listed, work your way down the json response until
+    #required data is found, then store it in an appropriately named json file.
+
     if online:
         reference_time = dt.datetime.now()
 
     for i in range(len(jsonResp["systems"])):
+
         system_id = jsonResp["systems"][i]["system_id"]
         for j in range(len(jsonResp["systems"][i]["sensors"])):
-
             if online:
-
-                if (dt.datetime.now() - reference_time).total_seconds() > 11:
+                if (dt.datetime.now() - reference_time).total_seconds() > 13:
                     mydb = mysql.connector.connect(
                         username = "wod2dh1e3jfuxs210ykt",
                         host = "aws-eu-west-2.connect.psdb.cloud",
@@ -89,49 +95,56 @@ def updateFromDates(start_date, end_date, systems_with_sensors_dict, mydb, curso
             sensor_measurement = cursor.fetchall()[0][0]
         
             if len(readings) > 0:
+                # If readings were returned, make all iteration tables, then
+                # initialise lists that will store the appropriate values that
+                # will be used for the "push down" function. The counters
+                # are to keep track of when to add a value to a list, and the 
+                # rolling sums are to keep track of the value of energy that
+                # has been accumulated since the last time period that was 
+                # recorded. 
+                cursor.execute(f"""CREATE TABLE READINGS_FOR_{sensor_id}(
+                                READING_DATE DATETIME NOT NULL, 
+                                VALUE DECIMAL(15,6) NOT NULL)""")
+                        
                 d_v_15_min = []
+                rolling_sum = 0.0
 
                 for vals in readings:
                     val_date = dt.datetime.strptime(vals["record_date"][0:19], "%Y-%m-%dT%H:%M:%S")
                     try:
                         val_reading = vals["values"][sensor_measurement]
-                        if not online:
-                            try: 
-                                # Try condition only here as we currently only have the
-                                # features tables set up for a few of the sensors.
-                                time_slot = dt.datetime.strftime(val_date, "%H:%M:%S")
-                                sql = f"""SELECT BASELINE, AVERAGE FROM FEATURES_FOR_{sensor_id}
-                                        WHERE TIME_SLOT = '{time_slot}'"""
-                                cursor.execute(sql)
-                                current_vals = cursor.fetchall()
-                                baseline = current_vals[0][0]
-                                avg = current_vals[0][1]
-                                # Again avoiding 0 values to not skew the data a major amount.
-                                if val_reading > 0:
-                                    if val_reading < baseline:
-                                        sql = f"""UPDATE FEATURES_FOR_{sensor_id} 
-                                            SET BASELINE = {val_reading}
-                                            WHERE TIME_SLOT = '{time_slot}' """
-                                    cursor.execute(sql)
-                                    sql = f"""UPDATE FEATURES_FOR_{sensor_id}
-                                            SET AVERAGE = {(val_reading + avg)/2 }
-                                            WHERE TIME_SLOT = '{time_slot}' """
-                                    cursor.execute(sql)
-                                    mydb.commit()
-                            except:
-                                continue
                     except: 
                         val_reading = 0.00
 
                     appropriate_time_intervals = ["00:00", "15:00", "30:00", "45:00"]
                     if val_date.strftime("%M:%S") in appropriate_time_intervals:
+
                         d_v_15_min.append((val_date, val_reading))
-                        
-                addToIter(sensor_id, "ITER_1", d_v_15_min, mydb, cursor, online)
+                        rolling_sum = rolling_sum + val_reading
 
-            iter_vals = ["ITER_1","ITER_2", "ITER_3", "ITER_4"]
-            for iter_val in iter_vals[1:]:
-                pushDownIteration(iter_val, sensor_id, mydb, cursor, online)   
 
-            for iter_val in iter_vals:
-                deleteFromIter(sensor_id, iter_val, mydb, cursor, online)
+                # Check to make sure the sensor doesn't only return
+                # 0 values.
+                if rolling_sum > 0:
+                    addReadings(sensor_id, d_v_15_min, mydb, cursor, online)
+                else:
+                    cursor.execute(f"DROP TABLE READINGS_FOR_{sensor_id}")
+                    cursor.execute(f"DELETE FROM SENSORS_FOR_{system_id} WHERE SENSOR_ID = {sensor_id}")
+                    mydb.commit()
+                    cursor.execute(f"SELECT * FROM SENSORS_FOR_{system_id}")
+                    remaining_sensors = cursor.fetchall()
+                    if len(remaining_sensors) == 0:
+                        cursor.execute(f"DROP TABLE SENSORS_FOR_{system_id}")
+                        cursor.execute(f"DELETE FROM SYSTEMS WHERE SYSTEM_ID = {system_id}")
+                        mydb.commit()
+
+            else:
+                cursor.execute(f"DELETE FROM SENSORS_FOR_{system_id} WHERE SENSOR_ID = {sensor_id}")
+                mydb.commit()
+                cursor.execute(f"SELECT * FROM SENSORS_FOR_{system_id}")
+                remaining_sensors = cursor.fetchall()
+                if len(remaining_sensors) == 0:
+                        cursor.execute(f"DROP TABLE SENSORS_FOR_{system_id}")
+                        cursor.execute(f"DELETE FROM SYSTEMS WHERE SYSTEM_ID = {system_id}")
+                        mydb.commit()
+                

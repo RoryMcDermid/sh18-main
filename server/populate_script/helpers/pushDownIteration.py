@@ -21,6 +21,9 @@ def pushDownIteration(iter_val, sensor_id, mydb, cursor, online=False):
     cursor.execute(f"SELECT * FROM {iter_val}_{sensor_id} ORDER BY(DATE_OF_RECORD) DESC")
     try:
         most_recent_record_date = cursor.fetchone()[0]
+        if len(most_recent_record_date[0]) == 0:
+            cursor.execute(f"SELECT * FROM ITER_3_{sensor_id} ORDER BY(DATE_OF_RECORD) ASC")
+            most_recent_record_date = most_recent_record_date = cursor.fetchone()[0]
         if(iter_val == "ITER_2"):
             cursor.execute(f"SELECT * FROM ITER_1_{sensor_id} WHERE DATE_OF_RECORD > %s", (most_recent_record_date,))
         elif(iter_val == "ITER_3"):

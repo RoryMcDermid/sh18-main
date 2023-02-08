@@ -1,5 +1,5 @@
 import mysql.connector
-def addToIter(sensor_id, iter_val, formatted_dates_vals, mydb, cursor, online):
+def addReadings(sensor_id, formatted_dates_vals, mydb, cursor, online):
     if online:
         mydb = mysql.connector.connect(
                         username = "wod2dh1e3jfuxs210ykt",
@@ -8,6 +8,6 @@ def addToIter(sensor_id, iter_val, formatted_dates_vals, mydb, cursor, online):
                         database = "moxie_live"
                         )
         cursor = mydb.cursor(buffered=True)
-    sql = f"INSERT IGNORE INTO {iter_val}_{sensor_id} (DATE_OF_RECORD, VALUE) VALUES (%s, %s)"
+    sql = f"INSERT IGNORE INTO READINGS_FOR_{sensor_id} (READING_DATE, VALUE) VALUES (%s, %s)"
     cursor.executemany(sql, formatted_dates_vals)
     mydb.commit()
