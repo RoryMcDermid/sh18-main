@@ -48,7 +48,9 @@ for i in range(len(all_year_data_resp["systems"])):
         cursor.execute(f"""CREATE TABLE FEATURES_FOR_{sensor_id}(
                         TIME_SLOT TIME NOT NULL PRIMARY KEY,
                         BASELINE DECIMAL(15,6) NOT NULL,
-                        AVERAGE DECIMAL(15,6) NOT NULL
+                        AVERAGE DECIMAL(15,6) NOT NULL,
+                        UPPER_BOUNDARY DECIMAL(15,6) NOT NULL,
+                        LOWER_BOUNDARY DECIMAL(15,6) NOT NULL
                         )""")
         mydb.commit()
 
