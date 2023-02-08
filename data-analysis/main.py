@@ -4,6 +4,7 @@ from correctMinimums import *
 from calculateBaseline import *
 from plotters.createBoxplot import *
 from plotters.createLineplot import *
+from predictEnergyUsage import *
 import pandas as pd
 import numpy as np
 
@@ -24,8 +25,10 @@ def main():
 
     year_data_baseline = calculate_baseline(year_data)
     year_data_corrected = correct_minimums(year_data)
+    today_data_predict = predict_EnergyUsage(year_data)
 
     create_multiplot(lineplot_data=year_data_baseline, boxplot_data=year_data_corrected)
+    print(today_data_predict)
 
 if __name__ == '__main__':
     main()
