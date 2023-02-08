@@ -5,6 +5,7 @@ from helpers.updateFromDates import *
 from helpers.getSensorList import *
 from helpers.getSystemsList import *
 from helpers.createSensorsForSystem import *
+from helpers.updateFromDates import *
 
 #This function finds the date of the most recently stored value in the 
 #iter_1 table, then gets all the dates from the api using the previously defined function.
@@ -24,17 +25,16 @@ cursor.execute("SELECT SYSTEM_ID FROM SYSTEMS")
 system_ids = [system[0] for system in cursor.fetchall()]
 cursor.execute(f"SELECT SENSOR_ID FROM SENSORS_FOR_{system_ids[0]}")
 sensor_id = cursor.fetchone()[0]
-# This hardcoded variable is only here so I can access a value from the above returned dictionary.
-cursor.execute(f"SELECT * FROM ITER_1_{sensor_id} ORDER BY(DATE_OF_RECORD) DESC")
+cursor.execute(f"SELECT * FROM READINGS_FOR_{sensor_id} ORDER BY(READING_DATE) DESC")
 
-most_recent_record_date = cursor.fetchone()[0]
-current_date = most_recent_record_date + dt.timedelta(hours=6)
+start_date = cursor.fetchone()[0]
+end_date = dt.datetime.now() - dt.timedelta(minutes=15)
 
 systems_with_list_of_sensors = {}
 reference_time = dt.datetime.now()
 for system_id in system_ids:
 
-    if (dt.datetime.now() - reference_time).total_seconds() > 8:
+    if (dt.datetime.now() - reference_time).total_seconds() > 13:
         mydb = mysql.connector.connect(
             username = "wod2dh1e3jfuxs210ykt",
             host = "aws-eu-west-2.connect.psdb.cloud",
@@ -47,4 +47,4 @@ for system_id in system_ids:
     cursor.execute(f"SELECT SENSOR_ID FROM SENSORS_FOR_{system_id}")
     systems_with_list_of_sensors[system_id] = [sensor_id[0] for sensor_id in cursor.fetchall()]
 
-updateFromDates(most_recent_record_date, current_date,  systems_with_list_of_sensors, mydb, cursor, True)
+updateFromDates(start_date, end_date,  systems_with_list_of_sensors, mydb, cursor, True)

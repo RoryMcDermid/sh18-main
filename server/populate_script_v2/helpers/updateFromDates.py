@@ -3,9 +3,7 @@ import json
 import hashlib
 import datetime as dt
 import mysql.connector
-from helpers.addToIter import *
-from helpers.deleteFromIter import *
-from helpers.pushDownIteration import *
+from helpers.addReadings import *
 
 
 
@@ -15,7 +13,6 @@ def updateFromDates(start_date, end_date, systems_with_sensors_dict, mydb, curso
     secretKey = "ATGUAP!Data2211"
 
     #above variables are the token and secret key we were given for the API.
-
     #if multiple sensors are requested, loop through each to create appropriate input
 
     formatted_systems = []
@@ -72,7 +69,7 @@ def updateFromDates(start_date, end_date, systems_with_sensors_dict, mydb, curso
 
             if online:
 
-                if (dt.datetime.now() - reference_time).total_seconds() > 11:
+                if (dt.datetime.now() - reference_time).total_seconds() > 8:
                     mydb = mysql.connector.connect(
                         username = "wod2dh1e3jfuxs210ykt",
                         host = "aws-eu-west-2.connect.psdb.cloud",
@@ -95,31 +92,31 @@ def updateFromDates(start_date, end_date, systems_with_sensors_dict, mydb, curso
                     val_date = dt.datetime.strptime(vals["record_date"][0:19], "%Y-%m-%dT%H:%M:%S")
                     try:
                         val_reading = vals["values"][sensor_measurement]
-                        if not online:
-                            try: 
+                       # if not online:
+                          #  try: 
                                 # Try condition only here as we currently only have the
                                 # features tables set up for a few of the sensors.
-                                time_slot = dt.datetime.strftime(val_date, "%H:%M:%S")
-                                sql = f"""SELECT BASELINE, AVERAGE FROM FEATURES_FOR_{sensor_id}
-                                        WHERE TIME_SLOT = '{time_slot}'"""
-                                cursor.execute(sql)
-                                current_vals = cursor.fetchall()
-                                baseline = current_vals[0][0]
-                                avg = current_vals[0][1]
+                                # time_slot = dt.datetime.strftime(val_date, "%H:%M:%S")
+                                # sql = f"""SELECT BASELINE, AVERAGE FROM FEATURES_FOR_{sensor_id}
+                                #         WHERE TIME_SLOT = '{time_slot}'"""
+                                # cursor.execute(sql)
+                                # current_vals = cursor.fetchall()
+                                # baseline = current_vals[0][0]
+                                # avg = current_vals[0][1]
                                 # Again avoiding 0 values to not skew the data a major amount.
-                                if val_reading > 0:
-                                    if val_reading < baseline:
-                                        sql = f"""UPDATE FEATURES_FOR_{sensor_id} 
-                                            SET BASELINE = {val_reading}
-                                            WHERE TIME_SLOT = '{time_slot}' """
-                                    cursor.execute(sql)
-                                    sql = f"""UPDATE FEATURES_FOR_{sensor_id}
-                                            SET AVERAGE = {(val_reading + avg)/2 }
-                                            WHERE TIME_SLOT = '{time_slot}' """
-                                    cursor.execute(sql)
-                                    mydb.commit()
-                            except:
-                                continue
+                            #     if val_reading > 0:
+                            #         if val_reading < baseline:
+                            #             sql = f"""UPDATE FEATURES_FOR_{sensor_id} 
+                            #                 SET BASELINE = {val_reading}
+                            #                 WHERE TIME_SLOT = '{time_slot}' """
+                            #         cursor.execute(sql)
+                            #         sql = f"""UPDATE FEATURES_FOR_{sensor_id}
+                            #                 SET AVERAGE = {(val_reading + avg)/2 }
+                            #                 WHERE TIME_SLOT = '{time_slot}' """
+                            #         cursor.execute(sql)
+                            #         mydb.commit()
+                            # except:
+                            #     continue
                     except: 
                         val_reading = 0.00
 
@@ -127,11 +124,4 @@ def updateFromDates(start_date, end_date, systems_with_sensors_dict, mydb, curso
                     if val_date.strftime("%M:%S") in appropriate_time_intervals:
                         d_v_15_min.append((val_date, val_reading))
                         
-                addToIter(sensor_id, "ITER_1", d_v_15_min, mydb, cursor, online)
-
-            iter_vals = ["ITER_1","ITER_2", "ITER_3", "ITER_4"]
-            for iter_val in iter_vals[1:]:
-                pushDownIteration(iter_val, sensor_id, mydb, cursor, online)   
-
-            for iter_val in iter_vals:
-                deleteFromIter(sensor_id, iter_val, mydb, cursor, online)
+                addReadings(sensor_id, d_v_15_min, mydb, cursor, online)
