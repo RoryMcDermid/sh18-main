@@ -1,25 +1,40 @@
 import numpy as np
+import pandas as pd
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
 
 
 def predict_EnergyUsage(dataset) -> np.array:
     year_data = dataset.copy()
-    year_data[year_data == 0] = np.nan
-    weeks_data = year_data.reshape(52, 7, 96)
-    diff_ratio_first4 = np.empty(shape=(0, 96))
-    #diff_ratio_last4 = np.empty(shape=(0, 96))
+    data = year_data
 
-    for i1 in range(51):
-        i2 = i1 + 1
-        diff_ratio1 = (weeks_data[i2, 0, :] - weeks_data[i1, 6, :]) /weeks_data[i1, 6, :]
-        diff_ratio_first4 = np.append(diff_ratio_first4, diff_ratio1.reshape(1, -1), axis=0)
+    data = data[~np.all(data == 0, axis=1)]
 
-    #for i1 in range(43, 50):
-    #    i2 = i1 + 1
-    #    diff_ratio2 = (weeks_data[i2, 0, :] - weeks_data[i1, 6, :]) #/ weeks_data[i1, 6, :]
-    #    diff_ratio_last4 = np.append(diff_ratio_last4, diff_ratio2.reshape(1, -1), axis=0)
+    df = pd.DataFrame(data)
 
-    #diff_ratio = np.append(diff_ratio_first4, diff_ratio_last4, axis=0)
-    mean_ratio = np.nanmean(diff_ratio_first4, axis=0)
-    today_predict = weeks_data[51, 6, :] + mean_ratio
+    samples = []
+    for i in range(df.shape[0]):
+        sample = []
+        for j in range(df.shape[1]):
+            sample.append(df.iloc[i, j])
+        samples.append(sample)
 
-    return today_predict
+    df = df.iloc[:, :]
+    samples = np.array(samples)
+    samples = samples[:-1, :]
+
+    X_train, X_test, y_train, y_test = train_test_split(samples, df.shift(-1).dropna(), test_size=0.1, random_state=0)
+
+    scaler = StandardScaler()
+    X_train = scaler.fit_transform(X_train)
+    X_test = scaler.transform(X_test)
+
+    model = RandomForestRegressor()
+    model.fit(X_train, y_train)
+
+    score = model.score(X_test, y_test)
+    print("score：", score)
+
+    future_data = model.predict(X_test[-1].reshape(1, -1))
+    print("predict:", future_data)

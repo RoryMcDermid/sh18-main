@@ -28,7 +28,7 @@ def main():
     today_data_predict = predict_EnergyUsage(year_data)
 
     create_multiplot(lineplot_data=year_data_baseline, boxplot_data=year_data_corrected)
-    print(today_data_predict)
+
 
 if __name__ == '__main__':
     main()
