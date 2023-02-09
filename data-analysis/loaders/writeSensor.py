@@ -1,4 +1,4 @@
-from helpers.getSingleSensor import get_single_sensor
+from helpers import get_single_sensor
 import json
 
 def write_single_sensor_to_file(system_id=3046, sensor_id='6316312'):

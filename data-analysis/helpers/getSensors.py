@@ -3,7 +3,7 @@ import json
 import hashlib
 import datetime
 
-def getSensors(system_ids):
+def get_sensors_by_system(system_ids):
     url = "https://www.realtime-online.com/api/v3/json/"
     token = "b30a7d8f6f92"
     secretKey = "ATGUAP!Data2211"

@@ -1,5 +1,5 @@
 import os
-from helpers.getSingleSensor import get_single_sensor
+from helpers import get_single_sensor
 import json
 
 def write_multiple_sensors_to_files(system_id=2417):
