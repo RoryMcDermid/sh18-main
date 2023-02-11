@@ -1,17 +1,12 @@
 var mysql = require("mysql");
+require("dotenv").config();
 
-const config = {
-  host: "localhost",
-  user: "root",
-  password: "password",
-  database: "moxie_energy",
-};
-var db = mysql.createConnection(config);
+var db = mysql.createConnection(process.env.DATABASE_URL);
 db.connect(function (err) {
   if (err) {
     console.log("error connecting:" + err.stack);
   }
-  console.log("connected successfully to DB.");
+  console.log("connected successfully to PlanetScale!");
 });
 
 module.exports = db;
