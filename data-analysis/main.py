@@ -1,7 +1,6 @@
 from loaders import *
 from functions import *
 import pandas as pd
-from predictEnergyUsage import *
 
 
 def main():
