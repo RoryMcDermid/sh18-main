@@ -33,7 +33,7 @@ def main():
     feb_23 = year_data_corrected[362:]
 
     winter = np.vstack((feb_22, dec_22, jan_23, feb_23))
-    spring = np.array(year_data_corrected[25:117])
+    spring = np.zeros((92, 96))
     summer = np.array(year_data_corrected[117:209])
     autumn = np.array(year_data_corrected[209:300])
 
