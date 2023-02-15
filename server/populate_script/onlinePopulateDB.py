@@ -7,11 +7,11 @@ from helpers.createSystems import *
 
 TIME_PERIOD = 2
 mydb = mysql.connector.connect(
-        username = "wod2dh1e3jfuxs210ykt",
-        host = "aws-eu-west-2.connect.psdb.cloud",
-        password = "pscale_pw_zAx3LdXNX0R0YVevbMphKOEjXcSVMc1BKe5PfaCDDB2",
-        database = "moxie_live"
-        )
+    username="wod2dh1e3jfuxs210ykt",
+    host="aws-eu-west-2.connect.psdb.cloud",
+    password="pscale_pw_zAx3LdXNX0R0YVevbMphKOEjXcSVMc1BKe5PfaCDDB2",
+    database="moxie_live"
+)
 cursor = mydb.cursor(buffered=True)
 system_ids = create_systems(mydb, cursor)
 
@@ -22,15 +22,16 @@ sensors_mock = dict(json.load(open("mocks/getSensors.json")))
 # the name of that system. Returns a list of the system ids as integers.
 system_ids = create_systems(mydb, cursor, mock=system_call_mock, online=True)
 
-# Creates the SENSORS_FOR_{system id} tables that store the 
+# Creates the SENSORS_FOR_{system id} tables that store the
 # sensor_id, system_id and sensor_measurement. The sensor measurement
 # is stored as it is needed for parsing a returned json later on.
 # This function also contains validity checks so that a sensor is only
 # added to one specific system even if it belongs to two, and if a system has
-# no associated unique sensors it is removed from the SYSTEMS table. 
+# no associated unique sensors it is removed from the SYSTEMS table.
 # Returned is a dictionary that has the system ids as the keys, and unique
 # sensor_ids as the values stored in a list
-systems_with_list_of_sensors = get_systems_sensor_list(system_ids, mydb, cursor, online=True)
+systems_with_list_of_sensors = get_systems_sensor_list(
+    system_ids, mydb, cursor, online=True)
 # Setup the dates that we are looking to record from.
 # This takes yesterday as the most recent date and goes 2 days back from there
 # to get the data from.
@@ -38,11 +39,7 @@ systems_with_list_of_sensors = get_systems_sensor_list(system_ids, mydb, cursor,
 # show that it is working.
 
 setup_end_date = dt.datetime.now() - dt.timedelta(hours=1)
-setup_start_date = setup_end_date - dt.timedelta(hours=1)
+setup_start_date = setup_end_date - dt.timedelta(days=7)
 
-addDatafromDates(setup_start_date, setup_end_date, systems_with_list_of_sensors, mydb, cursor, True)
-
-
-
-
-
+addDatafromDates(setup_start_date, setup_end_date,
+                 systems_with_list_of_sensors, mydb, cursor, True)
