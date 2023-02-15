@@ -28,7 +28,7 @@ sensor_id = cursor.fetchone()[0]
 cursor.execute(f"SELECT * FROM READINGS_FOR_{sensor_id} ORDER BY(READING_DATE) DESC")
 
 start_date = cursor.fetchone()[0]
-end_date = dt.datetime.now()
+end_date = dt.datetime.now() - dt.timedelta(minutes=15)
 
 systems_with_list_of_sensors = {}
 for system_id in system_ids:

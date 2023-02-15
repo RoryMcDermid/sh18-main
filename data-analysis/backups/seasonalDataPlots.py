@@ -23,17 +23,6 @@ def main():
 
     year_data_baseline = calculate_baseline(year_data)
     year_data_corrected = correct_minimums(year_data)
-    today_data_predict = predict_EnergyUsage(year_data)
-
-    # create_boxplot(year_data_corrected)
-    # create_multiplot(lineplot_data=year_data_baseline, boxplot_data=year_data_corrected)
-
-
-def main2():
-    write_single_sensor_to_file(system_id=2433, sensor_id='6311227')
-    write_single_sensor_to_file(system_id=2432, sensor_id='6311725')
-    write_single_sensor_to_file(system_id=3083, sensor_id='6310509')
-    write_single_sensor_to_file(system_id=2480, sensor_id='6312990')
 
     # -----------
     # plot seasonal data
@@ -51,7 +40,3 @@ def main2():
 
     plt.tight_layout()
     plt.show()
-
-
-if __name__ == "__main__":
-    main()

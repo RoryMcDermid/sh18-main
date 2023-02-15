@@ -1,7 +1,7 @@
 const db = require("../database/databaseConfig");
 
 exports.getAllSystems = (req, res) => {
-  let sql = "SELECT * FROM systems";
+  let sql = "SELECT * FROM SYSTEMS";
   console.log(db);
   let query = db.query(sql, (error, results) => {
     if (error) throw error;
@@ -10,7 +10,7 @@ exports.getAllSystems = (req, res) => {
 };
 
 exports.getSystem = (req, res) => {
-  let sql = `SELECT * FROM systems WHERE SYSTEM_ID = ${req.params.id}`;
+  let sql = `SELECT * FROM SYSTEMS WHERE SYSTEM_ID = ${req.params.id}`;
   let query = db.query(sql, (error, result) => {
     if (error) throw error;
     res.send(result);
@@ -18,7 +18,7 @@ exports.getSystem = (req, res) => {
 };
 
 exports.getAllSensorsInSystem = (req, res) => {
-  let sql = `SELECT * FROM sensors_for_${req.params.systemid}`;
+  let sql = `SELECT * FROM SENSORS_FOR_${req.params.systemid}`;
   let query = db.query(sql, (error, result) => {
     if (error) throw error;
     res.send(result);
@@ -27,9 +27,10 @@ exports.getAllSensorsInSystem = (req, res) => {
 
 exports.getDataFromSensors = async (req, res) => {
   let sql = "";
+  console.log(req.params.sensorids);
   if (req.params.sensorids.indexOf(",") > -1) {
     const queries = req.params.sensorids.split(",").map(async (sensorId) => {
-      sql = `SELECT * FROM iter_${req.query.interval}_${sensorId} WHERE DATE_OF_RECORD>='${req.query.startDate}' AND DATE_OF_RECORD<'${req.query.endDate}'`;
+      sql = `SELECT * FROM READINGS_FOR_${sensorId} WHERE READING_DATE>='${req.query.startDate}' AND READING_DATE<'${req.query.endDate}'`;
       return new Promise((resolve, reject) => {
         db.query(sql, (error, result) => {
           if (error) reject(error);
@@ -42,7 +43,7 @@ exports.getDataFromSensors = async (req, res) => {
     const responses = await Promise.all(queries);
     res.send(responses);
   } else {
-    sql = `SELECT * FROM iter_${req.query.interval}_${req.params.sensorids} WHERE DATE_OF_RECORD>='${req.query.startDate}' AND DATE_OF_RECORD<'${req.query.endDate}'`;
+    sql = `SELECT * FROM READINGS_FOR_${req.params.sensorids} WHERE READING_DATE>='${req.query.startDate}' AND READING_DATE<'${req.query.endDate}'`;
     let query = await new Promise((resolve, reject) => {
       db.query(sql, (error, result) => {
         if (error) reject(error);
