@@ -27,12 +27,7 @@ def main():
     # -----------
     # plot seasonal data
 
-    feb_22 = year_data_corrected[:25]
-    dec_22 = year_data_corrected[300:331]
-    jan_23 = year_data_corrected[331:362]
-    feb_23 = year_data_corrected[362:]
-
-    winter = np.vstack((feb_22, dec_22, jan_23, feb_23))
+    winter = np.vstack(year_data_corrected[300:])
     spring = np.zeros((92, 96))
     summer = np.array(year_data_corrected[117:209])
     autumn = np.array(year_data_corrected[209:300])
