@@ -1,6 +1,6 @@
 from loaders import load_from_file
 from functions import correct_minimums, calculate_baseline
-from plotters import create_multiplot_v2
+from plotters import create_multiplot
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -24,23 +24,4 @@ def main():
     year_data_baseline = calculate_baseline(year_data)
     year_data_corrected = correct_minimums(year_data)
 
-    # -----------
-    # plot seasonal data
-
-    winter = np.vstack(year_data_corrected[300:])
-    spring = np.zeros((92, 96))
-    summer = np.array(year_data_corrected[117:209])
-    autumn = np.array(year_data_corrected[209:300])
-
-    _, axes = plt.subplots(nrows=2, ncols=2, figsize=(10, 10))
-    datasets = {"winter": winter, "spring": spring, "summer": summer, "autumn": autumn}
-    for (title, dataset), ax in zip(datasets.items(), axes.flatten()):
-        dataset_baseline = calculate_baseline(dataset)
-        create_multiplot_v2(lineplot_data=dataset_baseline, boxplot_data=dataset, title=title, ax=ax)
-
-    plt.tight_layout()
-    plt.show()
-
-
-if __name__ == "__main__":
-    main()
+    create_multiplot(lineplot_data=year_data_baseline, boxplot_data=year_data_corrected)

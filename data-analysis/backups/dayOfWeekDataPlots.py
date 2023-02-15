@@ -21,26 +21,31 @@ def main():
     # and each column represents a timepoint in a day
     year_data = np.reshape(df["values"].values, (364, 96))
 
-    year_data_baseline = calculate_baseline(year_data)
-    year_data_corrected = correct_minimums(year_data)
-
     # -----------
     # plot seasonal data
 
-    winter = np.vstack(year_data_corrected[300:])
-    spring = np.zeros((92, 96))
-    summer = np.array(year_data_corrected[117:209])
-    autumn = np.array(year_data_corrected[209:300])
+    mon = year_data[6::7]
+    tue = year_data[0::7]
+    wed = year_data[1::7]
+    thu = year_data[2::7]
+    fri = year_data[3::7]
+    sat = year_data[4::7]
+    sun = year_data[5::7]
 
-    _, axes = plt.subplots(nrows=2, ncols=2, figsize=(10, 10))
-    datasets = {"winter": winter, "spring": spring, "summer": summer, "autumn": autumn}
+    _, axes = plt.subplots(nrows=3, ncols=3, figsize=(10, 10))
+    datasets = {
+        "mon": mon,
+        "tue": tue,
+        "wed": wed,
+        "thu": thu,
+        "fri": fri,
+        "sat": sat,
+        "sun": sun,
+    }
     for (title, dataset), ax in zip(datasets.items(), axes.flatten()):
         dataset_baseline = calculate_baseline(dataset)
-        create_multiplot_v2(lineplot_data=dataset_baseline, boxplot_data=dataset, title=title, ax=ax)
+        dataset_corrected = correct_minimums(dataset)
+        create_multiplot_v2(lineplot_data=dataset_baseline, boxplot_data=dataset_corrected, title=title, ax=ax)
 
     plt.tight_layout()
     plt.show()
-
-
-if __name__ == "__main__":
-    main()
