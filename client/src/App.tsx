@@ -4,6 +4,7 @@ import { Header } from "./components";
 import { getPeakWholesalePrices } from "./helpers";
 import { loadWholesalePrice } from "./hooks";
 import { SystemSelectScreen, CompareScreen } from "./screens";
+import FindingsScreen from "./screens/FindingsScreen";
 
 function App() {
   const [formSelection, setFormSelection] = useState<selection>({
@@ -51,6 +52,7 @@ function App() {
             />
           }
         />
+        <Route path='/findings' element={<FindingsScreen />} />
       </Routes>
     </>
   );
