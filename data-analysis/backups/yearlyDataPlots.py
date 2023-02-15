@@ -25,7 +25,3 @@ def main():
     year_data_corrected = correct_minimums(year_data)
 
     create_multiplot(lineplot_data=year_data_baseline, boxplot_data=year_data_corrected)
-
-
-if __name__ == "__main__":
-    main()
