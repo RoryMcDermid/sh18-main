@@ -10,7 +10,7 @@ const formatChartData = (
         // TODO: change date format
         sensorData[0][i].DATE_OF_RECORD,
         ...sensorData.map((readingArray) => {
-          return readingArray[i].VALUE;
+          return parseFloat(readingArray[i].VALUE as string);
         }),
       ]);
     }

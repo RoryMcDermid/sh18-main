@@ -1,4 +1,4 @@
 interface energyReading {
   DATE_OF_RECORD: string;
-  VALUE: number;
+  VALUE: number | string;
 }
