@@ -1,7 +1,7 @@
 from formatToChartData import format_to_chart_data
 
 
-def test():
+def test_format_to_chart_data():
     data_in = [
         [
             {"DATE_OF_RECORD": "timestamp_1", "VALUE": 111},
@@ -26,5 +26,4 @@ def test():
 
     assert actual_out == expected_out
 
-
-test()
+    print("passed")
