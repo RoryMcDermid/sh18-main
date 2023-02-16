@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from "react";
-import { ChevronUp, ChevronDown } from ".";
+import { ChevronUp, ChevronDown } from "../SVGs";
 
 interface props {
   label: string;
