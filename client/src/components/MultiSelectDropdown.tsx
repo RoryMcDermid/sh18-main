@@ -59,7 +59,7 @@ const MultiSelectDropdown: FC<props> = ({
           {expanded ? <ChevronUp /> : <ChevronDown />}
         </div>
         {expanded && (
-          <div className='p-2 w-full grid grid-cols-1 rounded-lg bg-slate-700 overflow-auto h-72 absolute translate-y-[76px] z-10'>
+          <div className='p-2 w-full grid grid-cols-1 rounded-lg bg-slate-700 overflow-auto min-h-max max-h-72 absolute translate-y-[76px] z-10'>
             {items && (
               <div className='p-2 flex items-center'>
                 <div
