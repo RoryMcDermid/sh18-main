@@ -1,2 +1,2 @@
 export { default as CompareScreen } from "./CompareScreen";
-export { default as SystemSelectScreen } from "./SystemSelectScreen";
+export { default as Form } from "../components/Form";

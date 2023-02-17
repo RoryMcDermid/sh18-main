@@ -6,7 +6,7 @@ import {
   DatePicker,
   Dropdown,
   MultiSelectDropdown,
-} from "../components";
+} from ".";
 import { getValidIntervals } from "../helpers";
 import { loadSystems, useSensors } from "../hooks";
 
@@ -15,7 +15,7 @@ interface props {
   setFormSelection: setter<selection>;
 }
 
-const SystemSelectScreen: FC<props> = ({ formSelection, setFormSelection }) => {
+const Form: FC<props> = ({ formSelection, setFormSelection }) => {
   const { selectedSensors, startDate, endDate, interval } = formSelection;
 
   // makes API call to backend to load all systems into the first dropdown
@@ -45,8 +45,8 @@ const SystemSelectScreen: FC<props> = ({ formSelection, setFormSelection }) => {
   );
 
   return (
-    <div className='mb-20 flex '>
-      <div className='mx-20 flex flex-col gap-10 w-[40rem] '>
+    <>
+      <div className='flex flex-col gap-10 w-[40rem] '>
         <Dropdown
           label='Select a system:'
           options={systems}
@@ -106,8 +106,8 @@ const SystemSelectScreen: FC<props> = ({ formSelection, setFormSelection }) => {
           <Button text='Enter' isDisabled={disableButton} />
         </Link>
       </div>
-    </div>
+    </>
   );
 };
 
-export default SystemSelectScreen;
+export default Form;
