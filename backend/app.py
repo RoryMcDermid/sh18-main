@@ -1,3 +1,5 @@
+from backend.utils.for_chart_data.formatToChartData import format_to_chart_data
+from backend.utils.for_prediction_data.formatToPredictionData import format_to_prediction_data
 from database import open_connection, close_connection
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -59,7 +61,7 @@ async def get_sensor_readings(sensorids, startDate, endDate):
         cursor.close()
 
     close_connection(mydb)
-    return result
+    return format_to_chart_data(result)
 
 
 @app.get("/sensors/forcast/{sensorid}", response_description="Get ALL reading data for ONE sensor")
@@ -70,4 +72,4 @@ async def get_sensor_readings(sensorid):
     readings = cursor.fetchall()
     cursor.close()
     close_connection(mydb)
-    return readings
+    return format_to_prediction_data(readings)
