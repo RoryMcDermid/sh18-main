@@ -7,10 +7,7 @@ load_dotenv()
 
 app = FastAPI()
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=['*']
-)
+app.add_middleware(CORSMiddleware, allow_origins=["*"])
 
 # ----------- ENDPOINTS
 
@@ -30,14 +27,17 @@ async def get_systems():
 async def get_sensors(systemid):
     mydb = open_connection()
     cursor = mydb.cursor(buffered=True)
-    cursor.execute("SELECT * FROM SENSORS_FOR_{}".format(systemid))
+    cursor.execute(f"SELECT * FROM SENSORS_FOR_{systemid}")
     sensors = cursor.fetchall()
     cursor.close()
     close_connection(mydb)
     return sensors
 
 
-@app.get("/sensors/compare/{sensorids}", response_description="Get reading data for multiple sensors based on startdate and enddate")
+@app.get(
+    "/sensors/compare/{sensorids}",
+    response_description="Get reading data for multiple sensors based on startdate and enddate",
+)
 async def get_sensor_readings(sensorids, startDate, endDate):
     mydb = open_connection()
     result = []
@@ -46,13 +46,15 @@ async def get_sensor_readings(sensorids, startDate, endDate):
             print(sensorid)
             cursor = mydb.cursor(buffered=True)
             cursor.execute(
-                "SELECT * FROM READINGS_FOR_{} WHERE READING_DATE>='{}' AND READING_DATE<'{}'".format(sensorid, startDate, endDate))
+                f"SELECT * FROM READINGS_FOR_{sensorid} WHERE READING_DATE>='{startDate}' AND READING_DATE<'{endDate}'"
+            )
             result.append(cursor.fetchall())
             cursor.close()
     else:
         cursor = mydb.cursor(buffered=True)
         cursor.execute(
-            "SELECT * FROM READINGS_FOR_{} WHERE READING_DATE>='{}' AND READING_DATE<'{}'".format(sensorids, startDate, endDate))
+            f"SELECT * FROM READINGS_FOR_{sensorids} WHERE READING_DATE>='{startDate}' AND READING_DATE<'{endDate}'"
+        )
         result.append(cursor.fetchall())
         cursor.close()
 
@@ -64,7 +66,7 @@ async def get_sensor_readings(sensorids, startDate, endDate):
 async def get_sensor_readings(sensorid):
     mydb = open_connection()
     cursor = mydb.cursor(buffered=True)
-    cursor.execute("SELECT * FROM READINGS_FOR_{}".format(sensorid))
+    cursor.execute(f"SELECT * FROM READINGS_FOR_{sensorid}")
     readings = cursor.fetchall()
     cursor.close()
     close_connection(mydb)
