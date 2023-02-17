@@ -5,4 +5,5 @@ from .kMeans import k_means
 from .normalise import normalise_to_probability_distribution
 from .sinkhorn import sinkhorn
 from .predictEnergyUsage import predict_EnergyUsage
+from formatPlotData import formatPlotData
 import numpy as np
