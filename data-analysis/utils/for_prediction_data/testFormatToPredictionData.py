@@ -1,4 +1,4 @@
-from formatToPredictionData import format_to_prediction_data
+from .formatToPredictionData import format_to_prediction_data
 
 
 def test_format_to_prediction_data():

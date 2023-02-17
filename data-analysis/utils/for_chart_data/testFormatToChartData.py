@@ -1,4 +1,4 @@
-from formatToChartData import format_to_chart_data
+from .formatToChartData import format_to_chart_data
 
 
 def test_format_to_chart_data():
