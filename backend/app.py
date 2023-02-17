@@ -1,5 +1,5 @@
-from backend.utils.for_chart_data.formatToChartData import format_to_chart_data
-from backend.utils.for_prediction_data.formatToPredictionData import format_to_prediction_data
+from utils.for_chart_data.formatToChartData import format_to_chart_data
+from utils.for_prediction_data.formatToPredictionData import format_to_prediction_data
 from database import open_connection, close_connection
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
