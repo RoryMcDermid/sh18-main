@@ -8,7 +8,8 @@ interface props {
   peakPriceTimes: string[][];
 }
 
-const BarChart: FC<props> = ({ headerRow, data, peakPriceTimes }) => {
+const BarChart: FC<props> = (props) => {
+  let { headerRow, data, peakPriceTimes } = props;
   const annotations = peakPriceTimes.map(([start, end]) => ({
     type: "range",
     x: start,

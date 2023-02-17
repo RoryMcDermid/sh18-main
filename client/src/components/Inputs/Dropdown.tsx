@@ -1,21 +1,21 @@
-import { useState } from "react";
+import { FC, useState } from "react";
 import { ChevronUp, ChevronDown } from "../SVGs";
 
 interface props {
   label: string;
   options: system[];
-  classes?: string;
   getLabel: (option: system) => string;
   onChange: (option: system) => void;
+  className?: string;
 }
 
-const Dropdown = (props: props) => {
-  const { label, options, classes, getLabel, onChange } = props;
+const Dropdown: FC<props> = (props) => {
+  let { label, options, className, getLabel, onChange } = props;
   const [expanded, setExpanded] = useState(false);
   const [state, setState] = useState<system>();
 
   return (
-    <div className={`${classes ? classes : "w-80"}`}>
+    <div className={`${className ? className : "w-80"}`}>
       <div className='pb-3 pl-1 text-xl text-gray-300'>{label}</div>
       <div className='grid gap-2 relative'>
         <div

@@ -1,4 +1,4 @@
-let ChevronUp = () => {
+const ChevronUp = () => {
   return (
     <div className='text-white'>
       <svg

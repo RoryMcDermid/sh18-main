@@ -14,7 +14,3 @@ const formatDate = (dateString: string) => {
 };
 
 export default formatDate;
-
-// 2023-01-11T16:30:00.000Z
-
-// 2023-01-11 16:30

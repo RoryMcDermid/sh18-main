@@ -6,37 +6,32 @@ interface props {
   items: string[];
   state: string[];
   setState: (n: string[]) => void;
-  classes?: string;
+  className?: string;
 }
 
-const MultiSelectDropdown: FC<props> = ({
-  label,
-  items,
-  state,
-  setState: addToState,
-  classes,
-}) => {
+const MultiSelectDropdown: FC<props> = (props) => {
+  let { label, items, state, setState, className } = props;
   const [expanded, setExpanded] = useState(false);
   const [allSelected, setAllSelected] = useState(false);
 
   const handleOption = (option: string) => {
     if (!state.includes(option)) {
-      addToState([...state, option]);
+      setState([...state, option]);
     } else {
       let newState = state.filter((item) => {
         return item != option;
       });
-      addToState(newState);
+      setState(newState);
     }
   };
 
   const selectAll = () => {
     if (!allSelected) {
       setAllSelected(true);
-      addToState(items);
+      setState(items);
     } else {
       setAllSelected(false);
-      addToState([]);
+      setState([]);
     }
   };
 
@@ -47,7 +42,7 @@ const MultiSelectDropdown: FC<props> = ({
   }, [state]);
 
   return (
-    <div className={`${classes ?? "w-80"}`}>
+    <div className={`${className ?? "w-80"}`}>
       <div className='pb-3 pl-1 text-xl text-gray-300'>{label}</div>
       <div className='grid gap-2 relative'>
         <div

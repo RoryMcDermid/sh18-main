@@ -7,12 +7,8 @@ interface props {
   handleSelection: (n: number) => void;
 }
 
-const ButtonGroup: FC<props> = ({
-  label,
-  items,
-  handleSelection,
-  disableItems,
-}) => {
+const ButtonGroup: FC<props> = (props) => {
+  let { label, items, handleSelection, disableItems } = props;
   const [clickedId, setClickedId] = useState(-1);
 
   const handleClick = (

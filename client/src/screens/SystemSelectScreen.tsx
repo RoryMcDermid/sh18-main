@@ -51,7 +51,7 @@ const SystemSelectScreen: FC<props> = ({ formSelection, setFormSelection }) => {
           label='Select a system:'
           options={systems}
           onChange={(item) => setSelectedSystem(item)}
-          classes='w-full'
+          className='w-full'
           getLabel={(system) => system.SYSTEM_NAME}
         />
         <MultiSelectDropdown
@@ -64,7 +64,7 @@ const SystemSelectScreen: FC<props> = ({ formSelection, setFormSelection }) => {
               selectedSensors: e,
             })
           }
-          classes='w-full'
+          className='w-full'
         />
 
         <div className='flex gap-10'>
