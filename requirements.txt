@@ -5,3 +5,7 @@ requests==2.28.2
 json
 mysql-connector-python==8.0.32
 mysqlclient
+fastapi
+uvicorn[standard]
+mysql.connector
+dotenv
