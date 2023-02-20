@@ -7,4 +7,3 @@ mysqlclient
 fastapi
 uvicorn[standard]
 mysql.connector
-dotenv
