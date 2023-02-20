@@ -7,3 +7,4 @@ mysqlclient
 fastapi
 uvicorn[standard]
 mysql.connector
+mysql_config
