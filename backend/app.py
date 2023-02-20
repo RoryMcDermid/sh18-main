@@ -38,7 +38,7 @@ async def get_sensors(systemid):
 
 
 @app.get(
-    "/sensors/compare/{sensorids}",
+    "/sensors/{sensorids}/chartformat",
     response_description="Get reading data for multiple sensors based on startdate and enddate",
 )
 async def get_sensor_readings(sensorids, startDate, endDate):
@@ -65,7 +65,7 @@ async def get_sensor_readings(sensorids, startDate, endDate):
     return format_to_chart_data(result)
 
 
-@app.get("/sensors/forcast/{sensorid}", response_description="Get ALL reading data for ONE sensor")
+@app.get("/sensors/{sensorid}", response_description="Get ALL reading data for ONE sensor")
 async def get_sensor_readings(sensorid):
     mydb = open_connection()
     cursor = mydb.cursor(buffered=True)
@@ -73,15 +73,4 @@ async def get_sensor_readings(sensorid):
     readings = cursor.fetchall()
     cursor.close()
     close_connection(mydb)
-    return format_to_prediction_data(readings)
-
-
-@app.get("/sensors/evaluation/{sensorid}", response_description="Get ALL reading data for ONE sensor for evaulating expensive sensors")
-async def get_sensor_readings(sensorid):
-    mydb = open_connection()
-    cursor = mydb.cursor(buffered=True)
-    cursor.execute(f"SELECT * FROM READINGS_FOR_{sensorid}")
-    readings = cursor.fetchall()
-    cursor.close()
-    close_connection(mydb)
-    return format_for_expense_analysing(readings)
+    return readings
