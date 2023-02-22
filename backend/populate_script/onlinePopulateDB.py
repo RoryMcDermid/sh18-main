@@ -38,8 +38,9 @@ systems_with_list_of_sensors = get_systems_sensor_list(
 # The reason for ending at yesterday is to allow for the updateDB.py file to be called to
 # show that it is working.
 
-setup_end_date = dt.datetime.now() - dt.timedelta(hours=1)
-setup_start_date = setup_end_date - dt.timedelta(days=7)
+today = dt.date.today()
+setup_end_date = dt.datetime.combine(today, dt.datetime.min.time()) - dt.timedelta(minutes=1)
+setup_start_date = setup_end_date - dt.timedelta(days=1)
 
 addDatafromDates(setup_start_date, setup_end_date,
                  systems_with_list_of_sensors, mydb, cursor, True)

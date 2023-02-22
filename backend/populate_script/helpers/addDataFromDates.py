@@ -78,7 +78,7 @@ def addDatafromDates(start_date, end_date, systems_with_list_of_sensors, mydb, c
         system_id = jsonResp["systems"][i]["system_id"]
         for j in range(len(jsonResp["systems"][i]["sensors"])):
             if online:
-                if (dt.datetime.now() - reference_time).total_seconds() > 13:
+                if (dt.datetime.now() - reference_time).total_seconds() > 8:
                     mydb = mysql.connector.connect(
                         username = "wod2dh1e3jfuxs210ykt",
                         host = "aws-eu-west-2.connect.psdb.cloud",
