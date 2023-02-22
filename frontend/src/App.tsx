@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import { Header } from "./components";
 import { getPeakWholesalePrices } from "./helpers";
 import { loadWholesalePrice } from "./hooks";
-import { SystemSelectScreen, CompareScreen } from "./screens";
+import { CompareScreen } from "./screens";
 import FindingsScreen from "./screens/FindingsScreen";
 
 function App() {
@@ -34,15 +34,6 @@ function App() {
     <>
       <Header />
       <Routes>
-        <Route
-          path='/'
-          element={
-            <SystemSelectScreen
-              formSelection={formSelection}
-              setFormSelection={setFormSelection}
-            />
-          }
-        />
         <Route
           path='/compare'
           element={
