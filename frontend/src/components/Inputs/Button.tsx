@@ -12,7 +12,7 @@ const Button: FC<props> = (props) => {
   return (
     <>
       <button
-        className={`px-5 py-3 w-full text-xl font-semibold rounded-lg
+        className={`px-5 py-3 w-full h-full text-xl font-semibold rounded-lg
         ${className ?? "w-32"}
         ${
           isDisabled
