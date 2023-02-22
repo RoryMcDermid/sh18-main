@@ -4,7 +4,7 @@ import axios from "axios";
 const useSensors = (system: system | null) => {
   const [sensors, setSensors] = useState<string[]>([]);
 
-  const loadSensorsData = async (systemid: string) => {
+  const loadSensorsData = async (system: string) => {
     axios({
       method: "GET",
       url: `https://moxieenergydeploy-production.up.railway.app/systems/${system}/sensors`,
