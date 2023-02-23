@@ -3,14 +3,17 @@ from typing import List
 import numpy as np
 from calendar import monthrange, isleap
 
+from generateMockData import get_date_boundaries
+
 
 def get_year_length(year):
     return 366 if isleap(year) else 365
 
 
 def pad_data(dataset: List[List[str, float]]) -> List[List[str, float]]:
-    start_date = dt.datetime.strptime(dataset[0][0], "%Y-%m-%dT%H:%M:%S")
-    end_date = dt.datetime.strptime(dataset[-1][0], "%Y-%m-%dT%H:%M:%S")
+    start_date, end_date = get_date_boundaries(dataset)
+    # start_date = dt.datetime.strptime(dataset[0][0], "%Y-%m-%dT%H:%M:%S")
+    # end_date = dt.datetime.strptime(dataset[-1][0], "%Y-%m-%dT%H:%M:%S")
     start_yday = start_date.timetuple().tm_yday
     end_yday = end_date.timetuple().tm_yday
 
@@ -26,8 +29,9 @@ def pad_data(dataset: List[List[str, float]]) -> List[List[str, float]]:
 
 
 def split_into_years(dataset: List[List[str, float]]) -> List[List[List[str, float]]]:
-    start_date = dt.datetime.strptime(dataset[0][0], "%Y-%m-%dT%H:%M:%S")
-    end_date = dt.datetime.strptime(dataset[-1][0], "%Y-%m-%dT%H:%M:%S")
+    start_date, end_date = get_date_boundaries(dataset)
+    # start_date = dt.datetime.strptime(dataset[0][0], "%Y-%m-%dT%H:%M:%S")
+    # end_date = dt.datetime.strptime(dataset[-1][0], "%Y-%m-%dT%H:%M:%S")
     year_lengths = [get_year_length(y) for y in range(start_date.year, end_date.year)]
     result = np.split(dataset, np.cumsum(year_lengths)[:-1])
     return result
