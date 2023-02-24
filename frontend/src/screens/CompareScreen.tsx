@@ -10,6 +10,7 @@ import {
 import { BarChart, MultiLineChart } from "../components";
 import { getValidIntervals } from "../helpers";
 import { loadSensorReadingData, loadSystems, useSensors } from "../hooks";
+import Loading from 'react-loading';
 
 interface props {
   peakPriceTimes: string[][];
@@ -30,6 +31,8 @@ const CompareScreen: FC<props> = ({ peakPriceTimes }) => {
   const [selectedSystem, setSelectedSystem] = useState<system | null>(null);
 
   const { sensors } = useSensors(selectedSystem);
+  const [currentChartType, setCurrentChartType] = useState(true);
+  const [chartReady, setChartReady] = useState(true);
 
   const sensorReading = loadSensorReadingData({
     selectedSensors: selectedSensors,
@@ -37,7 +40,6 @@ const CompareScreen: FC<props> = ({ peakPriceTimes }) => {
     endDate: endDate,
     interval: interval,
   });
-
   const disableButton = !(
     selectedSensors.length > 0 &&
     startDate !== "" &&
@@ -46,7 +48,7 @@ const CompareScreen: FC<props> = ({ peakPriceTimes }) => {
     interval <= 4
   );
 
-  const [currentChartType, setCurrentChartType] = useState(true);
+
 
   useEffect(() => {
     console.table(formSelection);
@@ -57,24 +59,37 @@ const CompareScreen: FC<props> = ({ peakPriceTimes }) => {
       interval: -1,
     });
   }, []);
+  useEffect(() => {
+    if (sensorReading.length === 0) {
+      setChartReady(false);
+    } else {
+      setChartReady(true);
+    }
+  }, [sensorReading]);
+
 
   return (
       <>
         <div style={{ display: "flex", height: "97vh", width: "97vw"  }}>
-          <div style={{ width: "65%" , marginRight: "30px", display: "flex", height: "100%"}}>
-            {currentChartType && (
-                <MultiLineChart
-                    headerRow={["", ...selectedSensors]}
-                    data={sensorReading}
-                    peakPriceTimes={peakPriceTimes}
-                />
-            )}
-            {!currentChartType && (
-                <BarChart
-                    headerRow={["", ...selectedSensors]}
-                    data={sensorReading}
-                    peakPriceTimes={peakPriceTimes}
-                />
+          <div style={{ width: "65%" , marginRight: "30px", display: "flex", height: "72%"}}>
+            {chartReady ? (
+                <>
+                  {currentChartType ? (
+                      <MultiLineChart
+                          headerRow={["", ...selectedSensors]}
+                          data={sensorReading}
+                          peakPriceTimes={peakPriceTimes}
+                      />) : (
+                          <BarChart
+                              headerRow={["", ...selectedSensors]}
+                              data={sensorReading}
+                              peakPriceTimes={peakPriceTimes}
+                          />
+                  )}
+                </>
+            ) : (<div className='w-full' style={{display: "flex", alignItems: "center", justifyContent: "center", height: "100%"}}>
+                  <Loading type="spin" color="#ffffff" height={50} width={50}/>
+            </div>
             )}
           </div>
           <div style={{ width: "30%", height: "100%"}}>
