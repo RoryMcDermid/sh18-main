@@ -10,9 +10,6 @@ def updateFromDates(start_date, end_date, systems_with_sensors_dict, mydb, curso
     token = "b30a7d8f6f92"
     secretKey = "ATGUAP!Data2211"
 
-    #above variables are the token and secret key we were given for the API.
-    #if multiple sensors are requested, loop through each to create appropriate input
-
     formatted_systems = []
 
     start_date = start_date.isoformat()
@@ -68,12 +65,15 @@ def updateFromDates(start_date, end_date, systems_with_sensors_dict, mydb, curso
             if online:
 
                 if (dt.datetime.now() - reference_time).total_seconds() > 8:
+                    env_path = os.path.join(os.path.dirname(__file__), '..', '..', '.env')
+                    dotenv.load_dotenv(dotenv_path=env_path)
+
                     mydb = mysql.connector.connect(
-                        username = "wod2dh1e3jfuxs210ykt",
-                        host = "aws-eu-west-2.connect.psdb.cloud",
-                        password = "pscale_pw_zAx3LdXNX0R0YVevbMphKOEjXcSVMc1BKe5PfaCDDB2",
-                        database = "moxie_live"
-                        )
+                        username=os.environ.get('DB_USERNAME'),
+                        host=os.environ.get('DB_HOST'),
+                        password=os.environ.get('DB_PASSWORD'),
+                        database=os.environ.get('DB')
+                    )
                     cursor = mydb.cursor(buffered=True)
                     reference_time = dt.datetime.now()
 

@@ -4,39 +4,28 @@ from helpers.addDataFromDates import *
 from helpers.createSensorsForSystem import *
 from helpers.createDB import *
 from helpers.createSystems import *
+import os
+import dotenv
 
-TIME_PERIOD = 2
+env_path = os.path.join(os.path.dirname(__file__), '..', '.env')
+dotenv.load_dotenv(dotenv_path=env_path)
+
 mydb = mysql.connector.connect(
-    username="wod2dh1e3jfuxs210ykt",
-    host="aws-eu-west-2.connect.psdb.cloud",
-    password="pscale_pw_zAx3LdXNX0R0YVevbMphKOEjXcSVMc1BKe5PfaCDDB2",
-    database="moxie_live"
+    username=os.environ.get('DB_USERNAME'),
+    host=os.environ.get('DB_HOST'),
+    password=os.environ.get('DB_PASSWORD'),
+    database=os.environ.get('DB')
 )
 cursor = mydb.cursor(buffered=True)
+
 system_ids = create_systems(mydb, cursor)
 
 system_call_mock = dict(json.load(open("mocks/system_ids.json")))
 sensors_mock = dict(json.load(open("mocks/getSensors.json")))
 
-# creates the SYSTEMS table in the db that stores the system_id and
-# the name of that system. Returns a list of the system ids as integers.
 system_ids = create_systems(mydb, cursor, mock=system_call_mock, online=True)
-
-# Creates the SENSORS_FOR_{system id} tables that store the
-# sensor_id, system_id and sensor_measurement. The sensor measurement
-# is stored as it is needed for parsing a returned json later on.
-# This function also contains validity checks so that a sensor is only
-# added to one specific system even if it belongs to two, and if a system has
-# no associated unique sensors it is removed from the SYSTEMS table.
-# Returned is a dictionary that has the system ids as the keys, and unique
-# sensor_ids as the values stored in a list
 systems_with_list_of_sensors = get_systems_sensor_list(
     system_ids, mydb, cursor, online=True)
-# Setup the dates that we are looking to record from.
-# This takes yesterday as the most recent date and goes 2 days back from there
-# to get the data from.
-# The reason for ending at yesterday is to allow for the updateDB.py file to be called to
-# show that it is working.
 
 today = dt.date.today()
 setup_end_date = dt.datetime.combine(today, dt.datetime.min.time()) - dt.timedelta(minutes=1)

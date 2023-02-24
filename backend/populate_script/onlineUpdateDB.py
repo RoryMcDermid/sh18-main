@@ -6,18 +6,17 @@ from helpers.getSensorList import *
 from helpers.getSystemsList import *
 from helpers.createSensorsForSystem import *
 from helpers.updateFromDates import *
+import os
+import dotenv
 
-# This function finds the date of the most recently stored value in the
-# iter_1 table, then gets all the dates from the api using the previously defined function.
-# It then performs the push down function, adding all appropriate values to tables that are
-# needed. Then remove the unwanted values from tables that are no longer needed to be stored in
-# the specified time ranges for each iteration.
+env_path = os.path.join(os.path.dirname(__file__), '..', '.env')
+dotenv.load_dotenv(dotenv_path=env_path)
 
 mydb = mysql.connector.connect(
-    username="wod2dh1e3jfuxs210ykt",
-    host="aws-eu-west-2.connect.psdb.cloud",
-    password="pscale_pw_zAx3LdXNX0R0YVevbMphKOEjXcSVMc1BKe5PfaCDDB2",
-    database="moxie_live"
+    username=os.environ.get('DB_USERNAME'),
+    host=os.environ.get('DB_HOST'),
+    password=os.environ.get('DB_PASSWORD'),
+    database=os.environ.get('DB')
 )
 cursor = mydb.cursor(buffered=True)
 
