@@ -5,8 +5,6 @@ import datetime as dt
 import mysql.connector
 from helpers.addReadings import *
 
-
-
 def updateFromDates(start_date, end_date, systems_with_sensors_dict, mydb, cursor, online=False):
     url = "https://www.realtime-online.com/api/v3/json/"
     token = "b30a7d8f6f92"
@@ -92,31 +90,6 @@ def updateFromDates(start_date, end_date, systems_with_sensors_dict, mydb, curso
                     val_date = dt.datetime.strptime(vals["record_date"][0:19], "%Y-%m-%dT%H:%M:%S")
                     try:
                         val_reading = vals["values"][sensor_measurement]
-                       # if not online:
-                          #  try: 
-                                # Try condition only here as we currently only have the
-                                # features tables set up for a few of the sensors.
-                                # time_slot = dt.datetime.strftime(val_date, "%H:%M:%S")
-                                # sql = f"""SELECT BASELINE, AVERAGE FROM FEATURES_FOR_{sensor_id}
-                                #         WHERE TIME_SLOT = '{time_slot}'"""
-                                # cursor.execute(sql)
-                                # current_vals = cursor.fetchall()
-                                # baseline = current_vals[0][0]
-                                # avg = current_vals[0][1]
-                                # Again avoiding 0 values to not skew the data a major amount.
-                            #     if val_reading > 0:
-                            #         if val_reading < baseline:
-                            #             sql = f"""UPDATE FEATURES_FOR_{sensor_id} 
-                            #                 SET BASELINE = {val_reading}
-                            #                 WHERE TIME_SLOT = '{time_slot}' """
-                            #         cursor.execute(sql)
-                            #         sql = f"""UPDATE FEATURES_FOR_{sensor_id}
-                            #                 SET AVERAGE = {(val_reading + avg)/2 }
-                            #                 WHERE TIME_SLOT = '{time_slot}' """
-                            #         cursor.execute(sql)
-                            #         mydb.commit()
-                            # except:
-                            #     continue
                     except: 
                         val_reading = 0.00
 
