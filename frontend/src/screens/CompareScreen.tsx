@@ -10,6 +10,7 @@ import {
 import { BarChart, MultiLineChart } from "../components";
 import { getValidIntervals } from "../helpers";
 import { loadSensorReadingData, loadSystems, useSensors } from "../hooks";
+import Loading from 'react-loading';
 
 interface props {
   peakPriceTimes: string[][];
@@ -47,6 +48,7 @@ const CompareScreen: FC<props> = ({ peakPriceTimes }) => {
   );
 
   const [currentChartType, setCurrentChartType] = useState(true);
+  const [chartReady, setChartReady] = useState(false);
 
   useEffect(() => {
     console.table(formSelection);
@@ -61,20 +63,25 @@ const CompareScreen: FC<props> = ({ peakPriceTimes }) => {
   return (
       <>
         <div style={{ display: "flex", height: "97vh", width: "97vw"  }}>
-          <div style={{ width: "65%" , marginRight: "30px", display: "flex", height: "100%"}}>
-            {currentChartType && (
-                <MultiLineChart
-                    headerRow={["", ...selectedSensors]}
-                    data={sensorReading}
-                    peakPriceTimes={peakPriceTimes}
-                />
-            )}
-            {!currentChartType && (
-                <BarChart
-                    headerRow={["", ...selectedSensors]}
-                    data={sensorReading}
-                    peakPriceTimes={peakPriceTimes}
-                />
+          <div style={{ width: "65%" , marginRight: "30px", display: "flex", height: "72%"}}>
+            {chartReady ? (
+                <>
+                  {currentChartType ? (
+                      <MultiLineChart
+                          headerRow={["", ...selectedSensors]}
+                          data={sensorReading}
+                          peakPriceTimes={peakPriceTimes}
+                      />) : (
+                          <BarChart
+                              headerRow={["", ...selectedSensors]}
+                              data={sensorReading}
+                              peakPriceTimes={peakPriceTimes}
+                          />
+                  )}
+                </>
+            ) : (<div className='w-full' style={{display: "flex", alignItems: "center", justifyContent: "center", height: "100%"}}>
+                <Loading type="spin" color="#ffffff" height={50} width={50}/>
+              </div>
             )}
           </div>
           <div style={{ width: "30%", height: "100%"}}>
