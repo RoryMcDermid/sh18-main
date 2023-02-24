@@ -10,6 +10,8 @@ import {
 import { BarChart, MultiLineChart } from "../components";
 import { getValidIntervals } from "../helpers";
 import { loadSensorReadingData, loadSystems, useSensors } from "../hooks";
+import Loading from 'react-loading';
+import { toast } from 'react-toastify';
 
 interface props {
   peakPriceTimes: string[][];
@@ -47,6 +49,11 @@ const CompareScreen: FC<props> = ({ peakPriceTimes }) => {
   );
 
   const [currentChartType, setCurrentChartType] = useState(true);
+  const [chartReady, setChartReady] = useState(false);
+  const handleChartError = () => {
+    setChartReady(false);
+    toast.error('Failed to load chart.');
+  };
 
   useEffect(() => {
     console.table(formSelection);
@@ -62,20 +69,24 @@ const CompareScreen: FC<props> = ({ peakPriceTimes }) => {
       <>
         <div style={{ display: "flex", height: "97vh", width: "97vw"  }}>
           <div style={{ width: "65%" , marginRight: "30px", display: "flex", height: "100%"}}>
-            {currentChartType && (
+            {currentChartType && chartReady ?  (
                 <MultiLineChart
                     headerRow={["", ...selectedSensors]}
                     data={sensorReading}
                     peakPriceTimes={peakPriceTimes}
                 />
-            )}
-            {!currentChartType && (
+            ): (
+        <Loading type="spin" color="#000" height={50} width={50} />
+      )}
+            {!currentChartType && chartReady ? (
                 <BarChart
                     headerRow={["", ...selectedSensors]}
                     data={sensorReading}
                     peakPriceTimes={peakPriceTimes}
                 />
-            )}
+            ): (
+        <Loading type="spin" color="#000" height={50} width={50} />
+      )}
           </div>
           <div style={{ width: "30%", height: "100%"}}>
             <div className='flex flex-col gap-5 w-[33rem]'>
