@@ -1,14 +1,17 @@
 import mysql.connector
+import os
+import dotenv
+
+env_path = os.path.join(os.path.dirname(__file__), '..', '..', '.env')
+dotenv.load_dotenv(dotenv_path=env_path)
 
 mydb = mysql.connector.connect(
-  database = "moxie_live",
- username = "wod2dh1e3jfuxs210ykt",
-  host = "aws-eu-west-2.connect.psdb.cloud",
-  password = "pscale_pw_zAx3LdXNX0R0YVevbMphKOEjXcSVMc1BKe5PfaCDDB2"
-)
-
-
-cursor = mydb.cursor()
+     username=os.environ.get('DB_USERNAME'),
+     host=os.environ.get('DB_HOST'),
+     password=os.environ.get('DB_PASSWORD'),
+     database=os.environ.get('DB')
+      )
+cursor = mydb.cursor(buffered=True)
 
 cursor.execute("SHOW TABLES;")
 tables = cursor.fetchall()

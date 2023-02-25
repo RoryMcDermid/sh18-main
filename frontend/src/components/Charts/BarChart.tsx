@@ -9,15 +9,8 @@ interface props {
 }
 
 const BarChart: FC<props> = (props) => {
-  let { headerRow, data, peakPriceTimes } = props;
-  const annotations = peakPriceTimes.map(([start, end]) => ({
-    type: "range",
-    x: start,
-    x2: end,
-    fillColor: "#3F51B5",
-    color: "#3F51B5",
-    opacity: 0.2,
-  }));
+  let { headerRow, data } = props;
+
   const options = {
     backgroundColor: "#242424",
     legend: { position: "none" },
@@ -31,7 +24,6 @@ const BarChart: FC<props> = (props) => {
       easing: "linear",
       duration: 700,
     },
-    annotations: { annotations },
   };
   return (
     <>
