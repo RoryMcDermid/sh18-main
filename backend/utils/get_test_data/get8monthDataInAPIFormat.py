@@ -7,8 +7,8 @@ url = "https://www.realtime-online.com/api/v3/json/"
 token = "b30a7d8f6f92"
 secretKey = "ATGUAP!Data2211"
 
-    #above variables are the token and secret key we were given for the API.
-    #if multiple sensors are requested, loop through each to create appropriate input
+# above variables are the token and secret key we were given for the API.
+# if multiple sensors are requested, loop through each to create appropriate input
 formatted_systems = []
 
 today = dt.date.today()
@@ -19,34 +19,22 @@ sensor_list = []
 sensors = ["6313131"]
 for sensor_id in sensors:
     sensor_list.append(
-        {
-        "sensor_id": sensor_id,
-        "start_date": setup_start_date.isoformat(),
-        "end_date": setup_end_date.isoformat()
-        }
-        )
-formatted_systems.append(
-        {
-    "system_id": 2418,
-    "sensors": sensor_list
-    }
+        {"sensor_id": sensor_id, "start_date": setup_start_date.isoformat(), "end_date": setup_end_date.isoformat()}
     )
-    # Form the request, in this example, getting all the sensors associated with a chosen system.
+formatted_systems.append({"system_id": 2418, "sensors": sensor_list})
+# Form the request, in this example, getting all the sensors associated with a chosen system.
 request_body = {
     "action": "getSensorRecords",
     "request_date": dt.datetime.now().isoformat(),
-    "systems": formatted_systems
-    }
-    # This bit here I just copied from their example python request.
-    # magic string really is a descriptive variable as I have no idea what this does.
+    "systems": formatted_systems,
+}
+# This bit here I just copied from their example python request.
+# magic string really is a descriptive variable as I have no idea what this does.
 magicString = json.dumps(request_body) + secretKey
 contentHash = hashlib.sha256(magicString.encode()).hexdigest()
-headers = {
-    "X-RT2-API-Token": token,
-    "X-RT2-API-Hash": contentHash
-    }
+headers = {"X-RT2-API-Token": token, "X-RT2-API-Hash": contentHash}
 
-    #post the above request to the API, then store the response in the jsonResp file.
+# post the above request to the API, then store the response in the jsonResp file.
 resp = requests.post(url, data=json.dumps(request_body), headers=headers)
 jsonResp = json.loads(resp.text)
 

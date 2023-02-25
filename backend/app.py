@@ -60,7 +60,7 @@ async def get_sensor_readings(sensorids, startDate, endDate):
         cursor.close()
 
     close_connection(mydb)
-    return format_to_chart_data(result)
+    return result
 
 
 @app.get("/sensors/{sensorid}", response_description="Get ALL reading data for ONE sensor")
