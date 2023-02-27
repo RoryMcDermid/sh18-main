@@ -16,7 +16,7 @@ const Dropdown: FC<props> = (props) => {
 
   return (
     <div className={`${className ? className : "w-80"}`}>
-      <div className='pb-3 pl-1 text-xl text-gray-300'>{label}</div>
+      <div className='pb-3 pl-1 text-xl text-slate-300'>{label}</div>
       <div className='grid gap-2 relative'>
         <div
           className={`p-6 w-full h-max flex justify-between 
@@ -35,7 +35,7 @@ const Dropdown: FC<props> = (props) => {
             {options.map((item) => (
               <div
                 key={getLabel(item)}
-                className='p-4 rounded-lg hover:bg-gray-200/60 text-white hover:text-black hover:font-semibold cursor-pointer'
+                className='p-4 rounded-lg hover:bg-slate-200/60 text-white hover:text-black hover:font-semibold cursor-pointer'
                 onClick={() => {
                   setState(item);
                   onChange(item);

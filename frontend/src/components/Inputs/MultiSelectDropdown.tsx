@@ -43,7 +43,7 @@ const MultiSelectDropdown: FC<props> = (props) => {
 
   return (
     <div className={`${className ?? "w-80"}`}>
-      <div className='pb-3 pl-1 text-xl text-gray-300'>{label}</div>
+      <div className='pb-3 pl-1 text-xl text-slate-300'>{label}</div>
       <div className='grid gap-2 relative'>
         <div
           className={`p-6 w-full h-max flex justify-between 
@@ -69,7 +69,7 @@ const MultiSelectDropdown: FC<props> = (props) => {
             {items.map((item, i) => (
               <div
                 key={i}
-                className={`p-4 rounded-lg cursor-pointer hover:bg-gray-200/60
+                className={`p-4 rounded-lg cursor-pointer hover:bg-slate-200/60
                   ${
                     state.includes(item)
                       ? "text-amber-600 hover:text-orange-700 font-semibold"

@@ -21,7 +21,7 @@ const ButtonGroup: FC<props> = (props) => {
 
   return (
     <div>
-      <div className='pb-3 pl-1 text-xl text-gray-300'>{label}</div>
+      <div className='pb-3 pl-1 text-xl text-slate-300'>{label}</div>
       <div className='w-full inline-flex justify-between' role='group'>
         {items.map((item, i) => (
           <button
@@ -30,7 +30,7 @@ const ButtonGroup: FC<props> = (props) => {
               i === clickedId && "py-2.5 border-2 border-orange-500"
             } ${
               !disableItems.includes(i + 1)
-                ? "text-gray-600 bg-gray-400"
+                ? "text-slate-600 bg-slate-400"
                 : "text-white bg-slate-800 hover:bg-slate-600"
             }`}
             onClick={(e) => handleClick(e, i)}
