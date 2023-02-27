@@ -1,12 +1,13 @@
 import { FC, useEffect, useState } from "react";
+
 import {
   Button,
   ButtonGroup,
+  CombinedChart,
   DatePicker,
   Dropdown,
   MultiSelectDropdown,
-} from "../components/Inputs/.";
-import { CombinedChart } from "../components";
+} from "../components";
 import { getPeakWholesalePrices, getValidIntervals } from "../helpers";
 import {
   loadSensorReadingData,
@@ -28,15 +29,8 @@ const CompareScreen: FC = () => {
   const { systems } = loadSystems();
   const [selectedSystem, setSelectedSystem] = useState<system | null>(null);
   const { sensors } = useSensors(selectedSystem);
-
   const [peakPriceTimes, setPeakPriceTimes] = useState<string[][]>([]);
-
-  const sensorReadings = loadSensorReadingData({
-    selectedSensors: selectedSensors,
-    startDate: startDate,
-    endDate: endDate,
-    interval: interval,
-  });
+  const [sensorReadings, setSensorReadings] = useState<energyReading[][]>([]);
 
   const disableButton = !(
     selectedSensors.length > 0 &&
@@ -53,6 +47,7 @@ const CompareScreen: FC = () => {
     formSelection.endDate
   );
 
+  // empty form every time page reloads
   useEffect(() => {
     setFormSelection({
       selectedSensors: [] as string[],
@@ -68,7 +63,19 @@ const CompareScreen: FC = () => {
     setPeakPriceTimes(getPeakWholesalePrices(wholesalePrice));
   }, [wholesalePrice]);
 
-  useEffect(() => {}, []);
+  // only load sensor readings into chart once all form inputs have been selected or re-selected
+  useEffect(() => {
+    if (!disableButton) {
+      setSensorReadings(
+        loadSensorReadingData({
+          selectedSensors: selectedSensors,
+          startDate: startDate,
+          endDate: endDate,
+          interval: interval,
+        })
+      );
+    }
+  }, [disableButton]);
 
   return (
     <>
@@ -81,7 +88,7 @@ const CompareScreen: FC = () => {
           />
         </div>
         <div className='px-5 w-1/3'>
-          <div className='flex flex-col gap-5 h-5/6 justify-end pb-5'>
+          <div className='flex flex-col gap-5 h-5/6 justify-center pb-5'>
             <Dropdown
               label='Select a system:'
               options={systems}

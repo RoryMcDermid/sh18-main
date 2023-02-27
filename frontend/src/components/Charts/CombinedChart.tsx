@@ -52,6 +52,7 @@ const CombinedChart: FC<props> = (props) => {
           className='w-max'
           text={currentChartType ? "Bar Chart" : "Line Chart"}
           handleClick={() => setCurrentChartType(!currentChartType)}
+          isDisabled={!chartReady}
         />
       </div>
     </div>
