@@ -1,5 +1,4 @@
 import { FC, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import {
   Button,
   ButtonGroup,
@@ -7,16 +6,16 @@ import {
   Dropdown,
   MultiSelectDropdown,
 } from "../components/Inputs/.";
-import { BarChart, MultiLineChart } from "../components";
-import { getValidIntervals } from "../helpers";
-import { loadSensorReadingData, loadSystems, useSensors } from "../hooks";
-import Loading from "react-loading";
+import { CombinedChart } from "../components";
+import { getPeakWholesalePrices, getValidIntervals } from "../helpers";
+import {
+  loadSensorReadingData,
+  loadSystems,
+  loadWholesalePrice,
+  useSensors,
+} from "../hooks";
 
-interface props {
-  peakPriceTimes: string[][];
-}
-
-const CompareScreen: FC<props> = ({ peakPriceTimes }) => {
+const CompareScreen: FC = () => {
   const [formSelection, setFormSelection] = useState({
     selectedSensors: [] as string[],
     startDate: "",
@@ -28,17 +27,17 @@ const CompareScreen: FC<props> = ({ peakPriceTimes }) => {
 
   const { systems } = loadSystems();
   const [selectedSystem, setSelectedSystem] = useState<system | null>(null);
-
   const { sensors } = useSensors(selectedSystem);
-  const [currentChartType, setCurrentChartType] = useState(true);
-  const [chartReady, setChartReady] = useState(true);
 
-  const sensorReading = loadSensorReadingData({
+  const [peakPriceTimes, setPeakPriceTimes] = useState<string[][]>([]);
+
+  const sensorReadings = loadSensorReadingData({
     selectedSensors: selectedSensors,
     startDate: startDate,
     endDate: endDate,
     interval: interval,
   });
+
   const disableButton = !(
     selectedSensors.length > 0 &&
     startDate !== "" &&
@@ -47,8 +46,14 @@ const CompareScreen: FC<props> = ({ peakPriceTimes }) => {
     interval <= 4
   );
 
+  // once the start and end dates are set,
+  // an API call is made to get the wholesale energy price data
+  const wholesalePrice = loadWholesalePrice(
+    formSelection.startDate,
+    formSelection.endDate
+  );
+
   useEffect(() => {
-    console.table(formSelection);
     setFormSelection({
       selectedSensors: [] as string[],
       startDate: "",
@@ -56,42 +61,27 @@ const CompareScreen: FC<props> = ({ peakPriceTimes }) => {
       interval: -1,
     });
   }, []);
+
+  // once the wholesale energy price data is available,
+  // the peak price start and end times are set accordingly
   useEffect(() => {
-    if (sensorReading.length === 0) {
-      setChartReady(false);
-    } else {
-      setChartReady(true);
-    }
-  }, [sensorReading]);
+    setPeakPriceTimes(getPeakWholesalePrices(wholesalePrice));
+  }, [wholesalePrice]);
+
+  useEffect(() => {}, []);
 
   return (
     <>
-      <div className='flex h-[97vh]'>
-        <div className='mr-[30px] flex h-[72%] w-[65%]'>
-          {chartReady ? (
-            <>
-              {currentChartType ? (
-                <MultiLineChart
-                  headerRow={["", ...selectedSensors]}
-                  data={sensorReading}
-                  peakPriceTimes={peakPriceTimes}
-                />
-              ) : (
-                <BarChart
-                  headerRow={["", ...selectedSensors]}
-                  data={sensorReading}
-                  peakPriceTimes={peakPriceTimes}
-                />
-              )}
-            </>
-          ) : (
-            <div className='w-full h-full flex justify-center items-center'>
-              <Loading type='spin' color='#ffffff' height={50} width={50} />
-            </div>
-          )}
+      <div className='flex h-[85vh]'>
+        <div className='flex w-2/3'>
+          <CombinedChart
+            selectedSensors={selectedSensors}
+            sensorReadings={sensorReadings}
+            peakPriceTimes={peakPriceTimes}
+          />
         </div>
-        <div className='w-[30%] h-full'>
-          <div className='flex flex-col gap-5 w-[33rem]'>
+        <div className='px-5 w-1/3'>
+          <div className='flex flex-col gap-5 h-5/6 justify-end pb-5'>
             <Dropdown
               label='Select a system:'
               options={systems}
@@ -109,7 +99,7 @@ const CompareScreen: FC<props> = ({ peakPriceTimes }) => {
               className='w-full'
             />
 
-            <div className='flex gap-10'>
+            <div className='flex justify-between'>
               <DatePicker
                 label='Select a start date:'
                 state={startDate}
@@ -139,15 +129,9 @@ const CompareScreen: FC<props> = ({ peakPriceTimes }) => {
               }
               disableItems={getValidIntervals(startDate, endDate)}
             />
-            <div className='flex justify-between'>
-              <Button
-                text={currentChartType ? "Bar Chart" : "Line Chart"}
-                handleClick={() => setCurrentChartType(!currentChartType)}
-              />
-              <Link to='/compare'>
-                <Button text='Enter' isDisabled={disableButton} />
-              </Link>
-            </div>
+          </div>
+          <div className='mt-5 flex justify-between'>
+            <Button text='Enter' isDisabled={disableButton} />
           </div>
         </div>
       </div>

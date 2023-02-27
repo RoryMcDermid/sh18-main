@@ -16,7 +16,7 @@ const Button: FC<props> = (props) => {
         ${className ?? "w-32"}
         ${
           isDisabled
-            ? "text-gray-600 bg-gray-400"
+            ? "text-slate-600 bg-slate-400"
             : "text-white bg-orange-500 hover:bg-orange-600"
         }`}
         disabled={isDisabled}
