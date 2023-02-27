@@ -8,4 +8,5 @@ mysqlclient
 fastapi
 uvicorn[standard]
 mysql.connector
+psycopg2
 dotenv
