@@ -1,5 +1,6 @@
 export { MultiLineChart } from "./Charts";
 export { BarChart } from "./Charts";
+export { CombinedChart } from "./Charts";
 
 export { Dropdown } from "./Inputs";
 export { MultiSelectDropdown } from "./Inputs";
