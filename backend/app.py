@@ -1,10 +1,12 @@
 from utils.data_formatting.formatToChartData import format_to_chart_data
 from utils.data_formatting.formatToPredictionData import format_to_prediction_data
+from utils.get_features.averageFromGroup import get_average_from_group
 from database import open_connection, close_connection
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 from utils.prediction.predictEnergyUsage import predict_EnergyUsage
+from utils.get_features.generateMockData import generate_mock_data
 
 load_dotenv()
 
@@ -62,7 +64,7 @@ async def get_sensor_readings(sensorids, startDate, endDate):
         cursor.close()
 
     close_connection(mydb)
-    return result
+    return format_to_chart_data(result)
 
 
 # @app.get("/sensors/{sensorid}", response_description="Get ALL reading data for ONE sensor")
@@ -84,6 +86,9 @@ async def get_sensor_readings(sensorid):
     readings = cursor.fetchall()
     cursor.close()
     close_connection(mydb)
-    readings = format_to_prediction_data(readings)
-    prediction = predict_EnergyUsage(readings)
-    return prediction
+
+    mockdata = generate_mock_data(readings)
+    prediction = predict_EnergyUsage(format_to_prediction_data(mockdata))
+    average = get_average_from_group(mockdata)
+
+    return {"prediction": prediction, "average": average}

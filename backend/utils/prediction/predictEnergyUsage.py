@@ -31,7 +31,7 @@ def predict_EnergyUsage(dataset) -> np.array:
     optimizer = Adam(lr=0.005, beta_1=0.9, beta_2=0.999,
                      epsilon=None, amsgrad=False)
     model.compile(loss='mean_squared_error', optimizer=optimizer)
-    model.fit(X_train, y_train, epochs=200, batch_size=32)
+    model.fit(X_train, y_train, epochs=1, batch_size=32)
 
     inputs = df_scaled[-96:, :]
     inputs = np.reshape(inputs, (1, 96, 96))
@@ -43,4 +43,4 @@ def predict_EnergyUsage(dataset) -> np.array:
     # plt.ylabel('Energy usage(kwh)')
     # plt.title('LSTM Prediction')
     # plt.show()
-    return future_data
+    return future_data.tolist()
