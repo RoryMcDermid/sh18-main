@@ -78,8 +78,8 @@ async def get_sensor_readings(sensorids, startDate, endDate):
 #     return readings
 
 
-@app.get("/sensors/{sensorid}/predict", response_description="Get prediction data for ONE sensor")
-async def get_sensor_readings(sensorid):
+@app.get("/sensors/{sensorid}/forcast", response_description="Get prediction data for ONE sensor")
+async def get_forcast_data(sensorid):
     mydb = open_connection()
     cursor = mydb.cursor()
     cursor.execute(f"SELECT * FROM READINGS_FOR_{sensorid}")
@@ -92,3 +92,15 @@ async def get_sensor_readings(sensorid):
     average = get_average_from_group(mockdata)
 
     return {"prediction": prediction, "average": average}
+
+
+@app.get("/expensivesensors&systems", response_description="Returns the top 3 most expensive systems or sensors. Returned format is a list of tuples, containing the ID along with total cost. E.g. [(1234, 1000.45242), (2791, 923.59532), (3399, 721.80021)]")
+async def get_expensive_sensors_systems():
+    mydb = open_connection()
+    cursor = mydb.cursor()
+    # cursor.execute(f"SELECT * FROM READINGS_FOR_{sensorid}")
+
+    readings = cursor.fetchall()
+    cursor.close()
+    close_connection(mydb)
+    return readings
