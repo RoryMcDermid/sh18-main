@@ -9,4 +9,7 @@ fastapi
 uvicorn[standard]
 mysql.connector
 psycopg2
-dotenv
+python-dotenv
+keras
+scikit-learn
+tensorflow

@@ -1,8 +1,10 @@
 from utils.data_formatting.formatToChartData import format_to_chart_data
+from utils.data_formatting.formatToPredictionData import format_to_prediction_data
 from database import open_connection, close_connection
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
+from utils.prediction.predictEnergyUsage import predict_EnergyUsage
 
 load_dotenv()
 
@@ -36,7 +38,7 @@ async def get_sensors(systemid):
 
 
 @app.get(
-    "/sensors/{sensorids}/chartformat",
+    "/sensors/{sensorids}/compareanddisplay",
     response_description="Get reading data for multiple sensors based on startdate and enddate",
 )
 async def get_sensor_readings(sensorids, startDate, endDate):
@@ -63,7 +65,18 @@ async def get_sensor_readings(sensorids, startDate, endDate):
     return result
 
 
-@app.get("/sensors/{sensorid}", response_description="Get ALL reading data for ONE sensor")
+# @app.get("/sensors/{sensorid}", response_description="Get ALL reading data for ONE sensor")
+# async def get_sensor_readings(sensorid):
+#     mydb = open_connection()
+#     cursor = mydb.cursor()
+#     cursor.execute(f"SELECT * FROM READINGS_FOR_{sensorid}")
+#     readings = cursor.fetchall()
+#     cursor.close()
+#     close_connection(mydb)
+#     return readings
+
+
+@app.get("/sensors/{sensorid}/predict", response_description="Get prediction data for ONE sensor")
 async def get_sensor_readings(sensorid):
     mydb = open_connection()
     cursor = mydb.cursor()
@@ -71,4 +84,6 @@ async def get_sensor_readings(sensorid):
     readings = cursor.fetchall()
     cursor.close()
     close_connection(mydb)
-    return readings
+    readings = format_to_prediction_data(readings)
+    prediction = predict_EnergyUsage(readings)
+    return prediction
