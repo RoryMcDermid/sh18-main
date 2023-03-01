@@ -1,22 +1,6 @@
 from helpers.getSensorList import *
-import mysql.connector
-import datetime as dt
-import os
-import dotenv
 
-def get_systems_sensor_list(system_ids, mydb, cursor, mock=0, online=False):
-
-  if online:
-    env_path = os.path.join(os.path.dirname(__file__), '..', '..', '.env')
-    dotenv.load_dotenv(dotenv_path=env_path)
-
-    mydb = mysql.connector.connect(
-                        username=os.environ.get('DB_USERNAME'),
-                        host=os.environ.get('DB_HOST'),
-                        password=os.environ.get('DB_PASSWORD'),
-                        database=os.environ.get('DB')
-                    )
-    cursor = mydb.cursor(buffered=True)
+def get_systems_sensor_list(system_ids, mydb, cursor, mock=0):
 
   if mock == 0:
     sensorsBySystem = getSensors(system_ids)
@@ -26,10 +10,8 @@ def get_systems_sensor_list(system_ids, mydb, cursor, mock=0, online=False):
   # Some systems have no associated sensors so 
   # remove these systems from the DB.
   cursor.execute("SELECT SYSTEM_ID FROM SYSTEMS")
-  if online:
-    stored_systems = set(x[0] for x in cursor.fetchall())
-  else:
-    stored_systems = set(str(x[0]) for x in cursor.fetchall())
+
+  stored_systems = set(str(x[0]) for x in cursor.fetchall())
   returned_systems = set(sensorsBySystem.keys())
   stored_systems.difference_update(returned_systems)
   for void_system in stored_systems:
@@ -40,24 +22,7 @@ def get_systems_sensor_list(system_ids, mydb, cursor, mock=0, online=False):
   systems_with_list_of_sensors = {}
   added_sensors = set()
   
-  if online:
-    reference_time = dt.datetime.now()
-
   for system, sensors in sensorsBySystem.items():
-
-    if online:
-      if (dt.datetime.now() - reference_time).total_seconds() > 13:
-        env_path = os.path.join(os.path.dirname(__file__), '..', '..', '.env')
-        dotenv.load_dotenv(dotenv_path=env_path)
-
-        mydb = mysql.connector.connect(
-                        username=os.environ.get('DB_USERNAME'),
-                        host=os.environ.get('DB_HOST'),
-                        password=os.environ.get('DB_PASSWORD'),
-                        database=os.environ.get('DB')
-                    )
-        cursor = mydb.cursor(buffered=True)
-        reference_time = dt.datetime.now()
 
     # Check to see if this system has any unique sensors not already
     # added to another system.
