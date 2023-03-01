@@ -40,7 +40,7 @@ async def get_sensors(systemid):
 
 
 @app.get(
-    "/sensors/{sensorids}/compareanddisplay",
+    "/sensors/{sensorids}/compare-and-display",
     response_description="Get reading data for multiple sensors based on startdate and enddate",
 )
 async def get_sensor_readings(sensorids, startDate, endDate):
@@ -94,7 +94,10 @@ async def get_forcast_data(sensorid):
     return {"prediction": prediction, "average": average}
 
 
-@app.get("/expensivesensors&systems", response_description="Returns the top 3 most expensive systems or sensors. Returned format is a list of tuples, containing the ID along with total cost. E.g. [(1234, 1000.45242), (2791, 923.59532), (3399, 721.80021)]")
+@app.get(
+    "/expensive-systems-sensors",
+    response_description="Returns the top 3 most expensive systems or sensors. Returned format is a list of tuples, containing the ID along with total cost. E.g. [(1234, 1000.45242), (2791, 923.59532), (3399, 721.80021)]",
+)
 async def get_expensive_sensors_systems():
     mydb = open_connection()
     cursor = mydb.cursor()
