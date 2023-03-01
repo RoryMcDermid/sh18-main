@@ -3,7 +3,7 @@ import { CombinedChart, SuggestionsCard } from "../components";
 import { useForecastData } from "../hooks";
 
 const ForecastScreen: FC = () => {
-  const [selectedSensor, setSelectedSensor] = useState("");
+  const [selectedSensor, setSelectedSensor] = useState("6313133");
   const { chartData, suggestionData } = useForecastData(selectedSensor);
 
   return (
