@@ -10,8 +10,8 @@ def get_group_info(date):
 
 
 def get_average_from_group(dataset):
-    month, day_of_week = get_group_info(
-        (dt.date.today() + dt.timedelta(days=1)))
+    tomorrow = dt.date.today() + dt.timedelta(days=1)
+    month, day_of_week = get_group_info(tomorrow)
 
     df = pd.DataFrame(dataset, columns=["timestamp", "energy_usage"])
     df["timestamp"] = pd.to_datetime(df["timestamp"])
@@ -19,8 +19,7 @@ def get_average_from_group(dataset):
     df["month"] = df["timestamp"].dt.month
     df["day_of_week"] = df["timestamp"].dt.dayofweek
 
-    group_df = df.loc[(df["month"] == month) & (
-        df["day_of_week"] == day_of_week)]
+    group_df = df.loc[(df["month"] == month) & (df["day_of_week"] == day_of_week)]
 
     result = group_df["energy_usage"].to_numpy()
     result = result.reshape(-1, 96)
