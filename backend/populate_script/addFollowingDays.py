@@ -1,10 +1,14 @@
+import os
+from dotenv import load_dotenv
 import psycopg2
 import datetime as dt
 from helpers.updateFromDates import *
 
+load_dotenv()
+
+
 def addFollowingDays(systems_with_list_of_sensors):
-    connection_string = "postgresql://moxie:iYmwQU_OL2HI1-fiiOqSuQ@fooled-dolphin-7094.8nj.cockroachlabs.cloud:26257/moxie_data?sslmode=verify-full"
-    conn = psycopg2.connect(connection_string)
+    conn = psycopg2.connect(os.getenv("CONNECTION_STRING"))
     cursor = conn.cursor()
 
     cursor.execute("SELECT * FROM READINGS_FOR_6313133 ORDER BY(READING_DATE) DESC")
@@ -19,4 +23,5 @@ def addFollowingDays(systems_with_list_of_sensors):
 
     updateFromDates(start_date, end_date, systems_with_list_of_sensors, conn, cursor)
 
-addFollowingDays({2417: ['6311345', '6311346', '6313033', '6313133']})
+
+addFollowingDays({2417: ["6311345", "6311346", "6313033", "6313133"]})

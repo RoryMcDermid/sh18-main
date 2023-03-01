@@ -1,3 +1,5 @@
+import os
+from dotenv import load_dotenv
 import datetime as dt
 from helpers.addDataFromDates import *
 from helpers.createSensorsForSystem import *
@@ -5,9 +7,8 @@ from helpers.createDB import *
 from helpers.createSystems import *
 import psycopg2
 
-connection_string = "postgresql://moxie:iYmwQU_OL2HI1-fiiOqSuQ@fooled-dolphin-7094.8nj.cockroachlabs.cloud:26257/moxie_data?sslmode=verify-full"
-
-mydb = psycopg2.connect(connection_string)
+load_dotenv()
+mydb = psycopg2.connect(os.getenv("CONNECTION_STRING"))
 
 cursor = mydb.cursor()
 
@@ -22,5 +23,4 @@ today = dt.date.today()
 setup_end_date = dt.datetime.combine(today, dt.datetime.min.time()) - dt.timedelta(minutes=1)
 setup_start_date = setup_end_date - dt.timedelta(days=2)
 
-addDatafromDates(setup_start_date, setup_end_date,
-                 systems_with_list_of_sensors, mydb, cursor, True)
+addDatafromDates(setup_start_date, setup_end_date, systems_with_list_of_sensors, mydb, cursor, True)

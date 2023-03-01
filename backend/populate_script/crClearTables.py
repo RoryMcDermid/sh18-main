@@ -1,9 +1,11 @@
+import os
+from dotenv import load_dotenv
 import psycopg2
 from helpers.updateFromDates import *
 
 def crClearTables(systems_with_list_of_sensors):
-    connection_string = "postgresql://moxie:iYmwQU_OL2HI1-fiiOqSuQ@fooled-dolphin-7094.8nj.cockroachlabs.cloud:26257/moxie_data?sslmode=verify-full"
-    conn = psycopg2.connect(connection_string)
+    load_dotenv()
+    conn = psycopg2.connect(os.getenv("CONNECTION_STRING"))
     cursor = conn.cursor()
 
     for system in systems_with_list_of_sensors.keys():
