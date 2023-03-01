@@ -26,7 +26,7 @@ const useForecastData = (sensorID: string) => {
 
   useEffect(() => {
     if (sensorID) {
-      loadForecastData(sensorID);
+      void loadForecastData(sensorID);
     }
   }, [sensorID]);
 
