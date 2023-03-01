@@ -78,71 +78,69 @@ const CompareScreen: FC = () => {
   }, [disableButton]);
 
   return (
-    <>
-      <div className='flex h-[85vh]'>
-        <div className='flex w-2/3'>
-          <CombinedChart
-            selectedSensors={selectedSensors}
-            sensorReadings={sensorReadings}
-            peakPriceTimes={peakPriceTimes}
+    <div className='flex h-[85vh]'>
+      <div className='flex w-2/3'>
+        <CombinedChart
+          selectedSensors={selectedSensors}
+          sensorReadings={sensorReadings}
+          peakPriceTimes={peakPriceTimes}
+        />
+      </div>
+      <div className='px-5 w-1/3'>
+        <div className='flex flex-col gap-5 h-5/6 justify-center pb-5'>
+          <Dropdown
+            label='Select a system:'
+            options={systems}
+            onChange={(item) => setSelectedSystem(item)}
+            className='w-full'
+            getLabel={(system) => system.SYSTEM_NAME}
+          />
+          <MultiSelectDropdown
+            label='Select sensors:'
+            items={sensors}
+            state={selectedSensors}
+            setState={(e) =>
+              setFormSelection({ ...formSelection, selectedSensors: e })
+            }
+            className='w-full'
+          />
+
+          <div className='flex justify-between'>
+            <DatePicker
+              label='Select a start date:'
+              state={startDate}
+              setState={(e) =>
+                setFormSelection({
+                  ...formSelection,
+                  startDate: e.target.value,
+                })
+              }
+            />
+            <DatePicker
+              label='Select an end date:'
+              state={endDate}
+              setState={(e) =>
+                setFormSelection({
+                  ...formSelection,
+                  endDate: e.target.value,
+                })
+              }
+            />
+          </div>
+          <ButtonGroup
+            label='Select sensor reading interval:'
+            items={["15m", "1h", "4h", "1d"]}
+            handleSelection={(i) =>
+              setFormSelection({ ...formSelection, interval: i })
+            }
+            disableItems={getValidIntervals(startDate, endDate)}
           />
         </div>
-        <div className='px-5 w-1/3'>
-          <div className='flex flex-col gap-5 h-5/6 justify-center pb-5'>
-            <Dropdown
-              label='Select a system:'
-              options={systems}
-              onChange={(item) => setSelectedSystem(item)}
-              className='w-full'
-              getLabel={(system) => system.SYSTEM_NAME}
-            />
-            <MultiSelectDropdown
-              label='Select sensors:'
-              items={sensors}
-              state={selectedSensors}
-              setState={(e) =>
-                setFormSelection({ ...formSelection, selectedSensors: e })
-              }
-              className='w-full'
-            />
-
-            <div className='flex justify-between'>
-              <DatePicker
-                label='Select a start date:'
-                state={startDate}
-                setState={(e) =>
-                  setFormSelection({
-                    ...formSelection,
-                    startDate: e.target.value,
-                  })
-                }
-              />
-              <DatePicker
-                label='Select an end date:'
-                state={endDate}
-                setState={(e) =>
-                  setFormSelection({
-                    ...formSelection,
-                    endDate: e.target.value,
-                  })
-                }
-              />
-            </div>
-            <ButtonGroup
-              label='Select sensor reading interval:'
-              items={["15m", "1h", "4h", "1d"]}
-              handleSelection={(i) =>
-                setFormSelection({ ...formSelection, interval: i })
-              }
-              disableItems={getValidIntervals(startDate, endDate)}
-            />
-          </div>
-          <div className='mt-5 flex justify-between'>
-            <Button text='Enter' isDisabled={disableButton} />
-          </div>
+        <div className='mt-5 flex justify-between'>
+          <Button text='Enter' isDisabled={disableButton} />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

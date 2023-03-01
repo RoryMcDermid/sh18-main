@@ -12,3 +12,4 @@ export { ChevronUp } from "./SVGs";
 export { ChevronDown } from "./SVGs";
 
 export { default as Header } from "./Header";
+export { default as SuggestionsCard } from "./SuggestionsCard";
