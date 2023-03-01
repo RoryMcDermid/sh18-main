@@ -1,15 +1,17 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { CombinedChart, SuggestionsCard } from "../components";
+import { useForecastData } from "../hooks";
 
 const ForecastScreen: FC = () => {
-  const suggestionData = [1, 2, 3, 4];
+  const [selectedSensor, setSelectedSensor] = useState("");
+  const { chartData, suggestionData } = useForecastData(selectedSensor);
 
   return (
     <div className='flex h-[85vh]'>
-      <div className='w-2/3'>
+      <div className='flex w-2/3'>
         <CombinedChart
-          selectedSensors={[]}
-          sensorReadings={[]}
+          selectedSensors={["", "Average", "Prediction"]}
+          sensorReadings={chartData}
           peakPriceTimes={[]}
         />
       </div>

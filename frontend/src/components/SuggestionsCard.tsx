@@ -1,11 +1,11 @@
 import { FC } from "react";
 
 interface props {
-  suggestionData: number[];
+  suggestionData: string[];
 }
 
 const SuggestionsCard: FC<props> = ({ suggestionData }) => {
-  const getSuggestions = (data: number[]) => {
+  const getSuggestions = (data: string[]) => {
     return ["a", "b", "c"];
   };
   const suggestions = getSuggestions(suggestionData);

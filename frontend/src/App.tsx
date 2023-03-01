@@ -1,7 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { Header } from "./components";
-import { CompareScreen } from "./screens";
-import FindingsScreen from "./screens/FindingsScreen";
+import { CompareScreen, ForecastScreen } from "./screens";
 
 function App() {
   return (
@@ -9,7 +8,7 @@ function App() {
       <Header />
       <Routes>
         <Route path='/compare' element={<CompareScreen />} />
-        <Route path='/findings' element={<FindingsScreen />} />
+        <Route path='/forecast' element={<ForecastScreen />} />
       </Routes>
     </>
   );
