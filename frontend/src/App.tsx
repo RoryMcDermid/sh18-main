@@ -11,7 +11,6 @@ function App() {
       <Header />
         <Routes>
           <Route path="/" element={<LandingScreen />} />
-          <Route path='/landing' element={<LandingScreen />} />
           <Route path='/compare' element={<CompareScreen />} />
           <Route path='/forecast' element={<ForecastScreen />} />
         </Routes>
