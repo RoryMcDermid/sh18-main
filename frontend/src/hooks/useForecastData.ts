@@ -8,7 +8,7 @@ const useForecastData = (sensorID: string) => {
   const loadForecastData = async (sensorID: string) => {
     axios({
       method: "GET",
-      url: `https://moxieenergydeploy-production.up.railway.app/sensors/${sensorID}/forcast`,
+      url: `${import.meta.env.VITE_API}/sensors/${sensorID}/forcast`,
     })
       .then((response: { data: { chartData: []; suggestionData: [] } }) => {
         console.log("GET FORECAST DATA SUCCESS", response);
