@@ -8,4 +8,8 @@ mysqlclient
 fastapi
 uvicorn[standard]
 mysql.connector
-dotenv
+psycopg2
+python-dotenv
+keras
+scikit-learn
+tensorflow

@@ -1,26 +1,13 @@
-import mysql.connector
 import os
-import dotenv
+from dotenv import load_dotenv
+import psycopg2
 
-env_path = os.path.join(os.path.dirname(__file__), '..', '..', '.env')
-dotenv.load_dotenv(dotenv_path=env_path)
-
-mydb = mysql.connector.connect(
-     username=os.environ.get('DB_USERNAME'),
-     host=os.environ.get('DB_HOST'),
-     password=os.environ.get('DB_PASSWORD'),
-     database=os.environ.get('DB')
-      )
-cursor = mydb.cursor(buffered=True)
-
+load_dotenv()
+mydb = psycopg2.connect(os.getenv("CONNECTION_STRING"))
+cursor = mydb.cursor()
 cursor.execute("SHOW TABLES;")
 tables = cursor.fetchall()
-sql = ""
-for val in tables:
-    if val[0] != "SYSTEMS":
-        sql += val[0] + ","
-    else:
-        sql += val[0]
 
-cursor.execute("DROP TABLE " + sql +";")
+for val in tables:
+    cursor.execute("DROP TABLE " + val[1] + ";")
 mydb.commit()

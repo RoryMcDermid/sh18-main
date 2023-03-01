@@ -2,10 +2,7 @@ import requests
 import json
 import hashlib
 import datetime as dt
-import mysql.connector
 from helpers.addReadings import *
-import os
-import dotenv
 
 # Taking 2 formatted date values, parse data of sensors and
 # add to appropriate "READINGS_FOR_{sensor_id}" table.
@@ -64,37 +61,22 @@ def addDatafromDates(start_date, end_date, systems_with_list_of_sensors, mydb, c
         raise Exception("Timeout error, you have to wait 10 mins")
 
 #--------------------------------------------------------------------------------------------#
-    if online:
-        reference_time = dt.datetime.now()
-
     for i in range(len(jsonResp["systems"])):
 
         system_id = jsonResp["systems"][i]["system_id"]
         for j in range(len(jsonResp["systems"][i]["sensors"])):
-            if online:
-                if (dt.datetime.now() - reference_time).total_seconds() > 8:
-                    env_path = os.path.join(os.path.dirname(__file__), '..', '..', '.env')
-                    dotenv.load_dotenv(dotenv_path=env_path)
-
-                    mydb = mysql.connector.connect(
-                        username=os.environ.get('DB_USERNAME'),
-                        host=os.environ.get('DB_HOST'),
-                        password=os.environ.get('DB_PASSWORD'),
-                        database=os.environ.get('DB')
-                    )
-                    cursor = mydb.cursor(buffered=True)
-                    reference_time = dt.datetime.now()
 
             readings = jsonResp["systems"][i]["sensors"][j]["data"]
             sensor_id = jsonResp["systems"][i]["sensors"][j]["sensor_id"]
 
-            cursor.execute(f"SELECT SENSOR_MEASUREMENT FROM SENSORS_FOR_{system_id} WHERE SENSOR_ID = {sensor_id}")
+            cursor.execute(f"SELECT SENSOR_MEASUREMENT FROM SENSORS_FOR_{system_id} WHERE SENSOR_ID = '{sensor_id}'")
             sensor_measurement = cursor.fetchall()[0][0]
         
             if len(readings) > 0:
 
                 cursor.execute(f"""CREATE TABLE READINGS_FOR_{sensor_id}(
-                                READING_DATE DATETIME NOT NULL, 
+                                READING_DATE DATE NOT NULL,
+                                READING_TIME TIME NOT NULL, 
                                 VALUE DECIMAL(15,6) NOT NULL)""")
                 d_v_15_min = []
                 rolling_sum = 0.0
@@ -108,14 +90,14 @@ def addDatafromDates(start_date, end_date, systems_with_list_of_sensors, mydb, c
 
                     appropriate_time_intervals = ["00:00", "15:00", "30:00", "45:00"]
                     if val_date.strftime("%M:%S") in appropriate_time_intervals:
-                        d_v_15_min.append((val_date, val_reading))
+                        d_v_15_min.append((val_date.date(), val_date.time(), val_reading))
                         rolling_sum = rolling_sum + val_reading
 
                 if rolling_sum > 0:
-                    addReadings(sensor_id, d_v_15_min, mydb, cursor, online)
+                    addReadings(sensor_id, d_v_15_min, mydb, cursor)
                 else:
                     cursor.execute(f"DROP TABLE READINGS_FOR_{sensor_id}")
-                    cursor.execute(f"DELETE FROM SENSORS_FOR_{system_id} WHERE SENSOR_ID = {sensor_id}")
+                    cursor.execute(f"DELETE FROM SENSORS_FOR_{system_id} WHERE SENSOR_ID = '{sensor_id}'")
                     mydb.commit()
                     cursor.execute(f"SELECT * FROM SENSORS_FOR_{system_id}")
                     remaining_sensors = cursor.fetchall()
@@ -125,7 +107,7 @@ def addDatafromDates(start_date, end_date, systems_with_list_of_sensors, mydb, c
                         mydb.commit()
 
             else:
-                cursor.execute(f"DELETE FROM SENSORS_FOR_{system_id} WHERE SENSOR_ID = {sensor_id}")
+                cursor.execute(f"DELETE FROM SENSORS_FOR_{system_id} WHERE SENSOR_ID = '{sensor_id}'")
                 mydb.commit()
                 cursor.execute(f"SELECT * FROM SENSORS_FOR_{system_id}")
                 remaining_sensors = cursor.fetchall()

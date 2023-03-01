@@ -3,15 +3,15 @@ import numpy as np
 import pandas as pd
 
 
-def get_group_info(date_string):
-    date = dt.datetime.strptime(date_string, "%Y-%m-%dT%H:%M:%S")
+def get_group_info(date):
     month = date.month
     day_of_week = date.weekday()
     return month, day_of_week
 
 
-def get_average_from_group(dataset, date_string):
-    month, day_of_week = get_group_info(date_string)
+def get_average_from_group(dataset):
+    tomorrow = dt.date.today() + dt.timedelta(days=1)
+    month, day_of_week = get_group_info(tomorrow)
 
     df = pd.DataFrame(dataset, columns=["timestamp", "energy_usage"])
     df["timestamp"] = pd.to_datetime(df["timestamp"])
