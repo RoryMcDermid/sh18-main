@@ -7,31 +7,48 @@ const LandingScreen: FC = () => {
   const { expensiveSensors, expensiveSystems } = useExpenseData();
   return (
     <div>
-      <div className='squares mx-auto grid w-full grid-cols-2 gap-10'>
-        <div className='col-span-1 flex flex-col items-center'>
-          <div className='m-20 h-96 w-1/2 border-2 border-white'>
-            <div className='mb-4 flex h-16 items-center justify-center text-center text-xl font-semibold text-white'>
-              Most Expensive Sensors
-            </div>
-            {expensiveSensors.map((sensor, i) => (
-              <div key={i}>{sensor.at(0)}</div>
-            ))}
-          </div>
-          <Link to='/compare'>
-            <Button text='Compare Screen' className='w-40 ' />
-          </Link>
-        </div>
-        <div className='col-span-1 flex flex-col items-center'>
-          <div className='m-20 h-96 w-1/2 border-2 border-white'>
-            <div className='mb-4 flex h-16 items-center justify-center text-center text-xl font-semibold text-white'>
-              Most Expensive Smart Meters
-            </div>
+      <div className='squares mx-auto grid grid-cols-9 grid-rows-[9] gap-y-3'>
+        <div className='col-span-2 col-start-3 row-span-3 row-start-1 rounded-lg bg-gray-800 p-8 shadow-lg'>
+          <h2 className='mb-8 text-lg font-semibold text-slate-200 underline underline-offset-4'>
+            Most Expensive Buildings
+          </h2>
+          <div className='flex flex-col gap-5'>
             {expensiveSystems.map((system, i) => (
-              <div key={i}>{system.at(0)}</div>
+              <div className='flex items-center gap-6 font-semibold text-slate-200'>
+                <p>{i + 1}.</p>
+                <button className='flex w-full justify-between rounded-md bg-gray-700 py-3 px-6 transition-all duration-150 hover:scale-[1.01] hover:bg-gray-400 hover:text-black'>
+                  <p>{system[0]}</p>
+                  <p>£{system[1].toFixed(2)}</p>
+                </button>
+              </div>
             ))}
           </div>
+        </div>
+
+        <div className='col-span-2 col-start-3 row-span-3 row-start-5  rounded-lg bg-gray-800 p-8 shadow-lg'>
+          <h2 className='mb-8 text-lg font-semibold text-slate-200 underline underline-offset-4'>
+            Most Expensive Smart Meters
+          </h2>
+          <div className='flex flex-col gap-5'>
+            {expensiveSensors.map((sensor, i) => (
+              <div className='flex items-center gap-6 font-semibold text-slate-200'>
+                <p>{i + 1}.</p>
+                <button className='flex w-full justify-between rounded-md bg-gray-700 py-3 px-6 transition-all duration-150 hover:scale-[1.01] hover:bg-gray-400 hover:text-black'>
+                  <p>{sensor[0]}</p>
+                  <p>£{sensor[1].toFixed(2)}</p>
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className='col-span-2 col-start-5 row-span-1 row-start-2 ml-10 rounded-lg '>
           <Link to='/forecast'>
             <Button text='Forecast Screen' className='w-40' />
+          </Link>
+        </div>
+        <div className='col-span-2 col-start-5 row-span-1 row-start-6 ml-10 rounded-lg '>
+          <Link to='/compare'>
+            <Button text='Compare Screen' className='w-40' />
           </Link>
         </div>
       </div>

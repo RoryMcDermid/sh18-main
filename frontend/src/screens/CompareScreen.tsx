@@ -2,7 +2,6 @@ import { FC, useEffect, useState } from "react";
 
 import {
   Button,
-  ButtonGroup,
   CombinedChart,
   DatePicker,
   Dropdown,

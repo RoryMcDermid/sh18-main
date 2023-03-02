@@ -2,12 +2,10 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 const useExpenseData = () => {
-  const [expensiveSensors, setExpensiveSensors] = useState<
-    (string | number)[][]
-  >([]);
-  const [expensiveSystems, setExpensiveSystems] = useState<
-    (string | number)[][]
-  >([]);
+  type expenseInfo = [string, number] & { length: 2 };
+
+  const [expensiveSensors, setExpensiveSensors] = useState<expenseInfo[]>([]);
+  const [expensiveSystems, setExpensiveSystems] = useState<expenseInfo[]>([]);
 
   const loadExpenseData = async () => {
     axios({
