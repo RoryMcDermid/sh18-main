@@ -31,9 +31,13 @@ const Dropdown: FC<props> = (props) => {
         </div>
         {expanded && (
           <div className='p-2 w-full overflow-auto h-60 grid grid-cols-1 rounded-lg bg-slate-700 absolute translate-y-[80px] z-10'>
-            {options.map((item) => (
+            {options.map((item, i) => (
               <div
+<<<<<<< HEAD
                 key={item}
+=======
+                key={i}
+>>>>>>> 71d0e84fe196d1c3124c886f548b66d1f51cecc2
                 className='p-4 rounded-lg hover:bg-slate-200/60 text-white hover:text-black hover:font-semibold cursor-pointer'
                 onClick={() => {
                   setState(item);
