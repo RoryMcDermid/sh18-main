@@ -6,7 +6,9 @@ const Header: FC = () => {
     <>
       <header className='mx-20 flex h-[15vh] items-center justify-center'>
         <Link to='/'>
-          <div className='text-center text-4xl text-white'>Moxie Energy</div>
+          <div className='animated-underline relative text-center text-4xl text-white'>
+            Moxie Energy
+          </div>
         </Link>
       </header>
     </>
