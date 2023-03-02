@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-
 const useExpenseData = () => {
-  const [expensiveSensors, setExpensiveSensors] = useState<(string|number)[][]>([]);
-  const [expensiveSystems, setExpensiveSystems] = useState<(string|number)[][]>([]);
+  type expenseInfo = [string, number] & { length: 2 };
+
+  const [expensiveSensors, setExpensiveSensors] = useState<expenseInfo[]>([]);
+  const [expensiveSystems, setExpensiveSystems] = useState<expenseInfo[]>([]);
 
   const loadExpenseData = async () => {
     axios({
@@ -16,19 +17,17 @@ const useExpenseData = () => {
         const expenseData = response.data;
         setExpensiveSensors(expenseData.sensors);
         setExpensiveSystems(expenseData.systems);
-
       })
       .catch((error: { response: { data: { error: any } } }) => {
         console.log("GET EXPENSE DATA ERROR", error.response.data.error);
         setExpensiveSensors([]);
         setExpensiveSystems([]);
-
       });
   };
 
   useEffect(() => {
-      loadExpenseData();
-  },[]);
+    loadExpenseData();
+  }, []);
 
   return { expensiveSystems, expensiveSensors };
 };

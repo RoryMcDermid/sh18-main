@@ -12,7 +12,7 @@ const Button: FC<props> = (props) => {
   return (
     <>
       <button
-        className={`h-full w-full rounded-lg px-5 py-3 text-xl font-semibold
+        className={`h-full w-full rounded-lg px-5 py-3 text-xl font-semibold shadow-sm transition-all duration-200 hover:scale-[1.02]
         ${className ?? "w-32"}
         ${
           isDisabled
