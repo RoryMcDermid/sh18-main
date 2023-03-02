@@ -1,5 +1,4 @@
-import { FC, useState } from "react";
-import React from "react";
+import { FC } from "react";
 import { Button } from "../components/Inputs";
 import { Link } from "react-router-dom";
 import useExpenseData from "../hooks/useExpenseData";

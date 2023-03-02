@@ -11,43 +11,43 @@ import {
 import { useSensorReadings, useSystems, useSensors } from "../hooks";
 
 const CompareScreen: FC = () => {
-  const [formSelection, setFormSelection] = useState({
-    selectedSensors: [] as string[],
+  const blankForm = {
+    selectedSensors: [],
     startDate: "",
     endDate: "",
-  });
+  };
 
-  const { selectedSensors, startDate, endDate } = formSelection;
-
-  const { systems } = useSystems();
+  // state
   const [selectedSystemID, setSelectedSystemID] = useState<number>();
-  const { sensors } = useSensors(selectedSystemID);
-  const [chartData, setChartData] = useState<(string | number)[][]>([]);
-  const [sensorReadings] = useSensorReadings({
-    selectedSensors: selectedSensors,
-    startDate: startDate,
-    endDate: endDate,
-  });
 
+  // state
+  const [formSelection, setFormSelection] = useState<selection>(blankForm);
+  const [formSubmission, setFormSubmission] = useState<selection>(blankForm);
+
+  // derived state
+  const { systems } = useSystems();
+  // derived state
+  const { sensors } = useSensors(selectedSystemID);
+  // derived state
+  const { sensorReadings } = useSensorReadings(formSubmission);
+
+  // derived state
   const disableButton = !(
-    selectedSensors.length > 0 &&
-    startDate !== "" &&
-    endDate !== ""
+    formSelection.selectedSensors.length > 0 &&
+    formSelection.startDate !== "" &&
+    formSelection.endDate !== ""
   );
 
   // reset form every time page reloads
   useEffect(() => {
-    setFormSelection({
-      selectedSensors: [] as string[],
-      startDate: "",
-      endDate: "",
-    });
+    setFormSelection(blankForm);
+    setFormSubmission(blankForm);
   }, []);
 
-  // only load sensor readings into chart once all form inputs have been selected or re-selected
+  // sets state responsible for API call
   useEffect(() => {
     if (!disableButton) {
-      setChartData(sensorReadings);
+      setFormSubmission(formSelection);
     }
   }, [disableButton]);
 
@@ -61,8 +61,8 @@ const CompareScreen: FC = () => {
     <div className='flex h-[85vh]'>
       <div className='flex w-2/3'>
         <CombinedChart
-          selectedSensors={selectedSensors}
-          sensorReadings={chartData}
+          selectedSensors={formSelection.selectedSensors}
+          sensorReadings={sensorReadings}
         />
       </div>
       <div className='w-1/3 px-5'>
@@ -78,7 +78,7 @@ const CompareScreen: FC = () => {
           <MultiSelectDropdown
             label='Select Smart Meters:'
             items={sensors}
-            state={selectedSensors}
+            state={formSelection.selectedSensors}
             setState={(e) =>
               setFormSelection({ ...formSelection, selectedSensors: e })
             }
@@ -88,7 +88,7 @@ const CompareScreen: FC = () => {
           <div className='flex justify-between'>
             <DatePicker
               label='Select a start date:'
-              state={startDate}
+              state={formSelection.startDate}
               setState={(e) =>
                 setFormSelection({
                   ...formSelection,
@@ -98,7 +98,7 @@ const CompareScreen: FC = () => {
             />
             <DatePicker
               label='Select an end date:'
-              state={endDate}
+              state={formSelection.endDate}
               setState={(e) =>
                 setFormSelection({
                   ...formSelection,

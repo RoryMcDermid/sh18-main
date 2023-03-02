@@ -4,7 +4,7 @@ import { BarChart, Button, MultiLineChart } from "..";
 
 interface props {
   selectedSensors: string[];
-  sensorReadings: energyReading[][];
+  sensorReadings: (string | number)[][];
 }
 
 const CombinedChart: FC<props> = (props) => {

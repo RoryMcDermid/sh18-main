@@ -11,8 +11,8 @@ const ForecastScreen: FC = () => {
   const { chartData, suggestionData } = useForecastData(selectedSensor);
 
   const handleChange = (systemName: string) => {
-    let selectedSystem = systems.find((s) => s.system_name === systemName);
-    let systemID = selectedSystem!.SYSTEM_ID;
+    let selectedSystem = systems.find((s) => s[1] === systemName);
+    let systemID = selectedSystem![0];
     setSelectedSystemID(systemID);
   };
   return (
@@ -28,7 +28,7 @@ const ForecastScreen: FC = () => {
           <Dropdown
             label='Select a Building:'
             options={systems.map((system) => {
-              return system.system_name;
+              return system[1];
             })}
             onChange={(item) => handleChange(item)}
             className='w-full'
