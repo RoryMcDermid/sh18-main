@@ -30,7 +30,7 @@ const Dropdown: FC<props> = (props) => {
           {expanded ? <ChevronUp /> : <ChevronDown />}
         </div>
         {expanded && (
-          <div className='absolute z-10 grid h-60 w-full translate-y-[80px] grid-cols-1 overflow-auto rounded-lg bg-slate-700 p-2'>
+          <div className='absolute z-10 grid max-h-60 min-h-max w-full translate-y-[80px] grid-cols-1 overflow-auto rounded-lg bg-slate-700 p-2'>
             {options.map((option) => (
               <div
                 key={option}

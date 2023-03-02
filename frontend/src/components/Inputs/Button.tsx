@@ -12,12 +12,12 @@ const Button: FC<props> = (props) => {
   return (
     <>
       <button
-        className={`h-full w-full rounded-lg px-5 py-3 text-xl font-semibold shadow-sm transition-all duration-200 hover:scale-[1.02]
+        className={`h-full w-full rounded-lg px-5 py-3 text-xl font-semibold shadow-sm transition-all duration-200
         ${className ?? "w-32"}
         ${
           isDisabled
             ? "bg-slate-400 text-slate-600"
-            : "bg-orange-500 text-white hover:bg-orange-600"
+            : "bg-orange-500 text-white hover:scale-[1.02] hover:bg-orange-600"
         }`}
         disabled={isDisabled}
         onClick={handleClick}
