@@ -22,16 +22,16 @@ const ButtonGroup: FC<props> = (props) => {
   return (
     <div>
       <div className='pb-3 pl-1 text-xl text-slate-300'>{label}</div>
-      <div className='w-full inline-flex justify-between' role='group'>
+      <div className='inline-flex w-full justify-between' role='group'>
         {items.map((item, i) => (
           <button
             key={i}
-            className={`px-5 py-3 w-24 text-center text-lg font-semibold rounded-lg ${
-              i === clickedId && "py-2.5 border-2 border-orange-500"
+            className={`w-24 rounded-lg px-5 py-3 text-center text-lg font-semibold ${
+              i === clickedId && "border-2 border-orange-500 py-2.5"
             } ${
               !disableItems.includes(i + 1)
-                ? "text-slate-600 bg-slate-400"
-                : "text-white bg-slate-800 hover:bg-slate-600"
+                ? "bg-slate-400 text-slate-600"
+                : "bg-slate-800 text-white hover:bg-slate-600"
             }`}
             onClick={(e) => handleClick(e, i)}
             disabled={!disableItems.includes(i + 1)}

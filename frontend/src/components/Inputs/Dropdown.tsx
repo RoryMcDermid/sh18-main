@@ -16,29 +16,25 @@ const Dropdown: FC<props> = (props) => {
   return (
     <div className={`${className ? className : "w-80"}`}>
       <div className='pb-3 pl-1 text-xl text-slate-300'>{label}</div>
-      <div className='grid gap-2 relative'>
+      <div className='relative grid gap-2'>
         <div
-          className={`p-6 w-full h-max flex justify-between 
-          rounded-lg bg-slate-800 hover:bg-slate-600 cursor-pointer`}
+          className={`flex h-max w-full cursor-pointer justify-between 
+          rounded-lg bg-slate-800 p-6 hover:bg-slate-600`}
           onClick={() => setExpanded(!expanded)}
         >
           {state ? (
-            <div className='text-white font-medium'>{state}</div>
+            <div className='font-medium text-white'>{state}</div>
           ) : (
             <div>&nbsp;</div>
           )}
           {expanded ? <ChevronUp /> : <ChevronDown />}
         </div>
         {expanded && (
-          <div className='p-2 w-full overflow-auto h-60 grid grid-cols-1 rounded-lg bg-slate-700 absolute translate-y-[80px] z-10'>
-            {options.map((item, i) => (
+          <div className='absolute z-10 grid h-60 w-full translate-y-[80px] grid-cols-1 overflow-auto rounded-lg bg-slate-700 p-2'>
+            {options.map((item) => (
               <div
-<<<<<<< HEAD
                 key={item}
-=======
-                key={i}
->>>>>>> 71d0e84fe196d1c3124c886f548b66d1f51cecc2
-                className='p-4 rounded-lg hover:bg-slate-200/60 text-white hover:text-black hover:font-semibold cursor-pointer'
+                className='cursor-pointer rounded-lg p-4 text-white hover:bg-slate-200/60 hover:font-semibold hover:text-black'
                 onClick={() => {
                   setState(item);
                   onChange(item);

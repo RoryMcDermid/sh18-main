@@ -44,21 +44,21 @@ const MultiSelectDropdown: FC<props> = (props) => {
   return (
     <div className={`${className ?? "w-80"}`}>
       <div className='pb-3 pl-1 text-xl text-slate-300'>{label}</div>
-      <div className='grid gap-2 relative'>
+      <div className='relative grid gap-2'>
         <div
-          className={`p-6 w-full h-max flex justify-between 
-        rounded-lg bg-slate-800 hover:bg-slate-600 cursor-pointer`}
+          className={`flex h-max w-full cursor-pointer justify-between 
+        rounded-lg bg-slate-800 p-6 hover:bg-slate-600`}
           onClick={() => setExpanded(!expanded)}
         >
-          <p className='text-white font-medium'>{state.join(", ")}</p>
+          <p className='font-medium text-white'>{state.join(", ")}</p>
           {expanded ? <ChevronUp /> : <ChevronDown />}
         </div>
         {expanded && (
-          <div className='p-2 w-full grid grid-cols-1 rounded-lg bg-slate-700 overflow-auto min-h-max max-h-72 absolute translate-y-[76px] z-10'>
+          <div className='absolute z-10 grid max-h-72 min-h-max w-full translate-y-[76px] grid-cols-1 overflow-auto rounded-lg bg-slate-700 p-2'>
             {items && (
-              <div className='p-2 flex items-center'>
+              <div className='flex items-center p-2'>
                 <div
-                  className='px-4 py-2 text-white bg-orange-500 hover:bg-orange-600 rounded-md cursor-pointer'
+                  className='cursor-pointer rounded-md bg-orange-500 px-4 py-2 text-white hover:bg-orange-600'
                   onClick={() => selectAll()}
                 >
                   {!allSelected ? "Select all" : "Deselect all"}
@@ -69,11 +69,11 @@ const MultiSelectDropdown: FC<props> = (props) => {
             {items.map((item, i) => (
               <div
                 key={i}
-                className={`p-4 rounded-lg cursor-pointer hover:bg-slate-200/60
+                className={`cursor-pointer rounded-lg p-4 hover:bg-slate-200/60
                   ${
                     state.includes(item)
-                      ? "text-amber-600 hover:text-orange-700 font-semibold"
-                      : "text-white hover:text-black hover:font-semibold"
+                      ? "font-semibold text-amber-600 hover:text-orange-700"
+                      : "text-white hover:font-semibold hover:text-black"
                   }`}
                 onClick={() => {
                   handleOption(item);

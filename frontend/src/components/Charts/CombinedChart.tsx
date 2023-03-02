@@ -22,7 +22,7 @@ const CombinedChart: FC<props> = (props) => {
   }, [sensorReadings]);
 
   return (
-    <div className='flex flex-col w-full'>
+    <div className='flex w-full flex-col'>
       <div className='h-5/6 w-full'>
         {chartReady ? (
           <>
@@ -39,7 +39,7 @@ const CombinedChart: FC<props> = (props) => {
             )}
           </>
         ) : (
-          <div className='w-full h-full flex justify-center items-center'>
+          <div className='flex h-full w-full items-center justify-center'>
             <Loading type='spin' color='#ffffff' height={50} width={50} />
           </div>
         )}

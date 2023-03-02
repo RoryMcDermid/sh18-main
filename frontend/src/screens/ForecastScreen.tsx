@@ -23,7 +23,7 @@ const ForecastScreen: FC = () => {
           sensorReadings={chartData}
         />
       </div>
-      <div className='px-5 w-1/3  h-5/6'>
+      <div className='h-5/6 w-1/3  px-5'>
         <div className='flex flex-col gap-5 pb-16'>
           <Dropdown
             label='Select a Building:'

@@ -8,7 +8,7 @@ import {
   Dropdown,
   MultiSelectDropdown,
 } from "../components";
-import { loadSensorReadingData, useSystems, useSensors } from "../hooks";
+import { useSensorReadings, useSystems, useSensors } from "../hooks";
 
 const CompareScreen: FC = () => {
   const [formSelection, setFormSelection] = useState({
@@ -43,7 +43,7 @@ const CompareScreen: FC = () => {
   useEffect(() => {
     if (!disableButton) {
       setSensorReadings(
-        loadSensorReadingData({
+        useSensorReadings({
           selectedSensors: selectedSensors,
           startDate: startDate,
           endDate: endDate,
@@ -66,8 +66,8 @@ const CompareScreen: FC = () => {
           sensorReadings={sensorReadings}
         />
       </div>
-      <div className='px-5 w-1/3'>
-        <div className='flex flex-col gap-5 h-5/6 justify-center pb-5'>
+      <div className='w-1/3 px-5'>
+        <div className='flex h-5/6 flex-col justify-center gap-5 pb-5'>
           <Dropdown
             label='Select a Building:'
             options={systems.map((system) => {

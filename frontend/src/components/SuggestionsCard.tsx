@@ -13,12 +13,12 @@ const SuggestionsCard: FC<props> = ({ suggestionData }) => {
   return (
     <>
       <div
-        className='bg-slate-400 px-6 py-8 w-full h-max flex flex-col gap-7 justify-between 
-          rounded-lg'
+        className='flex h-max w-full flex-col justify-between gap-7 rounded-lg bg-slate-400 px-6 
+          py-8'
       >
         {suggestions.map((suggestion, i) => (
           <div
-            className={`px-3 py-2 rounded-lg border-4 ${
+            className={`rounded-lg border-4 px-3 py-2 ${
               i % 2 == 0 ? "border-red-600" : "border-lime-600"
             }`}
             key={i}
