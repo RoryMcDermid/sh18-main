@@ -6,7 +6,10 @@ const useSensorReadings = ({
   startDate,
   endDate,
 }: selection) => {
-  const [sensorReading, setSensorReading] = useState<(string | number)[][]>([]);
+  const [sensorReadings, setSensorReading] = useState<(string | number)[][]>(
+    []
+  );
+
   let sensorIDs = selectedSensors.join(",");
   const loadSensorReadings = () => {
     axios({
@@ -28,7 +31,7 @@ const useSensorReadings = ({
     loadSensorReadings();
   }, []);
 
-  return sensorReading;
+  return { sensorReadings };
 };
 
 export default useSensorReadings;
