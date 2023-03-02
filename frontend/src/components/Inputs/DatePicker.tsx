@@ -11,7 +11,7 @@ const DatePicker: FC<props> = (props) => {
   let { label, className, state, setState } = props;
   return (
     <>
-      <div className={`${className ?? "w-48"}`}>
+      <div className={`${className ?? "w-48"} grow`}>
         <div className='pb-3 pl-1 text-xl text-slate-300'>{label}</div>
         <input
           className='w-full cursor-pointer rounded-lg bg-slate-800 p-6 text-white hover:bg-slate-600'

@@ -16,14 +16,14 @@ const ForecastScreen: FC = () => {
     setSelectedSystemID(systemID);
   };
   return (
-    <div className='flex h-[85vh]'>
-      <div className='flex w-2/3'>
+    <div className='flex h-[85vh] gap-6'>
+      <div className='flex w-2/3 pl-8'>
         <CombinedChart
           selectedSensors={["", "Average", "Prediction"]}
           sensorReadings={chartData}
         />
       </div>
-      <div className='h-5/6 w-1/3  px-5'>
+      <div className='h-5/6 w-1/3  pr-8'>
         <div className='flex flex-col gap-5 pb-16'>
           <Dropdown
             label='Select a Building:'

@@ -57,14 +57,14 @@ const CompareScreen: FC = () => {
   };
 
   return (
-    <div className='flex h-[85vh]'>
-      <div className='flex w-2/3'>
+    <div className='flex h-[85vh] gap-6'>
+      <div className='flex w-2/3 pl-8'>
         <CombinedChart
           selectedSensors={formSelection.selectedSensors}
           sensorReadings={sensorReadings}
         />
       </div>
-      <div className='w-1/3 px-5'>
+      <div className='w-1/3 pr-8'>
         <div className='flex h-5/6 flex-col justify-center gap-5 pb-5'>
           <Dropdown
             label='Select a Building:'
@@ -84,7 +84,7 @@ const CompareScreen: FC = () => {
             className='w-full'
           />
 
-          <div className='flex justify-between'>
+          <div className='flex flex-wrap justify-between gap-6'>
             <DatePicker
               label='Select a start date:'
               state={formSelection.startDate}
