@@ -22,7 +22,9 @@ const CompareScreen: FC = () => {
   const { systems } = useSystems();
   const [selectedSystemID, setSelectedSystemID] = useState<number>();
   const { sensors } = useSensors(selectedSystemID);
-  const [sensorReadings, setSensorReadings] = useState<energyReading[][]>([]);
+  const [sensorReadings, setSensorReadings] = useState<(string | number)[][]>(
+    []
+  );
 
   const disableButton = !(
     selectedSensors.length > 0 &&

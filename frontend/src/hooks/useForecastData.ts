@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 const useForecastData = (sensorID: string) => {
-  const [chartData, setChartData] = useState<energyReading[][]>([]);
+  const [chartData, setChartData] = useState<(string | number)[][]>([]);
   const [suggestionData, setSuggestionData] = useState<string[]>([]);
 
   const loadForecastData = async (sensorID: string) => {
