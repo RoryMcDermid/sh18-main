@@ -5,14 +5,13 @@ const loadSensorReadingData = ({
   selectedSensors,
   startDate,
   endDate,
-  interval,
 }: selection) => {
   const [sensorReading, setSensorReading] = useState<energyReading[][]>([]);
   let sensorIDs = selectedSensors.join(",");
   const loadSensorReading = () => {
     axios({
       method: "GET",
-      url: `https://moxieenergydeploy-production.up.railway.app/systems/2542/sensors/${sensorIDs}?startDate=${startDate}&endDate=${endDate}&interval=${interval}`,
+      url: `https://moxieenergydeploy-production.up.railway.app/systems/2542/sensors/${sensorIDs}?startDate=${startDate}&endDate=${endDate}`,
     })
       .then((response: { data: [] }) => {
         console.log("GET SENSOR READING SUCCESS", response);

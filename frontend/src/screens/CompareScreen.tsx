@@ -8,7 +8,7 @@ import {
   Dropdown,
   MultiSelectDropdown,
 } from "../components";
-import { getPeakWholesalePrices, getValidIntervals } from "../helpers";
+import { getPeakWholesalePrices } from "../helpers";
 import {
   loadSensorReadingData,
   loadSystems,
@@ -21,10 +21,9 @@ const CompareScreen: FC = () => {
     selectedSensors: [] as string[],
     startDate: "",
     endDate: "",
-    interval: -1,
   });
 
-  const { selectedSensors, startDate, endDate, interval } = formSelection;
+  const { selectedSensors, startDate, endDate } = formSelection;
 
   const { systems } = loadSystems();
   const [selectedSystem, setSelectedSystem] = useState<system | null>(null);
@@ -35,9 +34,7 @@ const CompareScreen: FC = () => {
   const disableButton = !(
     selectedSensors.length > 0 &&
     startDate !== "" &&
-    endDate !== "" &&
-    interval >= 1 &&
-    interval <= 4
+    endDate !== ""
   );
 
   // once the start and end dates are set,
@@ -53,7 +50,6 @@ const CompareScreen: FC = () => {
       selectedSensors: [] as string[],
       startDate: "",
       endDate: "",
-      interval: -1,
     });
   }, []);
 
@@ -71,7 +67,6 @@ const CompareScreen: FC = () => {
           selectedSensors: selectedSensors,
           startDate: startDate,
           endDate: endDate,
-          interval: interval,
         })
       );
     }
@@ -127,14 +122,6 @@ const CompareScreen: FC = () => {
               }
             />
           </div>
-          <ButtonGroup
-            label='Select sensor reading interval:'
-            items={["15m", "1h", "4h", "1d"]}
-            handleSelection={(i) =>
-              setFormSelection({ ...formSelection, interval: i })
-            }
-            disableItems={getValidIntervals(startDate, endDate)}
-          />
         </div>
         <div className='mt-5 flex justify-between'>
           <Button text='Enter' isDisabled={disableButton} />
