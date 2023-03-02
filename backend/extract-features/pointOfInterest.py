@@ -15,7 +15,7 @@ def main(priority ):
         maxEdges = spikeTrough(priority, max(priority), 1)
 
     #return 2d array with [[maxLeftSide, maxRightSide][minLeftSide, minRightSide]], with either being [-1,-1] if there is no max or min
-    print([maxEdges, minEdges] + " min " + min(priority))
+    print(str([maxEdges, minEdges]) + " min " + str(min(priority)))
     return [maxEdges, minEdges]
 
 
@@ -25,7 +25,7 @@ def max(array):
     maxPos = 0
 
     for i in range(len(array)):
-        if array[i] < max:
+        if array[i] > max:
             max = array[i]
             maxPos = i
     return maxPos
@@ -57,15 +57,15 @@ def spikeTrough(array, pointOfInterest, direction):
 
     for i in range(pointOfInterest, len(array)-1):
         if difference(array[i], array[i+1]) != direction:
-            pointRight = i
-    
-    for i in range(0, pointOfInterest, -1):
-        if difference(array[i], array[i+1]) != direction:
-            pointLeft = i
+            pointRight = i-1
+    for i in reversed(range(1, pointOfInterest)):
+        if difference(array[i-1], array[i]) != direction:
+            pointLeft = i-1
 
     return [pointLeft, pointRight]
 
 
-#for testing purposes, change pointOfInterest on line 5 to main to allow this file to be run independant of other code pointOfInterest
+#for testing purposes, change pointOfInterest on line 5 to main to allow this file to be run independant of other code 
+#min isn't working, need to further test, the -1s in spikeTrough shouldn't need to be there, look into
 if __name__ == "__main__":
-    main([4,3,4,5,4,1,3,3,3])
+    main([-4,-3,-4,-5,-4,-1,-3,-4,-3])
