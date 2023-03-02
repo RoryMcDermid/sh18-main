@@ -14,8 +14,8 @@ const LandingScreen: FC = () => {
             <div className='mb-4 flex h-16 items-center justify-center text-center text-xl font-semibold text-white'>
               Most Expensive Sensors
             </div>
-            {expensiveSensors.map((sensor) => (
-              <div>{sensor.at(0)}</div>
+            {expensiveSensors.map((sensor, i) => (
+              <div key={i}>{sensor.at(0)}</div>
             ))}
           </div>
           <Link to='/compare'>
@@ -27,8 +27,8 @@ const LandingScreen: FC = () => {
             <div className='mb-4 flex h-16 items-center justify-center text-center text-xl font-semibold text-white'>
               Most Expensive Smart Meters
             </div>
-            {expensiveSystems.map((system) => (
-              <div>{system.at(0)}</div>
+            {expensiveSystems.map((system, i) => (
+              <div key={i}>{system.at(0)}</div>
             ))}
           </div>
           <Link to='/forecast'>

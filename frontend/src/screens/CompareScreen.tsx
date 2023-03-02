@@ -22,7 +22,12 @@ const CompareScreen: FC = () => {
   const { systems } = useSystems();
   const [selectedSystemID, setSelectedSystemID] = useState<number>();
   const { sensors } = useSensors(selectedSystemID);
-  const [sensorReadings, setSensorReadings] = useState<energyReading[][]>([]);
+  const [chartData, setChartData] = useState<(string | number)[][]>([]);
+  const [sensorReadings] = useSensorReadings({
+    selectedSensors: selectedSensors,
+    startDate: startDate,
+    endDate: endDate,
+  });
 
   const disableButton = !(
     selectedSensors.length > 0 &&
@@ -42,19 +47,13 @@ const CompareScreen: FC = () => {
   // only load sensor readings into chart once all form inputs have been selected or re-selected
   useEffect(() => {
     if (!disableButton) {
-      setSensorReadings(
-        useSensorReadings({
-          selectedSensors: selectedSensors,
-          startDate: startDate,
-          endDate: endDate,
-        })
-      );
+      setChartData(sensorReadings);
     }
   }, [disableButton]);
 
   const handleChange = (systemName: string) => {
-    let selectedSystem = systems.find((s) => s.SYSTEM_NAME === systemName);
-    let systemID = selectedSystem!.SYSTEM_ID;
+    let selectedSystem = systems.find((s) => s[1] === systemName);
+    let systemID = selectedSystem![0];
     setSelectedSystemID(systemID);
   };
 
@@ -63,7 +62,7 @@ const CompareScreen: FC = () => {
       <div className='flex w-2/3'>
         <CombinedChart
           selectedSensors={selectedSensors}
-          sensorReadings={sensorReadings}
+          sensorReadings={chartData}
         />
       </div>
       <div className='w-1/3 px-5'>
@@ -71,7 +70,7 @@ const CompareScreen: FC = () => {
           <Dropdown
             label='Select a Building:'
             options={systems.map((system) => {
-              return system.SYSTEM_NAME;
+              return system[1];
             })}
             onChange={handleChange}
             className='w-full'

@@ -14,7 +14,7 @@ const useSensors = (systemID: number | undefined) => {
         const sensorsArray = response.data;
         setSensors(
           sensorsArray.map(function (sensor) {
-            return sensor["SENSOR_ID"];
+            return sensor[1];
           })
         );
       })
