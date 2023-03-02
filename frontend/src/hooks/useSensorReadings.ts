@@ -1,17 +1,19 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-const loadSensorReadingData = ({
+const useSensorReadings = ({
   selectedSensors,
   startDate,
   endDate,
 }: selection) => {
   const [sensorReading, setSensorReading] = useState<energyReading[][]>([]);
   let sensorIDs = selectedSensors.join(",");
-  const loadSensorReading = () => {
+  const loadSensorReadings = () => {
     axios({
       method: "GET",
-      url: `https://moxieenergydeploy-production.up.railway.app/systems/2542/sensors/${sensorIDs}?startDate=${startDate}&endDate=${endDate}`,
+      url: `${
+        import.meta.env.VITE_API
+      }/sensors/${sensorIDs}/compare-and-display?startDate=${startDate}&endDate=${endDate}`,
     })
       .then((response: { data: [] }) => {
         console.log("GET SENSOR READING SUCCESS", response);
@@ -23,10 +25,10 @@ const loadSensorReadingData = ({
   };
 
   useEffect(() => {
-    loadSensorReading();
+    loadSensorReadings();
   }, []);
 
   return sensorReading;
 };
 
-export default loadSensorReadingData;
+export default useSensorReadings;

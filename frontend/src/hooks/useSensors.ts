@@ -7,7 +7,7 @@ const useSensors = (systemID: number | undefined) => {
   const loadSensorsData = async (system: string) => {
     axios({
       method: "GET",
-      url: `https://moxieenergydeploy-production.up.railway.app/systems/${system}/sensors`,
+      url: `${import.meta.env.VITE_API}/systems/${system}/sensors`,
     })
       .then((response: { data: [] }) => {
         console.log("GET SENSORS SUCCESS", response);
