@@ -81,7 +81,7 @@ async def get_sensor_readings(sensorids, startDate, endDate):
 #     return readings
 
 
-@app.get("/sensors/{sensorid}/forcast", response_description="Get prediction data for ONE sensor")
+@app.get("/sensors/{sensorid}/forecast", response_description="Get prediction data for ONE sensor")
 async def get_forcast_data(sensorid):
     mydb = open_connection()
     cursor = mydb.cursor()

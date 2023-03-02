@@ -8,7 +8,7 @@ const loadSystems = () => {
     const loadSystemData = () => {
       axios({
         method: "GET",
-        url: `https://moxieenergydeploy-production.up.railway.app/systems`,
+        url: `${import.meta.env.VITE_API}/systems`,
       })
         .then((response: { data: [] }) => {
           console.log("GET SYSTEMS SUCCESS", response);

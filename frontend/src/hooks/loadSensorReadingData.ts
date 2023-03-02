@@ -12,7 +12,9 @@ const loadSensorReadingData = ({
   const loadSensorReading = () => {
     axios({
       method: "GET",
-      url: `https://moxieenergydeploy-production.up.railway.app/systems/2542/sensors/${sensorIDs}?startDate=${startDate}&endDate=${endDate}&interval=${interval}`,
+      url: `${
+        import.meta.env.VITE_API
+      }/sensors/${sensorIDs}/compare-and-display?startDate=${startDate}&endDate=${endDate}`,
     })
       .then((response: { data: [] }) => {
         console.log("GET SENSOR READING SUCCESS", response);
