@@ -5,7 +5,6 @@ import { formatChartData } from "../../helpers";
 interface props {
   headerRow: string[];
   data: energyReading[][];
-  peakPriceTimes: string[][];
 }
 
 const MultiLineChart: FC<props> = (props) => {

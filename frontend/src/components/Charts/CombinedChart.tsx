@@ -5,11 +5,10 @@ import { BarChart, Button, MultiLineChart } from "..";
 interface props {
   selectedSensors: string[];
   sensorReadings: energyReading[][];
-  peakPriceTimes: string[][];
 }
 
 const CombinedChart: FC<props> = (props) => {
-  let { selectedSensors, sensorReadings, peakPriceTimes } = props;
+  let { selectedSensors, sensorReadings } = props;
 
   const [currentChartType, setCurrentChartType] = useState(true);
   const [chartReady, setChartReady] = useState(false);
@@ -31,13 +30,11 @@ const CombinedChart: FC<props> = (props) => {
               <MultiLineChart
                 headerRow={["", ...selectedSensors]}
                 data={sensorReadings}
-                peakPriceTimes={peakPriceTimes}
               />
             ) : (
               <BarChart
                 headerRow={["", ...selectedSensors]}
                 data={sensorReadings}
-                peakPriceTimes={peakPriceTimes}
               />
             )}
           </>

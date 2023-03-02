@@ -26,9 +26,9 @@ const useForecastData = (sensorID: string) => {
 
   useEffect(() => {
     if (sensorID) {
-      void loadForecastData(sensorID);
+      loadForecastData(sensorID);
     }
-  }, [sensorID]);
+  }, []);
 
   return { chartData, suggestionData };
 };

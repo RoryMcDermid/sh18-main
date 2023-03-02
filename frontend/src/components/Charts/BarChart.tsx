@@ -5,7 +5,6 @@ import { formatChartData } from "../../helpers";
 interface props {
   headerRow: string[];
   data: energyReading[][];
-  peakPriceTimes: string[][];
 }
 
 const BarChart: FC<props> = (props) => {

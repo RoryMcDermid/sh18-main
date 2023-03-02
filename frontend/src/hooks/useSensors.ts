@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const useSensors = (system: system | null) => {
+const useSensors = (systemID: number | undefined) => {
   const [sensors, setSensors] = useState<string[]>([]);
 
   const loadSensorsData = async (system: string) => {
@@ -25,10 +25,10 @@ const useSensors = (system: system | null) => {
   };
 
   useEffect(() => {
-    if (system) {
-      loadSensorsData(system.SYSTEM_ID.toString());
+    if (systemID) {
+      loadSensorsData(systemID.toString());
     }
-  }, [system]);
+  }, [systemID]);
 
   return { sensors };
 };

@@ -3,16 +3,15 @@ import { ChevronUp, ChevronDown } from "../SVGs";
 
 interface props {
   label: string;
-  options: system[];
-  getLabel: (option: system) => string;
-  onChange: (option: system) => void;
+  options: string[];
+  onChange: (option: string) => void;
   className?: string;
 }
 
 const Dropdown: FC<props> = (props) => {
-  let { label, options, className, getLabel, onChange } = props;
+  let { label, options, className, onChange } = props;
   const [expanded, setExpanded] = useState(false);
-  const [state, setState] = useState<system>();
+  const [state, setState] = useState("");
 
   return (
     <div className={`${className ? className : "w-80"}`}>
@@ -24,7 +23,7 @@ const Dropdown: FC<props> = (props) => {
           onClick={() => setExpanded(!expanded)}
         >
           {state ? (
-            <div className='text-white font-medium'>{getLabel(state)}</div>
+            <div className='text-white font-medium'>{state}</div>
           ) : (
             <div>&nbsp;</div>
           )}
@@ -34,7 +33,7 @@ const Dropdown: FC<props> = (props) => {
           <div className='p-2 w-full overflow-auto h-60 grid grid-cols-1 rounded-lg bg-slate-700 absolute translate-y-[80px] z-10'>
             {options.map((item) => (
               <div
-                key={getLabel(item)}
+                key={item}
                 className='p-4 rounded-lg hover:bg-slate-200/60 text-white hover:text-black hover:font-semibold cursor-pointer'
                 onClick={() => {
                   setState(item);
@@ -42,7 +41,7 @@ const Dropdown: FC<props> = (props) => {
                   setExpanded(false);
                 }}
               >
-                {getLabel(item)}
+                {item}
               </div>
             ))}
           </div>

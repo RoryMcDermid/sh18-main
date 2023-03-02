@@ -8,13 +8,7 @@ import {
   Dropdown,
   MultiSelectDropdown,
 } from "../components";
-import { getPeakWholesalePrices } from "../helpers";
-import {
-  loadSensorReadingData,
-  loadSystems,
-  loadWholesalePrice,
-  useSensors,
-} from "../hooks";
+import { loadSensorReadingData, useSystems, useSensors } from "../hooks";
 
 const CompareScreen: FC = () => {
   const [formSelection, setFormSelection] = useState({
@@ -25,10 +19,9 @@ const CompareScreen: FC = () => {
 
   const { selectedSensors, startDate, endDate } = formSelection;
 
-  const { systems } = loadSystems();
-  const [selectedSystem, setSelectedSystem] = useState<system | null>(null);
-  const { sensors } = useSensors(selectedSystem);
-  const [peakPriceTimes, setPeakPriceTimes] = useState<string[][]>([]);
+  const { systems } = useSystems();
+  const [selectedSystemID, setSelectedSystemID] = useState<number>();
+  const { sensors } = useSensors(selectedSystemID);
   const [sensorReadings, setSensorReadings] = useState<energyReading[][]>([]);
 
   const disableButton = !(
@@ -37,14 +30,7 @@ const CompareScreen: FC = () => {
     endDate !== ""
   );
 
-  // once the start and end dates are set,
-  // an API call is made to get the wholesale energy price data
-  const wholesalePrice = loadWholesalePrice(
-    formSelection.startDate,
-    formSelection.endDate
-  );
-
-  // empty form every time page reloads
+  // reset form every time page reloads
   useEffect(() => {
     setFormSelection({
       selectedSensors: [] as string[],
@@ -52,12 +38,6 @@ const CompareScreen: FC = () => {
       endDate: "",
     });
   }, []);
-
-  // once the wholesale energy price data is available,
-  // the peak price start and end times are set accordingly
-  useEffect(() => {
-    setPeakPriceTimes(getPeakWholesalePrices(wholesalePrice));
-  }, [wholesalePrice]);
 
   // only load sensor readings into chart once all form inputs have been selected or re-selected
   useEffect(() => {
@@ -72,26 +52,32 @@ const CompareScreen: FC = () => {
     }
   }, [disableButton]);
 
+  const handleChange = (systemName: string) => {
+    let selectedSystem = systems.find((s) => s.SYSTEM_NAME === systemName);
+    let systemID = selectedSystem!.SYSTEM_ID;
+    setSelectedSystemID(systemID);
+  };
+
   return (
     <div className='flex h-[85vh]'>
       <div className='flex w-2/3'>
         <CombinedChart
           selectedSensors={selectedSensors}
           sensorReadings={sensorReadings}
-          peakPriceTimes={peakPriceTimes}
         />
       </div>
       <div className='px-5 w-1/3'>
         <div className='flex flex-col gap-5 h-5/6 justify-center pb-5'>
           <Dropdown
-            label='Select a system:'
-            options={systems}
-            onChange={(item) => setSelectedSystem(item)}
+            label='Select a Building:'
+            options={systems.map((system) => {
+              return system.SYSTEM_NAME;
+            })}
+            onChange={handleChange}
             className='w-full'
-            getLabel={(system) => system.SYSTEM_NAME}
           />
           <MultiSelectDropdown
-            label='Select sensors:'
+            label='Select Smart Meters:'
             items={sensors}
             state={selectedSensors}
             setState={(e) =>
