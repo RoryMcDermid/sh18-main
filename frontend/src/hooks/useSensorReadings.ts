@@ -6,7 +6,7 @@ const useSensorReadings = ({
   startDate,
   endDate,
 }: selection) => {
-  const [sensorReading, setSensorReading] = useState<energyReading[][]>([]);
+  const [sensorReading, setSensorReading] = useState<(string | number)[][]>([]);
   let sensorIDs = selectedSensors.join(",");
   const loadSensorReadings = () => {
     axios({
