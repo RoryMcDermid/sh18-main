@@ -1,6 +1,5 @@
 import { FC } from "react";
 import Chart from "react-google-charts";
-import { formatChartData } from "../../helpers";
 
 interface props {
   headerRow: string[];
