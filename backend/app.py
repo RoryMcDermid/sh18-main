@@ -1,8 +1,9 @@
-from utils.data_formatting.formatToChartData import format_to_chart_data
-from database import open_connection, close_connection
+from utils.database_fetches.get_expensive_sensors_and_systems import get_expensive_sensors_and_systems
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
+from routers.systems import router as systems_router
+from routers.sensors import router as sensors_router
 
 load_dotenv()
 
@@ -10,65 +11,13 @@ app = FastAPI()
 
 app.add_middleware(CORSMiddleware, allow_origins=["*"])
 
-# ----------- ENDPOINTS
-
-
-@app.get("/systems", response_description="Get list of all systems")
-async def get_systems():
-    mydb = open_connection()
-    cursor = mydb.cursor(buffered=True)
-    cursor.execute("SELECT * FROM SYSTEMS")
-    systems = cursor.fetchall()
-    cursor.close()
-    close_connection(mydb)
-    return systems
-
-
-@app.get("/systems/{systemid}/sensors", response_description="Get list of all sensors in a system")
-async def get_sensors(systemid):
-    mydb = open_connection()
-    cursor = mydb.cursor(buffered=True)
-    cursor.execute(f"SELECT * FROM SENSORS_FOR_{systemid}")
-    sensors = cursor.fetchall()
-    cursor.close()
-    close_connection(mydb)
-    return sensors
+app.include_router(systems_router, prefix="/systems", tags=["systems"])
+app.include_router(sensors_router, prefix="/sensors", tags=["sensors"])
 
 
 @app.get(
-    "/sensors/{sensorids}/chartformat",
-    response_description="Get reading data for multiple sensors based on startdate and enddate",
+    "/expensive-systems-sensors",
+    response_description="Returns the top 3 most expensive systems or sensors. Returned format is a list of tuples, containing the ID along with total cost. E.g. [(1234, 1000.45242), (2791, 923.59532), (3399, 721.80021)]",
 )
-async def get_sensor_readings(sensorids, startDate, endDate):
-    mydb = open_connection()
-    result = []
-    if "," in sensorids:
-        for sensorid in sensorids.split(","):
-            print(sensorid)
-            cursor = mydb.cursor(buffered=True)
-            cursor.execute(
-                f"SELECT * FROM READINGS_FOR_{sensorid} WHERE READING_DATE>='{startDate}' AND READING_DATE<'{endDate}'"
-            )
-            result.append(cursor.fetchall())
-            cursor.close()
-    else:
-        cursor = mydb.cursor(buffered=True)
-        cursor.execute(
-            f"SELECT * FROM READINGS_FOR_{sensorids} WHERE READING_DATE>='{startDate}' AND READING_DATE<'{endDate}'"
-        )
-        result.append(cursor.fetchall())
-        cursor.close()
-
-    close_connection(mydb)
-    return format_to_chart_data(result)
-
-
-@app.get("/sensors/{sensorid}", response_description="Get ALL reading data for ONE sensor")
-async def get_sensor_readings(sensorid):
-    mydb = open_connection()
-    cursor = mydb.cursor(buffered=True)
-    cursor.execute(f"SELECT * FROM READINGS_FOR_{sensorid}")
-    readings = cursor.fetchall()
-    cursor.close()
-    close_connection(mydb)
-    return readings
+async def get_expensive_sensors_systems():
+    return get_expensive_sensors_and_systems()

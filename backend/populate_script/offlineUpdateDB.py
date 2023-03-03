@@ -6,12 +6,6 @@ from helpers.getSystemsList import *
 from helpers.createSensorsForSystem import *
 from helpers.updateFromDates import *
 
-#This function finds the date of the most recently stored value in the 
-#iter_1 table, then gets all the dates from the api using the previously defined function.
-#It then performs the push down function, adding all appropriate values to tables that are
-#needed. Then remove the unwanted values from tables that are no longer needed to be stored in
-#the specified time ranges for each iteration.
-
 mydb = mysql.connector.connect(
     host = "localhost",
     user = "root",
