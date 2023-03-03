@@ -1,7 +1,10 @@
 
 
 
-
+#code takes a 2x2 array [[w,x][y,z]] and returns a 1d array with the first value being "none" for no points of high or low power, this is an array with 2 values,
+#"min" for a point of low power only, this array has two values
+#"max" for a point of high power only, this array has 2 values
+# and "both" for a point of high and low power, this array has 3 values
 def suggestions(results):
 
     sentances = [""]
@@ -32,7 +35,7 @@ def suggestions(results):
 def time(indexIn):
     return str(int(indexIn/4)) + ":" + str((indexIn % 4) * 15)
 
-#for testing purposes, change suggestions on line 5 to main to allow this file to be run independant of other code
+#for testing purposes, change suggestions on line 8 to main to allow this file to be run independant of other code
 # if __name__ == "__main__":
 
     # main([[-1,-1],[-1,-1]])
