@@ -6,9 +6,9 @@ const ForecastScreen: FC = () => {
   const { systems } = useSystems();
   const [selectedSystemID, setSelectedSystemID] = useState<number>();
   const { sensors } = useSensors(selectedSystemID);
-  const [selectedSensor, setSelectedSensor] = useState("");
+  const [selectedSensorID, setSelectedSensorID] = useState("");
 
-  const { chartData, suggestionData } = useForecastData(selectedSensor);
+  const { chartData, suggestionData } = useForecastData(selectedSensorID);
 
   const handleChange = (systemName: string) => {
     let selectedSystem = systems.find((s) => s[1] === systemName);
@@ -19,7 +19,7 @@ const ForecastScreen: FC = () => {
     <div className='flex h-[85vh] gap-6'>
       <div className='flex w-2/3 pl-8'>
         <CombinedChart
-          selectedSensors={["", "Average", "Prediction"]}
+          selectedSensors={["Average", "Prediction"]}
           sensorReadings={chartData}
         />
       </div>
@@ -36,7 +36,7 @@ const ForecastScreen: FC = () => {
           <Dropdown
             label='Select a Smart Meter:'
             options={sensors}
-            onChange={(item) => setSelectedSensor(item)}
+            onChange={(item) => setSelectedSensorID(item)}
             className='w-full'
           />
         </div>
