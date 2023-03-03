@@ -20,15 +20,14 @@ const CompareScreen: FC = () => {
   const [selectedSystemID, setSelectedSystemID] = useState<number>();
 
   // state
-  const [formSelection, setFormSelection] = useState<selection>(blankForm);
-  const [formSubmission, setFormSubmission] = useState<selection>(blankForm);
+  const [formSelection, setFormSelection] = useState<selection>({...blankForm});
 
   // derived state
   const { systems } = useSystems();
   // derived state
   const { sensors } = useSensors(selectedSystemID);
   // derived state
-  const { sensorReadings } = useSensorReadings(formSubmission);
+  const { sensorReadings, getSensorReadings } = useSensorReadings({...blankForm});
 
   // derived state
   const disableButton = !(
@@ -40,15 +39,15 @@ const CompareScreen: FC = () => {
   // reset form every time page reloads
   useEffect(() => {
     setFormSelection(blankForm);
-    setFormSubmission(blankForm);
-  }, []);
+     }, []);
 
   // sets state responsible for API call
-  useEffect(() => {
-    if (!disableButton) {
-      setFormSubmission(formSelection);
-    }
-  }, [disableButton]);
+  // useEffect(() => {
+  //   if (!disableButton) {
+  //     setFormSubmission({...formSelection});
+  //     console.log(formSubmission)
+  //   }
+  // }, [disableButton]);
 
   const handleChange = (systemName: string) => {
     let selectedSystem = systems.find((s) => s[1] === systemName);
@@ -108,7 +107,10 @@ const CompareScreen: FC = () => {
           </div>
         </div>
         <div className='mt-5 flex justify-between'>
-          <Button text='Enter' isDisabled={disableButton} />
+          <Button text='Enter' isDisabled={disableButton} handleClick={() => {
+              getSensorReadings({...formSelection})
+              
+          }} />
         </div>
       </div>
     </div>

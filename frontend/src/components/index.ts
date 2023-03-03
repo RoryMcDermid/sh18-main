@@ -6,7 +6,6 @@ export { Dropdown } from "./Inputs";
 export { MultiSelectDropdown } from "./Inputs";
 export { Button } from "./Inputs";
 export { DatePicker } from "./Inputs";
-export { ButtonGroup } from "./Inputs";
 
 export { ChevronUp } from "./SVGs";
 export { ChevronDown } from "./SVGs";
