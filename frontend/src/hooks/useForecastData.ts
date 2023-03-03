@@ -13,7 +13,6 @@ const useForecastData = (sensorID: string) => {
       .then((response: { data: { chartData: []; suggestionData: [] } }) => {
         console.log("GET FORECAST DATA SUCCESS", response);
         const forecastData = response.data;
-
         setChartData(forecastData.chartData);
         setSuggestionData(forecastData.suggestionData);
       })
@@ -28,7 +27,7 @@ const useForecastData = (sensorID: string) => {
     if (sensorID) {
       loadForecastData(sensorID);
     }
-  }, []);
+  }, [sensorID]);
 
   return { chartData, suggestionData };
 };
