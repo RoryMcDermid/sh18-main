@@ -2,20 +2,21 @@
 
 
 #this code will take an array of a day's worth of readings from combineGraphData.py and return the most important to look into section and the section that is doing best, or if those don't exist return some form of null value
-def main(priority ):
-
-    #find the minimum point of the graph
-    minEdges = [-1,-1]
-    if(min(priority) < 0):
-        minEdges = spikeTrough(priority, min(priority), -1)
+def pointOfInterest(priority ):
 
     #find the maximum point of the graph
     maxEdges = [-1,-1]
-    if(max(priority) > 0):
+    if(priority[max(priority)] > 0):
         maxEdges = spikeTrough(priority, max(priority), 1)
 
+    #find the minimum point of the graph
+    minEdges = [-1,-1]
+    if(priority[min(priority)] < 0):
+        minEdges = spikeTrough(priority, min(priority), -1)
+
+  
+
     #return 2d array with [[maxLeftSide, maxRightSide][minLeftSide, minRightSide]], with either being [-1,-1] if there is no max or min
-    print(str([maxEdges, minEdges]) + " min " + str(min(priority)))
     return [maxEdges, minEdges]
 
 
@@ -53,19 +54,20 @@ def difference(current, compare):
 def spikeTrough(array, pointOfInterest, direction):
 
     pointLeft = 0
-    pointRight = len(array)
+    pointRight = len(array)-1
 
     for i in range(pointOfInterest, len(array)-1):
         if difference(array[i], array[i+1]) != direction:
-            pointRight = i-1
+            pointRight = i
+            break
     for i in reversed(range(1, pointOfInterest)):
-        if difference(array[i-1], array[i]) != direction:
-            pointLeft = i-1
+        if difference(array[i], array[i-1]) != direction:
+            pointLeft = i
+            break
 
     return [pointLeft, pointRight]
 
 
-#for testing purposes, change pointOfInterest on line 5 to main to allow this file to be run independant of other code 
-#min isn't working, need to further test, the -1s in spikeTrough shouldn't need to be there, look into
+#for testing purposes, change pointOfInterest on line 5 to main to allow this file to be run independant of other code
 if __name__ == "__main__":
-    main([-4,-3,-4,-5,-4,-1,-3,-4,-3])
+    main([4,3,4,5,4,1,3,-4,-3])
