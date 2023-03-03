@@ -38,16 +38,9 @@ const CompareScreen: FC = () => {
 
   // reset form every time page reloads
   useEffect(() => {
-    setFormSelection(blankForm);
+    setFormSelection({...blankForm});
      }, []);
 
-  // sets state responsible for API call
-  // useEffect(() => {
-  //   if (!disableButton) {
-  //     setFormSubmission({...formSelection});
-  //     console.log(formSubmission)
-  //   }
-  // }, [disableButton]);
 
   const handleChange = (systemName: string) => {
     let selectedSystem = systems.find((s) => s[1] === systemName);
