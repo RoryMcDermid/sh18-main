@@ -2,7 +2,7 @@
 
 
 #this code will take an array of a day's worth of readings from combineGraphData.py and return the most important to look into section and the section that is doing best, or if those don't exist return some form of null value
-def pointOfInterest(priority ):
+def pointOfInterest(priority):
 
     #find the maximum point of the graph
     maxEdges = [-1,-1]
@@ -69,5 +69,5 @@ def spikeTrough(array, pointOfInterest, direction):
 
 
 #for testing purposes, change pointOfInterest on line 5 to main to allow this file to be run independant of other code
-if __name__ == "__main__":
-    main([4,3,4,5,4,1,3,-4,-3])
+# if __name__ == "__main__":
+#     main([4,3,4,5,4,1,3,-4,-3])
