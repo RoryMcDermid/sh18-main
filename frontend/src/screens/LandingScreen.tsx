@@ -14,7 +14,10 @@ const LandingScreen: FC = () => {
           </h2>
           <div className='flex flex-col gap-5'>
             {expensiveSystems.map((system, i) => (
-              <div className='flex items-center gap-6 font-semibold text-slate-200'>
+              <div
+                key={i}
+                className='flex items-center gap-6 font-semibold text-slate-200'
+              >
                 <p>{i + 1}.</p>
                 <button className='flex w-full justify-between rounded-md bg-gray-700 py-3 px-6 transition-all duration-150 hover:scale-[1.01] hover:bg-gray-400 hover:text-black'>
                   <p>{system[0]}</p>
@@ -31,7 +34,10 @@ const LandingScreen: FC = () => {
           </h2>
           <div className='flex flex-col gap-5'>
             {expensiveSensors.map((sensor, i) => (
-              <div className='flex items-center gap-6 font-semibold text-slate-200'>
+              <div
+                key={i}
+                className='flex items-center gap-6 font-semibold text-slate-200'
+              >
                 <p>{i + 1}.</p>
                 <button className='flex w-full justify-between rounded-md bg-gray-700 py-3 px-6 transition-all duration-150 hover:scale-[1.01] hover:bg-gray-400 hover:text-black'>
                   <p>{sensor[0]}</p>
