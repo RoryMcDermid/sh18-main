@@ -1,3 +1,4 @@
+import numpy as np
 from utils.most_expensive.getWholesaleEnergyPrice import *
 from utils.data_formatting.formatToChartData import format_to_chart_data
 from utils.data_formatting.formatToPredictionData import format_to_prediction_data
@@ -6,9 +7,9 @@ from database import open_connection, close_connection
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
-import numpy as np
 from utils.prediction.predictEnergyUsage import predict_EnergyUsage
 from utils.get_features.generateMockData import generate_mock_data
+from utils.data_formatting.formatToChartData2 import format_to_chart_data2
 
 load_dotenv()
 
@@ -94,7 +95,7 @@ async def get_forcast_data(sensorid):
     prediction = predict_EnergyUsage(format_to_prediction_data(mock_data))
     average = get_average_from_group(mock_data)
 
-    return {"chartData": prediction, "suggestion": []}
+    return {"chartData": format_to_chart_data2(prediction, average), "suggestion": []}
 
 
 @app.get(
