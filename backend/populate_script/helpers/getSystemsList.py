@@ -3,17 +3,11 @@ import json
 import hashlib
 import datetime
 
-# THIS FUNCTION IS SPECIFIC TO THE REALTIME API AND WILL NOT 
-# BE NEEDED IF SHARING THE APPLICATION WITH OTHER COMPANIES.
-
 def getSystemsList():
     url = "https://www.realtime-online.com/api/v3/json/"
     token = "b30a7d8f6f92"
     secretKey = "ATGUAP!Data2211"
 
-    # above variables are the token and secret key we were given for the API.
-
-    # Form the request, in this example, getting all systems associated with the Uni.
     request_body = {
     "action": "getSystems",
     "request_date": datetime.datetime.now().isoformat(),
@@ -38,7 +32,6 @@ def getSystemsList():
     # Parse this file to store the system IDs, with their associated name and sensor count.
 
     listOfSystems = jsonResp["systems"]
-
     systemIds = {}
 
     for system in listOfSystems:
@@ -46,5 +39,4 @@ def getSystemsList():
             "name" : system["name"],
             "noOfSensors" : system["sensors_count"]
         }
-
     return systemIds

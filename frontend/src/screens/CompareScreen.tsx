@@ -1,135 +1,112 @@
 import { FC, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+
 import {
   Button,
-  ButtonGroup,
+  CombinedChart,
   DatePicker,
   Dropdown,
   MultiSelectDropdown,
-} from "../components/Inputs/.";
-import { BarChart, MultiLineChart } from "../components";
-import { getValidIntervals } from "../helpers";
-import { loadSensorReadingData, loadSystems, useSensors } from "../hooks";
+} from "../components";
+import { useSensorReadings, useSystems, useSensors } from "../hooks";
 
-interface props {
-  peakPriceTimes: string[][];
-}
-
-const CompareScreen: FC<props> = ({ peakPriceTimes }) => {
-
-  const [formSelection, setFormSelection] = useState({
-    selectedSensors: [] as string[],
+const CompareScreen: FC = () => {
+  const blankForm = {
+    selectedSensors: [],
     startDate: "",
     endDate: "",
-    interval: -1,
-  });
+  };
 
-  const { selectedSensors, startDate, endDate, interval } = formSelection;
+  // state
+  const [selectedSystemID, setSelectedSystemID] = useState<number>();
 
-  const { systems } = loadSystems();
-  const [selectedSystem, setSelectedSystem] = useState<system | null>(null);
+  // state
+  const [formSelection, setFormSelection] = useState<selection>({...blankForm});
 
-  const { sensors } = useSensors(selectedSystem);
+  // derived state
+  const { systems } = useSystems();
+  // derived state
+  const { sensors } = useSensors(selectedSystemID);
+  // derived state
+  const { sensorReadings, getSensorReadings } = useSensorReadings({...blankForm});
 
-  const sensorReading = loadSensorReadingData({
-    selectedSensors: selectedSensors,
-    startDate: startDate,
-    endDate: endDate,
-    interval: interval,
-  });
-
+  // derived state
   const disableButton = !(
-    selectedSensors.length > 0 &&
-    startDate !== "" &&
-    endDate !== "" &&
-    interval >= 1 &&
-    interval <= 4
+    formSelection.selectedSensors.length > 0 &&
+    formSelection.startDate !== "" &&
+    formSelection.endDate !== ""
   );
 
-  const [currentChartType, setCurrentChartType] = useState(true);
-
+  // reset form every time page reloads
   useEffect(() => {
-    console.table(formSelection);
-    setFormSelection({
-      selectedSensors: [] as string[],
-      startDate: "",
-      endDate: "",
-      interval: -1,
-    });
-  }, []);
+    setFormSelection({...blankForm});
+     }, []);
+
+
+  const handleChange = (systemName: string) => {
+    let selectedSystem = systems.find((s) => s[1] === systemName);
+    let systemID = selectedSystem![0];
+    setSelectedSystemID(systemID);
+  };
 
   return (
-      <>
-        <div style={{ display: "flex", height: "97vh", width: "97vw"  }}>
-          <div style={{ width: "65%" , marginRight: "30px", display: "flex", height: "100%"}}>
-            {currentChartType && (
-                <MultiLineChart
-                    headerRow={["", ...selectedSensors]}
-                    data={sensorReading}
-                    peakPriceTimes={peakPriceTimes}
-                />
-            )}
-            {!currentChartType && (
-                <BarChart
-                    headerRow={["", ...selectedSensors]}
-                    data={sensorReading}
-                    peakPriceTimes={peakPriceTimes}
-                />
-            )}
-          </div>
-          <div style={{ width: "30%", height: "100%"}}>
-            <div className='flex flex-col gap-5 w-[33rem]'>
-              <Dropdown
-              label='Select a system:'
-              options={systems}
-              onChange={(item) => setSelectedSystem(item)}
-              className='w-full'
-              getLabel={(system) => system.SYSTEM_NAME}
-              />
-              <MultiSelectDropdown
-                  label='Select sensors:'
-                  items={sensors}
-                  state={selectedSensors}
-                  setState={(e) =>
-                      setFormSelection({...formSelection, selectedSensors: e,})
-              }
-                  className='w-full'
-              />
+    <div className='flex h-[85vh] gap-6'>
+      <div className='flex w-2/3 pl-8'>
+        <CombinedChart
+          selectedSensors={formSelection.selectedSensors}
+          sensorReadings={sensorReadings}
+        />
+      </div>
+      <div className='w-1/3 pr-8'>
+        <div className='flex h-5/6 flex-col justify-center gap-5 pb-5'>
+          <Dropdown
+            label='Select a Building:'
+            options={systems.map((system) => {
+              return system[1];
+            })}
+            onChange={handleChange}
+            className='w-full'
+          />
+          <MultiSelectDropdown
+            label='Select Smart Meters:'
+            items={sensors}
+            state={formSelection.selectedSensors}
+            setState={(e) =>
+              setFormSelection({ ...formSelection, selectedSensors: e })
+            }
+            className='w-full'
+          />
 
-              <div className='flex gap-10'>
-                <DatePicker
-                    label='Select a start date:'
-                    state={startDate}
-                    setState={(e) =>
-                        setFormSelection({...formSelection, startDate: e.target.value})}
-                />
-                <DatePicker
-                    label='Select an end date:'
-                    state={endDate}
-                    setState={(e) =>
-                        setFormSelection({...formSelection, endDate: e.target.value,})}
-                />
-              </div>
-              <ButtonGroup
-                  label='Select sensor reading interval:'
-                  items={["15m", "1h", "4h", "1d"]}
-                  handleSelection={(i) =>
-                      setFormSelection({...formSelection, interval: i,})}
-                  disableItems={getValidIntervals(startDate, endDate)}
-              />
-              <div className="flex justify-between">
-                <Button
-                    text={currentChartType ? "Bar Chart" : "Line Chart"}
-                    handleClick={() => setCurrentChartType(!currentChartType)}
-                />
-                <Link to='/compare'>
-                  <Button text='Enter' isDisabled={disableButton} />
-                </Link>
-              </div>
-            </div>
+          <div className='flex flex-wrap justify-between gap-6'>
+            <DatePicker
+              label='Select a start date:'
+              state={formSelection.startDate}
+              setState={(e) =>
+                setFormSelection({
+                  ...formSelection,
+                  startDate: e.target.value,
+                })
+              }
+            />
+            <DatePicker
+              label='Select an end date:'
+              state={formSelection.endDate}
+              setState={(e) =>
+                setFormSelection({
+                  ...formSelection,
+                  endDate: e.target.value,
+                })
+              }
+            />
           </div>
         </div>
-      </>
+        <div className='mt-5 flex justify-between'>
+          <Button text='Enter' isDisabled={disableButton} handleClick={() => {
+              getSensorReadings({...formSelection})
+              
+          }} />
+        </div>
+      </div>
+    </div>
   );
 };
 

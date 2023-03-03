@@ -2,15 +2,10 @@ import requests
 import json
 import hashlib
 import datetime as dt
-import mysql.connector
 from helpers.addReadings import *
 
-# This function makes an API call that takes in two dates, as a 
-# string in the form of dd/mm/yyyy, then gets the values recorded 
-# by all unique sensors from all systems, and parses the
-# returned json to then add each value and the exact time it was recorded
-# in the correct ITER_1_{sensor_id} table.
-# The values are then "pushed down" to each iteration table
+# Taking 2 formatted date values, parse data of sensors and
+# add to appropriate "READINGS_FOR_{sensor_id}" table.
 
 def addDatafromDates(start_date, end_date, systems_with_list_of_sensors, mydb, cursor, online=False):
 
@@ -66,46 +61,23 @@ def addDatafromDates(start_date, end_date, systems_with_list_of_sensors, mydb, c
         raise Exception("Timeout error, you have to wait 10 mins")
 
 #--------------------------------------------------------------------------------------------#
-
-    #looping over the data for each sensor listed, work your way down the json response until
-    #required data is found, then store it in an appropriately named json file.
-
-    if online:
-        reference_time = dt.datetime.now()
-
     for i in range(len(jsonResp["systems"])):
 
         system_id = jsonResp["systems"][i]["system_id"]
         for j in range(len(jsonResp["systems"][i]["sensors"])):
-            if online:
-                if (dt.datetime.now() - reference_time).total_seconds() > 13:
-                    mydb = mysql.connector.connect(
-                        username = "wod2dh1e3jfuxs210ykt",
-                        host = "aws-eu-west-2.connect.psdb.cloud",
-                        password = "pscale_pw_zAx3LdXNX0R0YVevbMphKOEjXcSVMc1BKe5PfaCDDB2",
-                        database = "moxie_live"
-                        )
-                    cursor = mydb.cursor(buffered=True)
-                    reference_time = dt.datetime.now()
 
             readings = jsonResp["systems"][i]["sensors"][j]["data"]
             sensor_id = jsonResp["systems"][i]["sensors"][j]["sensor_id"]
 
-            cursor.execute(f"SELECT SENSOR_MEASUREMENT FROM SENSORS_FOR_{system_id} WHERE SENSOR_ID = {sensor_id}")
+            cursor.execute(f"SELECT SENSOR_MEASUREMENT FROM SENSORS_FOR_{system_id} WHERE SENSOR_ID = '{sensor_id}'")
             sensor_measurement = cursor.fetchall()[0][0]
         
             if len(readings) > 0:
-                # If readings were returned, make all iteration tables, then
-                # initialise lists that will store the appropriate values that
-                # will be used for the "push down" function. The counters
-                # are to keep track of when to add a value to a list, and the 
-                # rolling sums are to keep track of the value of energy that
-                # has been accumulated since the last time period that was 
-                # recorded. 
+
                 cursor.execute(f"""CREATE TABLE READINGS_FOR_{sensor_id}(
-                                READING_DATE DATETIME NOT NULL, 
+                                READING_DATE DATE NOT NULL,
+                                READING_TIME TIME NOT NULL, 
                                 VALUE DECIMAL(15,6) NOT NULL)""")
-                        
                 d_v_15_min = []
                 rolling_sum = 0.0
 
@@ -118,18 +90,14 @@ def addDatafromDates(start_date, end_date, systems_with_list_of_sensors, mydb, c
 
                     appropriate_time_intervals = ["00:00", "15:00", "30:00", "45:00"]
                     if val_date.strftime("%M:%S") in appropriate_time_intervals:
-
-                        d_v_15_min.append((val_date, val_reading))
+                        d_v_15_min.append((val_date.date(), val_date.time(), val_reading))
                         rolling_sum = rolling_sum + val_reading
 
-
-                # Check to make sure the sensor doesn't only return
-                # 0 values.
                 if rolling_sum > 0:
-                    addReadings(sensor_id, d_v_15_min, mydb, cursor, online)
+                    addReadings(sensor_id, d_v_15_min, mydb, cursor)
                 else:
                     cursor.execute(f"DROP TABLE READINGS_FOR_{sensor_id}")
-                    cursor.execute(f"DELETE FROM SENSORS_FOR_{system_id} WHERE SENSOR_ID = {sensor_id}")
+                    cursor.execute(f"DELETE FROM SENSORS_FOR_{system_id} WHERE SENSOR_ID = '{sensor_id}'")
                     mydb.commit()
                     cursor.execute(f"SELECT * FROM SENSORS_FOR_{system_id}")
                     remaining_sensors = cursor.fetchall()
@@ -139,7 +107,7 @@ def addDatafromDates(start_date, end_date, systems_with_list_of_sensors, mydb, c
                         mydb.commit()
 
             else:
-                cursor.execute(f"DELETE FROM SENSORS_FOR_{system_id} WHERE SENSOR_ID = {sensor_id}")
+                cursor.execute(f"DELETE FROM SENSORS_FOR_{system_id} WHERE SENSOR_ID = '{sensor_id}'")
                 mydb.commit()
                 cursor.execute(f"SELECT * FROM SENSORS_FOR_{system_id}")
                 remaining_sensors = cursor.fetchall()
@@ -147,4 +115,3 @@ def addDatafromDates(start_date, end_date, systems_with_list_of_sensors, mydb, c
                         cursor.execute(f"DROP TABLE SENSORS_FOR_{system_id}")
                         cursor.execute(f"DELETE FROM SYSTEMS WHERE SYSTEM_ID = {system_id}")
                         mydb.commit()
-                

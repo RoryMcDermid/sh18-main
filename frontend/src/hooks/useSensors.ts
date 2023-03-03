@@ -1,20 +1,20 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const useSensors = (system: system | null) => {
+const useSensors = (systemID: number | undefined) => {
   const [sensors, setSensors] = useState<string[]>([]);
 
   const loadSensorsData = async (system: string) => {
     axios({
       method: "GET",
-      url: `https://moxieenergydeploy-production.up.railway.app/systems/${system}/sensors`,
+      url: `${import.meta.env.VITE_API}/systems/${system}/sensors`,
     })
       .then((response: { data: [] }) => {
         console.log("GET SENSORS SUCCESS", response);
         const sensorsArray = response.data;
         setSensors(
           sensorsArray.map(function (sensor) {
-            return sensor["SENSOR_ID"];
+            return sensor[0];
           })
         );
       })
@@ -25,10 +25,10 @@ const useSensors = (system: system | null) => {
   };
 
   useEffect(() => {
-    if (system) {
-      loadSensorsData(system.SYSTEM_ID.toString());
+    if (systemID) {
+      loadSensorsData(systemID.toString());
     }
-  }, [system]);
+  }, [systemID]);
 
   return { sensors };
 };
