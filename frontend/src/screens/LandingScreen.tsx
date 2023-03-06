@@ -5,6 +5,8 @@ import useExpenseData from "../hooks/useExpenseData";
 
 const LandingScreen: FC = () => {
   const { expensiveSensors, expensiveSystems } = useExpenseData();
+  console.log(expensiveSensors)
+  console.log(expensiveSystems)
   return (
     <div>
       <div className='squares mx-auto grid grid-cols-9 grid-rows-[9] gap-y-3'>
