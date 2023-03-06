@@ -10,7 +10,7 @@ const BarChart: FC<props> = (props) => {
   let { headerRow, data } = props;
 
   const options = {
-    backgroundColor: "#242424",
+    backgroundColor: "#111827",
     legend: { position: "none" },
     hAxis: {
       textStyle: { color: "#ffffff" },

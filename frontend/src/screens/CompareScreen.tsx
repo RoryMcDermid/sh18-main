@@ -34,10 +34,11 @@ const CompareScreen: FC = () => {
   });
 
   // derived state
-  const disableButton =
-    formSelection.selectedSensors.length > 0 ||
-    formSelection.startDate !== "" ||
-    formSelection.endDate !== "";
+  const disableButton = !(
+    formSelection.selectedSensors.length > 0 &&
+    formSelection.startDate !== "" &&
+    formSelection.endDate !== ""
+  );
 
   // reset form every time page reloads
   useEffect(() => {
