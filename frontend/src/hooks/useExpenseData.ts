@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { setLocalStorage } from "../helpers";
 
 const useExpenseData = () => {
   type expenseInfo = [string, number] & { length: 2 };
@@ -17,6 +18,7 @@ const useExpenseData = () => {
         const expenseData = response.data;
         setExpensiveSensors(expenseData.sensors);
         setExpensiveSystems(expenseData.systems);
+        setLocalStorage("expensive_data", JSON.stringify(expenseData))
       })
       .catch((error: { response: { data: { error: any } } }) => {
         console.log("GET EXPENSE DATA ERROR", error.response.data.error);
@@ -25,8 +27,22 @@ const useExpenseData = () => {
       });
   };
 
+  async function getValueFromLocalStorage() {
+    const expenseDataString = await JSON.parse(localStorage.getItem('expensive_data')!);
+    if (expenseDataString !== null) {
+      const expenseData = JSON.parse(expenseDataString);
+      setExpensiveSensors(expenseData.sensors);
+      setExpensiveSystems(expenseData.systems);
+    }
+  }
+
+
   useEffect(() => {
-    loadExpenseData();
+    if (localStorage.getItem("expensive_data") !== null) {
+      getValueFromLocalStorage()
+    } else {
+      loadExpenseData();
+    }
   }, []);
 
   return { expensiveSystems, expensiveSensors };

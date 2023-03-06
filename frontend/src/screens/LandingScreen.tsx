@@ -3,6 +3,8 @@ import useExpenseData from "../hooks/useExpenseData";
 
 const LandingScreen: FC = () => {
   const { expensiveSensors, expensiveSystems } = useExpenseData();
+  console.log(expensiveSensors)
+  console.log(expensiveSystems)
   return (
     <div>
       <div className='mx-auto mt-20  flex flex-row justify-center gap-20'>
