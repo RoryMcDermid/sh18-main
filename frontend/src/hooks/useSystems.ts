@@ -7,7 +7,7 @@ const useSystems = () => {
   const loadSystemData = () => {
     axios({
       method: "GET",
-      url: `${import.meta.env.VITE_API}/systems`,
+      url: `${import.meta.env.VITE_API}/systems/`,
     })
       .then((response: { data: [] }) => {
         console.log("GET SYSTEMS SUCCESS", response);
