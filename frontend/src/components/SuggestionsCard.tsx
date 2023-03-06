@@ -8,12 +8,12 @@ const SuggestionsCard: FC<props> = ({ suggestionData }) => {
   const getSuggestions = (data: string[]) => {
     return data;
   };
-  const suggestions = getSuggestions(suggestionData);
+  const suggestions = getSuggestions(suggestionData).slice(1);
 
   return (
     <>
       <div
-        className='flex h-max w-full flex-col justify-between gap-7 rounded-lg bg-slate-400 px-6 
+        className='flex h-max w-full flex-col justify-between gap-5 rounded-lg bg-slate-400 px-6 
           py-8'
       >
         {suggestions.map((suggestion, i) => (

@@ -1,4 +1,5 @@
-# code takes a 2x2 array [[w,x][y,z]] and returns a 1d array with the first value being "none" for no points of high or low power, this is an array with 2 values,
+# code takes a 2x2 array [[max_val_start_time,max_val_end_time],[min_val_start_time,min_val_end_time]]
+# and returns a 1d array with the first value being "none" for no points of high or low power, this is an array with 2 values,
 # "min" for a point of low power only, this array has two values
 # "max" for a point of high power only, this array has 2 values
 # and "both" for a point of high and low power, this array has 3 values
