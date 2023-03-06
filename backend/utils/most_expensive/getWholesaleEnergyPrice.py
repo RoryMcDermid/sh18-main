@@ -3,18 +3,17 @@ import numpy as np
 import datetime as dt
 
 
-def getWholesaleEnergyPrice(start_date, end_date):
+def get_wholesale_energy_price(start_date: dt.datetime, end_date: dt.datetime):
+    headers = {"Accept": "application/json"}
 
-    headers = {
-        'Accept': 'application/json'
-    }
-
-    r = requests.get(f'https://odegdcpnma.execute-api.eu-west-2.amazonaws.com/development/prices?dno=10&voltage=HV&start={start_date}&end={end_date}',
-                     params={}, headers=headers)
+    r = requests.get(
+        f"https://odegdcpnma.execute-api.eu-west-2.amazonaws.com/development/prices?dno=10&voltage=HV&start={start_date}&end={end_date}",
+        params={},
+        headers=headers,
+    )
 
     r = r.json()["data"]["data"]
-    time = np.repeat([dt.datetime.strptime(
-        x["Timestamp"], "%H:%M %d-%m-%Y") for x in r[:-1]], 2)
+    time = np.repeat([dt.datetime.strptime(x["Timestamp"], "%H:%M %d-%m-%Y") for x in r[:-1]], 2)
     price = np.repeat([x["Overall"] for x in r[:-1]], 2)
 
     time[1::2] += dt.timedelta(minutes=15)
