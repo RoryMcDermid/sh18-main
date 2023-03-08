@@ -25,12 +25,10 @@ const SuggestionsCard: FC<props> = ({ suggestionData }) => {
 
   return (
     <>
-      <ul
-        className='flex h-max w-full flex-col justify-between gap-5 rounded-lg bg-slate-400 px-4 -mt-2 py-6'
-      >
+      <ul className='-mt-2 flex h-max w-full flex-col justify-between gap-5 rounded-lg bg-slate-600 px-4 py-6'>
         {suggestions.map((suggestion, i) => (
           <li
-            className={`rounded-lg border-4 px-3 py-2 text-sm ${getBorderColor(
+            className={`rounded-lg border-4 px-3 py-2 text-sm text-slate-300 hover:text-white ${getBorderColor(
               suggestion
             )}`}
             key={i}
