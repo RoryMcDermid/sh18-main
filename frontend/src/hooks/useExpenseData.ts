@@ -18,6 +18,8 @@ const useExpenseData = () => {
         const expenseData = response.data;
         setExpensiveSensors(expenseData.sensors);
         setExpensiveSystems(expenseData.systems);
+        let now = new Date(Date.now());
+        Object.assign(expenseData, {"date": now});
         setLocalStorage("expensive_data", JSON.stringify(expenseData))
       })
       .catch((error: { response: { data: { error: any } } }) => {
@@ -27,19 +29,33 @@ const useExpenseData = () => {
       });
   };
 
-  async function getValueFromLocalStorage() {
-    const expenseDataString = await JSON.parse(localStorage.getItem('expensive_data')!);
-    if (expenseDataString !== null) {
-      const expenseData = JSON.parse(expenseDataString);
-      setExpensiveSensors(expenseData.sensors);
-      setExpensiveSystems(expenseData.systems);
-    }
+  const hasItBeenADay = (startDate: Date, endDate: Date) => {
+      let tomorrow = new Date()
+      tomorrow.setDate(startDate.getDate() + 1)
+      if (endDate >= tomorrow) {
+        return true
+      }
+      return false
   }
 
-
+  const getLocalStorageValues = async () => {
+      const expenseDataString = await JSON.parse(localStorage.getItem('expensive_data')!);
+      if (expenseDataString !== null) {
+        const expenseData = JSON.parse(expenseDataString);
+        let now = new Date(Date.now());
+        let loadDate = new Date(expenseData.date);
+        if (hasItBeenADay(loadDate, now)) {
+          loadExpenseData();
+        } else {
+        setExpensiveSensors(expenseData.sensors);
+        setExpensiveSystems(expenseData.systems);
+        }
+      }
+  }
+  
   useEffect(() => {
     if (localStorage.getItem("expensive_data") !== null) {
-      getValueFromLocalStorage()
+      getLocalStorageValues()
     } else {
       loadExpenseData();
     }

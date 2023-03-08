@@ -17,7 +17,7 @@ const SuggestionsCard: FC<props> = ({ suggestionData }) => {
     if (suggestion.split(" ").includes("low")) {
       return "border-lime-600";
     }
-    if (suggestion.split(" ").includes("hight")) {
+    if (suggestion.split(" ").includes("high")) {
       return "border-red-600";
     }
     return "border-slate-500";
@@ -26,12 +26,11 @@ const SuggestionsCard: FC<props> = ({ suggestionData }) => {
   return (
     <>
       <ul
-        className='flex h-max w-full flex-col justify-between gap-5 rounded-lg bg-slate-400 px-6 
-          py-8'
+        className='flex h-max w-full flex-col justify-between gap-5 rounded-lg bg-slate-400 px-4 -mt-2 py-6'
       >
         {suggestions.map((suggestion, i) => (
           <li
-            className={`rounded-lg border-4 px-3 py-2 ${getBorderColor(
+            className={`rounded-lg border-4 px-3 py-2 text-sm ${getBorderColor(
               suggestion
             )}`}
             key={i}

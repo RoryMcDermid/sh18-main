@@ -56,7 +56,7 @@ const ForecastScreen: FC = () => {
               className='w-full'
             />
           </div>
-          <div className='pt-2'>
+          <div>
             <SuggestionsCard suggestionData={suggestionData} />
           </div>
         </div>
