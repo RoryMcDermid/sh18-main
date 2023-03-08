@@ -2,7 +2,7 @@ from typing import List
 import datetime as dt
 
 
-def format_to_chart_data(response: List[List[List]]) -> List[List]:
+def format_for_compare_screen(response: List[List[List]]) -> List[List]:
     formatted_data = []
 
     for rows in zip(*response):

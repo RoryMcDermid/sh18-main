@@ -1,5 +1,5 @@
 import unittest
-from ..utils.extract_features.pointOfInterest import *
+from ..utils.extract_features.getPointOfInterest import *
 
 class TestMax(unittest.TestCase):
 

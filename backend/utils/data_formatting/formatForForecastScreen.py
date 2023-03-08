@@ -2,7 +2,7 @@ from typing import List
 import datetime as dt
 
 
-def format_to_chart_data2(prediction: List[List[List]], average) -> List[List]:
+def format_for_forecast_screen(prediction: List[List[List]], average) -> List[List]:
     formatted_data = []
     today = dt.date.today()
     midnight_today = dt.datetime.combine(today, dt.datetime.min.time())
