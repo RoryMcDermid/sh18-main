@@ -3,12 +3,13 @@ import Loading from "react-loading";
 import { BarChart, Button, MultiLineChart } from "..";
 
 interface props {
+  title: string;
   selectedSensors: string[];
   sensorReadings: (string | number)[][];
 }
 
 const CombinedChart: FC<props> = (props) => {
-  let { selectedSensors, sensorReadings } = props;
+  let { title, selectedSensors, sensorReadings } = props;
 
   const [currentChartType, setCurrentChartType] = useState(true);
   const [chartReady, setChartReady] = useState(false);
@@ -28,11 +29,13 @@ const CombinedChart: FC<props> = (props) => {
           <>
             {currentChartType ? (
               <MultiLineChart
+                title={title}
                 headerRow={["", ...selectedSensors]}
                 data={sensorReadings}
               />
             ) : (
               <BarChart
+                title={title}
                 headerRow={["", ...selectedSensors]}
                 data={sensorReadings}
               />

@@ -27,10 +27,17 @@ const ForecastScreen: FC = () => {
     <div className='flex h-[85vh] gap-6'>
       <div className='flex w-2/3 pl-8'>
         <CombinedChart
+          title={`24-hour Forecast - Smart Meter ${selectedSensorID}`}
           selectedSensors={["Average", "Prediction"]}
           sensorReadings={chartData}
         />
       </div>
+      {chartData.length > 0 && (
+        <ul className='absolute left-32 bottom-16 z-20 flex list-disc gap-20'>
+          <li className='text-xl font-semibold text-red-600'>Prediction</li>
+          <li className='text-xl font-semibold text-blue-600'>Average</li>
+        </ul>
+      )}
       <div className=' w-1/3 pr-8'>
         <div className='flex h-5/6 flex-col '>
           <div className=' flex flex-col gap-5 pb-16'>

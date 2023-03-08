@@ -2,14 +2,15 @@ import { FC } from "react";
 import Chart from "react-google-charts";
 
 interface props {
+  title: string;
   headerRow: string[];
   data: (string | number)[][];
 }
 
-const MultiLineChart: FC<props> = (props) => {
-  let { headerRow, data } = props;
-
+const MultiLineChart: FC<props> = ({ title, headerRow, data }) => {
   const options = {
+    title: title,
+    titleTextStyle: { color: "#ffffff", fontSize: 16 },
     backgroundColor: "#111827",
     legend: { position: "none" },
     hAxis: {

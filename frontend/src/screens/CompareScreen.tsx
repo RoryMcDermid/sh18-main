@@ -55,6 +55,7 @@ const CompareScreen: FC = () => {
     <div className='flex h-[85vh] gap-6'>
       <div className='flex w-2/3 pl-8'>
         <CombinedChart
+          title='Compare Smart Meter Readings'
           selectedSensors={formSelection.selectedSensors}
           sensorReadings={sensorReadings}
         />

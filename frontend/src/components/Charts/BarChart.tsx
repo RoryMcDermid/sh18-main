@@ -2,14 +2,17 @@ import { FC } from "react";
 import Chart from "react-google-charts";
 
 interface props {
+  title: string;
   headerRow: string[];
   data: (string | number)[][];
 }
 
 const BarChart: FC<props> = (props) => {
-  let { headerRow, data } = props;
+  let { title, headerRow, data } = props;
 
   const options = {
+    title: title,
+    titleTextStyle: { color: "#ffffff", fontSize: 16 },
     backgroundColor: "#111827",
     legend: { position: "none" },
     hAxis: {
